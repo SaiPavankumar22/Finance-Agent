@@ -1,7 +1,7 @@
 {
   "abstain_count": 37,
   "count": 150,
-  "created_at": "2026-11-09T18:59:37.466069+00:00",
+  "created_at": "2026-11-09T19:02:39.436803+00:00",
   "fixture_count": 365,
   "fixture_hash": "a408b07825b277c8500498a8ef662763d93192684cc8d9a0355cf899cc4a9922",
   "fixture_snapshot": "2026-11-09",
@@ -22,17 +22,16 @@
     "unsupported_metric": 6
   },
   "language_counts": {
-    "en": 147,
-    "es": 2,
-    "hi": 1
+    "en": 150
   },
   "notes": [
     "Built before any training data existed (plan WS2).",
     "conflict intent is excluded until the SEC EDGAR provider lands (P1).",
     "overview examples may report news as unavailable: that is provider truth.",
-    "question paraphrasing by an LLM happens later, for training data only."
+    "question paraphrasing by an LLM happens later, for training data only.",
+    "English only: the multilingual variants were dropped by project decision."
   ],
   "seed": 7,
-  "sha256": "87c4303149c4efc91314b4eacdad2dfc502f2313efa878342f74369775d21e64",
+  "sha256": "025c345dc028d457f99a1d9cf2f6c4c1b7069f72db166a3fe1ca41c5d2fd2e94",
   "target_count": 150
 }

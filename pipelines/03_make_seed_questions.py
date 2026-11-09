@@ -107,11 +107,9 @@ def eligible(store: FixtureStore, spec: dict[str, Any], chosen: list[str], perio
     return True
 
 
-def choose_language(rng: random.Random, variants: dict[str, list[str]]) -> str:
-    languages = [language for language in variants if language != "en"]
-    if languages and rng.random() < 0.15:
-        return rng.choice(languages)
-    return "en"
+#: English only, by project decision: the multilingual P1 item is dropped, so
+#: the test set and the training data stay in one language.
+TEST_LANGUAGE = "en"
 
 
 def build_example(
@@ -135,8 +133,7 @@ def build_example(
         if not eligible(store, spec, chosen, period):
             continue
 
-        language = choose_language(rng, variants)
-        template = rng.choice(variants[language]).strip()
+        template = rng.choice(variants[TEST_LANGUAGE]).strip()
         question = template.format(
             ticker=chosen[0],
             ticker2=chosen[1] if len(chosen) > 1 else "",
@@ -158,7 +155,7 @@ def build_example(
         return {
             "id": f"ts_{index:04d}",
             "intent": intent,
-            "language": language,
+            "language": TEST_LANGUAGE,
             "tickers": chosen,
             "period": period,
             "mutation": spec.get("mutation", "none"),
@@ -288,6 +285,7 @@ def main() -> int:
             "conflict intent is excluded until the SEC EDGAR provider lands (P1).",
             "overview examples may report news as unavailable: that is provider truth.",
             "question paraphrasing by an LLM happens later, for training data only.",
+            "English only: the multilingual variants were dropped by project decision.",
         ],
     }
     META_FILE.write_text(json.dumps(meta, indent=2, sort_keys=True), encoding="utf-8")

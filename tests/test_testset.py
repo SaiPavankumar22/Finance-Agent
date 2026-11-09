@@ -106,10 +106,8 @@ def test_abstention_examples_are_marked_and_present():
     assert any(row["intent"] == "advice_request" for row in abstaining)
 
 
-def test_non_english_coverage():
-    languages = {row["language"] for row in examples()}
-    assert len(languages) > 1
-    assert {"es", "fr", "hi"} & languages
+def test_test_set_is_english_only():
+    assert {row["language"] for row in examples()} == {"en"}
 
 
 def test_conflict_intent_is_deferred_until_sec_exists():

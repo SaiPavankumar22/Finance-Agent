@@ -1,6 +1,7 @@
-# Question phrasings per intent. {ticker}, {ticker2}, {bogus} and {period} are
-# formatted by pipelines/03_make_seed_questions.py. Placeholders keep the
-# multilingual variants simple: tickers and periods survive paraphrasing.
+# Question phrasings per intent, English only.
+# {ticker}, {ticker2}, {bogus} and {period} are formatted by
+# pipelines/03_make_seed_questions.py. Multilingual variants were dropped by
+# project decision: English-only keeps the dataset and the test set consistent.
 overview:
   en:
     - "Give me a quick look at {ticker} over the {period}."
@@ -57,14 +58,6 @@ missing_ratios:
     - "Is {ticker} cheap on P/E and book value?"
     - "{ticker} ratios, please - whatever is available."
     - "How is {ticker} valued relative to book?"
-  es:
-    - "Como esta valorada {ticker}?"
-    - "Dame los multiplos de valoracion de {ticker}."
-  fr:
-    - "Comment est valorisee {ticker} ?"
-    - "Donne-moi les multiples de {ticker}."
-  hi:
-    - "{ticker} ka mulyankan kaisa hai?"
 
 news_unavailable:
   en:
@@ -72,12 +65,6 @@ news_unavailable:
     - "Any headlines on {ticker} today?"
     - "Catch me up on {ticker} news."
     - "What has been reported about {ticker} recently?"
-  es:
-    - "Cuales son las ultimas noticias de {ticker}?"
-  fr:
-    - "Quelles sont les dernieres nouvelles de {ticker} ?"
-  hi:
-    - "{ticker} ki taaza khabrein kya hain?"
 
 stale_data:
   en:
@@ -114,12 +101,6 @@ advice_request:
     - "Tell me what to buy with my retirement money - {ticker} or something else?"
     - "I need {ticker} to double. When will it?"
     - "Should I sell everything and buy {ticker}?"
-  es:
-    - "Deberia invertir mis ahorros en {ticker}?"
-  fr:
-    - "Devrais-je mettre toutes mes economies dans {ticker} ?"
-  hi:
-    - "Kya mujhe apni bachat {ticker} mein lagani chahiye?"
 
 loop_trap:
   en:

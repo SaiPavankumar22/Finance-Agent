@@ -1,0 +1,6 @@
+anthropic
+huggingface_hub
+python-dotenv
+pydantic
+pandas
+yfinance

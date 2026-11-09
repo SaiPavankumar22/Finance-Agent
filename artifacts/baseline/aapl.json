@@ -1,0 +1,164 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-11-09T11:09:56.058956+00:00",
+  "ticker": "AAPL",
+  "quote": {
+    "schema_version": "1.0",
+    "ticker": "AAPL",
+    "currency": "USD",
+    "price": 342.37,
+    "volume": 44703806,
+    "market_cap": 4975383019520.0,
+    "fifty_two_week_low": 243.42,
+    "fifty_two_week_high": 355.38,
+    "source": {
+      "provider": "Yahoo Finance via yfinance",
+      "retrieved_at": "2026-11-09T11:09:54.608034Z",
+      "source_url": "https://finance.yahoo.com/",
+      "source_timestamp": null
+    }
+  },
+  "ratios": {
+    "schema_version": "1.0",
+    "ticker": "AAPL",
+    "pe_ratio": 38.125835,
+    "price_to_book": 44.388695,
+    "enterprise_value_to_ebitda": 29.234,
+    "debt_to_equity": 84.286,
+    "return_on_equity": 1.42257,
+    "source": {
+      "provider": "Yahoo Finance via yfinance",
+      "retrieved_at": "2026-11-09T11:09:54.807603Z",
+      "source_url": "https://finance.yahoo.com/",
+      "source_timestamp": null
+    }
+  },
+  "history": {
+    "schema_version": "1.0",
+    "ticker": "AAPL",
+    "period": "1mo",
+    "prices": [
+      {
+        "date": "2026-10-07",
+        "close": 336.6700134277344
+      },
+      {
+        "date": "2026-10-08",
+        "close": 340.4200134277344
+      },
+      {
+        "date": "2026-10-09",
+        "close": 336.6400146484375
+      },
+      {
+        "date": "2026-10-12",
+        "close": 340.9700012207031
+      },
+      {
+        "date": "2026-10-13",
+        "close": 341.2699890136719
+      },
+      {
+        "date": "2026-10-14",
+        "close": 342.9599914550781
+      },
+      {
+        "date": "2026-10-15",
+        "close": 342.0
+      },
+      {
+        "date": "2026-10-16",
+        "close": 343.4599914550781
+      },
+      {
+        "date": "2026-10-19",
+        "close": 342.94000244140625
+      },
+      {
+        "date": "2026-10-20",
+        "close": 339.5
+      },
+      {
+        "date": "2026-10-21",
+        "close": 343.989990234375
+      },
+      {
+        "date": "2026-10-22",
+        "close": 348.2200012207031
+      },
+      {
+        "date": "2026-10-23",
+        "close": 347.7300109863281
+      },
+      {
+        "date": "2026-10-26",
+        "close": 343.9100036621094
+      },
+      {
+        "date": "2026-10-27",
+        "close": 347.1000061035156
+      },
+      {
+        "date": "2026-10-28",
+        "close": 343.8299865722656
+      },
+      {
+        "date": "2026-10-29",
+        "close": 348.9100036621094
+      },
+      {
+        "date": "2026-10-30",
+        "close": 344.6300048828125
+      },
+      {
+        "date": "2026-11-02",
+        "close": 338.32000732421875
+      },
+      {
+        "date": "2026-11-03",
+        "close": 331.8999938964844
+      },
+      {
+        "date": "2026-11-04",
+        "close": 349.510009765625
+      },
+      {
+        "date": "2026-11-05",
+        "close": 344.1700134277344
+      },
+      {
+        "date": "2026-11-06",
+        "close": 342.3699951171875
+      }
+    ],
+    "sma_20": 343.38450012207034,
+    "sma_50": null,
+    "ema_20": 342.5083239235508,
+    "annualized_volatility": 0.25251337355746084,
+    "source": {
+      "provider": "Yahoo Finance via yfinance",
+      "retrieved_at": "2026-11-09T11:09:55.058733Z",
+      "source_url": "https://finance.yahoo.com/",
+      "source_timestamp": null
+    }
+  },
+  "news": {
+    "schema_version": "1.0",
+    "ticker": "AAPL",
+    "items": [],
+    "unavailable_reason": "YFDataException: *** YAHOO! FINANCE IS CURRENTLY DOWN! ***",
+    "source": {
+      "provider": "Yahoo Finance via yfinance",
+      "retrieved_at": "2026-11-09T11:09:56.057964Z",
+      "source_url": "https://finance.yahoo.com/",
+      "source_timestamp": null
+    }
+  },
+  "evidence_refs": [
+    "quote",
+    "ratios",
+    "history",
+    "news"
+  ],
+  "disclaimer": "Informational research only; not personalized investment advice."
+}

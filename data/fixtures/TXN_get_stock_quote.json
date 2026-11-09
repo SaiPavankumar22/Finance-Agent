@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:28.891352+00:00",
+  "result": {
+    "args": {
+      "ticker": "TXN"
+    },
+    "as_of": "2026-11-09T18:56:24Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 334.03,
+      "fifty_two_week_low": 152.73,
+      "market_cap": 267687165952.0,
+      "price": 292.795,
+      "ticker": "TXN",
+      "volume": 2565637
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:28.026093Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "TXN",
+  "tool": "get_stock_quote"
+}

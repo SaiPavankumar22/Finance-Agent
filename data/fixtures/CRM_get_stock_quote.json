@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:17.606004+00:00",
+  "result": {
+    "args": {
+      "ticker": "CRM"
+    },
+    "as_of": "2026-11-09T18:56:02Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 269.11,
+      "fifty_two_week_low": 146.32,
+      "market_cap": 178084855808.0,
+      "price": 216.385,
+      "ticker": "CRM",
+      "volume": 2614764
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:16.894919Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "CRM",
+  "tool": "get_stock_quote"
+}

@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:26.956754+00:00",
+  "result": {
+    "args": {
+      "ticker": "QCOM"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 52.604,
+      "enterprise_value_to_ebitda": 17.448,
+      "pe_ratio": 13.835434,
+      "price_to_book": 6.195917,
+      "return_on_equity": 0.52814996,
+      "ticker": "QCOM"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:26.952742Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "QCOM",
+  "tool": "get_financial_ratios"
+}

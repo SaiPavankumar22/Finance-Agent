@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:23.665904+00:00",
+  "result": {
+    "args": {
+      "ticker": "CSCO"
+    },
+    "as_of": "2026-11-09T18:56:18Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 130.37,
+      "fifty_two_week_low": 71.1,
+      "market_cap": 387654844416.0,
+      "price": 98.325,
+      "ticker": "CSCO",
+      "volume": 7903403
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:23.070188Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "CSCO",
+  "tool": "get_stock_quote"
+}

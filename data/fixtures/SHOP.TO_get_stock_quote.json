@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:11.767862+00:00",
+  "result": {
+    "args": {
+      "ticker": "SHOP.TO"
+    },
+    "as_of": "2026-11-09T18:57:06Z",
+    "data": {
+      "currency": "CAD",
+      "fifty_two_week_high": 255.95,
+      "fifty_two_week_low": 129.01,
+      "market_cap": 275354288128.0,
+      "price": 214.03,
+      "ticker": "SHOP.TO",
+      "volume": 429856
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:11.066009Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "SHOP.TO",
+  "tool": "get_stock_quote"
+}

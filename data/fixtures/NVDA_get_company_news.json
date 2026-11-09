@@ -1,0 +1,19 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:28.434105+00:00",
+  "result": {
+    "args": {
+      "limit": 5,
+      "ticker": "NVDA"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "provider_unavailable",
+    "retrieved_at": "2026-11-09T18:55:23.327776Z",
+    "source": "yfinance",
+    "status": "unavailable",
+    "tool": "get_company_news"
+  },
+  "ticker": "NVDA",
+  "tool": "get_company_news"
+}

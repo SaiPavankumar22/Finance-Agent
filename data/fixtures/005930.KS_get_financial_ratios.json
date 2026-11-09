@@ -1,0 +1,18 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:10.775942+00:00",
+  "result": {
+    "args": {
+      "ticker": "005930.KS"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "invalid_ticker",
+    "retrieved_at": "2026-11-09T18:57:10.775942Z",
+    "source": "yfinance",
+    "status": "error",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "005930.KS",
+  "tool": "get_financial_ratios"
+}

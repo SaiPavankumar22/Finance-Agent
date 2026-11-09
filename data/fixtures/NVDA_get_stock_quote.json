@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:53:34.380327+00:00",
+  "result": {
+    "args": {
+      "ticker": "NVDA"
+    },
+    "as_of": "2026-11-09T18:53:32Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 243.37,
+      "fifty_two_week_low": 164.27,
+      "market_cap": 4274260279296.0,
+      "price": 177.01,
+      "ticker": "NVDA",
+      "volume": 331462706
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:53:33.659768Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "NVDA",
+  "tool": "get_stock_quote"
+}

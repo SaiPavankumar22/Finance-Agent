@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:43.377364+00:00",
+  "result": {
+    "args": {
+      "ticker": "MCD"
+    },
+    "as_of": "2026-11-09T18:56:39Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 341.75,
+      "fifty_two_week_low": 229.2,
+      "market_cap": 199504183296.0,
+      "price": 282.67,
+      "ticker": "MCD",
+      "volume": 2156247
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:42.681984Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "MCD",
+  "tool": "get_stock_quote"
+}

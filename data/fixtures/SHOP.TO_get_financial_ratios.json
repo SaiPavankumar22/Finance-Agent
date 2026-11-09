@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:11.770939+00:00",
+  "result": {
+    "args": {
+      "ticker": "SHOP.TO"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "CAD",
+      "debt_to_equity": 1.475,
+      "enterprise_value_to_ebitda": 102.873,
+      "pe_ratio": 94.70354,
+      "price_to_book": 15.377508,
+      "return_on_equity": 0.16833,
+      "ticker": "SHOP.TO"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:11.769409Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "SHOP.TO",
+  "tool": "get_financial_ratios"
+}

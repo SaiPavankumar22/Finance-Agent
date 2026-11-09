@@ -1,0 +1,19 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:29.762205+00:00",
+  "result": {
+    "args": {
+      "limit": 5,
+      "ticker": "TXN"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "provider_unavailable",
+    "retrieved_at": "2026-11-09T18:56:29.762205Z",
+    "source": "yfinance",
+    "status": "unavailable",
+    "tool": "get_company_news"
+  },
+  "ticker": "TXN",
+  "tool": "get_company_news"
+}

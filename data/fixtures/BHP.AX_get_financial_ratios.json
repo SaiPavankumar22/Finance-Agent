@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:15.300467+00:00",
+  "result": {
+    "args": {
+      "ticker": "BHP.AX"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "AUD",
+      "debt_to_equity": 50.473,
+      "enterprise_value_to_ebitda": 10.568,
+      "pe_ratio": 20.77193,
+      "price_to_book": 4.151146,
+      "return_on_equity": 0.24002,
+      "ticker": "BHP.AX"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:15.298415Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "BHP.AX",
+  "tool": "get_financial_ratios"
+}

@@ -1,0 +1,18 @@
+{
+  "period": "1y",
+  "recorded_at": "2026-11-09T18:57:10.248490+00:00",
+  "result": {
+    "args": {
+      "ticker": "7203.T"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "invalid_ticker",
+    "retrieved_at": "2026-11-09T18:57:10.248490Z",
+    "source": "yfinance",
+    "status": "error",
+    "tool": "get_historical_prices"
+  },
+  "ticker": "7203.T",
+  "tool": "get_historical_prices"
+}

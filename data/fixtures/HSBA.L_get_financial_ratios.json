@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:19.126889+00:00",
+  "result": {
+    "args": {
+      "ticker": "HSBA.L"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "GBp",
+      "debt_to_equity": null,
+      "enterprise_value_to_ebitda": null,
+      "pe_ratio": 11.729824,
+      "price_to_book": 1.766692,
+      "return_on_equity": 0.14219,
+      "ticker": "HSBA.L"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:19.123897Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "HSBA.L",
+  "tool": "get_financial_ratios"
+}

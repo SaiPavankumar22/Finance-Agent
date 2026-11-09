@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:07.036722+00:00",
+  "result": {
+    "args": {
+      "ticker": "KO"
+    },
+    "as_of": "2026-11-09T18:56:03Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 97.39,
+      "fifty_two_week_low": 67.27,
+      "market_cap": 412251324416.0,
+      "price": 95.83,
+      "ticker": "KO",
+      "volume": 7978008
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:06.418658Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "KO",
+  "tool": "get_stock_quote"
+}

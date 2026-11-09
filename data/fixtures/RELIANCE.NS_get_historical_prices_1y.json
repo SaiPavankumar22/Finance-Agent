@@ -1,0 +1,18 @@
+{
+  "period": "1y",
+  "recorded_at": "2026-11-09T18:57:06.504590+00:00",
+  "result": {
+    "args": {
+      "ticker": "RELIANCE.NS"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "invalid_ticker",
+    "retrieved_at": "2026-11-09T18:57:06.504590Z",
+    "source": "yfinance",
+    "status": "error",
+    "tool": "get_historical_prices"
+  },
+  "ticker": "RELIANCE.NS",
+  "tool": "get_historical_prices"
+}

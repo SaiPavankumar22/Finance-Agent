@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:45.789435+00:00",
+  "result": {
+    "args": {
+      "ticker": "AVGO"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 59.604,
+      "enterprise_value_to_ebitda": 27.505,
+      "pe_ratio": 40.85696,
+      "price_to_book": 15.319893,
+      "return_on_equity": 0.44245,
+      "ticker": "AVGO"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:45.788437Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "AVGO",
+  "tool": "get_financial_ratios"
+}

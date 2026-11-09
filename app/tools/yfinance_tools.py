@@ -79,8 +79,13 @@ _CACHE: dict[tuple[str, tuple[tuple[str, str], ...]], tuple[float, ToolResult]] 
 _CACHE_LOCK = threading.Lock()
 
 _BREAKER_LOCK = threading.Lock()
-_BREAKER_FAILURES = 0
-_BREAKER_OPEN_UNTIL = 0.0
+#: Breaker state is per tool: a dead news endpoint must not blind every other tool.
+_BREAKER_FAILURES: dict[str, int] = {}
+_BREAKER_OPEN_UNTIL: dict[str, float] = {}
+
+#: One ``.info`` fetch serves both the quote and the ratio tools.
+INFO_TTL_SECONDS = 60.0
+_INFO_CACHE: dict[str, tuple[float, Mapping[str, Any]]] = {}
 
 
 def _now() -> datetime:
@@ -88,14 +93,15 @@ def _now() -> datetime:
 
 
 def reset_state() -> None:
-    """Clear the cache and circuit breaker (used by tests and eval replays)."""
+    """Clear caches and breakers (used by tests and eval replays)."""
 
-    global _BREAKER_FAILURES, _BREAKER_OPEN_UNTIL
     with _CACHE_LOCK:
         _CACHE.clear()
     with _BREAKER_LOCK:
-        _BREAKER_FAILURES = 0
-        _BREAKER_OPEN_UNTIL = 0.0
+        _BREAKER_FAILURES.clear()
+        _BREAKER_OPEN_UNTIL.clear()
+    with _INFO_LOCK:
+        _INFO_CACHE.clear()
 
 
 # --------------------------------------------------------------------------- #
@@ -159,24 +165,23 @@ def _cache_set(
         _CACHE[key] = (now.timestamp() + ttl, result)
 
 
-def _breaker_open(now: datetime) -> bool:
+def _breaker_open(tool: str, now: datetime) -> bool:
     with _BREAKER_LOCK:
-        return now.timestamp() < _BREAKER_OPEN_UNTIL
+        return now.timestamp() < _BREAKER_OPEN_UNTIL.get(tool, 0.0)
 
 
-def _record_failure() -> None:
-    global _BREAKER_FAILURES, _BREAKER_OPEN_UNTIL
+def _record_failure(tool: str) -> None:
     with _BREAKER_LOCK:
-        _BREAKER_FAILURES += 1
-        if _BREAKER_FAILURES >= BREAKER_THRESHOLD:
-            _BREAKER_OPEN_UNTIL = time.time() + BREAKER_COOLDOWN_SECONDS
+        failures = _BREAKER_FAILURES.get(tool, 0) + 1
+        _BREAKER_FAILURES[tool] = failures
+        if failures >= BREAKER_THRESHOLD:
+            _BREAKER_OPEN_UNTIL[tool] = time.time() + BREAKER_COOLDOWN_SECONDS
 
 
-def _record_success() -> None:
-    global _BREAKER_FAILURES, _BREAKER_OPEN_UNTIL
+def _record_success(tool: str) -> None:
     with _BREAKER_LOCK:
-        _BREAKER_FAILURES = 0
-        _BREAKER_OPEN_UNTIL = 0.0
+        _BREAKER_FAILURES.pop(tool, None)
+        _BREAKER_OPEN_UNTIL.pop(tool, None)
 
 
 # --------------------------------------------------------------------------- #
@@ -184,7 +189,7 @@ def _record_success() -> None:
 # --------------------------------------------------------------------------- #
 def _failure(tool: str, args: dict[str, Any], code: str, detail: str, now: datetime) -> ToolResult:
     status = "error" if code in CLIENT_ERROR_CODES else "unavailable"
-    logger.warning("tool failure", extra={"tool": tool, "code": code, "detail": detail})
+    logger.warning("%s failed: %s (%s)", tool, code, detail)
     return ToolResult(
         status=status,
         tool=tool,
@@ -212,7 +217,7 @@ def _run(
 ) -> ToolResult:
     args = dict(raw_args)
     now = _now()
-    if _breaker_open(now):
+    if _breaker_open(tool, now):
         return _failure(tool, args, "provider_unavailable", "circuit breaker open", now)
 
     key = _cache_key(tool, args)
@@ -224,13 +229,13 @@ def _run(
         data, as_of = normalize(_with_retries(fetch))
     except ProviderFailure as failure:
         if failure.code in OUTAGE_CODES:
-            _record_failure()
+            _record_failure(tool)
         return _failure(tool, args, failure.code, failure.detail, now)
     except Exception as error:  # normalisation must never escape as a crash
-        _record_failure()
+        _record_failure(tool)
         return _failure(tool, args, "malformed_response", f"{type(error).__name__}: {error}", now)
 
-    _record_success()
+    _record_success(tool)
     result = ToolResult(
         status="stale" if _is_stale(tool, as_of, now) else "ok",
         tool=tool,
@@ -433,6 +438,24 @@ def _fetch_info(symbol: str) -> Any:
     return yf.Ticker(symbol).info
 
 
+_INFO_LOCK = threading.Lock()
+
+
+def _fetch_info_cached(symbol: str) -> Any:
+    """One shared ``.info`` payload per symbol, so quote + ratios cost one call."""
+
+    now = time.time()
+    with _INFO_LOCK:
+        hit = _INFO_CACHE.get(symbol)
+        if hit is not None and hit[0] > now:
+            return hit[1]
+    payload = _fetch_info(symbol)
+    if isinstance(payload, Mapping):
+        with _INFO_LOCK:
+            _INFO_CACHE[symbol] = (now + INFO_TTL_SECONDS, payload)
+    return payload
+
+
 def _fetch_history(symbol: str, period: str) -> Any:
     return yf.Ticker(symbol).history(period=period, auto_adjust=True)
 
@@ -465,7 +488,7 @@ def get_stock_quote(ticker: str) -> ToolResult:
         return failure
     assert symbol is not None
     return _run(
-        "get_stock_quote", {"ticker": symbol}, lambda: _fetch_info(symbol), _normalize_quote
+        "get_stock_quote", {"ticker": symbol}, lambda: _fetch_info_cached(symbol), _normalize_quote
     )
 
 
@@ -477,7 +500,10 @@ def get_financial_ratios(ticker: str) -> ToolResult:
         return failure
     assert symbol is not None
     return _run(
-        "get_financial_ratios", {"ticker": symbol}, lambda: _fetch_info(symbol), _normalize_ratios
+        "get_financial_ratios",
+        {"ticker": symbol},
+        lambda: _fetch_info_cached(symbol),
+        _normalize_ratios,
     )
 
 

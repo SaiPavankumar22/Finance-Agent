@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:53:13.297198+00:00",
+  "result": {
+    "args": {
+      "ticker": "AAPL"
+    },
+    "as_of": "2026-11-09T18:53:11Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 355.38,
+      "fifty_two_week_low": 243.42,
+      "market_cap": 5091640737792.0,
+      "price": 350.37,
+      "ticker": "AAPL",
+      "volume": 17986871
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:53:12.430317Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "AAPL",
+  "tool": "get_stock_quote"
+}

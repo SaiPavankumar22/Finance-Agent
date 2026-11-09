@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:05.274547+00:00",
+  "result": {
+    "args": {
+      "ticker": "TTE.PA"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "EUR",
+      "debt_to_equity": 46.122,
+      "enterprise_value_to_ebitda": 4.229,
+      "pe_ratio": 9.135731,
+      "price_to_book": 1.4711787,
+      "return_on_equity": 0.17828,
+      "ticker": "TTE.PA"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:05.271872Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "TTE.PA",
+  "tool": "get_financial_ratios"
+}

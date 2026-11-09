@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:09.250102+00:00",
+  "result": {
+    "args": {
+      "ticker": "TCS.NS"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "INR",
+      "debt_to_equity": 9.83,
+      "enterprise_value_to_ebitda": 11.771,
+      "pe_ratio": 17.351744,
+      "price_to_book": 7.527123,
+      "return_on_equity": 0.45573002,
+      "ticker": "TCS.NS"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:09.249466Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "TCS.NS",
+  "tool": "get_financial_ratios"
+}

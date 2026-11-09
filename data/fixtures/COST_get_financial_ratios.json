@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:05.510393+00:00",
+  "result": {
+    "args": {
+      "ticker": "COST"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 28.436,
+      "enterprise_value_to_ebitda": 32.129,
+      "pe_ratio": 51.04817,
+      "price_to_book": 13.12055,
+      "return_on_equity": 0.28402,
+      "ticker": "COST"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:05.509375Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "COST",
+  "tool": "get_financial_ratios"
+}

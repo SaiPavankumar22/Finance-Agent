@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:29.027461+00:00",
+  "result": {
+    "args": {
+      "ticker": "AMZN"
+    },
+    "as_of": "2026-11-09T18:55:26Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 287.2,
+      "fifty_two_week_low": 196.0,
+      "market_cap": 2898109923328.0,
+      "price": 268.0175,
+      "ticker": "AMZN",
+      "volume": 29504513
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:28.471594Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "AMZN",
+  "tool": "get_stock_quote"
+}

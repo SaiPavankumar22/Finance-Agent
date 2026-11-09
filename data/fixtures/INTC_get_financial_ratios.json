@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:22.170083+00:00",
+  "result": {
+    "args": {
+      "ticker": "INTC"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 38.108,
+      "enterprise_value_to_ebitda": 16.3,
+      "pe_ratio": 32.67317,
+      "price_to_book": 2.7032022,
+      "return_on_equity": -0.0962,
+      "ticker": "INTC"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:22.168496Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "INTC",
+  "tool": "get_financial_ratios"
+}

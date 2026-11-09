@@ -1,0 +1,19 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:55.308315+00:00",
+  "result": {
+    "args": {
+      "limit": 5,
+      "ticker": "XOM"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "provider_unavailable",
+    "retrieved_at": "2026-11-09T18:55:55.307310Z",
+    "source": "yfinance",
+    "status": "unavailable",
+    "tool": "get_company_news"
+  },
+  "ticker": "XOM",
+  "tool": "get_company_news"
+}

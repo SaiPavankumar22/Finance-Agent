@@ -1,0 +1,19 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:06.240305+00:00",
+  "result": {
+    "args": {
+      "limit": 5,
+      "ticker": "COST"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "provider_unavailable",
+    "retrieved_at": "2026-11-09T18:56:06.240305Z",
+    "source": "yfinance",
+    "status": "unavailable",
+    "tool": "get_company_news"
+  },
+  "ticker": "COST",
+  "tool": "get_company_news"
+}

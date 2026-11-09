@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:26.950726+00:00",
+  "result": {
+    "args": {
+      "ticker": "QCOM"
+    },
+    "as_of": "2026-11-09T18:56:20Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 259.92,
+      "fifty_two_week_low": 121.99,
+      "market_cap": 188009709568.0,
+      "price": 175.71,
+      "ticker": "QCOM",
+      "volume": 5691475
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:26.405369Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "QCOM",
+  "tool": "get_stock_quote"
+}

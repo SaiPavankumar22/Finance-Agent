@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:14.309394+00:00",
+  "result": {
+    "args": {
+      "ticker": "CVX"
+    },
+    "as_of": "2026-11-09T18:56:10Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 236.48,
+      "fifty_two_week_low": 146.49,
+      "market_cap": 410212040704.0,
+      "price": 210.23,
+      "ticker": "CVX",
+      "volume": 3468059
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:13.715075Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "CVX",
+  "tool": "get_stock_quote"
+}

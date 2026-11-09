@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:52.625572+00:00",
+  "result": {
+    "args": {
+      "ticker": "UNH"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 70.426,
+      "enterprise_value_to_ebitda": 14.061,
+      "pe_ratio": 22.643549,
+      "price_to_book": 3.6235635,
+      "return_on_equity": 0.15773,
+      "ticker": "UNH"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:52.624671Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "UNH",
+  "tool": "get_financial_ratios"
+}

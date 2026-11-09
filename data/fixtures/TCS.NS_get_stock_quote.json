@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:09.242163+00:00",
+  "result": {
+    "args": {
+      "ticker": "TCS.NS"
+    },
+    "as_of": "2026-11-09T09:58:22Z",
+    "data": {
+      "currency": "INR",
+      "fifty_two_week_high": 3350.0,
+      "fifty_two_week_low": 1976.8,
+      "market_cap": 8956213723136.0,
+      "price": 2475.4,
+      "ticker": "TCS.NS",
+      "volume": 2894460
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:08.616372Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "TCS.NS",
+  "tool": "get_stock_quote"
+}

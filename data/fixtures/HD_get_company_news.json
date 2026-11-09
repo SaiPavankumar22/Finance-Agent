@@ -1,0 +1,19 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:04.657916+00:00",
+  "result": {
+    "args": {
+      "limit": 5,
+      "ticker": "HD"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "provider_unavailable",
+    "retrieved_at": "2026-11-09T18:56:04.657916Z",
+    "source": "yfinance",
+    "status": "unavailable",
+    "tool": "get_company_news"
+  },
+  "ticker": "HD",
+  "tool": "get_company_news"
+}

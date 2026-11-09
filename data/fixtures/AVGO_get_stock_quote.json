@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:45.778040+00:00",
+  "result": {
+    "args": {
+      "ticker": "AVGO"
+    },
+    "as_of": "2026-11-09T18:55:44Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 495.0,
+      "fifty_two_week_low": 289.77,
+      "market_cap": 1527131930624.0,
+      "price": 319.91,
+      "ticker": "AVGO",
+      "volume": 18912012
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:45.088264Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "AVGO",
+  "tool": "get_stock_quote"
+}

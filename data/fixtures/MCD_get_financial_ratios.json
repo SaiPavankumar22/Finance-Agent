@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:43.382188+00:00",
+  "result": {
+    "args": {
+      "ticker": "MCD"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": null,
+      "enterprise_value_to_ebitda": 16.485,
+      "pe_ratio": 22.363132,
+      "price_to_book": -581.62555,
+      "return_on_equity": null,
+      "ticker": "MCD"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:43.382188Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "MCD",
+  "tool": "get_financial_ratios"
+}

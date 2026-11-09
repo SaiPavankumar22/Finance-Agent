@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:17.237263+00:00",
+  "result": {
+    "args": {
+      "ticker": "CBA.AX"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "AUD",
+      "debt_to_equity": null,
+      "enterprise_value_to_ebitda": null,
+      "pe_ratio": 25.455523,
+      "price_to_book": 3.5255008,
+      "return_on_equity": 0.13857001,
+      "ticker": "CBA.AX"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:17.236251Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "CBA.AX",
+  "tool": "get_financial_ratios"
+}

@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:25.251126+00:00",
+  "result": {
+    "args": {
+      "ticker": "ORCL"
+    },
+    "as_of": "2026-11-09T18:56:24Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 250.25,
+      "fifty_two_week_low": 109.21,
+      "market_cap": 370819891200.0,
+      "price": 118.9399,
+      "ticker": "ORCL",
+      "volume": 15837761
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:24.723391Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "ORCL",
+  "tool": "get_stock_quote"
+}

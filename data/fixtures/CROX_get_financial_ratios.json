@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:50.883003+00:00",
+  "result": {
+    "args": {
+      "ticker": "CROX"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 123.651,
+      "enterprise_value_to_ebitda": 8.351,
+      "pe_ratio": 12.209848,
+      "price_to_book": 5.538869,
+      "return_on_equity": 0.49063998,
+      "ticker": "CROX"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:50.880991Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "CROX",
+  "tool": "get_financial_ratios"
+}

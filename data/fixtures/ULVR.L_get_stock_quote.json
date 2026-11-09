@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:20.991275+00:00",
+  "result": {
+    "args": {
+      "ticker": "ULVR.L"
+    },
+    "as_of": "2026-11-09T17:15:00Z",
+    "data": {
+      "currency": "GBp",
+      "fifty_two_week_high": 5542.11,
+      "fifty_two_week_low": 3644.0,
+      "market_cap": 105859522560.0,
+      "price": 4916.0,
+      "ticker": "ULVR.L",
+      "volume": 2654759
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:20.368621Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "ULVR.L",
+  "tool": "get_stock_quote"
+}

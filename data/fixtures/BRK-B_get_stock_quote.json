@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:47.365027+00:00",
+  "result": {
+    "args": {
+      "ticker": "BRK-B"
+    },
+    "as_of": "2026-11-09T18:55:42Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 586.3,
+      "fifty_two_week_low": 464.01,
+      "market_cap": 1229238304768.0,
+      "price": 574.22,
+      "ticker": "BRK-B",
+      "volume": 2807095
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:46.672188Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "BRK-B",
+  "tool": "get_stock_quote"
+}

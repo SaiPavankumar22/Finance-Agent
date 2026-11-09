@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:23.125473+00:00",
+  "result": {
+    "args": {
+      "ticker": "VOD.L"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "GBp",
+      "debt_to_equity": 100.153,
+      "enterprise_value_to_ebitda": 7.878,
+      "pe_ratio": 11.447005,
+      "price_to_book": 0.63582295,
+      "return_on_equity": 0.0010899999,
+      "ticker": "VOD.L"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:23.115245Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "VOD.L",
+  "tool": "get_financial_ratios"
+}

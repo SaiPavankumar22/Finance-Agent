@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:28.893364+00:00",
+  "result": {
+    "args": {
+      "ticker": "TXN"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 70.654,
+      "enterprise_value_to_ebitda": 24.163,
+      "pe_ratio": 37.976006,
+      "price_to_book": 13.949263,
+      "return_on_equity": 0.39723998,
+      "ticker": "TXN"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:28.893364Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "TXN",
+  "tool": "get_financial_ratios"
+}

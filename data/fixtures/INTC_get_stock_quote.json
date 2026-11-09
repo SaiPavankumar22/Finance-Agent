@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:22.166564+00:00",
+  "result": {
+    "args": {
+      "ticker": "INTC"
+    },
+    "as_of": "2026-11-09T18:56:21Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 142.35,
+      "fifty_two_week_low": 32.89,
+      "market_cap": 310927491072.0,
+      "price": 58.5,
+      "ticker": "INTC",
+      "volume": 75990998
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:21.561847Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "INTC",
+  "tool": "get_stock_quote"
+}

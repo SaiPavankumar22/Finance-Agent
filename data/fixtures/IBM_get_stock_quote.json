@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:30.508691+00:00",
+  "result": {
+    "args": {
+      "ticker": "IBM"
+    },
+    "as_of": "2026-11-09T18:56:27Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 332.46,
+      "fifty_two_week_low": 199.19,
+      "market_cap": 234040279040.0,
+      "price": 247.63,
+      "ticker": "IBM",
+      "volume": 1677796
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:29.960358Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "IBM",
+  "tool": "get_stock_quote"
+}

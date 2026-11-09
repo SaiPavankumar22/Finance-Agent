@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:38.094283+00:00",
+  "result": {
+    "args": {
+      "ticker": "F"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 447.6,
+      "enterprise_value_to_ebitda": 24.251,
+      "pe_ratio": 6.6539173,
+      "price_to_book": 1.3584253,
+      "return_on_equity": -0.18431999,
+      "ticker": "F"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:38.092284Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "F",
+  "tool": "get_financial_ratios"
+}

@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:53:27.502672+00:00",
+  "result": {
+    "args": {
+      "ticker": "MSFT"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 28.465,
+      "enterprise_value_to_ebitda": 19.494,
+      "pe_ratio": 28.384394,
+      "price_to_book": 8.584631,
+      "return_on_equity": 0.34221,
+      "ticker": "MSFT"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:53:27.500235Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "MSFT",
+  "tool": "get_financial_ratios"
+}

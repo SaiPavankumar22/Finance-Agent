@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:47.167150+00:00",
+  "result": {
+    "args": {
+      "ticker": "ROKU"
+    },
+    "as_of": "2026-11-06T21:00:00Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 163.57,
+      "fifty_two_week_low": 78.53,
+      "market_cap": 23933745152.0,
+      "price": 160.52,
+      "ticker": "ROKU",
+      "volume": 11521849
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:46.460916Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "ROKU",
+  "tool": "get_stock_quote"
+}

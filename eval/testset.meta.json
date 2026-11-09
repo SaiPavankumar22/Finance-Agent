@@ -1,0 +1,38 @@
+{
+  "abstain_count": 37,
+  "count": 150,
+  "created_at": "2026-11-09T18:59:37.466069+00:00",
+  "fixture_count": 365,
+  "fixture_hash": "a408b07825b277c8500498a8ef662763d93192684cc8d9a0355cf899cc4a9922",
+  "fixture_snapshot": "2026-11-09",
+  "fixture_tickers": 73,
+  "intent_counts": {
+    "advice_request": 14,
+    "comparison": 15,
+    "invalid_ticker": 11,
+    "loop_trap": 4,
+    "malformed_error": 8,
+    "metric_pe": 15,
+    "missing_ratios": 14,
+    "news_unavailable": 8,
+    "non_us_currency": 11,
+    "overview": 30,
+    "period_ambiguity": 6,
+    "stale_data": 8,
+    "unsupported_metric": 6
+  },
+  "language_counts": {
+    "en": 147,
+    "es": 2,
+    "hi": 1
+  },
+  "notes": [
+    "Built before any training data existed (plan WS2).",
+    "conflict intent is excluded until the SEC EDGAR provider lands (P1).",
+    "overview examples may report news as unavailable: that is provider truth.",
+    "question paraphrasing by an LLM happens later, for training data only."
+  ],
+  "seed": 7,
+  "sha256": "87c4303149c4efc91314b4eacdad2dfc502f2313efa878342f74369775d21e64",
+  "target_count": 150
+}

@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:59.616959+00:00",
+  "result": {
+    "args": {
+      "ticker": "ASML.AS"
+    },
+    "as_of": "2026-11-09T16:39:00Z",
+    "data": {
+      "currency": "EUR",
+      "fifty_two_week_high": 1741.0,
+      "fifty_two_week_low": 822.2,
+      "market_cap": 517924356096.0,
+      "price": 1343.8,
+      "ticker": "ASML.AS",
+      "volume": 765279
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:59.131292Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "ASML.AS",
+  "tool": "get_stock_quote"
+}

@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:32.630559+00:00",
+  "result": {
+    "args": {
+      "ticker": "ARKK"
+    },
+    "as_of": "2026-11-09T18:56:59Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 94.82,
+      "fifty_two_week_low": 62.945,
+      "market_cap": null,
+      "price": 78.77,
+      "ticker": "ARKK",
+      "volume": 2335320
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:31.995763Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "ARKK",
+  "tool": "get_stock_quote"
+}

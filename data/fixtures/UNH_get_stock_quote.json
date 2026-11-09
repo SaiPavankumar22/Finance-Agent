@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:52.621052+00:00",
+  "result": {
+    "args": {
+      "ticker": "UNH"
+    },
+    "as_of": "2026-11-09T18:55:46Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 461.62,
+      "fifty_two_week_low": 255.97,
+      "market_cap": 355465592832.0,
+      "price": 396.715,
+      "ticker": "UNH",
+      "volume": 2171798
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:51.940498Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "UNH",
+  "tool": "get_stock_quote"
+}

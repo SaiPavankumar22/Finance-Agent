@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:15.991705+00:00",
+  "result": {
+    "args": {
+      "ticker": "ADBE"
+    },
+    "as_of": "2026-11-09T18:56:02Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 362.71,
+      "fifty_two_week_low": 190.12,
+      "market_cap": 93287350272.0,
+      "price": 239.69,
+      "ticker": "ADBE",
+      "volume": 1614056
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:15.277595Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "ADBE",
+  "tool": "get_stock_quote"
+}

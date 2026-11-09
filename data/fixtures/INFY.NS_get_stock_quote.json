@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:07.489407+00:00",
+  "result": {
+    "args": {
+      "ticker": "INFY.NS"
+    },
+    "as_of": "2026-11-09T09:58:26Z",
+    "data": {
+      "currency": "INR",
+      "fifty_two_week_high": 1728.0,
+      "fifty_two_week_low": 980.4,
+      "market_cap": 4674539225088.0,
+      "price": 1154.1,
+      "ticker": "INFY.NS",
+      "volume": 10098637
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:06.737681Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "INFY.NS",
+  "tool": "get_stock_quote"
+}

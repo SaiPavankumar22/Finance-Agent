@@ -1,0 +1,18 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:06.499380+00:00",
+  "result": {
+    "args": {
+      "ticker": "RELIANCE.NS"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "invalid_ticker",
+    "retrieved_at": "2026-11-09T18:57:06.499380Z",
+    "source": "yfinance",
+    "status": "error",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "RELIANCE.NS",
+  "tool": "get_financial_ratios"
+}

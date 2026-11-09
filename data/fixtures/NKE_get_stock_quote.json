@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:41.591817+00:00",
+  "result": {
+    "args": {
+      "ticker": "NKE"
+    },
+    "as_of": "2026-11-09T18:56:32Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 69.14,
+      "fifty_two_week_low": 31.97,
+      "market_cap": 59583164416.0,
+      "price": 40.115,
+      "ticker": "NKE",
+      "volume": 10724979
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:40.925836Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "NKE",
+  "tool": "get_stock_quote"
+}

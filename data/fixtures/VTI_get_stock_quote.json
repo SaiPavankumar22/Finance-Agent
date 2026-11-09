@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:31.053444+00:00",
+  "result": {
+    "args": {
+      "ticker": "VTI"
+    },
+    "as_of": "2026-11-09T18:57:29Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 385.12,
+      "fifty_two_week_low": 310.4,
+      "market_cap": null,
+      "price": 371.06,
+      "ticker": "VTI",
+      "volume": 2846023
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:30.022922Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "VTI",
+  "tool": "get_stock_quote"
+}

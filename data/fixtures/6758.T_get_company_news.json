@@ -1,0 +1,18 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:10.524319+00:00",
+  "result": {
+    "args": {
+      "ticker": "6758.T"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "invalid_ticker",
+    "retrieved_at": "2026-11-09T18:57:10.524319Z",
+    "source": "yfinance",
+    "status": "error",
+    "tool": "get_company_news"
+  },
+  "ticker": "6758.T",
+  "tool": "get_company_news"
+}

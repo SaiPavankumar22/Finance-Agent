@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:03.221455+00:00",
+  "result": {
+    "args": {
+      "ticker": "MC.PA"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "EUR",
+      "debt_to_equity": 53.306,
+      "enterprise_value_to_ebitda": 11.374,
+      "pe_ratio": 18.343208,
+      "price_to_book": 2.9142773,
+      "return_on_equity": 0.16586,
+      "ticker": "MC.PA"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:03.220434Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "MC.PA",
+  "tool": "get_financial_ratios"
+}

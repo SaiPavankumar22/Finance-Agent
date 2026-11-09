@@ -1,0 +1,120 @@
+{
+  "period": "1mo",
+  "recorded_at": "2026-11-09T18:57:21.630367+00:00",
+  "result": {
+    "args": {
+      "period": "1mo",
+      "ticker": "ULVR.L"
+    },
+    "as_of": "2026-11-09T00:00:00Z",
+    "data": {
+      "annualized_volatility": 0.2471422954687763,
+      "currency": null,
+      "ema_20": 4874.375538576019,
+      "last_close": 4916.0,
+      "last_date": "2026-11-09",
+      "observations": 22,
+      "period": "1mo",
+      "prices": [
+        {
+          "close": 4673.5,
+          "date": "2026-10-09"
+        },
+        {
+          "close": 4738.0,
+          "date": "2026-10-12"
+        },
+        {
+          "close": 4710.5,
+          "date": "2026-10-13"
+        },
+        {
+          "close": 4829.0,
+          "date": "2026-10-14"
+        },
+        {
+          "close": 4915.5,
+          "date": "2026-10-15"
+        },
+        {
+          "close": 4966.0,
+          "date": "2026-10-16"
+        },
+        {
+          "close": 4904.5,
+          "date": "2026-10-19"
+        },
+        {
+          "close": 4903.5,
+          "date": "2026-10-20"
+        },
+        {
+          "close": 4820.0,
+          "date": "2026-10-21"
+        },
+        {
+          "close": 4975.5,
+          "date": "2026-10-22"
+        },
+        {
+          "close": 4937.5,
+          "date": "2026-10-23"
+        },
+        {
+          "close": 4923.0,
+          "date": "2026-10-26"
+        },
+        {
+          "close": 4892.5,
+          "date": "2026-10-27"
+        },
+        {
+          "close": 4792.0,
+          "date": "2026-10-28"
+        },
+        {
+          "close": 4771.5,
+          "date": "2026-10-29"
+        },
+        {
+          "close": 4870.5,
+          "date": "2026-10-30"
+        },
+        {
+          "close": 4901.0,
+          "date": "2026-11-02"
+        },
+        {
+          "close": 4857.0,
+          "date": "2026-11-03"
+        },
+        {
+          "close": 4970.5,
+          "date": "2026-11-04"
+        },
+        {
+          "close": 5032.0,
+          "date": "2026-11-05"
+        },
+        {
+          "close": 4930.0,
+          "date": "2026-11-06"
+        },
+        {
+          "close": 4916.0,
+          "date": "2026-11-09"
+        }
+      ],
+      "sma_20": 4890.9,
+      "sma_50": null,
+      "ticker": null
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:21.003778Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_historical_prices"
+  },
+  "ticker": "ULVR.L",
+  "tool": "get_historical_prices"
+}

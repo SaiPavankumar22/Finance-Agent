@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:50.836321+00:00",
+  "result": {
+    "args": {
+      "ticker": "V"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 63.568,
+      "enterprise_value_to_ebitda": 24.606,
+      "pe_ratio": 34.49026,
+      "price_to_book": 22.169355,
+      "return_on_equity": 0.63507,
+      "ticker": "V"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:50.833341Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "V",
+  "tool": "get_financial_ratios"
+}

@@ -1,0 +1,18 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:10.243267+00:00",
+  "result": {
+    "args": {
+      "ticker": "7203.T"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "invalid_ticker",
+    "retrieved_at": "2026-11-09T18:57:10.243267Z",
+    "source": "yfinance",
+    "status": "error",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "7203.T",
+  "tool": "get_financial_ratios"
+}

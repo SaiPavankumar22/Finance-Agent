@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:58.046285+00:00",
+  "result": {
+    "args": {
+      "ticker": "SAP.DE"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "EUR",
+      "debt_to_equity": 22.789,
+      "enterprise_value_to_ebitda": 19.787,
+      "pe_ratio": 30.629522,
+      "price_to_book": 5.297209,
+      "return_on_equity": 0.18178,
+      "ticker": "SAP.DE"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:58.045284Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "SAP.DE",
+  "tool": "get_financial_ratios"
+}

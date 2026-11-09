@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:56.222313+00:00",
+  "result": {
+    "args": {
+      "ticker": "WOLF"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 222.214,
+      "enterprise_value_to_ebitda": -6.224,
+      "pe_ratio": -4.4751287,
+      "price_to_book": 1.7205224,
+      "return_on_equity": null,
+      "ticker": "WOLF"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:56.221385Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "WOLF",
+  "tool": "get_financial_ratios"
+}

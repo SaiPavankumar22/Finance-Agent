@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:47.172552+00:00",
+  "result": {
+    "args": {
+      "ticker": "ROKU"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 13.194,
+      "enterprise_value_to_ebitda": 28.381,
+      "pe_ratio": 46.259365,
+      "price_to_book": 7.885248,
+      "return_on_equity": 0.18152,
+      "ticker": "ROKU"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:47.171462Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "ROKU",
+  "tool": "get_financial_ratios"
+}

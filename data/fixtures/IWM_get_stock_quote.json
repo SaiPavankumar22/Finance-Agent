@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:28.925113+00:00",
+  "result": {
+    "args": {
+      "ticker": "IWM"
+    },
+    "as_of": "2026-11-09T18:57:25Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 305.18,
+      "fifty_two_week_low": 228.9,
+      "market_cap": null,
+      "price": 282.39,
+      "ticker": "IWM",
+      "volume": 15297386
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:28.216561Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "IWM",
+  "tool": "get_stock_quote"
+}

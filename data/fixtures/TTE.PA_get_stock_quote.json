@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:05.269311+00:00",
+  "result": {
+    "args": {
+      "ticker": "TTE.PA"
+    },
+    "as_of": "2026-11-09T16:39:56Z",
+    "data": {
+      "currency": "EUR",
+      "fifty_two_week_high": 85.94,
+      "fifty_two_week_low": 53.29,
+      "market_cap": 172898074624.0,
+      "price": 78.75,
+      "ticker": "TTE.PA",
+      "volume": 4548514
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:04.533289Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "TTE.PA",
+  "tool": "get_stock_quote"
+}

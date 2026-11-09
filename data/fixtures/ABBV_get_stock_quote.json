@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:10.780258+00:00",
+  "result": {
+    "args": {
+      "ticker": "ABBV"
+    },
+    "as_of": "2026-11-09T18:56:08Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 302.93,
+      "fifty_two_week_low": 190.75,
+      "market_cap": 519095681024.0,
+      "price": 293.6699,
+      "ticker": "ABBV",
+      "volume": 2378293
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:10.070499Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "ABBV",
+  "tool": "get_stock_quote"
+}

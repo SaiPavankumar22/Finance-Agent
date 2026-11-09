@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:52.731279+00:00",
+  "result": {
+    "args": {
+      "ticker": "AAL"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": null,
+      "enterprise_value_to_ebitda": 10.939,
+      "pe_ratio": 15.205039,
+      "price_to_book": -2.207843,
+      "return_on_equity": null,
+      "ticker": "AAL"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:52.730260Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "AAL",
+  "tool": "get_financial_ratios"
+}

@@ -1,0 +1,2 @@
+# The frozen test set is hashed byte-for-byte; never convert its line endings.
+*.jsonl -text

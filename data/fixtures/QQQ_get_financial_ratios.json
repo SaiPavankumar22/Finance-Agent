@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:27.041098+00:00",
+  "result": {
+    "args": {
+      "ticker": "QQQ"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": null,
+      "enterprise_value_to_ebitda": null,
+      "pe_ratio": 27.919943,
+      "price_to_book": 1.8945761,
+      "return_on_equity": null,
+      "ticker": "QQQ"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:27.038036Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "QQQ",
+  "tool": "get_financial_ratios"
+}

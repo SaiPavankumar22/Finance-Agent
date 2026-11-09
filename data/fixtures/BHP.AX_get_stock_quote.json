@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:15.296452+00:00",
+  "result": {
+    "args": {
+      "ticker": "BHP.AX"
+    },
+    "as_of": "2026-11-09T05:18:08Z",
+    "data": {
+      "currency": "AUD",
+      "fifty_two_week_high": 68.77,
+      "fifty_two_week_low": 40.175,
+      "market_cap": 300910870528.0,
+      "price": 59.2,
+      "ticker": "BHP.AX",
+      "volume": 7793040
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:14.633195Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "BHP.AX",
+  "tool": "get_stock_quote"
+}

@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:14.317503+00:00",
+  "result": {
+    "args": {
+      "ticker": "CVX"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 16.769,
+      "enterprise_value_to_ebitda": 7.596,
+      "pe_ratio": 15.435389,
+      "price_to_book": 2.1109335,
+      "return_on_equity": 0.13853,
+      "ticker": "CVX"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:14.316504Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "CVX",
+  "tool": "get_financial_ratios"
+}

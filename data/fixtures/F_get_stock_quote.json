@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:38.089713+00:00",
+  "result": {
+    "args": {
+      "ticker": "F"
+    },
+    "as_of": "2026-11-09T18:56:30Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 17.78,
+      "fifty_two_week_low": 11.11,
+      "market_cap": 50154815488.0,
+      "price": 12.56,
+      "ticker": "F",
+      "volume": 23656416
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:37.307195Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "F",
+  "tool": "get_stock_quote"
+}

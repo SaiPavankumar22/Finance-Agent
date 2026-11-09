@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:32.299948+00:00",
+  "result": {
+    "args": {
+      "ticker": "GE"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 115.989,
+      "enterprise_value_to_ebitda": 29.703,
+      "pe_ratio": 38.237713,
+      "price_to_book": 19.732248,
+      "return_on_equity": 0.50165004,
+      "ticker": "GE"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:32.298425Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "GE",
+  "tool": "get_financial_ratios"
+}

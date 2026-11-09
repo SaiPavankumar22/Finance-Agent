@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:36.144162+00:00",
+  "result": {
+    "args": {
+      "ticker": "BA"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 738.525,
+      "enterprise_value_to_ebitda": 82.119,
+      "pe_ratio": 17.786894,
+      "price_to_book": 20.866222,
+      "return_on_equity": null,
+      "ticker": "BA"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:36.143162Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "BA",
+  "tool": "get_financial_ratios"
+}

@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:07.043455+00:00",
+  "result": {
+    "args": {
+      "ticker": "KO"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 107.449,
+      "enterprise_value_to_ebitda": 25.201,
+      "pe_ratio": 28.268436,
+      "price_to_book": 11.031426,
+      "return_on_equity": 0.40592998,
+      "ticker": "KO"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:07.042455Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "KO",
+  "tool": "get_financial_ratios"
+}

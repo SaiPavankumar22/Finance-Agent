@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:39.888385+00:00",
+  "result": {
+    "args": {
+      "ticker": "GM"
+    },
+    "as_of": "2026-11-09T18:56:22Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 93.7,
+      "fifty_two_week_low": 67.06,
+      "market_cap": 76231712768.0,
+      "price": 89.79,
+      "ticker": "GM",
+      "volume": 3098969
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:39.229430Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "GM",
+  "tool": "get_stock_quote"
+}

@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:15.993211+00:00",
+  "result": {
+    "args": {
+      "ticker": "ADBE"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 57.693,
+      "enterprise_value_to_ebitda": 9.507,
+      "pe_ratio": 13.383026,
+      "price_to_book": 7.9665637,
+      "return_on_equity": 0.61902,
+      "ticker": "ADBE"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:15.992210Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "ADBE",
+  "tool": "get_financial_ratios"
+}

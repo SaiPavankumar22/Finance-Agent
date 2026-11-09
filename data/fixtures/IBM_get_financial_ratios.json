@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:30.515299+00:00",
+  "result": {
+    "args": {
+      "ticker": "IBM"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 185.439,
+      "enterprise_value_to_ebitda": 17.332,
+      "pe_ratio": 21.12884,
+      "price_to_book": 6.5859046,
+      "return_on_equity": 0.34769002,
+      "ticker": "IBM"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:30.511267Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "IBM",
+  "tool": "get_financial_ratios"
+}

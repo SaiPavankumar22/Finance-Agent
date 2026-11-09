@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:00.020064+00:00",
+  "result": {
+    "args": {
+      "ticker": "PG"
+    },
+    "as_of": "2026-11-09T18:55:56Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 170.52,
+      "fifty_two_week_low": 137.62,
+      "market_cap": 389793185792.0,
+      "price": 168.175,
+      "ticker": "PG",
+      "volume": 4305268
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:59.158235Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "PG",
+  "tool": "get_stock_quote"
+}

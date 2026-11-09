@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:36.138641+00:00",
+  "result": {
+    "args": {
+      "ticker": "BA"
+    },
+    "as_of": "2026-11-09T18:56:33Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 254.35,
+      "fifty_two_week_low": 165.01,
+      "market_cap": 136582701056.0,
+      "price": 172.355,
+      "ticker": "BA",
+      "volume": 7181426
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:35.400459Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "BA",
+  "tool": "get_stock_quote"
+}

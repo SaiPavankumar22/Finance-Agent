@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:53:27.497555+00:00",
+  "result": {
+    "args": {
+      "ticker": "MSFT"
+    },
+    "as_of": "2026-11-09T18:53:19Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 559.15,
+      "fifty_two_week_low": 349.2,
+      "market_cap": 4038698467328.0,
+      "price": 543.845,
+      "ticker": "MSFT",
+      "volume": 10857141
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:53:26.819807Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "MSFT",
+  "tool": "get_stock_quote"
+}

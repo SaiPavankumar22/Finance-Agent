@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:03.210971+00:00",
+  "result": {
+    "args": {
+      "ticker": "MC.PA"
+    },
+    "as_of": "2026-11-09T16:37:41Z",
+    "data": {
+      "currency": "EUR",
+      "fifty_two_week_high": 654.7,
+      "fifty_two_week_low": 375.65,
+      "market_cap": 197454118912.0,
+      "price": 402.45,
+      "ticker": "MC.PA",
+      "volume": 536014
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:02.464474Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "MC.PA",
+  "tool": "get_stock_quote"
+}

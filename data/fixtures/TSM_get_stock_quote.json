@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:34.359677+00:00",
+  "result": {
+    "args": {
+      "ticker": "TSM"
+    },
+    "as_of": "2026-11-09T18:57:32Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 487.47,
+      "fifty_two_week_low": 266.82,
+      "market_cap": 2026873946112.0,
+      "price": 390.8,
+      "ticker": "TSM",
+      "volume": 9080101
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:33.725986Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "TSM",
+  "tool": "get_stock_quote"
+}

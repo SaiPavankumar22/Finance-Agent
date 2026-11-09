@@ -1,0 +1,19 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:24.199733+00:00",
+  "result": {
+    "args": {
+      "limit": 5,
+      "ticker": "VOD.L"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "provider_unavailable",
+    "retrieved_at": "2026-11-09T18:57:24.198126Z",
+    "source": "yfinance",
+    "status": "unavailable",
+    "tool": "get_company_news"
+  },
+  "ticker": "VOD.L",
+  "tool": "get_company_news"
+}

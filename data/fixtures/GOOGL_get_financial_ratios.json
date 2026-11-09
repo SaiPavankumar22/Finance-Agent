@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:36.052171+00:00",
+  "result": {
+    "args": {
+      "ticker": "GOOGL"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 22.187,
+      "enterprise_value_to_ebitda": 18.351,
+      "pe_ratio": 15.139948,
+      "price_to_book": 5.4045033,
+      "return_on_equity": 0.44286,
+      "ticker": "GOOGL"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:36.049615Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "GOOGL",
+  "tool": "get_financial_ratios"
+}

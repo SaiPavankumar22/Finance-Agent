@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:13.473533+00:00",
+  "result": {
+    "args": {
+      "ticker": "RY.TO"
+    },
+    "as_of": "2026-11-09T18:56:25Z",
+    "data": {
+      "currency": "CAD",
+      "fifty_two_week_high": 306.38,
+      "fifty_two_week_low": 202.79,
+      "market_cap": 399546449920.0,
+      "price": 288.6,
+      "ticker": "RY.TO",
+      "volume": 615634
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:12.777237Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "RY.TO",
+  "tool": "get_stock_quote"
+}

@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:54.326829+00:00",
+  "result": {
+    "args": {
+      "ticker": "XOM"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 12.568,
+      "enterprise_value_to_ebitda": 9.048,
+      "pe_ratio": 16.88426,
+      "price_to_book": 2.5187626,
+      "return_on_equity": 0.15528,
+      "ticker": "XOM"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:54.324829Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "XOM",
+  "tool": "get_financial_ratios"
+}

@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:36.047007+00:00",
+  "result": {
+    "args": {
+      "ticker": "GOOGL"
+    },
+    "as_of": "2026-11-09T18:55:33Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 408.61,
+      "fifty_two_week_low": 270.7,
+      "market_cap": 3564399230976.0,
+      "price": 289.93,
+      "ticker": "GOOGL",
+      "volume": 21267148
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:35.225995Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "GOOGL",
+  "tool": "get_stock_quote"
+}

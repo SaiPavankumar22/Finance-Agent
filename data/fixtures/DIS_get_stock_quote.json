@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:45.392100+00:00",
+  "result": {
+    "args": {
+      "ticker": "DIS"
+    },
+    "as_of": "2026-11-09T18:56:37Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 120.8,
+      "fifty_two_week_low": 92.19,
+      "market_cap": 204974997504.0,
+      "price": 118.71,
+      "ticker": "DIS",
+      "volume": 3109754
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:44.504114Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "DIS",
+  "tool": "get_stock_quote"
+}

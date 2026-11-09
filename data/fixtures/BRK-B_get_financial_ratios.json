@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:47.368613+00:00",
+  "result": {
+    "args": {
+      "ticker": "BRK-B"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 17.127,
+      "enterprise_value_to_ebitda": -2.04,
+      "pe_ratio": 14.442153,
+      "price_to_book": 0.0011515191,
+      "return_on_equity": 0.10574,
+      "ticker": "BRK-B"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:47.365926Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "BRK-B",
+  "tool": "get_financial_ratios"
+}

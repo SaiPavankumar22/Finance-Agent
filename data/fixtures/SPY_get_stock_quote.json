@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:25.229890+00:00",
+  "result": {
+    "args": {
+      "ticker": "SPY"
+    },
+    "as_of": "2026-11-09T18:57:24Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 781.62,
+      "fifty_two_week_low": 629.28,
+      "market_cap": null,
+      "price": 753.0,
+      "ticker": "SPY",
+      "volume": 23738055
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:24.510500Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "SPY",
+  "tool": "get_stock_quote"
+}

@@ -1,0 +1,19 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:04.253570+00:00",
+  "result": {
+    "args": {
+      "limit": 5,
+      "ticker": "MC.PA"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "provider_unavailable",
+    "retrieved_at": "2026-11-09T18:57:04.253570Z",
+    "source": "yfinance",
+    "status": "unavailable",
+    "tool": "get_company_news"
+  },
+  "ticker": "MC.PA",
+  "tool": "get_company_news"
+}

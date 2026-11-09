@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:10.784772+00:00",
+  "result": {
+    "args": {
+      "ticker": "ABBV"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": null,
+      "enterprise_value_to_ebitda": 18.383,
+      "pe_ratio": 50.458744,
+      "price_to_book": -113.254875,
+      "return_on_equity": null,
+      "ticker": "ABBV"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:10.782782Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "ABBV",
+  "tool": "get_financial_ratios"
+}

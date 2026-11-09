@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:17.608005+00:00",
+  "result": {
+    "args": {
+      "ticker": "CRM"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 110.417,
+      "enterprise_value_to_ebitda": 16.033,
+      "pe_ratio": 19.797346,
+      "price_to_book": 4.6402683,
+      "return_on_equity": 0.19381,
+      "ticker": "CRM"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:17.608005Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "CRM",
+  "tool": "get_financial_ratios"
+}

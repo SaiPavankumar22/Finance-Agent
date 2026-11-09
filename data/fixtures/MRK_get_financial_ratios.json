@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:12.543134+00:00",
+  "result": {
+    "args": {
+      "ticker": "MRK"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 119.928,
+      "enterprise_value_to_ebitda": 13.768,
+      "pe_ratio": 150.20201,
+      "price_to_book": 8.170778,
+      "return_on_equity": 0.05057,
+      "ticker": "MRK"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:12.540086Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "MRK",
+  "tool": "get_financial_ratios"
+}

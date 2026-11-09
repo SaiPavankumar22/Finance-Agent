@@ -1,0 +1,18 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:10.773945+00:00",
+  "result": {
+    "args": {
+      "ticker": "005930.KS"
+    },
+    "as_of": null,
+    "data": null,
+    "error": "invalid_ticker",
+    "retrieved_at": "2026-11-09T18:57:10.773945Z",
+    "source": "yfinance",
+    "status": "error",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "005930.KS",
+  "tool": "get_stock_quote"
+}

@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:50.879980+00:00",
+  "result": {
+    "args": {
+      "ticker": "CROX"
+    },
+    "as_of": "2026-11-09T18:56:43Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 161.88,
+      "fifty_two_week_low": 73.21,
+      "market_cap": 7369504768.0,
+      "price": 161.17,
+      "ticker": "CROX",
+      "volume": 507521
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:50.023447Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "CROX",
+  "tool": "get_stock_quote"
+}

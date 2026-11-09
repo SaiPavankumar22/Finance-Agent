@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:42.640232+00:00",
+  "result": {
+    "args": {
+      "ticker": "META"
+    },
+    "as_of": "2026-11-09T18:55:39Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 779.82,
+      "fifty_two_week_low": 520.26,
+      "market_cap": 1639108968448.0,
+      "price": 641.07,
+      "ticker": "META",
+      "volume": 9799624
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:41.939344Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "META",
+  "tool": "get_stock_quote"
+}

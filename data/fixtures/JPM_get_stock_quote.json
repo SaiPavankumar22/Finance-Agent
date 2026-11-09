@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:49.079275+00:00",
+  "result": {
+    "args": {
+      "ticker": "JPM"
+    },
+    "as_of": "2026-11-09T18:55:41Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 366.5,
+      "fifty_two_week_low": 279.1,
+      "market_cap": 910688190464.0,
+      "price": 342.93,
+      "ticker": "JPM",
+      "volume": 2820960
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:48.291302Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "JPM",
+  "tool": "get_stock_quote"
+}

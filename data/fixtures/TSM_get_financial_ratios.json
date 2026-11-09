@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:34.380526+00:00",
+  "result": {
+    "args": {
+      "ticker": "TSM"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 11.619,
+      "enterprise_value_to_ebitda": 3.428,
+      "pe_ratio": 25.327284,
+      "price_to_book": 74.58128,
+      "return_on_equity": 0.41854998,
+      "ticker": "TSM"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:34.367330Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "TSM",
+  "tool": "get_financial_ratios"
+}

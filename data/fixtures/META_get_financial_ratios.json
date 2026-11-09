@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:42.646098+00:00",
+  "result": {
+    "args": {
+      "ticker": "META"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 42.161,
+      "enterprise_value_to_ebitda": 13.702,
+      "pe_ratio": 21.872059,
+      "price_to_book": 6.015652,
+      "return_on_equity": 0.32264,
+      "ticker": "META"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:42.645095Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "META",
+  "tool": "get_financial_ratios"
+}

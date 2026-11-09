@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:50.825266+00:00",
+  "result": {
+    "args": {
+      "ticker": "V"
+    },
+    "as_of": "2026-11-09T18:55:46Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 442.23,
+      "fifty_two_week_low": 293.89,
+      "market_cap": 792815796224.0,
+      "price": 424.92,
+      "ticker": "V",
+      "volume": 3660151
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:50.336771Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "V",
+  "tool": "get_stock_quote"
+}

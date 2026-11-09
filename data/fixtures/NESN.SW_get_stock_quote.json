@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:01.318259+00:00",
+  "result": {
+    "args": {
+      "ticker": "NESN.SW"
+    },
+    "as_of": "2026-11-09T16:31:02Z",
+    "data": {
+      "currency": "CHF",
+      "fifty_two_week_high": 87.54,
+      "fifty_two_week_low": 70.29,
+      "market_cap": 221545299968.0,
+      "price": 86.13,
+      "ticker": "NESN.SW",
+      "volume": 2917258
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:00.677106Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "NESN.SW",
+  "tool": "get_stock_quote"
+}

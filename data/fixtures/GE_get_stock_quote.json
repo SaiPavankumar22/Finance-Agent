@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:32.297415+00:00",
+  "result": {
+    "args": {
+      "ticker": "GE"
+    },
+    "as_of": "2026-11-09T18:56:31Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 388.84,
+      "fifty_two_week_low": 268.91,
+      "market_cap": 347147632640.0,
+      "price": 334.58,
+      "ticker": "GE",
+      "volume": 1770392
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:31.661326Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "GE",
+  "tool": "get_stock_quote"
+}

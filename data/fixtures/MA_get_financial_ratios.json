@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:02.003696+00:00",
+  "result": {
+    "args": {
+      "ticker": "MA"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 355.163,
+      "enterprise_value_to_ebitda": 25.276,
+      "pe_ratio": 34.54526,
+      "price_to_book": 85.25894,
+      "return_on_equity": 2.31366,
+      "ticker": "MA"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:02.001628Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "MA",
+  "tool": "get_financial_ratios"
+}

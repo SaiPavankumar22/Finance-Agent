@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:36.204822+00:00",
+  "result": {
+    "args": {
+      "ticker": "BABA"
+    },
+    "as_of": "2026-11-09T18:57:34Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 181.1,
+      "fifty_two_week_low": 91.99,
+      "market_cap": 262631243776.0,
+      "price": 105.57,
+      "ticker": "BABA",
+      "volume": 7452602
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:35.569430Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "BABA",
+  "tool": "get_stock_quote"
+}

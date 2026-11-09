@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:05.502846+00:00",
+  "result": {
+    "args": {
+      "ticker": "COST"
+    },
+    "as_of": "2026-11-09T18:56:02Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 1096.5,
+      "fifty_two_week_low": 844.06,
+      "market_cap": 469610758144.0,
+      "price": 1059.76,
+      "ticker": "COST",
+      "volume": 844437
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:04.823517Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "COST",
+  "tool": "get_stock_quote"
+}

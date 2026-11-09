@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:07.493200+00:00",
+  "result": {
+    "args": {
+      "ticker": "INFY.NS"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "INR",
+      "debt_to_equity": 8.567,
+      "enterprise_value_to_ebitda": 953.755,
+      "pe_ratio": 15.36751,
+      "price_to_book": 4.7969117,
+      "return_on_equity": 0.29951,
+      "ticker": "INFY.NS"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:07.492107Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "INFY.NS",
+  "tool": "get_financial_ratios"
+}

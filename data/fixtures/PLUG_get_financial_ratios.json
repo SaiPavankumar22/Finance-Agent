@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:54.414685+00:00",
+  "result": {
+    "args": {
+      "ticker": "PLUG"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 176.565,
+      "enterprise_value_to_ebitda": -5.656,
+      "pe_ratio": -9.977753,
+      "price_to_book": 3.5576923,
+      "return_on_equity": -1.44963,
+      "ticker": "PLUG"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:54.413684Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "PLUG",
+  "tool": "get_financial_ratios"
+}

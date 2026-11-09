@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:56.266548+00:00",
+  "result": {
+    "args": {
+      "ticker": "JNJ"
+    },
+    "as_of": "2026-11-09T18:55:49Z",
+    "data": {
+      "currency": "USD",
+      "fifty_two_week_high": 282.65,
+      "fifty_two_week_low": 185.12,
+      "market_cap": 679944847360.0,
+      "price": 282.45,
+      "ticker": "JNJ",
+      "volume": 2726015
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:55.465906Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "JNJ",
+  "tool": "get_stock_quote"
+}

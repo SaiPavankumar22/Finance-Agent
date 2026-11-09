@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:19.048223+00:00",
+  "result": {
+    "args": {
+      "ticker": "NFLX"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": 59.857,
+      "enterprise_value_to_ebitda": 16.901,
+      "pe_ratio": 18.391619,
+      "price_to_book": 8.9224615,
+      "return_on_equity": 0.53463,
+      "ticker": "NFLX"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:19.047226Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "NFLX",
+  "tool": "get_financial_ratios"
+}

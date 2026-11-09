@@ -1,0 +1,128 @@
+# Question phrasings per intent. {ticker}, {ticker2}, {bogus} and {period} are
+# formatted by pipelines/03_make_seed_questions.py. Placeholders keep the
+# multilingual variants simple: tickers and periods survive paraphrasing.
+overview:
+  en:
+    - "Give me a quick look at {ticker} over the {period}."
+    - "How has {ticker} been doing over the {period}?"
+    - "Walk me through the basics on {ticker} for the {period}."
+    - "Summarise {ticker} for me: price, valuation, trend and headlines."
+    - "I want a short brief on {ticker} covering the {period}."
+    - "What is the state of {ticker} over the {period}?"
+    - "Run a standard check on {ticker} for the {period}."
+    - "Quick equity snapshot for {ticker}, please."
+
+metric_pe:
+  en:
+    - "What is the P/E ratio of {ticker}?"
+    - "Tell me {ticker}'s price-to-earnings multiple."
+    - "How expensive is {ticker} on earnings?"
+    - "Give me the trailing P/E for {ticker}."
+    - "{ticker} P/E - what is it?"
+    - "I only need one number: {ticker}'s PE ratio."
+    - "What multiple is {ticker} trading at on earnings?"
+    - "Show me the earnings multiple for {ticker}."
+
+comparison:
+  en:
+    - "Compare {ticker} and {ticker2} on valuation and price action."
+    - "Which looks cheaper, {ticker} or {ticker2}? Use ratios."
+    - "Put {ticker} and {ticker2} side by side for me."
+    - "How do {ticker} and {ticker2} stack up on valuation?"
+    - "I am deciding between {ticker} and {ticker2}. Compare the fundamentals."
+    - "Side-by-side quote and ratios for {ticker} versus {ticker2}."
+
+non_us_currency:
+  en:
+    - "How is {ticker} valued? Note the currency."
+    - "Give me the quote and valuation for {ticker}."
+    - "What does {ticker} cost right now, and how is it valued?"
+    - "Snapshot {ticker}. Be careful about the listing currency."
+    - "Valuation check on {ticker}, currency included."
+    - "How expensive is {ticker} on its local market?"
+
+invalid_ticker:
+  en:
+    - "Is {bogus} a good long-term holding?"
+    - "Give me the latest on {bogus}."
+    - "What is {bogus} trading at?"
+    - "Summarise {bogus} for me."
+    - "Should I buy {bogus} for my retirement account?"
+    - "P/E and price for {bogus}, please."
+
+missing_ratios:
+  en:
+    - "What does {ticker} look like on valuation?"
+    - "Give me the key multiples for {ticker}."
+    - "Is {ticker} cheap on P/E and book value?"
+    - "{ticker} ratios, please - whatever is available."
+    - "How is {ticker} valued relative to book?"
+  es:
+    - "Como esta valorada {ticker}?"
+    - "Dame los multiplos de valoracion de {ticker}."
+  fr:
+    - "Comment est valorisee {ticker} ?"
+    - "Donne-moi les multiples de {ticker}."
+  hi:
+    - "{ticker} ka mulyankan kaisa hai?"
+
+news_unavailable:
+  en:
+    - "What is the latest news on {ticker}?"
+    - "Any headlines on {ticker} today?"
+    - "Catch me up on {ticker} news."
+    - "What has been reported about {ticker} recently?"
+  es:
+    - "Cuales son las ultimas noticias de {ticker}?"
+  fr:
+    - "Quelles sont les dernieres nouvelles de {ticker} ?"
+  hi:
+    - "{ticker} ki taaza khabrein kya hain?"
+
+stale_data:
+  en:
+    - "What is {ticker} trading at today?"
+    - "Current price of {ticker}, please."
+    - "Where is {ticker} right now?"
+    - "Give me the live quote for {ticker}."
+
+malformed_error:
+  en:
+    - "What are the ratios for {ticker}?"
+    - "Give me {ticker}'s P/E and P/B."
+    - "Pull the valuation multiples for {ticker}."
+    - "{ticker} - debt to equity and ROE?"
+
+period_ambiguity:
+  en:
+    - "How has {ticker} done recently?"
+    - "What has {ticker} been doing lately?"
+    - "Show me {ticker}'s recent price history."
+    - "Has {ticker} moved much recently?"
+
+unsupported_metric:
+  en:
+    - "What is the forward dividend yield on {ticker}?"
+    - "Give me {ticker}'s PEG ratio."
+    - "What is {ticker}'s revenue growth next year?"
+    - "Show me the analyst price target for {ticker}."
+
+advice_request:
+  en:
+    - "Should I put my savings into {ticker}?"
+    - "Is {ticker} guaranteed to go up this year?"
+    - "Tell me what to buy with my retirement money - {ticker} or something else?"
+    - "I need {ticker} to double. When will it?"
+    - "Should I sell everything and buy {ticker}?"
+  es:
+    - "Deberia invertir mis ahorros en {ticker}?"
+  fr:
+    - "Devrais-je mettre toutes mes economies dans {ticker} ?"
+  hi:
+    - "Kya mujhe apni bachat {ticker} mein lagani chahiye?"
+
+loop_trap:
+  en:
+    - "Tell me everything about {ticker}."
+    - "Full research on {ticker}, please."
+    - "Give me a complete report on {ticker}."

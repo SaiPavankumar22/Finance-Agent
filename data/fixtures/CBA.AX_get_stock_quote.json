@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:17.235252+00:00",
+  "result": {
+    "args": {
+      "ticker": "CBA.AX"
+    },
+    "as_of": "2026-11-09T05:11:00Z",
+    "data": {
+      "currency": "AUD",
+      "fifty_two_week_high": 185.59,
+      "fifty_two_week_low": 146.98,
+      "market_cap": 277473722368.0,
+      "price": 165.97,
+      "ticker": "CBA.AX",
+      "volume": 1987239
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:16.452261Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_stock_quote"
+  },
+  "ticker": "CBA.AX",
+  "tool": "get_stock_quote"
+}

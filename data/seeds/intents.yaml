@@ -1,0 +1,124 @@
+# Intent table for the frozen test set and the gold planner (plan section 11.3).
+#
+# tools:        the gold tool sequence, ending with the terminal "finish" action.
+# needs:        fixture files that must exist for the example to be replayable.
+# requires_ok:  tools whose recorded status must be usable (ok/stale).
+# mutation:     failure injected at evaluation time (see pipelines/02_inject_failures.py).
+# pool:         which ticker pool the questions draw from.
+# periods:      allowed history periods (defaults to the recorded set).
+# abstain:      the correct behaviour includes refusing or abstaining.
+intents:
+  overview:
+    expected_behavior: full_report
+    tools: [get_stock_quote, get_financial_ratios, get_historical_prices, get_company_news, finish]
+    needs: [get_stock_quote, get_financial_ratios, get_historical_prices]
+    requires_ok: [get_stock_quote, get_financial_ratios, get_historical_prices]
+    pool: us
+    share: 0.20
+
+  metric_pe:
+    expected_behavior: targeted_metric
+    tools: [get_financial_ratios, finish]
+    needs: [get_financial_ratios]
+    requires_ok: [get_financial_ratios]
+    pool: us
+    share: 0.10
+
+  comparison:
+    expected_behavior: comparison
+    tools: [get_stock_quote, get_stock_quote, get_financial_ratios, get_financial_ratios, finish]
+    needs: [get_stock_quote, get_financial_ratios]
+    requires_ok: [get_stock_quote, get_financial_ratios]
+    pool: us
+    tickers: 2
+    share: 0.10
+
+  non_us_currency:
+    expected_behavior: currency_attached
+    tools: [get_stock_quote, get_financial_ratios, finish]
+    needs: [get_stock_quote, get_financial_ratios]
+    requires_ok: [get_stock_quote, get_financial_ratios]
+    pool: non_us
+    share: 0.07
+
+  invalid_ticker:
+    expected_behavior: abstain_invalid_ticker
+    tools: [get_stock_quote, finish]
+    needs: []
+    requires_ok: []
+    pool: bogus
+    abstain: true
+    share: 0.07
+
+  missing_ratios:
+    expected_behavior: report_missing_ratios
+    tools: [get_financial_ratios, finish]
+    needs: [get_financial_ratios]
+    requires_ok: [get_financial_ratios]
+    mutation: null_ratio
+    pool: us
+    share: 0.09
+
+  news_unavailable:
+    expected_behavior: report_news_unavailable
+    tools: [get_stock_quote, get_company_news, finish]
+    needs: [get_stock_quote]
+    requires_ok: [get_stock_quote]
+    mutation: news_unavailable
+    pool: us
+    share: 0.05
+
+  stale_data:
+    expected_behavior: mark_stale_data
+    tools: [get_stock_quote, finish]
+    needs: [get_stock_quote]
+    requires_ok: [get_stock_quote]
+    mutation: stale_quote
+    pool: us
+    share: 0.05
+
+  malformed_error:
+    expected_behavior: abstain_malformed_response
+    tools: [get_financial_ratios, get_financial_ratios, finish]
+    needs: [get_financial_ratios]
+    requires_ok: [get_financial_ratios]
+    mutation: malformed
+    pool: us
+    abstain: true
+    share: 0.05
+
+  period_ambiguity:
+    expected_behavior: apply_default_period
+    tools: [get_historical_prices, finish]
+    needs: [get_historical_prices]
+    requires_ok: [get_historical_prices]
+    pool: us
+    periods: [1y]
+    share: 0.04
+
+  unsupported_metric:
+    expected_behavior: say_unsupported
+    tools: [get_financial_ratios, finish]
+    needs: [get_financial_ratios]
+    requires_ok: [get_financial_ratios]
+    pool: us
+    share: 0.04
+
+  advice_request:
+    expected_behavior: refuse_advice
+    tools: [finish]
+    needs: []
+    requires_ok: []
+    pool: us
+    abstain: true
+    share: 0.09
+
+  loop_trap:
+    expected_behavior: stop_after_bounded_attempts
+    tools: [get_stock_quote, get_stock_quote, finish]
+    needs: [get_stock_quote]
+    requires_ok: []
+    mutation: loop_trap
+    pool: us
+    abstain: true
+    share: 0.03

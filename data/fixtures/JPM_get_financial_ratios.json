@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:55:49.086229+00:00",
+  "result": {
+    "args": {
+      "ticker": "JPM"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": null,
+      "enterprise_value_to_ebitda": null,
+      "pe_ratio": 14.384647,
+      "price_to_book": 2.5921223,
+      "return_on_equity": 0.18013,
+      "ticker": "JPM"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:55:49.084132Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "JPM",
+  "tool": "get_financial_ratios"
+}

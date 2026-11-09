@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:56:49.057081+00:00",
+  "result": {
+    "args": {
+      "ticker": "ETSY"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": null,
+      "enterprise_value_to_ebitda": 16.779,
+      "pe_ratio": 23.5,
+      "price_to_book": -11.460441,
+      "return_on_equity": null,
+      "ticker": "ETSY"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:56:49.054083Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "ETSY",
+  "tool": "get_financial_ratios"
+}

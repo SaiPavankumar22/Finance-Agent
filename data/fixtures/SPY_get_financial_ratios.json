@@ -1,0 +1,26 @@
+{
+  "period": null,
+  "recorded_at": "2026-11-09T18:57:25.234419+00:00",
+  "result": {
+    "args": {
+      "ticker": "SPY"
+    },
+    "as_of": null,
+    "data": {
+      "currency": "USD",
+      "debt_to_equity": null,
+      "enterprise_value_to_ebitda": null,
+      "pe_ratio": 23.956192,
+      "price_to_book": 1.754345,
+      "return_on_equity": null,
+      "ticker": "SPY"
+    },
+    "error": null,
+    "retrieved_at": "2026-11-09T18:57:25.230400Z",
+    "source": "yfinance",
+    "status": "ok",
+    "tool": "get_financial_ratios"
+  },
+  "ticker": "SPY",
+  "tool": "get_financial_ratios"
+}

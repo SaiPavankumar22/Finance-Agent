@@ -42,7 +42,8 @@ This is what makes the "every numerical claim is mechanically traceable or expli
 - **Submitted model:** `CohereLabs/tiny-aya-global` (3.35B, 8K context), fine-tuned with LoRA/QLoRA.
 - **Control:** `CohereLabs/tiny-aya-base` (prompted only; optionally also SFT'd as a control if time allows, P2).
 - **Comparison:** `CohereLabs/aya-expanse-8b` (P2; not recommended for tool use by its own card).
-- **Regional variants (Earth/Water/Fire):** skipped unless a specific language requirement forces them.
+- **Regional variants (Earth/Water/Fire):** skipped.
+- **English only.** Seed questions, training data, the frozen test set, prompts and reports are all English. The old P1 multilingual item is cut, so prompt format, tool calls and report prose share exactly one language.
 - **Anthropic:** development only (synthetic data, oracle baseline). Never a runtime dependency.
 - **No training from scratch.**
 - **Data sources:** yfinance first, SEC EDGAR as the second provider (P1).
@@ -224,7 +225,7 @@ Your existing files (`app/schemas/finance.py`, `app/tools/yfinance_tools.py`, `a
 
 ### WS8 (P1, ~3h): SEC EDGAR second provider and conflict handling
 ### WS9 (P1, ~2h): ROI measurement (section 17)
-### WS10 (P1, ~3h): Multilingual examples and preference optimization (DPO) on residual errors
+### WS10 (P1, ~2h): Preference optimization (DPO) on residual errors
 ### WS11 (P2): Aya Expanse 8B comparison, Base+SFT control, CircuitKIT, regional variants
 
 **Cut lines:** if behind, drop WS10, then WS8, then WS9 narrative depth. Never drop WS2, WS3, WS6, WS7.
@@ -357,7 +358,7 @@ For a 3-day project, aim for **~800-1,000 curated examples** (about 1,500 raw be
 | Personalized advice / guaranteed-return requests | 8% | refuse advice/predictions, offer factual analysis, include disclaimer |
 | Loop / redundancy traps (tool returns same thing) | 3% | stop after bounded attempts |
 
-Include **10-15% non-English questions** (P1) (for example Hindi, Telugu, Spanish, French, Arabic; check Tiny Aya's supported-language list). Tool calls stay English JSON; the report prose follows the user's language, still using `{{E<n>}}` placeholders. Placeholders make this safe because no digits are written by the model.
+**English only.** Questions, tool calls, reports and refusals are English; the non-English category (previously P1) is dropped. Removing the language dimension eliminates a whole class of prompt/format mismatch between training and inference and shrinks the labelling surface. The frozen test set in `eval/testset.jsonl` is English exclusively and the training data must match it.
 
 ### 11.3 The pipeline, step by step
 
@@ -401,9 +402,9 @@ The planner then runs the real tool layer against fixtures, builds the ledger, a
 
 **Step E: LLM enrichment** (`05_llm_enrich.py`, Anthropic)
 Use Claude only for what code cannot do well, with the ledger as input and strict output format:
-1. **Paraphrase user questions** (diversity of tone, typos, informal/formal, multilingual). Input: seed question and intent; output: N variants. Verify by code that tickers/periods are preserved.
+1. **Paraphrase user questions** (diversity of tone, typos, informal/formal). Input: seed question and intent; output: N variants. English only. Verify by code that tickers/periods are preserved.
 2. **Write 1-2 `interpretation` sentences per report** using only placeholders. Prompt: "Write cautious, non-advisory interpretive sentences referencing evidence only via `{{E<n>}}`. Do not write any digits. Do not recommend buying or selling."
-3. **(Optional, P1)** Write natural-language refusals for advice requests in several languages.
+3. **(Optional, P1)** Write varied English refusals for advice requests (shorter, firmer, more explanatory). No translations: the project is English only.
 
 Then **verify by code**: no digits outside placeholders, every placeholder exists in the ledger, no advice phrases (keyword plus classifier check), length bounds. Failures are dropped, not "fixed."
 
@@ -467,7 +468,7 @@ Rules for formatting:
 Build DPO pairs only if SFT leaves a clear residual error class. Chosen: the gold trajectory. Rejected: a real model failure collected by running the SFT model on train prompts and keeping outputs the validator or planner marks wrong (wrong tool, extra calls, ungrounded digits, advice given). This is cheap because your checkers already label failures.
 
 ### 11.7 Dataset card contents
-Purpose; sources (yfinance fixtures with snapshot date; Claude-generated paraphrases/interpretations, with model name); category mix table; mutation list; split method; filters and drop counts; known limitations (US-heavy, snapshot-based, English-dominant); licenses; non-advisory notice; generator code commit SHA.
+Purpose; sources (yfinance fixtures with snapshot date; Claude-generated paraphrases/interpretations, with model name); category mix table; mutation list; split method; filters and drop counts; known limitations (US-heavy, snapshot-based, English-only); licenses; non-advisory notice; generator code commit SHA.
 
 ### 11.8 Common dataset mistakes to avoid
 - Letting the LLM write numbers (use placeholders).
@@ -505,7 +506,7 @@ Rough compute: a 3.35B model with ~1k short examples should train in about an ho
 
 ## 13. SafeTune strategy
 
-- **Safety set** (~100 prompts, `eval/safety_set.jsonl`): personalized buy/sell requests ("should I put my savings in X?"), guaranteed-return predictions, insider-information fishing, pressure/urgency prompts, jailbreak-style rewording, and the same in several languages.
+- **Safety set** (~100 prompts, `eval/safety_set.jsonl`): personalized buy/sell requests ("should I put my savings in X?"), guaranteed-return predictions, insider-information fishing, pressure/urgency prompts, and jailbreak-style rewording. English only, matching the rest of the project.
 - **Desired behavior:** provide factual analysis from evidence; decline personalized advice and predictions; keep the disclaimer; do not over-refuse benign factual questions. Measure **both** refusal correctness and over-refusal.
 - **Audit three models:** Tiny Aya Global (before), fine-tuned adapter (after), and optionally Base.
 - If safety degrades after SFT, repair by adding more advice-refusal examples (and mixed benign examples) and retraining; re-audit.
@@ -696,6 +697,6 @@ Copy these and adapt. Each is scoped to one verifiable task.
 
 **Then:** WS4 (dataset), WS5 (SFT), WS6 (eval and safety), WS7 (deploy and publish).
 
-**Postpone:** DPO, SEC conflict handling, multilingual breadth, Aya Expanse 8B, Base+SFT control, regional variants, CircuitKIT.
+**Postpone:** DPO, SEC conflict handling, Aya Expanse 8B, Base+SFT control, regional variants, CircuitKIT.
 
 **Fastest path to a convincing result:** constrained decoding, ~800 clean examples built mostly by code, one QLoRA run, frozen-test-set evaluation with confidence intervals, an honest failure analysis, and a live demo with cached fallbacks.

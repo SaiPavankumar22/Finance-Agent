@@ -1,164 +1,424 @@
 {
-  "schema_version": "1.0",
-  "generated_at": "2026-11-09T11:09:56.058956+00:00",
+  "schema_version": "2.0",
+  "generated_at": "2026-11-09T18:36:54.628118+00:00",
   "ticker": "AAPL",
-  "quote": {
-    "schema_version": "1.0",
-    "ticker": "AAPL",
-    "currency": "USD",
-    "price": 342.37,
-    "volume": 44703806,
-    "market_cap": 4975383019520.0,
-    "fifty_two_week_low": 243.42,
-    "fifty_two_week_high": 355.38,
-    "source": {
-      "provider": "Yahoo Finance via yfinance",
-      "retrieved_at": "2026-11-09T11:09:54.608034Z",
-      "source_url": "https://finance.yahoo.com/",
-      "source_timestamp": null
+  "period": "1mo",
+  "tool_results": [
+    {
+      "call_id": "c1",
+      "status": "ok",
+      "tool": "get_stock_quote",
+      "args": {
+        "ticker": "AAPL"
+      },
+      "data": {
+        "ticker": "AAPL",
+        "currency": "USD",
+        "price": 349.205,
+        "volume": 17268237,
+        "market_cap": 5074710429696.0,
+        "fifty_two_week_low": 243.42,
+        "fifty_two_week_high": 355.38
+      },
+      "source": "yfinance",
+      "retrieved_at": "2026-11-09T18:36:41.634590Z",
+      "as_of": "2026-11-09T18:36:40Z",
+      "error": null
+    },
+    {
+      "call_id": "c2",
+      "status": "ok",
+      "tool": "get_financial_ratios",
+      "args": {
+        "ticker": "AAPL"
+      },
+      "data": {
+        "ticker": "AAPL",
+        "currency": "USD",
+        "pe_ratio": 38.886417,
+        "price_to_book": 45.274216,
+        "enterprise_value_to_ebitda": 29.234,
+        "debt_to_equity": 84.286,
+        "return_on_equity": 1.42257
+      },
+      "source": "yfinance",
+      "retrieved_at": "2026-11-09T18:36:42.536840Z",
+      "as_of": null,
+      "error": null
+    },
+    {
+      "call_id": "c3",
+      "status": "ok",
+      "tool": "get_historical_prices",
+      "args": {
+        "ticker": "AAPL",
+        "period": "1mo"
+      },
+      "data": {
+        "ticker": null,
+        "period": "1mo",
+        "prices": [
+          {
+            "date": "2026-10-09",
+            "close": 336.6400146484375
+          },
+          {
+            "date": "2026-10-12",
+            "close": 340.9700012207031
+          },
+          {
+            "date": "2026-10-13",
+            "close": 341.2699890136719
+          },
+          {
+            "date": "2026-10-14",
+            "close": 342.9599914550781
+          },
+          {
+            "date": "2026-10-15",
+            "close": 342.0
+          },
+          {
+            "date": "2026-10-16",
+            "close": 343.4599914550781
+          },
+          {
+            "date": "2026-10-19",
+            "close": 342.94000244140625
+          },
+          {
+            "date": "2026-10-20",
+            "close": 339.5
+          },
+          {
+            "date": "2026-10-21",
+            "close": 343.989990234375
+          },
+          {
+            "date": "2026-10-22",
+            "close": 348.2200012207031
+          },
+          {
+            "date": "2026-10-23",
+            "close": 347.7300109863281
+          },
+          {
+            "date": "2026-10-26",
+            "close": 343.9100036621094
+          },
+          {
+            "date": "2026-10-27",
+            "close": 347.1000061035156
+          },
+          {
+            "date": "2026-10-28",
+            "close": 343.8299865722656
+          },
+          {
+            "date": "2026-10-29",
+            "close": 348.9100036621094
+          },
+          {
+            "date": "2026-10-30",
+            "close": 344.6300048828125
+          },
+          {
+            "date": "2026-11-02",
+            "close": 338.32000732421875
+          },
+          {
+            "date": "2026-11-03",
+            "close": 331.8999938964844
+          },
+          {
+            "date": "2026-11-04",
+            "close": 349.510009765625
+          },
+          {
+            "date": "2026-11-05",
+            "close": 344.1700134277344
+          },
+          {
+            "date": "2026-11-06",
+            "close": 342.3699951171875
+          },
+          {
+            "date": "2026-11-09",
+            "close": 349.2049865722656
+          }
+        ],
+        "last_close": 349.2049865722656,
+        "last_date": "2026-11-09",
+        "observations": 22,
+        "sma_20": 343.79624938964844,
+        "sma_50": null,
+        "ema_20": 343.10328349214217,
+        "annualized_volatility": 0.2610428208667252,
+        "currency": null
+      },
+      "source": "yfinance",
+      "retrieved_at": "2026-11-09T18:36:42.866691Z",
+      "as_of": "2026-11-09T00:00:00Z",
+      "error": null
+    },
+    {
+      "call_id": "c4",
+      "status": "unavailable",
+      "tool": "get_company_news",
+      "args": {
+        "ticker": "AAPL",
+        "limit": 5
+      },
+      "data": null,
+      "source": "yfinance",
+      "retrieved_at": "2026-11-09T18:36:49.522807Z",
+      "as_of": null,
+      "error": "provider_unavailable"
     }
-  },
-  "ratios": {
-    "schema_version": "1.0",
-    "ticker": "AAPL",
-    "pe_ratio": 38.125835,
-    "price_to_book": 44.388695,
-    "enterprise_value_to_ebitda": 29.234,
-    "debt_to_equity": 84.286,
-    "return_on_equity": 1.42257,
-    "source": {
-      "provider": "Yahoo Finance via yfinance",
-      "retrieved_at": "2026-11-09T11:09:54.807603Z",
-      "source_url": "https://finance.yahoo.com/",
-      "source_timestamp": null
-    }
-  },
-  "history": {
-    "schema_version": "1.0",
-    "ticker": "AAPL",
-    "period": "1mo",
-    "prices": [
-      {
-        "date": "2026-10-07",
-        "close": 336.6700134277344
-      },
-      {
-        "date": "2026-10-08",
-        "close": 340.4200134277344
-      },
-      {
-        "date": "2026-10-09",
-        "close": 336.6400146484375
-      },
-      {
-        "date": "2026-10-12",
-        "close": 340.9700012207031
-      },
-      {
-        "date": "2026-10-13",
-        "close": 341.2699890136719
-      },
-      {
-        "date": "2026-10-14",
-        "close": 342.9599914550781
-      },
-      {
-        "date": "2026-10-15",
-        "close": 342.0
-      },
-      {
-        "date": "2026-10-16",
-        "close": 343.4599914550781
-      },
-      {
-        "date": "2026-10-19",
-        "close": 342.94000244140625
-      },
-      {
-        "date": "2026-10-20",
-        "close": 339.5
-      },
-      {
-        "date": "2026-10-21",
-        "close": 343.989990234375
-      },
-      {
-        "date": "2026-10-22",
-        "close": 348.2200012207031
-      },
-      {
-        "date": "2026-10-23",
-        "close": 347.7300109863281
-      },
-      {
-        "date": "2026-10-26",
-        "close": 343.9100036621094
-      },
-      {
-        "date": "2026-10-27",
-        "close": 347.1000061035156
-      },
-      {
-        "date": "2026-10-28",
-        "close": 343.8299865722656
-      },
-      {
-        "date": "2026-10-29",
-        "close": 348.9100036621094
-      },
-      {
-        "date": "2026-10-30",
-        "close": 344.6300048828125
-      },
-      {
-        "date": "2026-11-02",
-        "close": 338.32000732421875
-      },
-      {
-        "date": "2026-11-03",
-        "close": 331.8999938964844
-      },
-      {
-        "date": "2026-11-04",
-        "close": 349.510009765625
-      },
-      {
-        "date": "2026-11-05",
-        "close": 344.1700134277344
-      },
-      {
-        "date": "2026-11-06",
-        "close": 342.3699951171875
-      }
-    ],
-    "sma_20": 343.38450012207034,
-    "sma_50": null,
-    "ema_20": 342.5083239235508,
-    "annualized_volatility": 0.25251337355746084,
-    "source": {
-      "provider": "Yahoo Finance via yfinance",
-      "retrieved_at": "2026-11-09T11:09:55.058733Z",
-      "source_url": "https://finance.yahoo.com/",
-      "source_timestamp": null
-    }
-  },
-  "news": {
-    "schema_version": "1.0",
-    "ticker": "AAPL",
-    "items": [],
-    "unavailable_reason": "YFDataException: *** YAHOO! FINANCE IS CURRENTLY DOWN! ***",
-    "source": {
-      "provider": "Yahoo Finance via yfinance",
-      "retrieved_at": "2026-11-09T11:09:56.057964Z",
-      "source_url": "https://finance.yahoo.com/",
-      "source_timestamp": null
-    }
-  },
-  "evidence_refs": [
-    "quote",
-    "ratios",
-    "history",
-    "news"
   ],
-  "disclaimer": "Informational research only; not personalized investment advice."
+  "evidence": [
+    {
+      "id": "E1",
+      "label": "price",
+      "value": 349.205,
+      "tool_call_id": "c1",
+      "path": "price",
+      "unit": null,
+      "currency": "USD",
+      "as_of": "2026-11-09T18:36:40+00:00",
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E2",
+      "label": "market_cap",
+      "value": 5074710429696.0,
+      "tool_call_id": "c1",
+      "path": "market_cap",
+      "unit": null,
+      "currency": "USD",
+      "as_of": "2026-11-09T18:36:40+00:00",
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "compact"
+    },
+    {
+      "id": "E3",
+      "label": "volume",
+      "value": 17268237,
+      "tool_call_id": "c1",
+      "path": "volume",
+      "unit": "shares",
+      "currency": null,
+      "as_of": "2026-11-09T18:36:40+00:00",
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "compact"
+    },
+    {
+      "id": "E4",
+      "label": "fifty_two_week_low",
+      "value": 243.42,
+      "tool_call_id": "c1",
+      "path": "fifty_two_week_low",
+      "unit": null,
+      "currency": "USD",
+      "as_of": "2026-11-09T18:36:40+00:00",
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E5",
+      "label": "fifty_two_week_high",
+      "value": 355.38,
+      "tool_call_id": "c1",
+      "path": "fifty_two_week_high",
+      "unit": null,
+      "currency": "USD",
+      "as_of": "2026-11-09T18:36:40+00:00",
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E6",
+      "label": "pe_ratio",
+      "value": 38.886417,
+      "tool_call_id": "c2",
+      "path": "pe_ratio",
+      "unit": "ratio",
+      "currency": null,
+      "as_of": null,
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E7",
+      "label": "price_to_book",
+      "value": 45.274216,
+      "tool_call_id": "c2",
+      "path": "price_to_book",
+      "unit": "ratio",
+      "currency": null,
+      "as_of": null,
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E8",
+      "label": "enterprise_value_to_ebitda",
+      "value": 29.234,
+      "tool_call_id": "c2",
+      "path": "enterprise_value_to_ebitda",
+      "unit": "ratio",
+      "currency": null,
+      "as_of": null,
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E9",
+      "label": "debt_to_equity",
+      "value": 84.286,
+      "tool_call_id": "c2",
+      "path": "debt_to_equity",
+      "unit": "ratio",
+      "currency": null,
+      "as_of": null,
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E10",
+      "label": "return_on_equity",
+      "value": 1.42257,
+      "tool_call_id": "c2",
+      "path": "return_on_equity",
+      "unit": "ratio",
+      "currency": null,
+      "as_of": null,
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E11",
+      "label": "last_close",
+      "value": 349.2049865722656,
+      "tool_call_id": "c3",
+      "path": "last_close",
+      "unit": null,
+      "currency": null,
+      "as_of": "2026-11-09T00:00:00+00:00",
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E12",
+      "label": "sma_20",
+      "value": 343.79624938964844,
+      "tool_call_id": "c3",
+      "path": "sma_20",
+      "unit": null,
+      "currency": null,
+      "as_of": "2026-11-09T00:00:00+00:00",
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E13",
+      "label": "sma_50",
+      "value": null,
+      "tool_call_id": "c3",
+      "path": "sma_50",
+      "unit": null,
+      "currency": null,
+      "as_of": "2026-11-09T00:00:00+00:00",
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E14",
+      "label": "ema_20",
+      "value": 343.10328349214217,
+      "tool_call_id": "c3",
+      "path": "ema_20",
+      "unit": null,
+      "currency": null,
+      "as_of": "2026-11-09T00:00:00+00:00",
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E15",
+      "label": "annualized_volatility",
+      "value": 0.2610428208667252,
+      "tool_call_id": "c3",
+      "path": "annualized_volatility",
+      "unit": "ratio",
+      "currency": null,
+      "as_of": "2026-11-09T00:00:00+00:00",
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E16",
+      "label": "observations",
+      "value": 22,
+      "tool_call_id": "c3",
+      "path": "observations",
+      "unit": "count",
+      "currency": null,
+      "as_of": "2026-11-09T00:00:00+00:00",
+      "source": "yfinance",
+      "derived_from": [],
+      "status": "ok",
+      "style": "plain"
+    },
+    {
+      "id": "E17",
+      "label": "price_vs_52w_low",
+      "value": 43.45780954728453,
+      "tool_call_id": "c1,c1",
+      "path": "calc.pct_change",
+      "unit": "%",
+      "currency": null,
+      "as_of": "2026-11-09T18:36:40+00:00",
+      "source": "derived",
+      "derived_from": [
+        "E4",
+        "E1"
+      ],
+      "status": "ok",
+      "style": "plain"
+    }
+  ],
+  "evidence_text": "E1 price=349.20 USD as_of=2026-11-09T18:36:40Z [yfinance]\nE2 market_cap=5.07T USD as_of=2026-11-09T18:36:40Z [yfinance]\nE3 volume=17.27M shares as_of=2026-11-09T18:36:40Z [yfinance]\nE4 fifty_two_week_low=243.42 USD as_of=2026-11-09T18:36:40Z [yfinance]\nE5 fifty_two_week_high=355.38 USD as_of=2026-11-09T18:36:40Z [yfinance]\nE6 pe_ratio=38.89 [yfinance]\nE7 price_to_book=45.27 [yfinance]\nE8 enterprise_value_to_ebitda=29.23 [yfinance]\nE9 debt_to_equity=84.29 [yfinance]\nE10 return_on_equity=1.42 [yfinance]\nE11 last_close=349.20 as_of=2026-11-09T00:00:00Z [yfinance]\nE12 sma_20=343.80 as_of=2026-11-09T00:00:00Z [yfinance]\nE13 sma_50=null as_of=2026-11-09T00:00:00Z [yfinance]\nE14 ema_20=343.10 as_of=2026-11-09T00:00:00Z [yfinance]\nE15 annualized_volatility=0.26 as_of=2026-11-09T00:00:00Z [yfinance]\nE16 observations=22 as_of=2026-11-09T00:00:00Z [yfinance]\nE17 price_vs_52w_low=43.46% as_of=2026-11-09T18:36:40Z derived_from=E4,E1 [derived]",
+  "disclaimer": "This is informational research, not personalized investment advice."
 }

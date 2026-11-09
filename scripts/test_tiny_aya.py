@@ -1,7 +1,6 @@
 """Run one small Tiny Aya Global inference request with secondary HF credits."""
 
 import os
-import sys
 
 from dotenv import load_dotenv
 from huggingface_hub import InferenceClient

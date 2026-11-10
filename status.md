@@ -1,14 +1,13 @@
 # Finance Agent — Status
 
-_Last updated: 2026-11-09._
+_Last updated: 2026-11-10._
 
 ## Where the project stands
 
-WS1 (hardened foundation) and WS2 (fixtures, failure injection, frozen test set)
-are complete and committed. `ruff check .` is clean and `pytest -q` reports 126
-passing tests. The frozen evaluation set exists, so training data can now be
-built against a stable target. **No model has been run yet**: there are no
-baselines, no training data, no adapter, no eval metrics and no deployment.
+WS1 (hardened foundation), WS2 (fixtures, failure injection, frozen test set),
+and WS3 (first-turn baseline evaluation) are complete locally. `ruff check .`
+is clean and `pytest -q` reports 129 passing tests. The frozen evaluation set
+now has 150-example results for Tiny Aya Global and the Anthropic oracle.
 
 ## Commit history
 
@@ -19,6 +18,7 @@ baselines, no training data, no adapter, no eval metrics and no deployment.
 | `15319b7` | WS2: fixture recorder, offline replay, ten failure mutations, frozen 150-example test set |
 | `3f0db0e` | English-only test set and templates |
 | `f6a5292` | `project-plan.md` updated for the English-only decision |
+| local | WS3 baseline evaluator, metrics, and results |
 
 ## Done — WS1: hardened foundation
 
@@ -103,27 +103,41 @@ python pipelines/01_record_fixtures.py --verify       # offline determinism chec
 python pipelines/02_inject_failures.py                # regenerate data/injected
 python pipelines/03_make_seed_questions.py            # rebuild; needs --force to change
 python -m scripts.run_baseline --ticker AAPL --period 1mo   # live smoke test
+python -m eval.run_baseline --models tiny-aya-global,anthropic
 ```
+
+## Done — WS3: first-turn baseline evaluation
+
+`eval/run_baseline.py` evaluates the first tool decision on the frozen
+150-example set and caches raw outputs. `eval/metrics.py` reports schema
+validity, tool selection, argument accuracy, abstention accuracy, per-intent
+scores, and tool distribution.
+
+Results are saved in `eval/results/baseline.json`.
+
+- Tiny Aya Global: schema validity `98.67%`, tool selection `55.33%`,
+  argument accuracy `5.33%`, abstention accuracy `75.33%`.
+- Anthropic oracle: schema validity `90.00%`, tool selection `54.00%`,
+  argument accuracy `65.33%`, abstention accuracy `75.33%`.
+- Tiny Aya Base: unavailable through the Hugging Face Cohere inference
+  provider; a local or Modal serving path is required for a fair comparison.
+
+These are first-turn planning metrics, not full multi-step agent performance.
+The low Tiny Aya Global argument score is a useful training target: the model
+often adds irrelevant arguments such as `period` to tools that do not accept it.
 
 ## Known gaps
 
-- **No model inference yet**: no baselines, no `eval/metrics.py`, no
-  `eval/results/baseline.json`, so the WS3 decision gate is still open.
 - **Tiny Aya chat template and constrained decoding are unverified** (plan
   §10.1 and §10.3). Both decide the training format and can invalidate a day of
   work, so they should be checked before WS4.
 - 4 of 73 tickers produced no usable data; 20 fixtures are hard errors.
-- No git remote yet — the submission requires a public repository.
 - Missing entirely: `app/agent/`, `app/api/`, `app/config.py`, `deploy/`,
-  `space/`, `docs/`, `configs/`, `eval/metrics.py`, training pipeline.
+  `space/`, `docs/`, `configs/`, and the training pipeline.
 
 ## Next steps
 
-1. **WS3** — score Tiny Aya Base, Tiny Aya Global (prompted) and the Claude
-   oracle on the frozen set over fixtures; save `eval/results/baseline.json`;
-   apply the decision gate (if prompted Global already scores high on tool calls,
-   shift fine-tuning emphasis to efficiency, abstention and grounding).
-2. Verify the chat template + constrained decoding path on Modal.
-3. **WS4** — deterministic gold planner, Claude enrichment, CuratorKIT gates,
+1. Verify the Tiny Aya chat template and constrained decoding path on Modal.
+2. **WS4** — deterministic gold planner, Claude enrichment, CuratorKIT gates,
    splits by ticker group and template.
-4. WS5 fine-tuning, WS6 AuditKIT + SafeTune, WS7 deploy and publish.
+3. WS5 fine-tuning, WS6 AuditKIT + SafeTune, WS7 deploy and publish.

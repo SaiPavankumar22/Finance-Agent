@@ -4,7 +4,7 @@ tags:
 configs:
 - config_name: sft_messages
   default: true
-  description: curatorkit sft_messages export, sha256 29e161446fb325b8118246036c0bcf24c32c8f7fb7345d7dcdd5bf77aab4a300
+  description: curatorkit messages export, sha256 6b8b82383d9fee0fa05fa9bbb663f57cde09ef6a4fd50508e1e00ef134c12ec0
   data_files:
   - split: train
     path: sft_messages.jsonl
@@ -14,9 +14,9 @@ configs:
 
 ## Summary
 
-- **Run timestamp**: 2026-11-10T12:22:28.074417Z
-- **Wall clock time**: 47.7s
-- **Pipeline config hash**: `afeaaf95fd22f5cc`
+- **Run timestamp**: 2026-11-10T14:51:51.135065Z
+- **Wall clock time**: 0.2s
+- **Pipeline config hash**: `55b87c207fbab640`
 
 ## Source Documents
 
@@ -27,33 +27,27 @@ configs:
 | Step | Input | Passed | Recovered | Rejected | Forward |
 |------|-------|--------|-----------|----------|---------|
 | JSONLReader | 800 | 800 | — | 0 | 800 |
-| SchemaGate | 800 | 262 | 0 | 538 | 262 |
-| ExactDeduplicator | 262 | 262 | — | — | 262 |
-| MinHashDeduplicator | 262 | 170 | — | — | 170 |
-| TextCleaner | 170 | 170 | — | — | 170 |
-| MessagesExporter | — | 170 | — | — | 170 |
+| SchemaGate | 800 | 800 | 0 | 0 | 800 |
+| ExactDeduplicator | 800 | 800 | — | — | 800 |
+| TextCleaner | 800 | 800 | — | — | 800 |
+| MessagesExporter | — | 800 | — | — | 800 |
 
 ## Gate Pass Rates and Rejection Breakdown
 
 - **JSONLReader**: 800/0 passed (N/A), 0 rejected
-- **SchemaGate**: 262/800 passed (32.8%), 538 rejected
+- **SchemaGate**: 800/800 passed (100.0%), 0 rejected
 
 
 **Rejection reasons:**
-  - `below_min_tokens:9`: 142
-  - `below_min_tokens:8`: 139
-  - `below_min_tokens:7`: 139
-  - `below_min_tokens:6`: 117
-  - `below_min_tokens:5`: 1
+  - None
 
 ## Deduplication
 
-  - near_duplicates_removed: 92
-  - surviving_count: 170
+  - exact_duplicates_removed: 0
 
 ## Known Limitations
 
-- MinHash threshold used: **0.85** — this is a starting point, not a universal answer. Adjust per domain (legal, medical, and other domain-specific corpora may need a lower threshold to avoid losing structurally similar but semantically valid examples).
+- No MinHash deduplication applied.
 - Table extraction requires `extract_tables: true` on the PDF reader and MinerU with GPU support. Disabled by default.
 - Token counting uses a whitespace tokenizer by default. For exact LLM context window
   enforcement, enable `use_tiktoken: true` in the SchemaGate config.
@@ -79,4 +73,4 @@ Load one with `datasets.load_dataset("<this folder or Hub repo>", "<config>")`.
 
 | Config | Splits (rows) | Columns |
 |--------|---------------|---------|
-| `sft_messages` | train (170) | `messages`: list of {role, content}; role is system, user or assistant |
+| `sft_messages` | train (800) | `messages`: list of {role, content}; role is system, user or assistant |

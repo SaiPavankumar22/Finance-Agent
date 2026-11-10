@@ -149,7 +149,11 @@ def _stale_quote(fixtures: FixtureSet, rng: random.Random) -> MutationResult:
     for tools in mutated.values():
         for key, fixture in tools.items():
             if key.startswith("get_stock_quote"):
-                _result(fixture).update({"status": "stale", "as_of": old})
+                result = _result(fixture)
+                # ToolResult requires stale results to retain a usable payload.
+                # Provider-unavailable fixtures stay unavailable.
+                if result.get("data") is not None:
+                    result.update({"status": "stale", "as_of": old})
     return MutationResult(mutated, "mark_stale_data")
 
 

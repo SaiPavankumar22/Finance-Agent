@@ -1,0 +1,32 @@
+{
+  "count": 800,
+  "frozen_test_questions_excluded": true,
+  "intents": {
+    "advice_request": 87,
+    "comparison": 110,
+    "invalid_ticker": 4,
+    "loop_trap": 26,
+    "malformed_error": 33,
+    "metric_pe": 93,
+    "missing_ratios": 44,
+    "news_unavailable": 40,
+    "non_us_currency": 69,
+    "overview": 94,
+    "period_ambiguity": 81,
+    "stale_data": 38,
+    "unsupported_metric": 81
+  },
+  "mutations": {
+    "loop_trap": 26,
+    "malformed": 33,
+    "news_unavailable": 40,
+    "none": 619,
+    "null_ratio": 44,
+    "stale_quote": 38
+  },
+  "next_gate": "CuratorKIT plus split/format stage",
+  "schema_version": "1.0",
+  "seed": 7,
+  "sha256": "e2a0d0e1a0dddb1fa0507681f35228ef4169ce3e8550b23e60df2d3deeaebf8f",
+  "source": "recorded fixtures and deterministic planner"
+}

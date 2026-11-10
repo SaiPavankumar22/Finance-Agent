@@ -5,9 +5,11 @@ _Last updated: 2026-11-10._
 ## Where the project stands
 
 WS1 (hardened foundation), WS2 (fixtures, failure injection, frozen test set),
-and WS3 (first-turn baseline evaluation) are complete locally. `ruff check .`
-is clean and `pytest -q` reports 129 passing tests. The frozen evaluation set
-now has 150-example results for Tiny Aya Global and the Anthropic oracle.
+WS3 (first-turn baseline evaluation), and the deterministic part of WS4 are
+complete locally. `ruff check .` is clean and `pytest -q` reports 129 passing
+tests. The frozen evaluation set has 150-example results for Tiny Aya Global
+and the Anthropic oracle; WS4 now has 800 gold trajectories with no frozen-test
+question overlap.
 
 ## Commit history
 
@@ -126,18 +128,32 @@ These are first-turn planning metrics, not full multi-step agent performance.
 The low Tiny Aya Global argument score is a useful training target: the model
 often adds irrelevant arguments such as `period` to tools that do not accept it.
 
+## In progress — WS4: deterministic dataset curation
+
+`pipelines/04_gold_trajectories.py` creates `data/gold/trajectories.jsonl`
+from the real replay fixtures and rule-based intent plans. The generated set
+contains 800 examples across all 13 intents, includes failure mutations, and
+excludes every question in the frozen 150-example test set. Its manifest and
+SHA-256 are in `data/gold/manifest.json`.
+
+Tiny Aya Global's tokenizer was also checked locally: it has a native chat
+template and ends the assistant prompt with `<|START_RESPONSE|>`. The Modal
+GPU verification script is ready, but Modal currently requires a payment method
+before starting a T4 function, so constrained decoding is not yet verified.
+
 ## Known gaps
 
-- **Tiny Aya chat template and constrained decoding are unverified** (plan
-  §10.1 and §10.3). Both decide the training format and can invalidate a day of
-  work, so they should be checked before WS4.
+- **Constrained decoding is unverified** (plan §10.3). Modal's T4 invocation
+  is blocked until a payment method is added; the chat template itself is
+  verified locally.
 - 4 of 73 tickers produced no usable data; 20 fixtures are hard errors.
 - Missing entirely: `app/agent/`, `app/api/`, `app/config.py`, `deploy/`,
-  `space/`, `docs/`, `configs/`, and the training pipeline.
+  `space/`, `docs/`, `configs/`, CuratorKIT filtering, and the training
+  pipeline.
 
 ## Next steps
 
-1. Verify the Tiny Aya chat template and constrained decoding path on Modal.
-2. **WS4** — deterministic gold planner, Claude enrichment, CuratorKIT gates,
-   splits by ticker group and template.
-3. WS5 fine-tuning, WS6 AuditKIT + SafeTune, WS7 deploy and publish.
+1. Add Anthropic paraphrase/interpretation enrichment with strict validators.
+2. Read and integrate CuratorKIT, then split/format the gold set.
+3. Verify vLLM JSON-schema decoding on Modal after billing is enabled.
+4. WS5 fine-tuning, WS6 AuditKIT + SafeTune, WS7 deploy and publish.

@@ -114,6 +114,115 @@ def score_row(row: dict[str, Any], prediction: Any) -> dict[str, Any]:
     }
 
 
+def summary_block(scored: list[dict[str, Any]]) -> dict[str, Any]:
+    """Summarise scored rows with Wilson intervals where the metric needs them."""
+    from eval.metrics import summarize, wilson_interval
+
+    summary = summarize(scored)
+    summary["tool_selection_95ci"] = wilson_interval(
+        sum(row["tool_correct"] for row in scored), len(scored)
+    )
+    summary["argument_accuracy_95ci"] = wilson_interval(
+        sum(row["args_correct"] for row in scored), len(scored)
+    )
+    return summary
+
+
+def paired_counts(base: list[dict[str, Any]], tuned: list[dict[str, Any]]) -> dict[str, Any]:
+    """Per-example transitions from base to tuned, keyed by row id."""
+    base_by_id = {row["id"]: row for row in base}
+    counts = {"gained": 0, "lost": 0, "both": 0, "neither": 0}
+    arg_counts = {"gained": 0, "lost": 0, "both": 0, "neither": 0}
+    for row in tuned:
+        other = base_by_id[row["id"]]
+        for bucket, key in ((counts, "tool_correct"), (arg_counts, "args_correct")):
+            if row[key] and other[key]:
+                bucket["both"] += 1
+            elif row[key]:
+                bucket["gained"] += 1
+            elif other[key]:
+                bucket["lost"] += 1
+            else:
+                bucket["neither"] += 1
+    return {"tool_selection": counts, "argument_accuracy": arg_counts}
+
+
+def generate_first_call(
+    model: Any, tokenizer: Any, question: str, max_new_tokens: int = 96
+) -> Any:
+    """Greedy first turn, stopped once the first JSON object is complete."""
+    import torch
+    from transformers import StoppingCriteria, StoppingCriteriaList
+
+    from app.chat_format import render
+    from eval.run_baseline import SYSTEM_PROMPT, parse_prediction
+    from training.data import first_json_object_complete
+
+    prompt = render(
+        tokenizer,
+        [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": question},
+        ],
+        add_generation_prompt=True,
+    )
+    inputs = tokenizer(prompt, return_tensors="pt", add_special_tokens=False).to("cuda")
+    prompt_length = inputs["input_ids"].shape[1]
+
+    class StopAtFirstJSON(StoppingCriteria):
+        def __call__(self, input_ids: Any, scores: Any, **kwargs: Any) -> bool:
+            text = tokenizer.decode(
+                input_ids[0][prompt_length:], skip_special_tokens=True
+            )
+            return first_json_object_complete(text)
+
+    with torch.no_grad():
+        output = model.generate(
+            **inputs,
+            max_new_tokens=max_new_tokens,
+            do_sample=False,
+            stopping_criteria=StoppingCriteriaList([StopAtFirstJSON()]),
+        )
+    text = tokenizer.decode(output[0][prompt_length:], skip_special_tokens=True)
+    return parse_prediction(text)
+
+
+def evaluate_rows(
+    model: Any,
+    tokenizer: Any,
+    rows: list[dict[str, Any]],
+    max_new_tokens: int = 96,
+    restore_training: bool = True,
+) -> list[dict[str, Any]]:
+    """Score every row with the shared decode rule.
+
+    ``restore_training`` exists because generation needs the KV cache and no
+    gradient checkpointing, and a training loop must get both back afterwards.
+    When checkpointing came back without PEFT's input-grad hook the next epoch
+    kept every activation and OOMed at 73 GiB.
+    """
+    import torch
+
+    model.eval()
+    if restore_training:
+        model.gradient_checkpointing_disable()
+    model.config.use_cache = True
+    try:
+        scored = [
+            score_row(row, generate_first_call(model, tokenizer, row["question"], max_new_tokens))
+            for row in rows
+        ]
+    finally:
+        if restore_training:
+            model.gradient_checkpointing_enable()
+            model.enable_input_require_grads()
+            model.config.use_cache = False
+            model.train()
+        torch.cuda.empty_cache()
+    print(f"eval done ({len(rows)} rows)", flush=True)
+    return scored
+
+
 @app.function(gpu=GPU_TYPE, timeout=10800, volumes={"/out": adapters}, max_containers=1)
 def run(
     epochs: int = 2,
@@ -137,9 +246,7 @@ def run(
     from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
     sys.path.insert(0, SRC)
-    from app.chat_format import render
-    from eval.metrics import expected_first_call, summarize, wilson_interval
-    from eval.run_baseline import SYSTEM_PROMPT, parse_prediction
+    from eval.metrics import expected_first_call
     from training.data import (
         assert_disjoint,
         build_example,
@@ -214,50 +321,8 @@ def run(
         optimizer, max_lr=learning_rate, total_steps=optimizer_steps, pct_start=0.03
     )
 
-    def generate(question: str) -> Any:
-        prompt = render(
-            tokenizer,
-            [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": question},
-            ],
-            add_generation_prompt=True,
-        )
-        inputs = tokenizer(prompt, return_tensors="pt", add_special_tokens=False).to("cuda")
-        with torch.no_grad():
-            output = model.generate(
-                **inputs,
-                max_new_tokens=max_new_tokens,
-                do_sample=False,
-                temperature=None,
-                top_p=None,
-            )
-        text = tokenizer.decode(
-            output[0][inputs["input_ids"].shape[1] :], skip_special_tokens=True
-        )
-        return parse_prediction(text)
-
     def evaluate(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        model.eval()
-        model.gradient_checkpointing_disable()
-        model.config.use_cache = True
-        try:
-            scored = [score_row(row, generate(row["question"])) for row in rows]
-        finally:
-            # Gradient checkpointing must come back with PEFT's input-grad hook,
-            # otherwise the checkpointed path is inactive and the next training
-            # step keeps every activation: 73 GiB allocated, OOM at epoch 2.
-            model.gradient_checkpointing_enable()
-            model.enable_input_require_grads()
-            model.config.use_cache = False
-            model.train()
-            torch.cuda.empty_cache()
-        print(
-            f"eval done; checkpointing back on, {torch.cuda.memory_allocated() / 1024**3:.1f} GiB"
-            " allocated",
-            flush=True,
-        )
-        return scored
+        return evaluate_rows(model, tokenizer, rows, max_new_tokens)
 
     def accuracy(scored: list[dict[str, Any]]) -> float:
         return round(sum(row["tool_correct"] for row in scored) / len(scored), 4)
@@ -342,33 +407,6 @@ def run(
     base_test = evaluate(test_rows)
     model.enable_adapter_layers()
 
-    def block(scored: list[dict[str, Any]]) -> dict[str, Any]:
-        summary = summarize(scored)
-        summary["tool_selection_95ci"] = wilson_interval(
-            sum(row["tool_correct"] for row in scored), len(scored)
-        )
-        summary["argument_accuracy_95ci"] = wilson_interval(
-            sum(row["args_correct"] for row in scored), len(scored)
-        )
-        return summary
-
-    def paired(base: list[dict[str, Any]], tuned: list[dict[str, Any]]) -> dict[str, Any]:
-        base_by_id = {row["id"]: row for row in base}
-        counts = {"gained": 0, "lost": 0, "both": 0, "neither": 0}
-        arg_counts = {"gained": 0, "lost": 0, "both": 0, "neither": 0}
-        for row in tuned:
-            other = base_by_id[row["id"]]
-            for bucket, key in ((counts, "tool_correct"), (arg_counts, "args_correct")):
-                if row[key] and other[key]:
-                    bucket["both"] += 1
-                elif row[key]:
-                    bucket["gained"] += 1
-                elif other[key]:
-                    bucket["lost"] += 1
-                else:
-                    bucket["neither"] += 1
-        return {"tool_selection": counts, "argument_accuracy": arg_counts}
-
     adapter_dir = f"/out/adapter-r{rank}-e{epochs}-lr{learning_rate}"
     model.save_pretrained(adapter_dir)
     tokenizer.save_pretrained(adapter_dir)
@@ -415,11 +453,11 @@ def run(
         "data_checks": data_checks,
         "testset_sha256": {"before": digest_before, "after": digest_after},
         "eval": {
-            "val": {"base": block(base_val), "tuned": block(tuned_val)},
-            "test": {"base": block(base_test), "tuned": block(tuned_test)},
+            "val": {"base": summary_block(base_val), "tuned": summary_block(tuned_val)},
+            "test": {"base": summary_block(base_test), "tuned": summary_block(tuned_test)},
             "paired": {
-                "val": paired(base_val, tuned_val),
-                "test": paired(base_test, tuned_test),
+                "val": paired_counts(base_val, tuned_val),
+                "test": paired_counts(base_test, tuned_test),
             },
         },
         "predictions": {
@@ -476,3 +514,123 @@ def main() -> None:
     unchanged = result["testset_sha256"]["before"] == result["testset_sha256"]["after"]
     print(f"test set unchanged: {unchanged}")
     print("Saved artifacts/sft/full.json")
+
+
+@app.function(gpu=GPU_TYPE, timeout=7200, volumes={"/out": adapters}, max_containers=1)
+def evaluate_adapter(
+    adapter_dir: str = "",
+    max_new_tokens: int = 96,
+    tag: str = "eval",
+) -> dict[str, Any]:
+    """Measure the base and tuned models with one prompt and one decode rule.
+
+    Training-time validation used a small token budget, which truncated the base
+    model's JSON mid-``args`` and scored it as a total failure. This entrypoint
+    reuses the saved adapter and stops generation at the first complete JSON
+    object instead, so the before/after numbers share a fair rule.
+    """
+    import torch
+    import transformers
+    from peft import PeftModel
+    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+
+    sys.path.insert(0, SRC)
+    from training.data import load_jsonl
+
+    started = time.time()
+    val_rows = load_jsonl(VAL_PATH)
+    test_rows = load_jsonl(TESTSET_PATH)
+    digest_before = sha256(TESTSET_PATH)
+
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, trust_remote_code=True)
+    base = AutoModelForCausalLM.from_pretrained(
+        MODEL_ID,
+        trust_remote_code=True,
+        device_map={"": 0},
+        quantization_config=BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_compute_dtype=torch.bfloat16,
+            bnb_4bit_use_double_quant=True,
+            llm_int8_skip_modules=["lm_head"],
+        ),
+    )
+    model = PeftModel.from_pretrained(base, adapter_dir) if adapter_dir else base
+    model.eval()
+
+    tuned_val = evaluate_rows(model, tokenizer, val_rows, max_new_tokens, False)
+    tuned_test = evaluate_rows(model, tokenizer, test_rows, max_new_tokens, False)
+    if adapter_dir:
+        model.disable_adapter_layers()
+    base_val = evaluate_rows(model, tokenizer, val_rows, max_new_tokens, False)
+    base_test = evaluate_rows(model, tokenizer, test_rows, max_new_tokens, False)
+    if adapter_dir:
+        model.enable_adapter_layers()
+
+    payload = {
+        "model": MODEL_ID,
+        "adapter": adapter_dir,
+        "gpu": torch.cuda.get_device_name(0),
+        "decode": "greedy, stop at first complete JSON object",
+        "max_new_tokens": max_new_tokens,
+        "versions": {
+            "transformers": transformers.__version__,
+            "torch": torch.__version__,
+            "peft": __import__("peft").__version__,
+        },
+        "testset_sha256": {"before": digest_before, "after": sha256(TESTSET_PATH)},
+        "val_rows": len(val_rows),
+        "test_rows": len(test_rows),
+        "eval": {
+            "val": {"base": summary_block(base_val), "tuned": summary_block(tuned_val)},
+            "test": {"base": summary_block(base_test), "tuned": summary_block(tuned_test)},
+            "paired": {
+                "val": paired_counts(base_val, tuned_val),
+                "test": paired_counts(base_test, tuned_test),
+            },
+        },
+        "predictions": {
+            "val": {"base": base_val, "tuned": tuned_val},
+            "test": {"base": base_test, "tuned": tuned_test},
+        },
+        "peak_gpu_gb": round(torch.cuda.max_memory_allocated() / 1024**3, 2),
+        "total_seconds": round(time.time() - started, 1),
+    }
+    result_path = Path(f"/out/{tag}.json")
+    result_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    adapters.commit()
+    print(f"results written to {result_path}", flush=True)
+    return payload
+
+
+@app.local_entrypoint()
+def eval_main() -> None:
+    from dotenv import load_dotenv
+
+    load_dotenv(".env", override=False)
+    token = os.getenv("HF_SECONDARY_TOKEN") or os.getenv("HF_PRIMARY_TOKEN")
+    if not token:
+        raise SystemExit("Set HF_SECONDARY_TOKEN or HF_PRIMARY_TOKEN in .env")
+
+    adapter = os.getenv("SFT_ADAPTER", "/out/adapter-r16-e2-lr0.0001-best")
+    result = evaluate_adapter.with_options(
+        secrets=[modal.Secret.from_dict({"HF_TOKEN": token})]
+    ).remote(
+        adapter_dir=adapter,
+        max_new_tokens=int(os.getenv("SFT_MAX_NEW", "96")),
+        tag=os.getenv("SFT_TAG", "eval"),
+    )
+
+    output = Path("artifacts/sft")
+    output.mkdir(parents=True, exist_ok=True)
+    (output / f"{os.getenv('SFT_TAG', 'eval')}.json").write_text(
+        json.dumps(result, indent=2) + "\n", encoding="utf-8"
+    )
+    for split in ("val", "test"):
+        for name in ("base", "tuned"):
+            summary = result["eval"][split][name]
+            print(
+                f"{split:5} {name:6} tool {summary['tool_selection_accuracy']:.4f} "
+                f"args {summary['argument_accuracy']:.4f} "
+                f"schema {summary['schema_valid_rate']:.4f}"
+            )

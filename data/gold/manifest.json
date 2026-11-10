@@ -2,31 +2,31 @@
   "count": 800,
   "frozen_test_questions_excluded": true,
   "intents": {
-    "advice_request": 87,
-    "comparison": 110,
-    "invalid_ticker": 4,
+    "advice_request": 81,
+    "comparison": 99,
+    "invalid_ticker": 60,
     "loop_trap": 26,
-    "malformed_error": 33,
-    "metric_pe": 93,
-    "missing_ratios": 44,
+    "malformed_error": 32,
+    "metric_pe": 82,
+    "missing_ratios": 42,
     "news_unavailable": 40,
-    "non_us_currency": 69,
-    "overview": 94,
-    "period_ambiguity": 81,
-    "stale_data": 38,
-    "unsupported_metric": 81
+    "non_us_currency": 63,
+    "overview": 86,
+    "period_ambiguity": 77,
+    "stale_data": 37,
+    "unsupported_metric": 75
   },
   "mutations": {
     "loop_trap": 26,
-    "malformed": 33,
+    "malformed": 32,
     "news_unavailable": 40,
-    "none": 619,
-    "null_ratio": 44,
-    "stale_quote": 38
+    "none": 623,
+    "null_ratio": 42,
+    "stale_quote": 37
   },
   "next_gate": "CuratorKIT plus split/format stage",
   "schema_version": "1.0",
   "seed": 7,
-  "sha256": "e2a0d0e1a0dddb1fa0507681f35228ef4169ce3e8550b23e60df2d3deeaebf8f",
+  "sha256": "c7e7acd3d57650edd775426b4fb1edd32f8b5968f1f9696f94445a234653bab1",
   "source": "recorded fixtures and deterministic planner"
 }

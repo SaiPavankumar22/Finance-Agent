@@ -92,6 +92,41 @@ def gold_first_call(row: dict[str, Any]) -> tuple[str, dict[str, Any]]:
     return payload["tool"], payload.get("args", {})
 
 
+def first_json_object_complete(text: str) -> bool:
+    """True once ``text`` holds a first complete top-level JSON object.
+
+    Generation is stopped on this rule instead of a fixed token budget so that
+    the base and tuned models are measured on the same footing: a small budget
+    truncates a call mid-``args`` (which scored the base model as a total
+    failure) while a large one lets both models ramble past their first call.
+    Braces inside strings and escaped quotes are tracked so a truncated object
+    is not mistaken for a complete one.
+    """
+    depth = 0
+    opened = False
+    in_string = False
+    escaped = False
+    for char in text:
+        if in_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                in_string = False
+            continue
+        if char == '"':
+            in_string = True
+        elif char == "{":
+            depth += 1
+            opened = True
+        elif char == "}":
+            depth -= 1
+            if opened and depth == 0:
+                return True
+    return False
+
+
 def expects_abstention(row: dict[str, Any]) -> bool:
     if "expect_abstain" in row:
         return bool(row["expect_abstain"])

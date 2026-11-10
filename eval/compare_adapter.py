@@ -22,7 +22,10 @@ from pathlib import Path
 from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-FULL = PROJECT_ROOT / "artifacts" / "sft" / "full.json"
+#: Result of `modal run training/train_full.py::eval_main`: one prompt, one
+#: decode rule, adapter on and off. The training run's own payload is kept for
+#: the training statistics but scored under a smaller token budget.
+DEFAULT_RESULT = PROJECT_ROOT / "artifacts" / "sft" / "eval-json-stop.json"
 BASELINE = PROJECT_ROOT / "eval" / "results" / "baseline.json"
 OUTPUT = PROJECT_ROOT / "artifacts" / "sft" / "comparison.md"
 PROVIDER_MODEL = "CohereLabs/tiny-aya-global"
@@ -44,10 +47,12 @@ def abstention_bits(summary: dict[str, Any]) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--result", default=str(DEFAULT_RESULT))
     parser.add_argument("--quiet", action="store_true")
     args = parser.parse_args()
 
-    full = json.loads(FULL.read_text(encoding="utf-8"))
+    result_path = Path(args.result)
+    full = json.loads(result_path.read_text(encoding="utf-8"))
     baseline = json.loads(BASELINE.read_text(encoding="utf-8"))
     provider = next(
         (model for model in baseline["models"] if model["model"] == PROVIDER_MODEL), None
@@ -57,9 +62,9 @@ def main() -> int:
     lines: list[str] = [
         "# Adapter vs baseline",
         "",
-        f"Adapter: `{full['adapter']}` (r={full['config']['rank']}, "
-        f"lr={full['config']['learning_rate']}, {full['config']['epochs']} epochs, "
-        f"best epoch {full['train']['best_epoch']}).",
+        f"Adapter: `{full['adapter']}`.",
+        f"Decoding: {full.get('decode', 'greedy')} "
+        f"(max {full.get('max_new_tokens')} new tokens).",
         "",
         "| Set | System | Tool selection | Argument acc. | Schema valid | Abstention |",
         "|---|---|---|---|---|---|",
@@ -116,21 +121,32 @@ def main() -> int:
         )
 
     checks = full.get("data_checks", {})
-    lines.extend(
-        [
-            "",
-            "## Data integrity",
-            "",
+    train = full.get("train", {})
+    lines.extend(["", "## Data integrity", ""])
+    if checks:
+        lines.append(
             f"- train / val / test rows: {checks.get('train_rows')} / "
-            f"{checks.get('val_rows')} / {checks.get('test_rows')}",
+            f"{checks.get('val_rows')} / {checks.get('test_rows')}"
+        )
+        lines.append(
             f"- val questions in train: {checks.get('val_questions_in_train')}; "
-            f"val tickers in train: {len(checks.get('val_tickers_in_train') or [])}",
-            f"- test questions in train: {checks.get('test_questions_in_train')}",
-            f"- frozen test set unchanged: "
-            f"{full['testset_sha256']['before'] == full['testset_sha256']['after']}",
-            f"- rows truncated by max_len: {full['train']['rows_over_max_len']}",
-        ]
+            f"val tickers in train: {len(checks.get('val_tickers_in_train') or [])}"
+        )
+        lines.append(f"- test questions in train: {checks.get('test_questions_in_train')}")
+    else:
+        lines.append(
+            f"- val / test rows evaluated: {full['val_rows']} / {full['test_rows']}"
+        )
+    lines.append(
+        f"- frozen test set unchanged: "
+        f"{full['testset_sha256']['before'] == full['testset_sha256']['after']}"
     )
+    if train:
+        lines.append(f"- rows truncated by max_len: {train['rows_over_max_len']}")
+        lines.append(
+            f"- best epoch {train['best_epoch']} of {full['config']['epochs']}: "
+            f"{train['epoch_val']}"
+        )
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text("\n".join(lines) + "\n", encoding="utf-8")

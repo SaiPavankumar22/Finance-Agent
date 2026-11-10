@@ -1,15 +1,18 @@
 # Finance Agent — Status
 
-_Last updated: 2026-11-10, after rescoring abstention and completing the WS5
-fine-tuning dry run._
+_Last updated: 2026-11-10, after the full WS5 training run and its before/after
+evaluation on the held-out-ticker validation split and the frozen test set._
 
 ## Verdict
 
-WS1 and WS2 are complete. WS3's harness exists but the base model never ran and
-the abstention metric is degenerate. **WS4 now produces a usable dataset**: 800
-gold trajectories, all 800 passing curation with 13 of 13 behaviours intact,
-split into 620 train / 51 ticker-held-out validation examples. `ruff check .` is
-clean and `pytest -q` reports 129 passing tests.
+WS1 and WS2 are complete. WS4 produces a usable dataset: 800 gold trajectories,
+all passing curation with 13 of 13 behaviours intact, split into 620 train / 51
+ticker-held-out validation examples. **WS5 now has a trained adapter with a
+measured before/after**: tool selection 0.5400 → 0.8333 on the frozen test set
+and 0.5294 → 0.8235 on unseen tickers, with argument accuracy 0.0400 → 0.8733.
+Abstention recall rises 0.00 → 0.46 at precision 1.00, so refusal is still the
+main gap and belongs to WS6. `ruff check .` is clean and `pytest -q` reports 148
+passing tests.
 
 ## Commit history
 
@@ -32,6 +35,7 @@ clean and `pytest -q` reports 129 passing tests.
 | `d182053` | Status document updated for the repaired WS4 dataset |
 | `dcb13de` | WS3: abstention scored as precision/recall, cached baselines rescored |
 | `983b94f` | WS5: Aya chat formatter and QLoRA smoke run |
+| `49bff4c` | WS5: full 620-row run, evaluation entrypoint, before/after comparison |
 
 ## WS1 — hardened foundation (done)
 
@@ -183,12 +187,17 @@ financial data.
 - 54 of the frozen test set's 57 tickers also appear in train. The test set
   cannot change and is not question-contaminated, but it does not measure
   unseen-ticker generalisation; the split's held-out val does.
-- Base baseline missing; abstention metric still to be redefined.
+- The local base baseline (adapter off, 4-bit) is measured; the fp16 provider
+  baseline from WS3 remains the published "before" number.
+- The adapter lives on the Modal volume `finance-agent-sft-adapters` only; it
+  is not yet pushed to `avengeryt22/finance-agent-staging`.
+- Abstention recall is 0.46 on the frozen test set: the tuned model still
+  answers 20 of 37 rows that should be declined.
 - Anthropic enrichment is intentionally not merged; question diversity remains
   template-derived (157 phrasings).
-- No training run, no AuditKIT/SafeTune results, no deployment, no git remote.
+- No AuditKIT/SafeTune results, no deployment, no git remote.
 
-## WS5 — fine-tuning (dry run complete)
+## WS5 — fine-tuning (full run complete)
 
 `training/train_qlora.py` is a Modal job; `artifacts/sft/smoke.json` holds the
 run. 40 optimizer steps on a 64-row slice, 4-bit QLoRA, r=16, alpha=32, LR
@@ -237,20 +246,88 @@ termination and advice refusal are not, at 40 steps on 64 rows. That the tuned
 model calls tools on the advice prompt matches the rescored abstention result
 (recall 0.00) and is the failure WS6 must measure.
 
+### Full run: 620 rows, 2 epochs
+
+`training/train_full.py` trains on every training row and reuses
+`eval/run_baseline.py`'s system prompt and parser through `training/data.py`,
+so the before/after pair shares one prompt, one parser and one decode rule.
+The 51 held-out-ticker rows and the 150 frozen examples are never trained on:
+`assert_disjoint` refuses the run if a question or validation ticker appears in
+train, and the frozen test set is hashed before and after (unchanged).
+
+| Setting | Value |
+|---|---|
+| Rows / epochs / optimizer steps | 620 / 2 / 78 |
+| Effective batch | grad_accum 16, one example per micro-batch |
+| LR / schedule | 1e-4 OneCycle, 3% warmup, grad-norm 1.0 |
+| LoRA | r 16, alpha 32, dropout 0.05, all linear |
+| Window | 6464 tokens, 0 rows truncated, 2,066,586 tokens seen |
+| Supervision | 30,542 supervised tokens; 30,228,480 trainable (1.53% of 1.97B) |
+| Runtime / peak | 27.2 min training on A100-40GB, 30.7 GB peak |
+
+Validation on the unseen tickers, both epochs: 0.8235 / 0.8824, then 0.7843 /
+0.8627 (tool selection / argument accuracy). Epoch 2 is worse, so best-epoch
+selection kept epoch 1 — 620 rows at 1e-4 fit within one pass and the second
+is memorisation.
+
+The base row is the same weights with the adapter disabled, run locally in
+4-bit. It lands within 0.013 of the WS3 provider baseline on the frozen set
+(tool 0.5400 vs 0.5533, args 0.0400 vs 0.0533), which is the evidence that the
+two harnesses agree before any adapter number is trusted.
+
+| Set | System | Tool selection | Arguments | Schema | Abstain recall |
+|---|---|---|---|---|---|
+| val, unseen tickers | base | 0.5294 | 0.0588 | 1.0000 | 0.00 |
+| val, unseen tickers | tuned | **0.8235** | **0.8824** | 1.0000 | 0.40 |
+| test, frozen | base | 0.5400 | 0.0400 | 1.0000 | 0.00 |
+| test, frozen | tuned | **0.8333** | **0.8733** | 0.9933 | 0.46 |
+| test, frozen | provider baseline (WS3) | 0.5533 | 0.0533 | 0.9867 | 0.00 |
+
+Paired on the 150 frozen examples, tool selection gained 48, lost 4, correct in
+both 77, wrong in both 21. Arguments gained 128, lost 3, correct in both 3.
+Wilson 95% intervals are stored per metric in `artifacts/sft/eval-json-stop.json`.
+
+Abstention precision 1.00 and specificity 1.00 in both arms: the tuned model
+never declines something it should answer, but still answers 20 of 37 rows that
+should be declined. Recall 0.46 is measured on the first turn, where abstention
+is structurally hard — 23 of those 37 rows need a tool result before declining
+means anything, and the prompt tells the model never to answer the user
+directly (ceiling 0.378, see `eval/results/abstention.json`). WS6 has to move
+this with a replayed trajectory and an explicit refusal affordance.
+
+Where it still fails, by intent on the frozen set: `comparison` 0.53 (no change),
+`period_ambiguity` 0.50, `invalid_ticker` 0.73 (no change), `non_us_currency`
+0.64 (0.75 → 0.50 on val, n=4, noise). Biggest gains: `unsupported_metric`
+0.17 → 1.00, `overview` 0.30 → 0.80, `news_unavailable` 0.00 → 1.00,
+`loop_trap` 0.75 → 1.00, `advice_request` 0.00 → 1.00 — the last one now
+declines where the base model gave advice.
+
+**Decoding rule matters.** The training loop scored validation with a 24-token
+budget, which truncated the base model mid-`args` and reported 0.00 for every
+base metric. Generation now stops at the first complete JSON object (96-token
+cap, `first_json_object_complete` in `training/data.py`, unit-tested) and both
+models are re-measured under it by
+`modal run training/train_full.py::eval_main`. `eval/compare_adapter.py`
+regenerates the table above from `artifacts/sft/eval-json-stop.json`;
+`artifacts/sft/full.json` keeps the training payload and per-epoch validation.
+
+Two failures worth recording, both now fixed: PEFT's input-grad hook has to be
+restored when gradient checkpointing is re-enabled after generation, otherwise
+epoch 2 kept every activation and OOMed at 73 GiB; and the result payload is
+written to the volume, because it otherwise only exists on the client that can
+die mid-run.
+
 ## Next steps
 
-1. **Full SFT run** on all 620 rows, 2–3 epochs, A100-40GB, constant 6144
-   window; push the adapter to `avengeryt22/finance-agent-staging` and log the
-   curve.
-2. **Evaluate** on the 51-row held-out-ticker val split, then the frozen test
-   set, with the new abstention metric; compare against the 0.5533 tool
-   selection baseline.
-3. **WS6**: safety set (~100 prompts) with an explicit refusal affordance and a
+1. **Push the adapter** from the Modal volume to
+   `avengeryt22/finance-agent-staging` and record its revision.
+2. **WS6**: safety set (~100 prompts) with an explicit refusal affordance and a
    replayed trajectory so abstention is judged after tool errors.
-4. **WS7**: Modal endpoint using `app/chat_format.py`, Space with cached
+3. **WS7**: Modal endpoint using `app/chat_format.py`, Space with cached
    examples, HF repos, Article.
-5. Parallel/optional, once a before/after pair exists: merge the enrichment
-   paraphrases and record the four missing periods.
-6. Inference detail for WS7: stop on `<|END_OF_TURN_TOKEN|>` and require one
+4. Parallel/optional: merge the enrichment paraphrases and record the four
+   missing periods; `comparison` and `period_ambiguity` are the intents an
+   extra pass would target, since the adapter did not move them.
+5. Inference detail for WS7: stop on `<|END_OF_TURN_TOKEN|>` and require one
    JSON object per turn; the dry run shows the model will otherwise continue
    emitting calls.

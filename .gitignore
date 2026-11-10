@@ -29,3 +29,6 @@ data/curated_probe*/
 data/injected/
 # Adapter weights are published to the Hub, not committed here.
 artifacts/sft/adapter-*/
+
+# Working notes: private repo names, revisions and measured numbers stay local.
+status.md

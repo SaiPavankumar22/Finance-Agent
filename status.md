@@ -146,16 +146,16 @@ rows. It accepted 38 and rejected 62 under strict placeholder, grounding, and
 safety checks; rejected rows are retained only as diagnostics, never training
 data. The cache is ignored and the manifest is in `data/enriched/manifest.json`.
 
-Tiny Aya Global's tokenizer was also checked locally: it has a native chat
-template and ends the assistant prompt with `<|START_RESPONSE|>`. The Modal
-GPU verification script is ready, but both T4 and L4 attempts require a payment
-method before the function starts, so constrained decoding is not yet verified.
+Tiny Aya Global's tokenizer has a native chat template and ends the assistant
+prompt with `<|START_RESPONSE|>`. Modal vLLM verification now also passes on a
+T4: CUDA is available, the native template rendered correctly, and vLLM's JSON
+schema constraint produced a valid `get_stock_quote` call for AAPL.
 
 ## Known gaps
 
-- **Constrained decoding is unverified** (plan §10.3). Modal's GPU invocations
-  are blocked until a payment method is added; the chat template itself is
-  verified locally. The verifier accepts `MODAL_GPU` for trying another GPU.
+- **Full production serving is not deployed yet**. The verifier accepts
+  `MODAL_GPU` for trying another compatible GPU, but the current result is a
+  one-request capability check rather than a public endpoint.
 - 4 of 73 tickers produced no usable data; 20 fixtures are hard errors.
 - Missing entirely: `app/agent/`, `app/api/`, `app/config.py`, `deploy/`,
   `space/`, `docs/`, `configs/`, and the training pipeline.

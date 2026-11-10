@@ -25,10 +25,10 @@ SYSTEM_PROMPT = (
 
 # Based on Modal's official GPU example:
 # https://modal.com/docs/examples/install_cuda
-image = modal.Image.from_registry(
-    "vllm/vllm-openai:latest",
-    add_python="3.12",
-).entrypoint([])
+image = (
+    modal.Image.debian_slim(python_version="3.12")
+    .uv_pip_install("torch", "vllm", "transformers", "huggingface_hub")
+)
 app = modal.App("finance-agent-tiny-aya-verification", image=image)
 
 TOOL_CALL_SCHEMA: dict[str, Any] = {

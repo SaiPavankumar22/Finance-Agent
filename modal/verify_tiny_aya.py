@@ -22,8 +22,13 @@ SYSTEM_PROMPT = (
     '{"tool":"get_stock_quote","args":{"ticker":"AAPL"}}'
 )
 
-app = modal.App("finance-agent-tiny-aya-verification")
-image = modal.Image.from_registry("vllm/vllm-openai:latest", add_python="3.12")
+# Based on Modal's official GPU example:
+# https://modal.com/docs/examples/install_cuda
+image = modal.Image.from_registry(
+    "vllm/vllm-openai:latest",
+    add_python="3.12",
+).entrypoint([])
+app = modal.App("finance-agent-tiny-aya-verification", image=image)
 
 TOOL_CALL_SCHEMA: dict[str, Any] = {
     "type": "object",
@@ -42,7 +47,6 @@ TOOL_CALL_SCHEMA: dict[str, Any] = {
 
 
 @app.function(
-    image=image,
     gpu="T4",
     timeout=900,
     scaledown_window=60,

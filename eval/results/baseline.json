@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "testset": "eval\\testset.jsonl",
   "examples": 150,
   "models": [
@@ -19,7 +19,100 @@
         "schema_valid_rate": 0.9867,
         "tool_selection_accuracy": 0.5533,
         "argument_accuracy": 0.0533,
-        "abstention_accuracy": 0.7533,
+        "abstention": {
+          "scored": true,
+          "abstain_rows": 37,
+          "non_abstain_rows": 113,
+          "confusion": {
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 37,
+            "true_negative": 113
+          },
+          "precision": null,
+          "recall": 0.0,
+          "f1": null,
+          "specificity": 1.0,
+          "balanced_accuracy": 0.5,
+          "over_abstention_rate": 0.0,
+          "under_abstention_rate": 1.0,
+          "recall_95ci": [
+            0.0,
+            0.0941
+          ],
+          "precision_95ci": null,
+          "no_positive_predictions": true,
+          "malformed_rows": 2,
+          "recall_by_abstain_intent": {
+            "advice_request": {
+              "declined": 0,
+              "total": 14,
+              "rate": 0.0
+            },
+            "invalid_ticker": {
+              "declined": 0,
+              "total": 11,
+              "rate": 0.0
+            },
+            "loop_trap": {
+              "declined": 0,
+              "total": 4,
+              "rate": 0.0
+            },
+            "malformed_error": {
+              "declined": 0,
+              "total": 8,
+              "rate": 0.0
+            }
+          },
+          "over_refusal_by_intent": {
+            "comparison": {
+              "declined": 0,
+              "total": 15,
+              "rate": 0.0
+            },
+            "metric_pe": {
+              "declined": 0,
+              "total": 15,
+              "rate": 0.0
+            },
+            "missing_ratios": {
+              "declined": 0,
+              "total": 14,
+              "rate": 0.0
+            },
+            "news_unavailable": {
+              "declined": 0,
+              "total": 8,
+              "rate": 0.0
+            },
+            "non_us_currency": {
+              "declined": 0,
+              "total": 11,
+              "rate": 0.0
+            },
+            "overview": {
+              "declined": 0,
+              "total": 30,
+              "rate": 0.0
+            },
+            "period_ambiguity": {
+              "declined": 0,
+              "total": 6,
+              "rate": 0.0
+            },
+            "stale_data": {
+              "declined": 0,
+              "total": 8,
+              "rate": 0.0
+            },
+            "unsupported_metric": {
+              "declined": 0,
+              "total": 6,
+              "rate": 0.0
+            }
+          }
+        },
         "by_intent": {
           "advice_request": {
             "examples": 14,
@@ -2055,7 +2148,100 @@
         "schema_valid_rate": 0.9,
         "tool_selection_accuracy": 0.54,
         "argument_accuracy": 0.6533,
-        "abstention_accuracy": 0.7533,
+        "abstention": {
+          "scored": true,
+          "abstain_rows": 37,
+          "non_abstain_rows": 113,
+          "confusion": {
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 37,
+            "true_negative": 113
+          },
+          "precision": null,
+          "recall": 0.0,
+          "f1": null,
+          "specificity": 1.0,
+          "balanced_accuracy": 0.5,
+          "over_abstention_rate": 0.0,
+          "under_abstention_rate": 1.0,
+          "recall_95ci": [
+            0.0,
+            0.0941
+          ],
+          "precision_95ci": null,
+          "no_positive_predictions": true,
+          "malformed_rows": 15,
+          "recall_by_abstain_intent": {
+            "advice_request": {
+              "declined": 0,
+              "total": 14,
+              "rate": 0.0
+            },
+            "invalid_ticker": {
+              "declined": 0,
+              "total": 11,
+              "rate": 0.0
+            },
+            "loop_trap": {
+              "declined": 0,
+              "total": 4,
+              "rate": 0.0
+            },
+            "malformed_error": {
+              "declined": 0,
+              "total": 8,
+              "rate": 0.0
+            }
+          },
+          "over_refusal_by_intent": {
+            "comparison": {
+              "declined": 0,
+              "total": 15,
+              "rate": 0.0
+            },
+            "metric_pe": {
+              "declined": 0,
+              "total": 15,
+              "rate": 0.0
+            },
+            "missing_ratios": {
+              "declined": 0,
+              "total": 14,
+              "rate": 0.0
+            },
+            "news_unavailable": {
+              "declined": 0,
+              "total": 8,
+              "rate": 0.0
+            },
+            "non_us_currency": {
+              "declined": 0,
+              "total": 11,
+              "rate": 0.0
+            },
+            "overview": {
+              "declined": 0,
+              "total": 30,
+              "rate": 0.0
+            },
+            "period_ambiguity": {
+              "declined": 0,
+              "total": 6,
+              "rate": 0.0
+            },
+            "stale_data": {
+              "declined": 0,
+              "total": 8,
+              "rate": 0.0
+            },
+            "unsupported_metric": {
+              "declined": 0,
+              "total": 6,
+              "rate": 0.0
+            }
+          }
+        },
         "by_intent": {
           "advice_request": {
             "examples": 14,
@@ -4085,5 +4271,7 @@
       ]
     }
   ],
-  "budget_note": "First-turn baseline; no live market tools are called."
+  "budget_note": "First-turn baseline; no live market tools are called.",
+  "rescored_with": "eval.rescore_abstention",
+  "metric_note": "abstention_accuracy (overall accuracy) was removed; it scored 0.7533 for models that never abstained. Use summary.abstention.recall/precision."
 }

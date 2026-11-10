@@ -1,0 +1,578 @@
+{
+  "schema_version": "1.1",
+  "testset": "eval\\testset.jsonl",
+  "examples": 150,
+  "metric": "abstention is scored as a binary decision: recall/precision on the 37 abstain rows, with over-abstention measured on the 113 others",
+  "turn_one_ceiling": {
+    "abstain_rows": 37,
+    "gold_declines_at_turn_one": 14,
+    "gold_calls_tool_first": 23,
+    "max_recall_if_following_gold": 0.3784,
+    "intents_declining_at_turn_one": [
+      "advice_request"
+    ]
+  },
+  "validity": {
+    "planner_prompt_offers_refusal": false,
+    "note": "The baseline prompts 'Never answer the user directly. Emit exactly one JSON object', so a refusal is off-contract for this harness. A recall of 0.0 measures the scoring setup as much as the model: turn-one scoring cannot measure abstention for the 23 rows that need a tool result, nor offer a legal refusal for the 14 advice rows.",
+    "consequence": "WS6 must score abstention after tool errors on a replayed trajectory, with an explicit finish/refusal affordance in the prompt."
+  },
+  "models": [
+    {
+      "model": "CohereLabs/tiny-aya-base",
+      "status": "unavailable",
+      "summary": {
+        "examples": 0
+      },
+      "abstention": {
+        "scored": false,
+        "reason": "no predictions"
+      },
+      "error": "ValueError: Model CohereLabs/tiny-aya-base is not supported by provider cohere."
+    },
+    {
+      "model": "CohereLabs/tiny-aya-global",
+      "status": "ok",
+      "summary": {
+        "examples": 150,
+        "schema_valid_rate": 0.9867,
+        "tool_selection_accuracy": 0.5533,
+        "argument_accuracy": 0.0533,
+        "abstention": {
+          "scored": true,
+          "abstain_rows": 37,
+          "non_abstain_rows": 113,
+          "confusion": {
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 37,
+            "true_negative": 113
+          },
+          "precision": null,
+          "recall": 0.0,
+          "f1": null,
+          "specificity": 1.0,
+          "balanced_accuracy": 0.5,
+          "over_abstention_rate": 0.0,
+          "under_abstention_rate": 1.0,
+          "recall_95ci": [
+            0.0,
+            0.0941
+          ],
+          "precision_95ci": null,
+          "no_positive_predictions": true,
+          "malformed_rows": 2,
+          "recall_by_abstain_intent": {
+            "advice_request": {
+              "declined": 0,
+              "total": 14,
+              "rate": 0.0
+            },
+            "invalid_ticker": {
+              "declined": 0,
+              "total": 11,
+              "rate": 0.0
+            },
+            "loop_trap": {
+              "declined": 0,
+              "total": 4,
+              "rate": 0.0
+            },
+            "malformed_error": {
+              "declined": 0,
+              "total": 8,
+              "rate": 0.0
+            }
+          },
+          "over_refusal_by_intent": {
+            "comparison": {
+              "declined": 0,
+              "total": 15,
+              "rate": 0.0
+            },
+            "metric_pe": {
+              "declined": 0,
+              "total": 15,
+              "rate": 0.0
+            },
+            "missing_ratios": {
+              "declined": 0,
+              "total": 14,
+              "rate": 0.0
+            },
+            "news_unavailable": {
+              "declined": 0,
+              "total": 8,
+              "rate": 0.0
+            },
+            "non_us_currency": {
+              "declined": 0,
+              "total": 11,
+              "rate": 0.0
+            },
+            "overview": {
+              "declined": 0,
+              "total": 30,
+              "rate": 0.0
+            },
+            "period_ambiguity": {
+              "declined": 0,
+              "total": 6,
+              "rate": 0.0
+            },
+            "stale_data": {
+              "declined": 0,
+              "total": 8,
+              "rate": 0.0
+            },
+            "unsupported_metric": {
+              "declined": 0,
+              "total": 6,
+              "rate": 0.0
+            }
+          }
+        },
+        "by_intent": {
+          "advice_request": {
+            "examples": 14,
+            "tool_selection_accuracy": 0.0,
+            "schema_valid_rate": 1.0
+          },
+          "comparison": {
+            "examples": 15,
+            "tool_selection_accuracy": 0.4,
+            "schema_valid_rate": 0.8667
+          },
+          "invalid_ticker": {
+            "examples": 11,
+            "tool_selection_accuracy": 0.7273,
+            "schema_valid_rate": 1.0
+          },
+          "loop_trap": {
+            "examples": 4,
+            "tool_selection_accuracy": 0.75,
+            "schema_valid_rate": 1.0
+          },
+          "malformed_error": {
+            "examples": 8,
+            "tool_selection_accuracy": 1.0,
+            "schema_valid_rate": 1.0
+          },
+          "metric_pe": {
+            "examples": 15,
+            "tool_selection_accuracy": 0.7333,
+            "schema_valid_rate": 1.0
+          },
+          "missing_ratios": {
+            "examples": 14,
+            "tool_selection_accuracy": 1.0,
+            "schema_valid_rate": 1.0
+          },
+          "news_unavailable": {
+            "examples": 8,
+            "tool_selection_accuracy": 0.0,
+            "schema_valid_rate": 1.0
+          },
+          "non_us_currency": {
+            "examples": 11,
+            "tool_selection_accuracy": 1.0,
+            "schema_valid_rate": 1.0
+          },
+          "overview": {
+            "examples": 30,
+            "tool_selection_accuracy": 0.3,
+            "schema_valid_rate": 1.0
+          },
+          "period_ambiguity": {
+            "examples": 6,
+            "tool_selection_accuracy": 0.5,
+            "schema_valid_rate": 1.0
+          },
+          "stale_data": {
+            "examples": 8,
+            "tool_selection_accuracy": 1.0,
+            "schema_valid_rate": 1.0
+          },
+          "unsupported_metric": {
+            "examples": 6,
+            "tool_selection_accuracy": 0.3333,
+            "schema_valid_rate": 1.0
+          }
+        },
+        "predicted_tools": {
+          "get_financial_ratios": 46,
+          "get_historical_prices": 24,
+          "get_stock_quote": 68,
+          "get_company_news": 10,
+          "null": 2
+        }
+      },
+      "abstention": {
+        "scored": true,
+        "abstain_rows": 37,
+        "non_abstain_rows": 113,
+        "confusion": {
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 37,
+          "true_negative": 113
+        },
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "specificity": 1.0,
+        "balanced_accuracy": 0.5,
+        "over_abstention_rate": 0.0,
+        "under_abstention_rate": 1.0,
+        "recall_95ci": [
+          0.0,
+          0.0941
+        ],
+        "precision_95ci": null,
+        "no_positive_predictions": true,
+        "malformed_rows": 2,
+        "recall_by_abstain_intent": {
+          "advice_request": {
+            "declined": 0,
+            "total": 14,
+            "rate": 0.0
+          },
+          "invalid_ticker": {
+            "declined": 0,
+            "total": 11,
+            "rate": 0.0
+          },
+          "loop_trap": {
+            "declined": 0,
+            "total": 4,
+            "rate": 0.0
+          },
+          "malformed_error": {
+            "declined": 0,
+            "total": 8,
+            "rate": 0.0
+          }
+        },
+        "over_refusal_by_intent": {
+          "comparison": {
+            "declined": 0,
+            "total": 15,
+            "rate": 0.0
+          },
+          "metric_pe": {
+            "declined": 0,
+            "total": 15,
+            "rate": 0.0
+          },
+          "missing_ratios": {
+            "declined": 0,
+            "total": 14,
+            "rate": 0.0
+          },
+          "news_unavailable": {
+            "declined": 0,
+            "total": 8,
+            "rate": 0.0
+          },
+          "non_us_currency": {
+            "declined": 0,
+            "total": 11,
+            "rate": 0.0
+          },
+          "overview": {
+            "declined": 0,
+            "total": 30,
+            "rate": 0.0
+          },
+          "period_ambiguity": {
+            "declined": 0,
+            "total": 6,
+            "rate": 0.0
+          },
+          "stale_data": {
+            "declined": 0,
+            "total": 8,
+            "rate": 0.0
+          },
+          "unsupported_metric": {
+            "declined": 0,
+            "total": 6,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "model": "anthropic",
+      "status": "ok",
+      "summary": {
+        "examples": 150,
+        "schema_valid_rate": 0.9,
+        "tool_selection_accuracy": 0.54,
+        "argument_accuracy": 0.6533,
+        "abstention": {
+          "scored": true,
+          "abstain_rows": 37,
+          "non_abstain_rows": 113,
+          "confusion": {
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 37,
+            "true_negative": 113
+          },
+          "precision": null,
+          "recall": 0.0,
+          "f1": null,
+          "specificity": 1.0,
+          "balanced_accuracy": 0.5,
+          "over_abstention_rate": 0.0,
+          "under_abstention_rate": 1.0,
+          "recall_95ci": [
+            0.0,
+            0.0941
+          ],
+          "precision_95ci": null,
+          "no_positive_predictions": true,
+          "malformed_rows": 15,
+          "recall_by_abstain_intent": {
+            "advice_request": {
+              "declined": 0,
+              "total": 14,
+              "rate": 0.0
+            },
+            "invalid_ticker": {
+              "declined": 0,
+              "total": 11,
+              "rate": 0.0
+            },
+            "loop_trap": {
+              "declined": 0,
+              "total": 4,
+              "rate": 0.0
+            },
+            "malformed_error": {
+              "declined": 0,
+              "total": 8,
+              "rate": 0.0
+            }
+          },
+          "over_refusal_by_intent": {
+            "comparison": {
+              "declined": 0,
+              "total": 15,
+              "rate": 0.0
+            },
+            "metric_pe": {
+              "declined": 0,
+              "total": 15,
+              "rate": 0.0
+            },
+            "missing_ratios": {
+              "declined": 0,
+              "total": 14,
+              "rate": 0.0
+            },
+            "news_unavailable": {
+              "declined": 0,
+              "total": 8,
+              "rate": 0.0
+            },
+            "non_us_currency": {
+              "declined": 0,
+              "total": 11,
+              "rate": 0.0
+            },
+            "overview": {
+              "declined": 0,
+              "total": 30,
+              "rate": 0.0
+            },
+            "period_ambiguity": {
+              "declined": 0,
+              "total": 6,
+              "rate": 0.0
+            },
+            "stale_data": {
+              "declined": 0,
+              "total": 8,
+              "rate": 0.0
+            },
+            "unsupported_metric": {
+              "declined": 0,
+              "total": 6,
+              "rate": 0.0
+            }
+          }
+        },
+        "by_intent": {
+          "advice_request": {
+            "examples": 14,
+            "tool_selection_accuracy": 0.0,
+            "schema_valid_rate": 0.9286
+          },
+          "comparison": {
+            "examples": 15,
+            "tool_selection_accuracy": 0.1333,
+            "schema_valid_rate": 0.9333
+          },
+          "invalid_ticker": {
+            "examples": 11,
+            "tool_selection_accuracy": 0.9091,
+            "schema_valid_rate": 0.9091
+          },
+          "loop_trap": {
+            "examples": 4,
+            "tool_selection_accuracy": 1.0,
+            "schema_valid_rate": 1.0
+          },
+          "malformed_error": {
+            "examples": 8,
+            "tool_selection_accuracy": 1.0,
+            "schema_valid_rate": 1.0
+          },
+          "metric_pe": {
+            "examples": 15,
+            "tool_selection_accuracy": 1.0,
+            "schema_valid_rate": 1.0
+          },
+          "missing_ratios": {
+            "examples": 14,
+            "tool_selection_accuracy": 1.0,
+            "schema_valid_rate": 1.0
+          },
+          "news_unavailable": {
+            "examples": 8,
+            "tool_selection_accuracy": 0.0,
+            "schema_valid_rate": 1.0
+          },
+          "non_us_currency": {
+            "examples": 11,
+            "tool_selection_accuracy": 0.7273,
+            "schema_valid_rate": 0.9091
+          },
+          "overview": {
+            "examples": 30,
+            "tool_selection_accuracy": 0.2667,
+            "schema_valid_rate": 0.9
+          },
+          "period_ambiguity": {
+            "examples": 6,
+            "tool_selection_accuracy": 0.5,
+            "schema_valid_rate": 0.5
+          },
+          "stale_data": {
+            "examples": 8,
+            "tool_selection_accuracy": 1.0,
+            "schema_valid_rate": 1.0
+          },
+          "unsupported_metric": {
+            "examples": 6,
+            "tool_selection_accuracy": 0.1667,
+            "schema_valid_rate": 0.1667
+          }
+        },
+        "predicted_tools": {
+          "null": 15,
+          "get_historical_prices": 22,
+          "get_stock_quote": 53,
+          "get_financial_ratios": 52,
+          "get_company_news": 8
+        }
+      },
+      "abstention": {
+        "scored": true,
+        "abstain_rows": 37,
+        "non_abstain_rows": 113,
+        "confusion": {
+          "true_positive": 0,
+          "false_positive": 0,
+          "false_negative": 37,
+          "true_negative": 113
+        },
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "specificity": 1.0,
+        "balanced_accuracy": 0.5,
+        "over_abstention_rate": 0.0,
+        "under_abstention_rate": 1.0,
+        "recall_95ci": [
+          0.0,
+          0.0941
+        ],
+        "precision_95ci": null,
+        "no_positive_predictions": true,
+        "malformed_rows": 15,
+        "recall_by_abstain_intent": {
+          "advice_request": {
+            "declined": 0,
+            "total": 14,
+            "rate": 0.0
+          },
+          "invalid_ticker": {
+            "declined": 0,
+            "total": 11,
+            "rate": 0.0
+          },
+          "loop_trap": {
+            "declined": 0,
+            "total": 4,
+            "rate": 0.0
+          },
+          "malformed_error": {
+            "declined": 0,
+            "total": 8,
+            "rate": 0.0
+          }
+        },
+        "over_refusal_by_intent": {
+          "comparison": {
+            "declined": 0,
+            "total": 15,
+            "rate": 0.0
+          },
+          "metric_pe": {
+            "declined": 0,
+            "total": 15,
+            "rate": 0.0
+          },
+          "missing_ratios": {
+            "declined": 0,
+            "total": 14,
+            "rate": 0.0
+          },
+          "news_unavailable": {
+            "declined": 0,
+            "total": 8,
+            "rate": 0.0
+          },
+          "non_us_currency": {
+            "declined": 0,
+            "total": 11,
+            "rate": 0.0
+          },
+          "overview": {
+            "declined": 0,
+            "total": 30,
+            "rate": 0.0
+          },
+          "period_ambiguity": {
+            "declined": 0,
+            "total": 6,
+            "rate": 0.0
+          },
+          "stale_data": {
+            "declined": 0,
+            "total": 8,
+            "rate": 0.0
+          },
+          "unsupported_metric": {
+            "declined": 0,
+            "total": 6,
+            "rate": 0.0
+          }
+        }
+      }
+    }
+  ]
+}

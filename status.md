@@ -5,11 +5,11 @@ _Last updated: 2026-11-10._
 ## Where the project stands
 
 WS1 (hardened foundation), WS2 (fixtures, failure injection, frozen test set),
-WS3 (first-turn baseline evaluation), and the deterministic part of WS4 are
+WS3 (first-turn baseline evaluation), and WS4 data generation/curation are
 complete locally. `ruff check .` is clean and `pytest -q` reports 129 passing
 tests. The frozen evaluation set has 150-example results for Tiny Aya Global
-and the Anthropic oracle; WS4 now has 800 gold trajectories with no frozen-test
-question overlap.
+and the Anthropic oracle; WS4 has 800 gold trajectories with no frozen-test
+question overlap and 170 CuratorKIT-approved messages.
 
 ## Commit history
 
@@ -128,13 +128,23 @@ These are first-turn planning metrics, not full multi-step agent performance.
 The low Tiny Aya Global argument score is a useful training target: the model
 often adds irrelevant arguments such as `period` to tools that do not accept it.
 
-## In progress — WS4: deterministic dataset curation
+## Done locally — WS4: deterministic dataset curation
 
 `pipelines/04_gold_trajectories.py` creates `data/gold/trajectories.jsonl`
 from the real replay fixtures and rule-based intent plans. The generated set
 contains 800 examples across all 13 intents, includes failure mutations, and
 excludes every question in the frozen 150-example test set. Its manifest and
 SHA-256 are in `data/gold/manifest.json`.
+
+`pipelines/06_curate.py` runs CuratorKIT `0.1.23` with schema gating, MinHash
+deduplication, cleaning, and messages export, followed by finance-specific
+trajectory checks. CuratorKIT accepted 170 rows after its generic gates, and
+all 170 passed the project-specific checks in `data/curated/gate_counts.json`.
+
+`pipelines/05_llm_enrich.py` makes a cached Anthropic enrichment pass over 100
+rows. It accepted 38 and rejected 62 under strict placeholder, grounding, and
+safety checks; rejected rows are retained only as diagnostics, never training
+data. The cache is ignored and the manifest is in `data/enriched/manifest.json`.
 
 Tiny Aya Global's tokenizer was also checked locally: it has a native chat
 template and ends the assistant prompt with `<|START_RESPONSE|>`. The Modal
@@ -148,12 +158,10 @@ before starting a T4 function, so constrained decoding is not yet verified.
   verified locally.
 - 4 of 73 tickers produced no usable data; 20 fixtures are hard errors.
 - Missing entirely: `app/agent/`, `app/api/`, `app/config.py`, `deploy/`,
-  `space/`, `docs/`, `configs/`, CuratorKIT filtering, and the training
-  pipeline.
+  `space/`, `docs/`, `configs/`, and the training pipeline.
 
 ## Next steps
 
-1. Add Anthropic paraphrase/interpretation enrichment with strict validators.
-2. Read and integrate CuratorKIT, then split/format the gold set.
-3. Verify vLLM JSON-schema decoding on Modal after billing is enabled.
-4. WS5 fine-tuning, WS6 AuditKIT + SafeTune, WS7 deploy and publish.
+1. Split the curated set by ticker/template and run contamination checks.
+2. Verify vLLM JSON-schema decoding on Modal after billing is enabled.
+3. WS5 fine-tuning, WS6 AuditKIT + SafeTune, WS7 deploy and publish.

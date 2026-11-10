@@ -40,6 +40,24 @@ OUTPUT_DIR = PROJECT_ROOT / "data" / "gold"
 OUTPUT_FILE = OUTPUT_DIR / "trajectories.jsonl"
 MANIFEST_FILE = OUTPUT_DIR / "manifest.json"
 
+# Plausible-looking symbols that are absent from the recorded fixture pool.
+# The bogus pool used to be a constant "ZZZZ", which capped the invalid-ticker
+# intent at one question per template once question de-duplication ran.
+BOGUS_SYMBOLS = (
+    "ZZZZ",
+    "XXXX",
+    "QQQQ",
+    "WXYZ",
+    "NOPE",
+    "FAKE",
+    "ZZZT",
+    "QQZZ",
+    "BOGUS",
+    "TESTZ",
+    "NONE",
+    "XYZZ",
+)
+
 PERIOD_WORDS = {
     "1mo": "past month",
     "3mo": "past quarter",
@@ -84,17 +102,41 @@ def load_injected() -> dict[str, list[dict[str, Any]]]:
     return result
 
 
+def remap_invalid_snapshot(
+    snapshot: dict[str, Any] | None, symbol: str
+) -> dict[str, Any] | None:
+    """Re-key an injected invalid-ticker snapshot onto a different symbol."""
+    if snapshot is None:
+        return None
+    fixtures: dict[str, Any] = {}
+    for key, wrapped in snapshot.get("fixtures", {}).items():
+        if key == "ZZZZ":
+            key = symbol
+        remapped: dict[str, Any] = {}
+        for tool, entry in wrapped.items():
+            result = json.loads(json.dumps(entry["result"]))
+            if isinstance(result.get("args"), dict):
+                result["args"]["ticker"] = symbol
+            remapped[tool] = {**entry, "ticker": symbol, "result": result}
+        fixtures[key] = remapped
+    annotations = dict(snapshot.get("annotations", {}))
+    annotations["bogus_symbol"] = symbol
+    return {**snapshot, "fixtures": fixtures, "annotations": annotations}
+
+
 def pick_symbols(
     spec: dict[str, Any],
     tickers: dict[str, Any],
     rng: random.Random,
     injected: dict[str, list[dict[str, Any]]],
+    bogus_rng: random.Random,
 ) -> tuple[list[str], dict[str, Any] | None]:
     mutation = spec.get("mutation", "none")
     if mutation in injected and injected[mutation]:
         snapshot = rng.choice(injected[mutation])
         if mutation == "invalid_ticker":
-            return ["ZZZZ"], snapshot
+            symbol = BOGUS_SYMBOLS[bogus_rng.randrange(len(BOGUS_SYMBOLS))]
+            return [symbol], remap_invalid_snapshot(snapshot, symbol)
         return list(snapshot["source_tickers"]), snapshot
 
     pool_name = spec.get("pool", "us")
@@ -103,7 +145,11 @@ def pick_symbols(
     elif pool_name == "non_us":
         pool = [x["symbol"] for x in tickers["tickers"] if x["kind"] == "non_us"]
     elif pool_name == "bogus":
-        return ["ZZZZ"], None
+        # Draw from a separate stream so the main RNG sequence, and therefore
+        # every already-published row id, stays byte-identical.
+        symbol = BOGUS_SYMBOLS[bogus_rng.randrange(len(BOGUS_SYMBOLS))]
+        snapshots = injected.get("invalid_ticker") or []
+        return [symbol], remap_invalid_snapshot(snapshots[0], symbol) if snapshots else None
     else:
         pool = [x["symbol"] for x in tickers["tickers"]]
     count = int(spec.get("tickers", 1))
@@ -256,6 +302,7 @@ def build(count: int, seed: int) -> list[dict[str, Any]]:
     frozen_questions = load_frozen_questions()
     periods = store.periods() or ["1y"]
     rng = random.Random(seed)
+    bogus_rng = random.Random(seed + 1)
     names = list(intents)
     examples: list[dict[str, Any]] = []
     used = set(frozen_questions)
@@ -264,7 +311,7 @@ def build(count: int, seed: int) -> list[dict[str, Any]]:
         attempts += 1
         intent = names[(attempts - 1) % len(names)]
         spec = intents[intent]
-        symbols, snapshot = pick_symbols(spec, tickers, rng, injected)
+        symbols, snapshot = pick_symbols(spec, tickers, rng, injected, bogus_rng)
         period = rng.choice(spec.get("periods") or periods)
         template = rng.choice(templates[intent]["en"])
         question = template.format(

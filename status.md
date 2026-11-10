@@ -190,8 +190,9 @@ financial data.
   unseen-ticker generalisation; the split's held-out val does.
 - The local base baseline (adapter off, 4-bit) is measured; the fp16 provider
   baseline from WS3 remains the published "before" number.
-- The adapter lives on the Modal volume `finance-agent-sft-adapters` only; it
-  is not yet pushed to `avengeryt22/finance-agent-staging`.
+- The adapter is published privately at `avengeryt22/finance-agent-staging`
+  (revision `7a4b00e`); it is not yet loaded back from the Hub in any code path,
+  so WS7's endpoint must be checked against the Hub copy, not just the volume.
 - Abstention recall is 0.46 on the frozen test set: the tuned model still
   answers 20 of 37 rows that should be declined.
 - Anthropic enrichment is intentionally not merged; question diversity remains
@@ -318,17 +319,33 @@ epoch 2 kept every activation and OOMed at 73 GiB; and the result payload is
 written to the volume, because it otherwise only exists on the client that can
 die mid-run.
 
+### Published adapter
+
+`avengeryt22/finance-agent-staging` (private model repo), revision
+`7a4b00ec331f4b51bf93fa9fb6b568202009e442`:
+
+| File | Size | Contents |
+|---|---|---|
+| `adapter_model.safetensors` | 121 MB | fp32 LoRA weights, 30.2M parameters |
+| `adapter_config.json` | 1.2 kB | r 16, alpha 32, all linear, base `CohereLabs/tiny-aya-global` |
+| `tokenizer.json`, `tokenizer_config.json`, `chat_template.jinja` | 21 MB | tokenizer and Aya chat template the format code expects |
+| `README.md` | 3.8 kB | model card: config, results, usage, limitations |
+
+Uploaded from the Modal volume `finance-agent-sft-adapters`
+(`adapter-r16-e2-lr0.0001-best`), so the Hub artifact is byte-identical to the
+checkpoint the numbers above were measured on. The weights are gitignored
+locally (`artifacts/sft/adapter-*/`); the Hub is the source of truth for them.
+
 ## Next steps
 
-1. **Push the adapter** from the Modal volume to
-   `avengeryt22/finance-agent-staging` and record its revision.
-2. **WS6**: safety set (~100 prompts) with an explicit refusal affordance and a
+1. **WS6**: safety set (~100 prompts) with an explicit refusal affordance and a
    replayed trajectory so abstention is judged after tool errors.
-3. **WS7**: Modal endpoint using `app/chat_format.py`, Space with cached
-   examples, HF repos, Article.
-4. Parallel/optional: merge the enrichment paraphrases and record the four
+2. **WS7**: Modal endpoint using `app/chat_format.py`, Space with cached
+   examples, HF repos, Article. Load the adapter by revision `7a4b00e` so the
+   demo cannot drift from the measured checkpoint.
+3. Parallel/optional: merge the enrichment paraphrases and record the four
    missing periods; `comparison` and `period_ambiguity` are the intents an
    extra pass would target, since the adapter did not move them.
-5. Inference detail for WS7: stop on `<|END_OF_TURN_TOKEN|>` and require one
+4. Inference detail for WS7: stop on `<|END_OF_TURN_TOKEN|>` and require one
    JSON object per turn; the dry run shows the model will otherwise continue
    emitting calls.

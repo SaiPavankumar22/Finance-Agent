@@ -36,6 +36,7 @@ passing tests.
 | `dcb13de` | WS3: abstention scored as precision/recall, cached baselines rescored |
 | `983b94f` | WS5: Aya chat formatter and QLoRA smoke run |
 | `49bff4c` | WS5: full 620-row run, evaluation entrypoint, before/after comparison |
+| `785b2a6` | WS5: fair decode rule, re-measured before/after, status updated |
 
 ## WS1 — hardened foundation (done)
 

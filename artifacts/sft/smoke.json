@@ -1,0 +1,141 @@
+{
+  "model": "CohereLabs/tiny-aya-global",
+  "gpu": "NVIDIA A100-SXM4-40GB",
+  "versions": {
+    "transformers": "5.22.2",
+    "torch": "2.15.0+cu132",
+    "peft": "0.21.2"
+  },
+  "steps": 40,
+  "examples": 64,
+  "max_len": 6144,
+  "rows_over_max_len": 4,
+  "losses": [
+    2.2198,
+    2.464,
+    1.8376,
+    1.8944,
+    1.7643,
+    2.0122,
+    2.1291,
+    2.8692,
+    2.2576,
+    1.502,
+    1.1678,
+    1.6339,
+    0.8768,
+    0.9342,
+    0.5713,
+    0.4751,
+    0.1488,
+    0.2467,
+    0.5625,
+    0.1976,
+    0.0941,
+    0.1367,
+    0.1372,
+    0.076,
+    0.0172,
+    0.1077,
+    0.0496,
+    0.1073,
+    0.0181,
+    0.02,
+    0.114,
+    0.018,
+    0.2066,
+    0.144,
+    0.0693,
+    0.0791,
+    0.015,
+    0.0231,
+    0.0173,
+    0.0466
+  ],
+  "loss_first_5": 2.036,
+  "loss_last_5": 0.0362,
+  "trainable_parameters": 30228480,
+  "total_parameters": 1973315584,
+  "trainable_fraction": 0.015319,
+  "tokens_seen": 63683,
+  "supervised_tokens_in_slice": 2974,
+  "mean_supervised_tokens_per_row": 46.5,
+  "masking": {
+    "input_tokens": 760,
+    "masked_tokens": 727,
+    "supervised_tokens": 33,
+    "first_supervised_index": 584,
+    "labels_are_neg100_before_first_assistant": true,
+    "decoded_prompt_tail": "name>\", \"args\": {...}}<|END_OF_TURN_TOKEN|><|START_OF_TURN_TOKEN|><|USER_TOKEN|>Tell me DIS's price-to-earnings multiple.<|END_OF_TURN_TOKEN|><|START_OF_TURN_TOKEN|><|CHATBOT_TOKEN|><|START_RESPONSE|>",
+    "decoded_first_supervised_span": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"DIS\"}}<|END_RESPONSE|><|END_OF_TURN_TOKEN|>",
+    "all_supervision_is_assistant_text": true
+  },
+  "probes": {
+    "first_turn": {
+      "question": "Tell me DIS's price-to-earnings multiple.",
+      "intent": "metric_pe",
+      "gold": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"DIS\"}}",
+      "base": {
+        "text": "```json\n{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"DIS\"\n  }\n}\n```",
+        "new_tokens": 35,
+        "ended_turn": false
+      },
+      "tuned": {
+        "text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"DIS\"}}{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"DIS\"}}{\"tool\":\"get_stock_",
+        "new_tokens": 48,
+        "ended_turn": false
+      },
+      "greedy_next_token": {
+        "gold_first_token": "{\"",
+        "top1": "{\"",
+        "gold_in_top5": true,
+        "gold_probability": 0.9996
+      }
+    },
+    "final_turn": {
+      "question": "Tell me DIS's price-to-earnings multiple.",
+      "intent": "metric_pe",
+      "gold": "{\"tool\": \"finish\", \"args\": {}}",
+      "base": {
+        "text": "The price-to-earnings (P/E) multiple for Disney (DIS) is **24.48**. This value reflects the current market price per share relative to the company's earnings per share (EPS). For more detailed financial insights,",
+        "new_tokens": 48,
+        "ended_turn": false
+      },
+      "tuned": {
+        "text": "{\"tool\": \"finish\", \"args\": {}}",
+        "new_tokens": 48,
+        "ended_turn": true
+      },
+      "greedy_next_token": {
+        "gold_first_token": "{\"",
+        "top1": "{\"",
+        "gold_in_top5": true,
+        "gold_probability": 0.9974
+      }
+    },
+    "ood_advice": {
+      "question": "I need BRK-B to double. When will it?",
+      "intent": "advice_request",
+      "gold": "{\"tool\": \"finish\", \"args\": {}}",
+      "base": {
+        "text": "```json\n{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"BRK-B\",\n    \"period\": \"5y\",\n    \"include_volatility\":",
+        "new_tokens": 48,
+        "ended_turn": false
+      },
+      "tuned": {
+        "text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"BRK-B\"}}{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"BRK-B\"}}{\"tool\":\"",
+        "new_tokens": 48,
+        "ended_turn": false
+      },
+      "greedy_next_token": {
+        "gold_first_token": "{\"",
+        "top1": "{\"",
+        "gold_in_top5": true,
+        "gold_probability": 0.9995
+      }
+    }
+  },
+  "train_seconds": 43.9,
+  "total_seconds": 109.1,
+  "peak_gpu_gb": 29.63
+}

@@ -17,6 +17,7 @@ from typing import Any
 import modal
 
 MODEL_ID = "CohereLabs/tiny-aya-global"
+GPU_TYPE = os.getenv("MODAL_GPU", "T4")
 SYSTEM_PROMPT = (
     'Emit exactly one JSON object: '
     '{"tool":"get_stock_quote","args":{"ticker":"AAPL"}}'
@@ -47,7 +48,7 @@ TOOL_CALL_SCHEMA: dict[str, Any] = {
 
 
 @app.function(
-    gpu="T4",
+    gpu=GPU_TYPE,
     timeout=900,
     scaledown_window=60,
     max_containers=1,

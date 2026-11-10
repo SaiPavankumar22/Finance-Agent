@@ -20,7 +20,11 @@ question overlap and 170 CuratorKIT-approved messages.
 | `15319b7` | WS2: fixture recorder, offline replay, ten failure mutations, frozen 150-example test set |
 | `3f0db0e` | English-only test set and templates |
 | `f6a5292` | `project-plan.md` updated for the English-only decision |
-| local | WS3 baseline evaluator, metrics, and results |
+| `1ca95f9` | WS3 baseline evaluator, metrics, and results |
+| `b4092d6` | WS4 deterministic gold trajectories and Modal verifier |
+| `7be6979` | CuratorKIT integration and Anthropic enrichment |
+| `5232f73` | Configurable Modal GPU verifier |
+| `2e5f300` | Tiny Aya vLLM constrained-decoding verification on Modal |
 
 ## Done — WS1: hardened foundation
 
@@ -98,7 +102,7 @@ Each row carries: `id`, `intent`, `language`, `tickers`, `period`, `mutation`,
 ## How to run
 
 ```bash
-python -m pytest -q                                   # 126 tests
+python -m pytest -q                                   # 129 tests
 python -m ruff check .                                # lint
 python pipelines/01_record_fixtures.py                # record (network, resumable)
 python pipelines/01_record_fixtures.py --verify       # offline determinism check
@@ -162,6 +166,11 @@ schema constraint produced a valid `get_stock_quote` call for AAPL.
 
 ## Next steps
 
-1. Split the curated set by ticker/template and run contamination checks.
-2. Verify vLLM JSON-schema decoding on Modal after billing is enabled.
-3. WS5 fine-tuning, WS6 AuditKIT + SafeTune, WS7 deploy and publish.
+1. Split the 170 curated messages by ticker group/template and run contamination
+   checks while preserving the frozen 150-example test set.
+2. Upload the curated dataset, enrichment manifest, CuratorKIT provenance, and
+   Modal verification logs to the secondary Hugging Face account.
+3. Run a small Tiny Aya Global SFT smoke test through AlignTune/AgentTune using
+   the secondary HF GPU credits.
+4. Evaluate before/after with AuditKIT, apply SafeTune if needed, then deploy
+   the public demo and publish the HF Article.

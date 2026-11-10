@@ -1,15 +1,15 @@
 # Finance Agent — Status
 
-_Last updated: 2026-11-10, after an audit of the WS3 baseline and the WS4
-CuratorKIT dataset._
+_Last updated: 2026-11-10, after repairing the WS4 curation stage and adding
+the train/val split._
 
 ## Verdict
 
-WS1 and WS2 are complete and committed. WS3's harness exists and two of three
-models produced numbers, but the base model never ran and the abstention metric
-is degenerate. WS4's gold set (800 deterministic trajectories) is good; the
-**CuratorKIT curation is broken and the 170-example export must not be trained
-on**. `ruff check .` is clean and `pytest -q` reports 129 passing tests.
+WS1 and WS2 are complete. WS3's harness exists but the base model never ran and
+the abstention metric is degenerate. **WS4 now produces a usable dataset**: 800
+gold trajectories, all 800 passing curation with 13 of 13 behaviours intact,
+split into 620 train / 51 ticker-held-out validation examples. `ruff check .` is
+clean and `pytest -q` reports 129 passing tests.
 
 ## Commit history
 
@@ -20,25 +20,23 @@ on**. `ruff check .` is clean and `pytest -q` reports 129 passing tests.
 | `15319b7` | WS2: fixtures, offline replay, injections, frozen test set |
 | `3f0db0e` | English-only test set and templates |
 | `f6a5292` | Plan updated for English-only |
-| `93b8e96` | Status document (WS1/WS2) |
 | `a8980b4` | Project README |
 | `1ca95f9` | WS3 baseline evaluation harness |
 | `b4092d6` | WS4 gold trajectories |
-| `42f6d72` | Modal verifier aligned with docs |
 | `7be6979` | CuratorKIT integration + Anthropic enrichment |
-| `5232f73` | Configurable Modal GPU |
 | `2e5f300` | Tiny Aya vLLM decoding verified on Modal |
-| `1ca432c` | WS4 docs update |
-| `HEAD` | This corrected status |
+| `a3e2d46` | Corrected status after auditing WS3 and WS4 |
+| `1da5791` | WS4: varied invalid-ticker symbols (4 → 60 rows) |
+| `41f3bb4` | WS4: fixed the CuratorKIT gate, restored metadata |
+| `7ffe976` | WS4: ticker-holdout split and dataset card |
 
 ## WS1 — hardened foundation (done)
 
 `ToolResult` envelope, evidence ledger (`E1..En`, monotonic, nulls recorded),
-registered calcs (`pct_change`, `diff`, `ratio`, `sma`), placeholder renderer,
-strict validator, five-tool registry, hardened yfinance layer (8s timeout, 2
-retries, TTL cache, per-tool breaker, staleness downgrade, never raises), and
-offline replay. The model never writes digits: validation runs on the template,
-substitution afterwards.
+registered calcs, placeholder renderer, strict validator, five-tool registry,
+hardened yfinance layer (timeout, retries, TTL cache, per-tool breaker,
+staleness downgrade, never raises), offline replay. The model never writes
+digits: validation runs on the template, substitution afterwards.
 
 Rules: percents are percentage points; periods `1mo,3mo,6mo,1y,2y,5y` with `1y`
 default; staleness quote 5d / ratios 120d / history 10d / news 90d.
@@ -51,6 +49,8 @@ unavailable / 20 error; 69 tickers fully usable. Offline replay verified
 injected sets (gitignored, regenerable). Frozen test set: 150 examples, 37
 expecting abstention, English only, SHA-256
 `025c345dc028d457f99a1d9cf2f6c4c1b7069f72db166a3fe1ca41c5d2fd2e94`.
+`*.jsonl` is pinned `-text` in `.gitattributes`, so line endings cannot drift
+the hashes.
 
 ## WS3 — baselines (partial, two problems)
 
@@ -63,101 +63,94 @@ holds 150 predictions per model:
 | `CohereLabs/tiny-aya-global` | 150 | 0.9867 | 0.5533 | 0.0533 | 0.7533 |
 | `anthropic` (oracle) | 150 | 0.9000 | 0.5400 | 0.6533 | 0.7533 |
 
-**Problem 1: the base model never ran.**
-`Model CohereLabs/tiny-aya-base is not supported by provider cohere` — the run
-used a Cohere provider path that does not host the Base checkpoint. There is
-therefore no pre-training reference point for the fine-tuning delta.
+The base model never ran (`not supported by provider cohere`). It is a **P2
+control** (WS11), not a gate: the plan's decision gate is about Global prompted,
+which does not score high, so SFT is justified.
 
-**Problem 2: `abstention_accuracy` is degenerate.** Both models score exactly
-`0.7533`, which equals `1 - 37/150`: the rate you get by never abstaining. The
-metric is plain accuracy on an imbalanced label, so it hides total abstention
-failure. It needs to be reported as recall/precision on the abstain class (plus
-a "did it abstain when it should not have" count).
+`abstention_accuracy` is degenerate: both models score exactly `1 - 37/150`,
+the value you get by never abstaining. It must be reported as recall/precision
+on the abstain class plus an over-abstention count. The cached predictions can
+be rescored offline.
 
-Context for the decision gate: Global's tool selection at 55.3% with argument
-accuracy 5.3% is *not* high, so SFT is justified — but the gate cannot be closed
-until Base runs.
+## WS4 — dataset (repaired)
 
-## WS4 — gold trajectories (done) and curation (broken)
+**Gold** (`data/gold/trajectories.jsonl`, 800 rows, SHA-256 `c7e7acd3…`): a
+correct tool-calling trajectory per seed question, generated by code from
+recorded fixtures; reports carry `{{E<n>}}` placeholders validated against the
+ledger. 68 recorded symbols plus 12 bogus ones, 157 distinct question
+phrasings, `1mo`/`1y` only.
 
-**Gold set** (`data/gold/trajectories.jsonl`): 800 deterministic trajectories
-over 68 tickers, all 13 intents, ending in `finish`, ≤6 calls, no duplicate
-calls, reports built by code with `{{E<n>}}` placeholders.
+**Curated** (`data/curated/curated.jsonl`, 800 rows, SHA-256 `b2112851…`): the
+CuratorKIT run plus the project gates, with `id`/`intent`/`tickers`/`period`
+re-attached.
 
-| Intent | Gold | Kept by CuratorKIT |
-|---|---|---|
-| comparison | 110 | 74 |
-| overview | 94 | 60 |
-| metric_pe | 93 | **0** |
-| advice_request | 87 | 25 |
-| period_ambiguity | 81 | **0** |
-| unsupported_metric | 81 | **0** |
-| non_us_currency | 69 | 11 |
-| missing_ratios | 44 | **0** |
-| news_unavailable | 40 | **0** |
-| stale_data | 38 | **0** |
-| malformed_error | 33 | **0** |
-| loop_trap | 26 | **0** |
-| invalid_ticker | 4 | **0** |
+| Intent | Gold | Curated | Train |
+|---|---|---|---|
+| comparison | 99 | 99 | 64 |
+| overview | 86 | 86 | 68 |
+| metric_pe | 82 | 82 | 64 |
+| advice_request | 81 | 81 | 63 |
+| period_ambiguity | 77 | 77 | 65 |
+| unsupported_metric | 75 | 75 | 59 |
+| non_us_currency | 63 | 63 | 43 |
+| invalid_ticker | 60 | 60 | 40 |
+| missing_ratios | 42 | 42 | 34 |
+| news_unavailable | 40 | 40 | 36 |
+| stale_data | 37 | 37 | 33 |
+| malformed_error | 32 | 32 | 28 |
+| loop_trap | 26 | 26 | 23 |
 
-**What CuratorKIT actually did** (`06_curate.py`, `format="auto"`): it read each
-trajectory as a single-turn pair — `instruction` = the user question,
-`output` = one tool call — then applied a minimum-length gate to that pair.
-All 538 rejections are `SchemaGate / below_min_tokens:N`, and `N` equals
-`tokens(instruction) + tokens(output)` in **538 of 538** cases, with `output`
-always exactly 1 token. So the gate measured question phrasing length, not
-trajectory quality.
+Four defects were fixed, in order:
 
-Consequences:
+1. **The length gate.** CuratorKIT's schema gate counts the user question plus
+   the *first assistant call*, which is always one JSON token. Its 10-token
+   floor therefore measured question phrasing: 538 of 538 rejections were
+   `below_min_tokens`, equal to `tokens(question) + 1`. Nine intents were
+   emptied. Now run with `min_tokens=0`; trajectory length is checked by the
+   project gate instead.
+2. **Lost metadata.** The messages exporter writes `{"messages": [...]}` only.
+   Ids and labels are joined back by exact question text (0 unmatched).
+3. **Retry misread as looping.** The gate rejected any repeated call, which
+   rejected every `loop_trap` and `malformed_error` row. One repeat is a
+   legitimate bounded retry when the previous result was unusable; a repeat
+   after a usable result, or a second retry, is still rejected.
+4. **Untrainable abstention.** The bogus pool was a constant `ZZZZ`, so
+   question de-duplication capped invalid tickers at 4 rows. Symbols now vary
+   over 12 values and the category has 60 rows.
 
-1. The 170 survivors are an artifact of long question templates (overview,
-   comparison, advice, non-US). **Nine of thirteen intents are at zero**,
-   including every abstention, missing-data, stale, malformed and efficiency
-   category — the exact behaviours the project exists to test.
-2. The export keeps **only `messages`**. `intent`, `tickers`, `period`,
-   `mutation` are gone, so the plan's split-by-ticker-group and
-   per-(intent, ticker) caps cannot be computed from the file. Labels are
-   recoverable: all 170 question texts match gold exactly.
-3. The 38 accepted enrichment examples (of 100 attempted) are a separate
-   artifact and are **not** in the curated set; the 170 contain no paraphrases.
-4. Provenance is inconsistent: `README.md`/`dataset_card.md` advertise
-   `sha256 29e1614…` while the file hashes `e0370159…`;
-   `validated_messages.jsonl` differs from `sft_messages.jsonl` only by key
-   ordering; `checksums.txt` omits both validated and the dataset card. Nothing
-   pins `-text` for these `.jsonl` files, so Windows CRLF conversion will drift
-   every hash on clone.
+MinHash de-duplication at 0.85 was replaced with exact de-duplication: it
+removed 327 of 800 rows, almost all questions that differed only by ticker,
+which is precisely the coverage the split needs.
 
-Good news: question overlap with the frozen test set is **0**, and gold
-trajectories are internally consistent (project gates accepted 170/170 of what
-CuratorKIT passed, and rejected nothing else).
-
-## Decisions taken
-
-- **English only** (plan §2, §11.2).
-- Fixtures committed; `data/injected/` gitignored as a deterministic derivative.
-- `make` is unavailable on this Windows host; `python pipelines/…` is canonical.
-- Provider news was down during recording → 69 news fixtures `unavailable`.
+**Splits** (`data/splits/`, SHA-256 `abc18cb1…` / `0a65affd…`): 620 train, 51
+val, seed 13. Validation is composed only of 15 held-out real tickers (ARKK,
+AVGO, CAT, CROX, JPM, NESN.SW, NFLX, NKE, ROKU, SHOP.TO, TCS.NS, TTE.PA, TXN,
+ULVR.L, WMT) plus two bogus symbols; 31 mixed-group rows and 21 rows over the
+per-cell cap were dropped. Asserted: no train/val question overlap, no frozen
+test question, no ticker leakage, all 13 intents in train.
 
 ## Known gaps
 
-- Base baseline missing; abstention metric must be redefined.
-- Curated dataset unusable as-is: 9/13 intents empty, no metadata.
-- No train/val/test split, no ticker-group contamination check, no
-  per-(intent, ticker) cap.
-- Enrichment got 38/100 through validation and is unmerged.
+- Enrichment (`data/enriched/`, 38 accepted of 100 attempted) is not merged;
+  question phrasings remain template-derived (157).
+- Fixtures cover 2 of 6 periods, so the period argument is trained on `1mo`
+  and `1y` only.
+- 54 of the frozen test set's 57 tickers also appear in train. The test set
+  cannot change and is not question-contaminated, but it does not measure
+  unseen-ticker generalisation; the split's held-out val does.
+- Base baseline missing; abstention metric still to be redefined.
+- No manual review of the 50 random + 5-per-category sample yet.
 - No training run, no AuditKIT/SafeTune results, no deployment, no git remote.
 
 ## Next steps
 
-1. **Fix `06_curate.py`**: feed CuratorKIT conversation-shaped records (or
-   disable its length gate, min_tokens 0), keep `id` + `metadata` through to the
-   export, and let the project gates do schema/behaviour checks. Target 700–800
-   kept; a 67% drop is the plan's stated signal of an upstream bug.
-2. **Merge enrichment**: 38 accepted paraphrase/interpretation records into the
-   pool, keyed by gold `id`.
-3. **`07_split_and_format.py`**: hold out ~15 tickers and ~2 templates per
-   intent; assert zero train/test overlap on (question, ticker-group-intent).
-4. **Re-run Base**: use the HF/Modal path, not the Cohere provider.
-5. Manual review: 50 random examples plus 5 per hard category, recorded in the
-   dataset card.
-6. Only then WS5 (LoRA dry run).
+1. **WS5 dry run**: 30–50 steps on ~50 examples, confirm the loss falls and
+   assistant-only masking is correct by decoding one labelled example.
+2. **Fix the abstention metric** to recall/precision on the abstain class and
+   rescore the cached predictions (no API spend).
+3. **Full SFT run**, adapter pushed to the staging repo, then eval on val and
+   the frozen test set.
+4. **WS6**: safety set (~100 prompts), before/after audit, `eval/results/final.json`.
+5. **WS7**: Modal endpoint, Space with cached examples, HF repos, Article.
+6. Parallel/optional, once a before/after pair exists: merge the enrichment
+   paraphrases and record the four missing periods.

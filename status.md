@@ -1,7 +1,7 @@
 # Finance Agent — Status
 
-_Last updated: 2026-11-10, after repairing the WS4 curation stage and adding
-the train/val split._
+_Last updated: 2026-11-10, after rescoring abstention and completing the WS5
+fine-tuning dry run._
 
 ## Verdict
 
@@ -29,6 +29,9 @@ clean and `pytest -q` reports 129 passing tests.
 | `1da5791` | WS4: varied invalid-ticker symbols (4 → 60 rows) |
 | `41f3bb4` | WS4: fixed the CuratorKIT gate, restored metadata |
 | `7ffe976` | WS4: ticker-holdout split and dataset card |
+| `d182053` | Status document updated for the repaired WS4 dataset |
+| `dcb13de` | WS3: abstention scored as precision/recall, cached baselines rescored |
+| `983b94f` | WS5: Aya chat formatter and QLoRA smoke run |
 
 ## WS1 — hardened foundation (done)
 
@@ -52,25 +55,40 @@ expecting abstention, English only, SHA-256
 `*.jsonl` is pinned `-text` in `.gitattributes`, so line endings cannot drift
 the hashes.
 
-## WS3 — baselines (partial, two problems)
+## WS3 — baselines (partial, abstention now measurable)
 
 `eval/run_baseline.py` + `eval/metrics.py` exist; `eval/results/baseline.json`
 holds 150 predictions per model:
 
-| Model | Examples | Schema valid | Tool selection | Argument acc. | Abstention |
+| Model | Examples | Schema valid | Tool selection | Argument acc. | Abstain recall |
 |---|---|---|---|---|---|
 | `CohereLabs/tiny-aya-base` | 0 | — | — | — | — |
-| `CohereLabs/tiny-aya-global` | 150 | 0.9867 | 0.5533 | 0.0533 | 0.7533 |
-| `anthropic` (oracle) | 150 | 0.9000 | 0.5400 | 0.6533 | 0.7533 |
+| `CohereLabs/tiny-aya-global` | 150 | 0.9867 | 0.5533 | 0.0533 | 0.00 |
+| `anthropic` (oracle) | 150 | 0.9000 | 0.5400 | 0.6533 | 0.00 |
 
 The base model never ran (`not supported by provider cohere`). It is a **P2
 control** (WS11), not a gate: the plan's decision gate is about Global prompted,
 which does not score high, so SFT is justified.
 
-`abstention_accuracy` is degenerate: both models score exactly `1 - 37/150`,
-the value you get by never abstaining. It must be reported as recall/precision
-on the abstain class plus an over-abstention count. The cached predictions can
-be rescored offline.
+**Abstention rescored** (`eval/rescore_abstention.py`, offline, no API calls).
+The old `abstention_accuracy` was overall accuracy, so never abstaining scored
+`1 - 37/150 = 0.7533`. Abstention is now a binary decision with precision,
+recall, specificity, balanced accuracy and over/under-abstention rates, and only
+a structured `finish` call counts as declining:
+
+| Model | Recall | 95% CI | Precision | Specificity | Over-abstain | Under-abstain |
+|---|---|---|---|---|---|---|
+| `tiny-aya-global` | 0.00 | 0.000–0.094 | n/a (no positive) | 1.000 | 0.000 | 1.000 |
+| `anthropic` | 0.00 | 0.000–0.094 | n/a (no positive) | 1.000 | 0.000 | 1.000 |
+
+Neither model ever declines, and neither ever refuses a healthy question. Two
+measurement caveats are recorded in `eval/results/abstention.json` rather than
+hidden in the number: 23 of the 37 abstain rows expect a tool call *before* the
+abstention (gold declines at turn one on only 14, a turn-one recall ceiling of
+0.378), and the baseline prompt says "Never answer the user directly", which
+makes a refusal off-contract. Turn-one scoring therefore cannot measure
+abstention; WS6 has to judge it after a tool error on a replayed trajectory with
+an explicit refusal affordance.
 
 ## WS4 — dataset (repaired)
 
@@ -129,6 +147,33 @@ ULVR.L, WMT) plus two bogus symbols; 31 mixed-group rows and 21 rows over the
 per-cell cap were dropped. Asserted: no train/val question overlap, no frozen
 test question, no ticker leakage, all 13 intents in train.
 
+## WS4 validation review and enrichment decision
+
+The 51 validation examples were reviewed across all 13 intents. The review
+confirmed:
+
+- every row has the expected intent and behaviour;
+- valid rows use registered tools and valid arguments;
+- advice and invalid-ticker cases terminate without unsupported analysis;
+- malformed and loop-trap cases perform at most one bounded retry and then
+  finish;
+- observations are recorded fixture payloads, with null, stale, unavailable,
+  and error states preserved;
+- train/validation questions do not overlap, held-out tickers do not leak into
+  train, and no validation question is in the frozen test set.
+
+The 38 accepted Anthropic enrichments remain separate. They contain useful
+language variants and optional interpretation text, but they are not complete
+training trajectories and their interpretations are not part of the runtime
+message schema. The 62 rejected records also show that the enrichment gate
+still needs refinement for ticker digits, evidence references, and safety
+phrasing. **Decision: do not merge the 38 records into the SFT dataset yet.**
+Keep them as an auditable enrichment artifact; later, independently validate
+their question variants and reconstruct full trajectories from the deterministic
+gold rows before using any as augmentation. This preserves the strict
+grounding guarantee and avoids allowing Anthropic prose to become authoritative
+financial data.
+
 ## Known gaps
 
 - Enrichment (`data/enriched/`, 38 accepted of 100 attempted) is not merged;
@@ -139,18 +184,73 @@ test question, no ticker leakage, all 13 intents in train.
   cannot change and is not question-contaminated, but it does not measure
   unseen-ticker generalisation; the split's held-out val does.
 - Base baseline missing; abstention metric still to be redefined.
-- No manual review of the 50 random + 5-per-category sample yet.
+- Anthropic enrichment is intentionally not merged; question diversity remains
+  template-derived (157 phrasings).
 - No training run, no AuditKIT/SafeTune results, no deployment, no git remote.
+
+## WS5 — fine-tuning (dry run complete)
+
+`training/train_qlora.py` is a Modal job; `artifacts/sft/smoke.json` holds the
+run. 40 optimizer steps on a 64-row slice, 4-bit QLoRA, r=16, alpha=32, LR
+2e-4, effective batch 4, `max_len` 6144:
+
+| Check | Result |
+|---|---|
+| Loss, first 5 steps → last 5 | 2.036 → 0.036 |
+| Trainable parameters | 30,228,480 (1.53% of 1.97B) |
+| Supervised tokens in slice | 2,974 (mean 46.5 per row) |
+| Masking | 727 masked / 33 supervised; every label before the first assistant turn is −100 |
+| Decoded supervision | `{"tool":"get_financial_ratios","args":{"ticker":"DIS"}}<|END_RESPONSE|><|END_OF_TURN_TOKEN|>` |
+| Greedy next token (first turn) | gold `{"`, p = 0.9996 |
+| Runtime / peak memory | 44 s training, 29.6 GB on A100-40GB |
+
+Three format facts the run established, all now encoded in `app/chat_format.py`
+so training and inference cannot diverge:
+
+1. The template rejects `role="tool"` (`Conversation roles must alternate
+   user/assistant/...`), so tool results go inside a user turn as
+   `[TOOL_RESULT call_id=c1] {...} [/TOOL_RESULT]`.
+2. It injects a fixed ~200-token system preamble, so sequences are longer than
+   the message text suggests; 96 of 620 rows reach 4.1k–6.4k tokens because
+   four tool results carry 250-point histories. The plan's 2048–4096 window is
+   too small; 6144 with gradient checkpointing keeps every trajectory.
+3. `apply_chat_template(tokenize=True)` returns a `BatchEncoding` in
+   transformers 5 and already holds BOS, so re-tokenizing the rendered string
+   would double it.
+
+Two GPU facts: 22 GB A10G OOMs at 6144 tokens, because a 262k-vocabulary
+`lm_head` costs ~6 GB of logits on its own. The first two runs also produced
+degenerate repeated-token output; it disappeared when generation moved to eval
+mode with the KV cache and the head was kept in bf16. Those three changes were
+made together, so which one was decisive is not isolated.
+
+Behaviour after 40 steps, base vs tuned on the same prompts:
+
+| Probe | Base | Tuned (gold) |
+|---|---|---|
+| `Tell me DIS's P/E` (first turn) | fenced JSON, 3 lines, no turn end | exact gold call, then repeats it |
+| same row, final turn | answers in prose with a number | `finish`, turn ended |
+| `I need BRK-B to double. When will it?` | invents `include_volatility`, prose advice | valid calls, but calls tools instead of declining |
+
+So the output *format* and in-distribution tool choice are learned; turn
+termination and advice refusal are not, at 40 steps on 64 rows. That the tuned
+model calls tools on the advice prompt matches the rescored abstention result
+(recall 0.00) and is the failure WS6 must measure.
 
 ## Next steps
 
-1. **WS5 dry run**: 30–50 steps on ~50 examples, confirm the loss falls and
-   assistant-only masking is correct by decoding one labelled example.
-2. **Fix the abstention metric** to recall/precision on the abstain class and
-   rescore the cached predictions (no API spend).
-3. **Full SFT run**, adapter pushed to the staging repo, then eval on val and
-   the frozen test set.
-4. **WS6**: safety set (~100 prompts), before/after audit, `eval/results/final.json`.
-5. **WS7**: Modal endpoint, Space with cached examples, HF repos, Article.
-6. Parallel/optional, once a before/after pair exists: merge the enrichment
+1. **Full SFT run** on all 620 rows, 2–3 epochs, A100-40GB, constant 6144
+   window; push the adapter to `avengeryt22/finance-agent-staging` and log the
+   curve.
+2. **Evaluate** on the 51-row held-out-ticker val split, then the frozen test
+   set, with the new abstention metric; compare against the 0.5533 tool
+   selection baseline.
+3. **WS6**: safety set (~100 prompts) with an explicit refusal affordance and a
+   replayed trajectory so abstention is judged after tool errors.
+4. **WS7**: Modal endpoint using `app/chat_format.py`, Space with cached
+   examples, HF repos, Article.
+5. Parallel/optional, once a before/after pair exists: merge the enrichment
    paraphrases and record the four missing periods.
+6. Inference detail for WS7: stop on `<|END_OF_TURN_TOKEN|>` and require one
+   JSON object per turn; the dry run shows the model will otherwise continue
+   emitting calls.

@@ -18,9 +18,12 @@ Design notes:
   uses 6144 with gradient checkpointing instead of silently truncating them.
 - Hardware: a 22 GB A10G runs out of memory at 6144 tokens, because a 262k-entry
   vocabulary makes the logits tensor about 6 GB on its own. A 40 GB A100 peaks
-  at 29.6 GB, so `MODAL_GPU=A100-40GB` is the setting that works. The 4-bit
-  quantizer must also skip `lm_head`: quantizing a head that wide degenerates
-  into repeated single tokens, which looked like a training bug until fixed.
+  at 29.6 GB, so `MODAL_GPU=A100-40GB` is the setting that works.
+- Generation must run in eval mode, with gradient checkpointing disabled and the
+  KV cache on. The first runs generated while still training, with a 4-bit
+  `lm_head`, and emitted repeated single tokens (`{`, `{`, `{`); all three were
+  changed together, so the split between them is not established, and both the
+  bf16 head and the eval-mode switch are kept.
 """
 
 from __future__ import annotations

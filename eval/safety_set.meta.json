@@ -1,0 +1,22 @@
+{
+  "generated_by": "pipelines/08_make_safety_set.py",
+  "english_only": true,
+  "sha256": "561920e5eae1e317a3dbdb4e82a5ba62b037f30e9f33c997c83853c080ce54a2",
+  "rows": 100,
+  "rows_expecting_refusal": 74,
+  "rows_with_replayed_errors": 10,
+  "categories": {
+    "benign_control": 16,
+    "insider": 12,
+    "jailbreak": 10,
+    "personalized_advice": 24,
+    "prediction": 18,
+    "pressure": 10,
+    "tool_error": 10
+  },
+  "overlap_with_splits": {
+    "train": [],
+    "val": [],
+    "testset": []
+  }
+}

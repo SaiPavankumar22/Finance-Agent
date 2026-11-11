@@ -47,6 +47,43 @@ the next workstream.
 
 Full tables, per-intent breakdown and Wilson intervals: `artifacts/sft/comparison.md`.
 
+## Safety evaluation (WS6)
+
+100 prompts: 74 that must be declined (personalized advice, predictions, insider
+requests, urgency, jailbroken rewording) and 26 controls that must **not** be
+declined. Ten of the controls replay two recorded provider failures before the
+model gets its second turn, which is the only way to score "decline because the
+evidence never arrived". `finish` is documented in the prompt as the legal
+refusal; a planner told to "never answer directly" otherwise has no way to
+decline.
+
+| Metric | Base | Tuned | Delta |
+|---|---|---|---|
+| Refusal recall (74 rows) | 0.162 | **0.892** | +0.730 |
+| Over-refusal (26 controls) | 0.000 | 0.038 | +0.038 |
+| Declined after two tool errors (10) | 0.000 | **0.900** | +0.900 |
+| Benign tool selection (26) | 0.885 | 0.731 | -0.154 |
+| Prose with a number or advice | 0 | 0 | 0 |
+
+**No safety drift, so SafeTune was not triggered.** Refusal recall rose fivefold,
+over-refusal stayed at a single control row, and the tuned model never repeated a
+call that had already failed twice (the base model repeated all ten). Retraining
+on safety examples is only justified by a regression, and there is none; the
+numbers are recorded in `artifacts/safety/comparison.md`.
+
+Three things are still wrong, and they are the next work rather than a drift
+signal:
+
+- **Insider phrasing** is the one refusal family the adapter did not learn: 8 of
+  12 such prompts still produce a tool call.
+- **Control tool choice** fell because of one ambiguous template ("what did X
+  close at over the last month?"), where the model answers with
+  `get_stock_quote` and the gold action is `get_historical_prices`. That is a
+  labelling and instruction problem, not a safety failure.
+- **Format after an error turn** slips: some post-error declinations arrive as a
+  malformed hybrid object, so the decision is right but the planner format needs
+  stricter decoding.
+
 ## Project structure
 
 - `app/schemas/` — strict tool, evidence and report schemas (pydantic v2)
@@ -60,8 +97,8 @@ Full tables, per-intent breakdown and Wilson intervals: `artifacts/sft/compariso
   questions, gold trajectories, enrichment, curation, split
 - `data/fixtures/`, `data/gold/`, `data/splits/` — committed snapshots, 800 gold
   trajectories, and the 620 / 51 split
-- `eval/` — frozen 150-example test set (hashed), metrics, baseline harness,
-  abstention rescoring, adapter comparison
+- `eval/` — frozen 150-example test set (hashed), the 100-prompt WS6 safety set,
+  metrics, baseline harness, abstention rescoring, adapter and safety reports
 - `training/` — `data.py` (shared tokenisation, masking, gold extraction),
   `train_qlora.py` (smoke run), `train_full.py` (full run and eval entrypoint)
 - `tests/` — unit and determinism tests
@@ -87,7 +124,7 @@ python -m ruff check .
 python pipelines/01_record_fixtures.py --verify
 ```
 
-Current state: `pytest -q` → 148 passed, `ruff check .` clean, fixture replay
+Current state: `pytest -q` → 164 passed, `ruff check .` clean, fixture replay
 deterministic and complete.
 
 ## Running the agent and the evaluation
@@ -143,11 +180,11 @@ investment advice.
 
 ## Roadmap
 
-- **WS6 — refusal behaviour.** A safety set of adversarial prompts with an
-  explicit refusal affordance and a replayed tool trajectory, since turn-one
-  abstention recall is currently 0.46.
 - **WS7 — deployment.** A served endpoint, a demo Space with cached examples,
   and the published model card.
+- **Safety data pass.** Add insider and merger-price phrasings to the refusal
+  mix, and disambiguate period questions from "trading at now" in the gold
+  labels; re-audit with `python -m eval.run_safety`.
 - Optional dataset work: merge the enrichment paraphrases and record the four
   missing price periods; `comparison` and `period_ambiguity` are the intents the
   adapter did not improve.

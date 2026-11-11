@@ -125,6 +125,7 @@ def examples(
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--result", default=str(RESULT))
+    parser.add_argument("--output", default=str(OUTPUT))
     args = parser.parse_args()
 
     payload = json.loads(Path(args.result).read_text(encoding="utf-8"))
@@ -170,13 +171,14 @@ def main() -> int:
     lines.extend(category_table(base, tuned))
     lines.extend(examples(rows, payload.get("predictions", {}).get("tuned", [])))
 
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    output = Path(args.output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(table(base, tuned)))
     print(f"\n{drift['verdict']}")
     for reason in drift["reasons"]:
         print(f"  - {reason}")
-    print(f"Saved {OUTPUT.relative_to(PROJECT_ROOT)}")
+    print(f"Saved {output}")
     return 0
 
 

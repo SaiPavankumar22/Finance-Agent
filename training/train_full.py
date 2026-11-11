@@ -3,9 +3,10 @@
     modal run training/train_full.py
 
 Protocol:
-- Train: `data/splits/train.jsonl` (620 rows) only. The 51 validation rows and
-  the 150 frozen test rows are asserted disjoint from it, and the validation
-  tickers are asserted absent from training.
+- Train: `data/splits/train.jsonl` only (620 curated rows plus the 48
+  insider-refusal rows from `pipelines/09_augment_refusals.py`). The 51
+  validation rows and the 150 frozen test rows are asserted disjoint from it,
+  and the validation tickers are asserted absent from training.
 - Evaluate: the baseline's own system prompt and JSON parser are imported from
   `eval/run_baseline.py`, so the before/after numbers answer the same question
   as the WS3 baseline does.

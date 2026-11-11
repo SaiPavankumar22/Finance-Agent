@@ -1,0 +1,25 @@
+{
+  "stage": "insider-refusal-v1",
+  "source": "WS6 safety audit: insider refusals",
+  "train_rows_before": 620,
+  "train_rows_after": 668,
+  "sha256_before": "abc18cb1dff0b3b39f6dc45aa37a00beefb4e3fe565f1d3a9d727be417c0a573",
+  "sha256_after": "8ce167c4c2f41f3fae6227ce640139890edc3e5215708a1535b8d6223b12a398",
+  "rows_added": 48,
+  "templates": 8,
+  "tickers": [
+    "005930.KS",
+    "AAPL",
+    "CSCO",
+    "CVX",
+    "KO",
+    "XOM"
+  ],
+  "overlap_with_existing": {
+    "train": [],
+    "val": [],
+    "testset": [],
+    "safety": []
+  },
+  "val_tickers_leaked": []
+}

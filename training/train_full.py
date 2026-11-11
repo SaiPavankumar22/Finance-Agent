@@ -66,6 +66,8 @@ image = (
     .add_local_file("eval/metrics.py", f"{SRC}/eval/metrics.py")
     .add_local_file("eval/run_baseline.py", f"{SRC}/eval/run_baseline.py")
     .add_local_file("eval/testset.jsonl", TESTSET_PATH)
+    .add_local_file("eval/safety.py", f"{SRC}/eval/safety.py")
+    .add_local_file("eval/safety_set.jsonl", f"{SRC}/eval/safety_set.jsonl")
     .add_local_file("training/__init__.py", f"{SRC}/training/__init__.py")
     .add_local_file("training/data.py", f"{SRC}/training/data.py")
     .add_local_file("data/splits/train.jsonl", TRAIN_PATH)
@@ -147,25 +149,25 @@ def paired_counts(base: list[dict[str, Any]], tuned: list[dict[str, Any]]) -> di
     return {"tool_selection": counts, "argument_accuracy": arg_counts}
 
 
-def generate_first_call(
-    model: Any, tokenizer: Any, question: str, max_new_tokens: int = 96
+def generate_action(
+    model: Any,
+    tokenizer: Any,
+    messages: list[dict[str, Any]],
+    max_new_tokens: int = 96,
 ) -> Any:
-    """Greedy first turn, stopped once the first JSON object is complete."""
+    """Greedy next turn, stopped once the first JSON object is complete.
+
+    Shared by the planning evaluation (one user turn) and WS6 (a user turn
+    followed by replayed tool results), so both ask the model the same way.
+    """
     import torch
     from transformers import StoppingCriteria, StoppingCriteriaList
 
     from app.chat_format import render
-    from eval.run_baseline import SYSTEM_PROMPT, parse_prediction
+    from eval.run_baseline import parse_prediction
     from training.data import first_json_object_complete
 
-    prompt = render(
-        tokenizer,
-        [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": question},
-        ],
-        add_generation_prompt=True,
-    )
+    prompt = render(tokenizer, messages, add_generation_prompt=True)
     inputs = tokenizer(prompt, return_tensors="pt", add_special_tokens=False).to("cuda")
     prompt_length = inputs["input_ids"].shape[1]
 
@@ -185,6 +187,23 @@ def generate_first_call(
         )
     text = tokenizer.decode(output[0][prompt_length:], skip_special_tokens=True)
     return parse_prediction(text)
+
+
+def generate_first_call(
+    model: Any, tokenizer: Any, question: str, max_new_tokens: int = 96
+) -> Any:
+    """Planning evaluation: one user turn, baseline system prompt."""
+    from eval.run_baseline import SYSTEM_PROMPT
+
+    return generate_action(
+        model,
+        tokenizer,
+        [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": question},
+        ],
+        max_new_tokens,
+    )
 
 
 def evaluate_rows(
@@ -601,6 +620,144 @@ def evaluate_adapter(
     adapters.commit()
     print(f"results written to {result_path}", flush=True)
     return payload
+
+
+@app.function(gpu=GPU_TYPE, timeout=7200, volumes={"/out": adapters}, max_containers=1)
+def run_safety(
+    adapter_dir: str = "",
+    max_new_tokens: int = 96,
+    tag: str = "safety",
+) -> dict[str, Any]:
+    """WS6: refusal behaviour, including the turn after two recorded tool errors.
+
+    Turn one uses the WS6 prompt with an explicit refusal affordance; rows with a
+    scripted failure trajectory then continue from the two recorded errors, which
+    is the only way to score "decline after the evidence did not arrive". Both
+    arms are measured with the same prompt, replay and decode rule.
+    """
+    import torch
+    import transformers
+    from peft import PeftModel
+    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+
+    sys.path.insert(0, SRC)
+    from eval.safety import (
+        load_rows,
+        safety_drift,
+        safety_report,
+        score_after_error,
+        score_turn_one,
+        scripted_messages,
+        turn_one_messages,
+    )
+
+    started = time.time()
+    safety_path = f"{SRC}/eval/safety_set.jsonl"
+    rows = load_rows(safety_path)
+    digest_before = sha256(safety_path)
+
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, trust_remote_code=True)
+    base = AutoModelForCausalLM.from_pretrained(
+        MODEL_ID,
+        trust_remote_code=True,
+        device_map={"": 0},
+        quantization_config=BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_compute_dtype=torch.bfloat16,
+            bnb_4bit_use_double_quant=True,
+            llm_int8_skip_modules=["lm_head"],
+        ),
+    )
+    model = PeftModel.from_pretrained(base, adapter_dir) if adapter_dir else base
+    model.eval()
+
+    def evaluate() -> list[dict[str, Any]]:
+        scored: list[dict[str, Any]] = []
+        for row in rows:
+            item = score_turn_one(
+                row, generate_action(model, tokenizer, turn_one_messages(row), max_new_tokens)
+            )
+            if row["script"]:
+                item["after_error"] = score_after_error(
+                    row,
+                    generate_action(
+                        model, tokenizer, scripted_messages(row), max_new_tokens
+                    ),
+                )
+            scored.append(item)
+        print(f"safety pass done ({len(rows)} rows)", flush=True)
+        return scored
+
+    tuned = evaluate()
+    if adapter_dir:
+        model.disable_adapter_layers()
+    base_scored = evaluate()
+    if adapter_dir:
+        model.enable_adapter_layers()
+
+    base_report = safety_report(rows, base_scored)
+    tuned_report = safety_report(rows, tuned)
+    payload = {
+        "model": MODEL_ID,
+        "adapter": adapter_dir,
+        "gpu": torch.cuda.get_device_name(0),
+        "decode": "greedy, stop at first complete JSON object",
+        "max_new_tokens": max_new_tokens,
+        "prompt": "WS6: explicit finish-as-refusal affordance",
+        "safety_set": {"path": safety_path, "rows": len(rows), "sha256": digest_before},
+        "versions": {
+            "transformers": transformers.__version__,
+            "torch": torch.__version__,
+            "peft": __import__("peft").__version__,
+        },
+        "eval": {"base": base_report, "tuned": tuned_report},
+        "drift": safety_drift(base_report, tuned_report),
+        "predictions": {"base": base_scored, "tuned": tuned},
+        "peak_gpu_gb": round(torch.cuda.max_memory_allocated() / 1024**3, 2),
+        "total_seconds": round(time.time() - started, 1),
+    }
+    result_path = Path(f"/out/{tag}.json")
+    result_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    adapters.commit()
+    print(f"results written to {result_path}", flush=True)
+    return payload
+
+
+@app.local_entrypoint()
+def safety_main() -> None:
+    from dotenv import load_dotenv
+
+    load_dotenv(".env", override=False)
+    token = os.getenv("HF_SECONDARY_TOKEN") or os.getenv("HF_PRIMARY_TOKEN")
+    if not token:
+        raise SystemExit("Set HF_SECONDARY_TOKEN or HF_PRIMARY_TOKEN in .env")
+
+    tag = os.getenv("SAFETY_TAG", "safety")
+    result = run_safety.with_options(
+        secrets=[modal.Secret.from_dict({"HF_TOKEN": token})]
+    ).remote(
+        adapter_dir=os.getenv("SAFETY_ADAPTER", "/out/adapter-r16-e2-lr0.0001-best"),
+        max_new_tokens=int(os.getenv("SFT_MAX_NEW", "96")),
+        tag=tag,
+    )
+
+    output = Path("artifacts/sft")
+    output.mkdir(parents=True, exist_ok=True)
+    (output / f"{tag}.json").write_text(
+        json.dumps(result, indent=2) + "\n", encoding="utf-8"
+    )
+    for name in ("base", "tuned"):
+        block = result["eval"][name]
+        print(
+            f"{name:6} refusal recall {block['refusal']['recall']:.3f} "
+            f"over-refusal {block['benign']['over_refusal_rate']:.3f} "
+            f"post-error {block['error_handling']['handled_rate']:.3f} "
+            f"unsafe {block['unsafe_text_rows']}"
+        )
+    print(f"drift: {result['drift']['verdict']}")
+    for reason in result["drift"]["reasons"]:
+        print(f"  - {reason}")
 
 
 @app.local_entrypoint()

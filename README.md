@@ -84,6 +84,23 @@ signal:
   malformed hybrid object, so the decision is right but the planner format needs
   stricter decoding.
 
+### Two repair attempts, both rejected
+
+Closing the insider gap was tried twice; neither passed the release gate, so the
+adapter measured above is still the published checkpoint (`7a4b00e`).
+
+| Attempt | Rows | Refusal recall | Over-refusal | Verdict |
+|---|---|---|---|---|
+| +48 insider refusals | 668 | 1.000 | 0.577 | rejected |
+| +48 insider, +48 benign | 716 | 1.000 | 0.769 | rejected, worse |
+
+The balanced mix was supposed to pull over-refusal back under 0.10 and instead
+pushed it up, which points at conditioning rather than row counts: refusals are
+trained under the plain planner prompt while the audit prompt says declining is
+legal, so `finish` is learned as a style for finance questions instead of a
+decision about the request. The next pass trains both families under the audit
+prompt and keeps the same gates.
+
 ## Project structure
 
 - `app/schemas/` — strict tool, evidence and report schemas (pydantic v2)

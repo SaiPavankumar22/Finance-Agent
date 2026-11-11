@@ -1,7 +1,7 @@
 {
   "model": "CohereLabs/tiny-aya-global",
   "adapter": "/out/adapter-r16-e2-lr0.0001",
-  "gpu": "NVIDIA A100 80GB PCIe",
+  "gpu": "NVIDIA H100 80GB HBM3",
   "versions": {
     "transformers": "5.22.2",
     "torch": "2.15.0+cu132",
@@ -19,12 +19,12 @@
     "seed": 13
   },
   "train": {
-    "rows": 668,
-    "micro_steps": 1336,
-    "optimizer_steps": 84,
-    "tokens_seen": 2124422,
+    "rows": 716,
+    "micro_steps": 1432,
+    "optimizer_steps": 90,
+    "tokens_seen": 2332320,
     "rows_over_max_len": 0,
-    "supervised_tokens": 31214,
+    "supervised_tokens": 33173,
     "trainable_parameters": 30228480,
     "total_parameters": 1973315584,
     "trainable_fraction": 0.015319,
@@ -32,438 +32,468 @@
       {
         "epoch": 1,
         "micro_step": 16,
-        "loss": 2.3594
+        "loss": 2.1255
       },
       {
         "epoch": 1,
         "micro_step": 32,
-        "loss": 2.1802
+        "loss": 2.2371
       },
       {
         "epoch": 1,
         "micro_step": 48,
-        "loss": 1.6297
+        "loss": 1.6649
       },
       {
         "epoch": 1,
         "micro_step": 64,
-        "loss": 0.8397
+        "loss": 0.9164
       },
       {
         "epoch": 1,
         "micro_step": 80,
-        "loss": 0.3928
+        "loss": 0.4765
       },
       {
         "epoch": 1,
         "micro_step": 96,
-        "loss": 0.1901
+        "loss": 0.2144
       },
       {
         "epoch": 1,
         "micro_step": 112,
-        "loss": 0.1108
+        "loss": 0.1449
       },
       {
         "epoch": 1,
         "micro_step": 128,
-        "loss": 0.0988
+        "loss": 0.1592
       },
       {
         "epoch": 1,
         "micro_step": 144,
-        "loss": 0.1792
+        "loss": 0.0978
       },
       {
         "epoch": 1,
         "micro_step": 160,
-        "loss": 0.1193
+        "loss": 0.0946
       },
       {
         "epoch": 1,
         "micro_step": 176,
-        "loss": 0.1214
+        "loss": 0.0612
       },
       {
         "epoch": 1,
         "micro_step": 192,
-        "loss": 0.13
+        "loss": 0.0741
       },
       {
         "epoch": 1,
         "micro_step": 208,
-        "loss": 0.0628
+        "loss": 0.0471
       },
       {
         "epoch": 1,
         "micro_step": 224,
-        "loss": 0.0602
+        "loss": 0.0848
       },
       {
         "epoch": 1,
         "micro_step": 240,
-        "loss": 0.0675
+        "loss": 0.0812
       },
       {
         "epoch": 1,
         "micro_step": 256,
-        "loss": 0.0641
+        "loss": 0.0721
       },
       {
         "epoch": 1,
         "micro_step": 272,
-        "loss": 0.0616
+        "loss": 0.0481
       },
       {
         "epoch": 1,
         "micro_step": 288,
-        "loss": 0.0573
+        "loss": 0.0601
       },
       {
         "epoch": 1,
         "micro_step": 304,
-        "loss": 0.0416
+        "loss": 0.0882
       },
       {
         "epoch": 1,
         "micro_step": 320,
+        "loss": 0.1025
+      },
+      {
+        "epoch": 1,
+        "micro_step": 336,
         "loss": 0.0613
       },
       {
         "epoch": 1,
-        "micro_step": 336,
-        "loss": 0.0462
-      },
-      {
-        "epoch": 1,
         "micro_step": 352,
-        "loss": 0.0444
+        "loss": 0.0569
       },
       {
         "epoch": 1,
         "micro_step": 368,
-        "loss": 0.0248
+        "loss": 0.0573
       },
       {
         "epoch": 1,
         "micro_step": 384,
-        "loss": 0.0515
+        "loss": 0.0533
       },
       {
         "epoch": 1,
         "micro_step": 400,
-        "loss": 0.0364
+        "loss": 0.0398
       },
       {
         "epoch": 1,
         "micro_step": 416,
-        "loss": 0.028
+        "loss": 0.0478
       },
       {
         "epoch": 1,
         "micro_step": 432,
-        "loss": 0.0614
+        "loss": 0.0304
       },
       {
         "epoch": 1,
         "micro_step": 448,
-        "loss": 0.0274
+        "loss": 0.043
       },
       {
         "epoch": 1,
         "micro_step": 464,
-        "loss": 0.0336
+        "loss": 0.0481
       },
       {
         "epoch": 1,
         "micro_step": 480,
-        "loss": 0.0379
+        "loss": 0.0292
       },
       {
         "epoch": 1,
         "micro_step": 496,
-        "loss": 0.0218
+        "loss": 0.0348
       },
       {
         "epoch": 1,
         "micro_step": 512,
-        "loss": 0.0284
+        "loss": 0.0354
       },
       {
         "epoch": 1,
         "micro_step": 528,
-        "loss": 0.0374
+        "loss": 0.0228
       },
       {
         "epoch": 1,
         "micro_step": 544,
-        "loss": 0.048
+        "loss": 0.029
       },
       {
         "epoch": 1,
         "micro_step": 560,
-        "loss": 0.0288
+        "loss": 0.0256
       },
       {
         "epoch": 1,
         "micro_step": 576,
-        "loss": 0.0358
+        "loss": 0.0261
       },
       {
         "epoch": 1,
         "micro_step": 592,
-        "loss": 0.0275
+        "loss": 0.0251
       },
       {
         "epoch": 1,
         "micro_step": 608,
-        "loss": 0.0325
+        "loss": 0.0241
       },
       {
         "epoch": 1,
         "micro_step": 624,
-        "loss": 0.0176
+        "loss": 0.0291
       },
       {
         "epoch": 1,
         "micro_step": 640,
-        "loss": 0.0189
+        "loss": 0.0227
       },
       {
         "epoch": 1,
         "micro_step": 656,
-        "loss": 0.0148
+        "loss": 0.0345
       },
       {
         "epoch": 1,
-        "micro_step": 668,
-        "loss": 0.0196
+        "micro_step": 672,
+        "loss": 0.0271
+      },
+      {
+        "epoch": 1,
+        "micro_step": 688,
+        "loss": 0.0293
+      },
+      {
+        "epoch": 1,
+        "micro_step": 704,
+        "loss": 0.0212
+      },
+      {
+        "epoch": 1,
+        "micro_step": 716,
+        "loss": 0.0258
       },
       {
         "epoch": 2,
         "micro_step": 16,
-        "loss": 0.0324
+        "loss": 0.0196
       },
       {
         "epoch": 2,
         "micro_step": 32,
-        "loss": 0.0264
+        "loss": 0.0305
       },
       {
         "epoch": 2,
         "micro_step": 48,
-        "loss": 0.0192
+        "loss": 0.017
       },
       {
         "epoch": 2,
         "micro_step": 64,
-        "loss": 0.0199
-      },
-      {
-        "epoch": 2,
-        "micro_step": 80,
-        "loss": 0.0145
-      },
-      {
-        "epoch": 2,
-        "micro_step": 96,
-        "loss": 0.0111
-      },
-      {
-        "epoch": 2,
-        "micro_step": 112,
-        "loss": 0.0108
-      },
-      {
-        "epoch": 2,
-        "micro_step": 128,
-        "loss": 0.0129
-      },
-      {
-        "epoch": 2,
-        "micro_step": 144,
-        "loss": 0.0127
-      },
-      {
-        "epoch": 2,
-        "micro_step": 160,
-        "loss": 0.0124
-      },
-      {
-        "epoch": 2,
-        "micro_step": 176,
-        "loss": 0.0213
-      },
-      {
-        "epoch": 2,
-        "micro_step": 192,
-        "loss": 0.0164
-      },
-      {
-        "epoch": 2,
-        "micro_step": 208,
-        "loss": 0.009
-      },
-      {
-        "epoch": 2,
-        "micro_step": 224,
-        "loss": 0.01
-      },
-      {
-        "epoch": 2,
-        "micro_step": 240,
-        "loss": 0.0084
-      },
-      {
-        "epoch": 2,
-        "micro_step": 256,
-        "loss": 0.0085
-      },
-      {
-        "epoch": 2,
-        "micro_step": 272,
-        "loss": 0.0105
-      },
-      {
-        "epoch": 2,
-        "micro_step": 288,
-        "loss": 0.0166
-      },
-      {
-        "epoch": 2,
-        "micro_step": 304,
         "loss": 0.015
       },
       {
         "epoch": 2,
-        "micro_step": 320,
-        "loss": 0.011
+        "micro_step": 80,
+        "loss": 0.0225
       },
       {
         "epoch": 2,
-        "micro_step": 336,
-        "loss": 0.0155
+        "micro_step": 96,
+        "loss": 0.0143
       },
       {
         "epoch": 2,
-        "micro_step": 352,
-        "loss": 0.0117
+        "micro_step": 112,
+        "loss": 0.0105
       },
       {
         "epoch": 2,
-        "micro_step": 368,
-        "loss": 0.0058
+        "micro_step": 128,
+        "loss": 0.0111
       },
       {
         "epoch": 2,
-        "micro_step": 384,
-        "loss": 0.0136
+        "micro_step": 144,
+        "loss": 0.0208
       },
       {
         "epoch": 2,
-        "micro_step": 400,
-        "loss": 0.0064
+        "micro_step": 160,
+        "loss": 0.0161
       },
       {
         "epoch": 2,
-        "micro_step": 416,
-        "loss": 0.0078
+        "micro_step": 176,
+        "loss": 0.0306
       },
       {
         "epoch": 2,
-        "micro_step": 432,
-        "loss": 0.0085
+        "micro_step": 192,
+        "loss": 0.0178
       },
       {
         "epoch": 2,
-        "micro_step": 448,
-        "loss": 0.0062
-      },
-      {
-        "epoch": 2,
-        "micro_step": 464,
+        "micro_step": 208,
         "loss": 0.0118
       },
       {
         "epoch": 2,
+        "micro_step": 224,
+        "loss": 0.0165
+      },
+      {
+        "epoch": 2,
+        "micro_step": 240,
+        "loss": 0.015
+      },
+      {
+        "epoch": 2,
+        "micro_step": 256,
+        "loss": 0.0161
+      },
+      {
+        "epoch": 2,
+        "micro_step": 272,
+        "loss": 0.0067
+      },
+      {
+        "epoch": 2,
+        "micro_step": 288,
+        "loss": 0.0214
+      },
+      {
+        "epoch": 2,
+        "micro_step": 304,
+        "loss": 0.0096
+      },
+      {
+        "epoch": 2,
+        "micro_step": 320,
+        "loss": 0.0165
+      },
+      {
+        "epoch": 2,
+        "micro_step": 336,
+        "loss": 0.014
+      },
+      {
+        "epoch": 2,
+        "micro_step": 352,
+        "loss": 0.0109
+      },
+      {
+        "epoch": 2,
+        "micro_step": 368,
+        "loss": 0.0088
+      },
+      {
+        "epoch": 2,
+        "micro_step": 384,
+        "loss": 0.0055
+      },
+      {
+        "epoch": 2,
+        "micro_step": 400,
+        "loss": 0.0053
+      },
+      {
+        "epoch": 2,
+        "micro_step": 416,
+        "loss": 0.0105
+      },
+      {
+        "epoch": 2,
+        "micro_step": 432,
+        "loss": 0.0049
+      },
+      {
+        "epoch": 2,
+        "micro_step": 448,
+        "loss": 0.0119
+      },
+      {
+        "epoch": 2,
+        "micro_step": 464,
+        "loss": 0.0096
+      },
+      {
+        "epoch": 2,
         "micro_step": 480,
-        "loss": 0.0153
+        "loss": 0.0071
       },
       {
         "epoch": 2,
         "micro_step": 496,
-        "loss": 0.0074
+        "loss": 0.0138
       },
       {
         "epoch": 2,
         "micro_step": 512,
-        "loss": 0.004
+        "loss": 0.0066
       },
       {
         "epoch": 2,
         "micro_step": 528,
-        "loss": 0.0075
+        "loss": 0.0097
       },
       {
         "epoch": 2,
         "micro_step": 544,
-        "loss": 0.0087
+        "loss": 0.0134
       },
       {
         "epoch": 2,
         "micro_step": 560,
-        "loss": 0.0067
+        "loss": 0.0074
       },
       {
         "epoch": 2,
         "micro_step": 576,
-        "loss": 0.0056
+        "loss": 0.0087
       },
       {
         "epoch": 2,
         "micro_step": 592,
-        "loss": 0.0123
+        "loss": 0.0081
       },
       {
         "epoch": 2,
         "micro_step": 608,
-        "loss": 0.0079
+        "loss": 0.0058
       },
       {
         "epoch": 2,
         "micro_step": 624,
-        "loss": 0.0145
+        "loss": 0.0171
       },
       {
         "epoch": 2,
         "micro_step": 640,
-        "loss": 0.0082
+        "loss": 0.0134
       },
       {
         "epoch": 2,
         "micro_step": 656,
-        "loss": 0.0078
+        "loss": 0.0055
       },
       {
         "epoch": 2,
-        "micro_step": 668,
-        "loss": 0.0067
+        "micro_step": 672,
+        "loss": 0.0084
+      },
+      {
+        "epoch": 2,
+        "micro_step": 688,
+        "loss": 0.0083
+      },
+      {
+        "epoch": 2,
+        "micro_step": 704,
+        "loss": 0.0093
+      },
+      {
+        "epoch": 2,
+        "micro_step": 716,
+        "loss": 0.0308
       }
     ],
     "epoch_val": [
       {
         "epoch": 1,
-        "val_tool_selection_accuracy": 0.7647,
+        "val_tool_selection_accuracy": 0.7451,
         "val_argument_accuracy": 0.8627
       },
       {
         "epoch": 2,
-        "val_tool_selection_accuracy": 0.8431,
-        "val_argument_accuracy": 0.9216
+        "val_tool_selection_accuracy": 0.7843,
+        "val_argument_accuracy": 0.902
       }
     ],
     "best_epoch": 2,
-    "seconds": 1718.8
+    "seconds": 1381.5
   },
   "masking": {
     "input_tokens": 760,
@@ -476,10 +506,10 @@
     "all_supervision_is_assistant_text": true
   },
   "data_checks": {
-    "train_rows": 668,
+    "train_rows": 716,
     "val_rows": 51,
     "test_rows": 150,
-    "train_questions": 668,
+    "train_questions": 716,
     "val_questions_in_train": 0,
     "test_questions_in_train": 0,
     "val_tickers_in_train": [],
@@ -677,8 +707,8 @@
       "tuned": {
         "examples": 51,
         "schema_valid_rate": 1.0,
-        "tool_selection_accuracy": 0.8431,
-        "argument_accuracy": 0.9216,
+        "tool_selection_accuracy": 0.7843,
+        "argument_accuracy": 0.902,
         "abstention": {
           "scored": true,
           "abstain_rows": 15,
@@ -814,17 +844,17 @@
           },
           "news_unavailable": {
             "examples": 4,
-            "tool_selection_accuracy": 1.0,
+            "tool_selection_accuracy": 0.25,
             "schema_valid_rate": 1.0
           },
           "non_us_currency": {
             "examples": 4,
-            "tool_selection_accuracy": 0.5,
+            "tool_selection_accuracy": 0.75,
             "schema_valid_rate": 1.0
           },
           "overview": {
             "examples": 4,
-            "tool_selection_accuracy": 0.5,
+            "tool_selection_accuracy": 0.25,
             "schema_valid_rate": 1.0
           },
           "period_ambiguity": {
@@ -845,17 +875,18 @@
         },
         "predicted_tools": {
           "finish": 5,
-          "get_financial_ratios": 20,
-          "get_stock_quote": 21,
-          "get_historical_prices": 5
+          "get_financial_ratios": 19,
+          "get_stock_quote": 18,
+          "get_company_news": 3,
+          "get_historical_prices": 6
         },
         "tool_selection_95ci": [
-          0.7199,
-          0.9183
+          0.6537,
+          0.8751
         ],
         "argument_accuracy_95ci": [
-          0.815,
-          0.9691
+          0.7902,
+          0.9574
         ]
       }
     },
@@ -1044,32 +1075,32 @@
       "tuned": {
         "examples": 150,
         "schema_valid_rate": 1.0,
-        "tool_selection_accuracy": 0.8267,
-        "argument_accuracy": 0.86,
+        "tool_selection_accuracy": 0.8,
+        "argument_accuracy": 0.8533,
         "abstention": {
           "scored": true,
           "abstain_rows": 37,
           "non_abstain_rows": 113,
           "confusion": {
             "true_positive": 16,
-            "false_positive": 1,
+            "false_positive": 0,
             "false_negative": 21,
-            "true_negative": 112
+            "true_negative": 113
           },
-          "precision": 0.9412,
+          "precision": 1.0,
           "recall": 0.4324,
-          "f1": 0.5926,
-          "specificity": 0.9912,
-          "balanced_accuracy": 0.7118,
-          "over_abstention_rate": 0.0088,
+          "f1": 0.6038,
+          "specificity": 1.0,
+          "balanced_accuracy": 0.7162,
+          "over_abstention_rate": 0.0,
           "under_abstention_rate": 0.5676,
           "recall_95ci": [
             0.2867,
             0.5909
           ],
           "precision_95ci": [
-            0.7302,
-            0.9895
+            0.8064,
+            1.0
           ],
           "no_positive_predictions": false,
           "malformed_rows": 0,
@@ -1137,9 +1168,9 @@
               "rate": 0.0
             },
             "unsupported_metric": {
-              "declined": 1,
+              "declined": 0,
               "total": 6,
-              "rate": 0.1667
+              "rate": 0.0
             }
           }
         },
@@ -1181,7 +1212,7 @@
           },
           "news_unavailable": {
             "examples": 8,
-            "tool_selection_accuracy": 1.0,
+            "tool_selection_accuracy": 0.5,
             "schema_valid_rate": 1.0
           },
           "non_us_currency": {
@@ -1191,7 +1222,7 @@
           },
           "overview": {
             "examples": 30,
-            "tool_selection_accuracy": 0.6667,
+            "tool_selection_accuracy": 0.6333,
             "schema_valid_rate": 1.0
           },
           "period_ambiguity": {
@@ -1206,53 +1237,54 @@
           },
           "unsupported_metric": {
             "examples": 6,
-            "tool_selection_accuracy": 0.8333,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           }
         },
         "predicted_tools": {
-          "get_stock_quote": 68,
-          "get_historical_prices": 13,
-          "get_financial_ratios": 52,
-          "finish": 17
+          "get_stock_quote": 63,
+          "get_historical_prices": 14,
+          "get_financial_ratios": 53,
+          "finish": 16,
+          "get_company_news": 4
         },
         "tool_selection_95ci": [
-          0.7581,
-          0.8789
+          0.7289,
+          0.8562
         ],
         "argument_accuracy_95ci": [
-          0.7954,
-          0.9066
+          0.7879,
+          0.9011
         ]
       }
     },
     "paired": {
       "val": {
         "tool_selection": {
-          "gained": 17,
+          "gained": 14,
           "lost": 1,
           "both": 26,
-          "neither": 7
+          "neither": 10
         },
         "argument_accuracy": {
-          "gained": 44,
+          "gained": 43,
           "lost": 0,
           "both": 3,
-          "neither": 4
+          "neither": 5
         }
       },
       "test": {
         "tool_selection": {
-          "gained": 45,
+          "gained": 41,
           "lost": 2,
           "both": 79,
-          "neither": 24
+          "neither": 28
         },
         "argument_accuracy": {
-          "gained": 126,
+          "gained": 125,
           "lost": 3,
           "both": 3,
-          "neither": 18
+          "neither": 19
         }
       }
     }
@@ -1874,7 +1906,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"ARKK\", \"period\": \"1y\"}}"
+          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"ARKK\", \"currency\": \"USD\", \"period\": \"1y\"}}"
         },
         {
           "id": "gold_000266",
@@ -1902,7 +1934,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"ARKK\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "gold_000690",
@@ -2358,43 +2390,43 @@
           "id": "gold_000031",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ARKK\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"ARKK\"}}"
         },
         {
           "id": "gold_000285",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ARKK\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"ARKK\"}}"
         },
         {
           "id": "gold_000543",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ARKK\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"ARKK\"}}"
         },
         {
           "id": "gold_000579",
@@ -2442,15 +2474,15 @@
           "id": "gold_000154",
           "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"ULVR.L\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ULVR.L\"}}"
         },
         {
           "id": "gold_000175",
@@ -2484,15 +2516,15 @@
           "id": "gold_000097",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"JPM\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"JPM\",\"period\":\"1y\"}}"
         },
         {
           "id": "gold_000128",
@@ -3126,7 +3158,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"PLUG\", \"period\": \"none\"}}"
+          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"PLUG\", \"period\": \"1y\"}}"
         },
         {
           "id": "ts_0032",
@@ -3518,7 +3550,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"QCOM\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"QCOM\",\n    \"ticker\": \"CSCO\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0060",
@@ -3546,7 +3578,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"HSBA.L\", \"currency\": \"USD\"}}"
+          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"HSBA.L\", \"currency\": \"EUR\"}}"
         },
         {
           "id": "ts_0062",
@@ -3980,7 +4012,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"ABCDE\", \"period\": \"1y\"}}"
+          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"INTC\", \"period\": \"1y\"}}"
         },
         {
           "id": "ts_0093",
@@ -5116,7 +5148,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"GM\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"GM\"}},"
         },
         {
           "id": "ts_0024",
@@ -5206,15 +5238,15 @@
           "id": "ts_0030",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"Crox\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"Crox\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0031",
@@ -5993,12 +6025,12 @@
           "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
           "tool_correct": true,
-          "args_correct": true,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"MA\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"EXX\"}},"
         },
         {
           "id": "ts_0087",
@@ -6144,29 +6176,29 @@
           "id": "ts_0097",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"IBM\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"IBM\"}}"
         },
         {
           "id": "ts_0098",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"CAT\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"CAT\"}}"
         },
         {
           "id": "ts_0099",
@@ -6200,29 +6232,29 @@
           "id": "ts_0101",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"GOOGL\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"GOOGL\",\"limit\":1}}"
         },
         {
           "id": "ts_0102",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NKE\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"NKE\"}}"
         },
         {
           "id": "ts_0103",
@@ -6236,7 +6268,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"INTC\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"INTC\"}}"
         },
         {
           "id": "ts_0104",
@@ -6592,15 +6624,15 @@
           "id": "ts_0129",
           "intent": "unsupported_metric",
           "expected_tool": "get_financial_ratios",
-          "predicted_tool": "finish",
+          "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": false,
-          "abstention_decision": "abstain",
-          "abstention_signal": true,
-          "abstention_correct": false,
-          "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
+          "abstention_decision": "call_tool",
+          "abstention_signal": false,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"MSFT\"}}"
         },
         {
           "id": "ts_0130",
@@ -6900,5 +6932,5 @@
     }
   },
   "peak_gpu_gb": 30.71,
-  "total_seconds": 2579.8
+  "total_seconds": 2206.5
 }

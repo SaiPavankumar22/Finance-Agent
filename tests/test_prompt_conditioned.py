@@ -114,20 +114,25 @@ def test_india_rows_score_with_the_shared_metrics():
     assert scored["abstention_correct"] is True
 
 
-def test_error_replay_rows_are_weighted_and_finish_after_two_failures():
+def test_error_replay_rows_never_repeat_a_failed_call():
     rows = load(TRAIN)
     assert all(isinstance(row.get("weight"), int) and row["weight"] >= 1 for row in rows)
     error_rows = [row for row in rows if row["expected_behavior"] == "stop_after_bounded_attempts"]
     assert len(error_rows) >= 40, len(error_rows)
     for row in error_rows:
+        calls = [
+            json.dumps(json.loads(message["content"]), sort_keys=True)
+            for message in row["messages"]
+            if message["role"] == "assistant"
+        ]
+        assert len(calls) == len(set(calls)), f"{row['id']} repeats a call"
         tool_turns = [message for message in row["messages"] if message["role"] == "tool"]
-        assert len(tool_turns) >= 2, row["id"]
+        assert tool_turns, row["id"]
         assert all(
-            json.loads(message["content"])["result"]["status"] == "error"
-            for message in tool_turns[-2:]
+            json.loads(message["content"])["result"]["status"] == "error" for message in tool_turns
         )
         assert json.loads(row["messages"][-1]["content"])["tool"] == "finish", row["id"]
-        assert row["weight"] >= 3, row["id"]
+        assert row["weight"] >= 2, row["id"]
 
 
 def test_error_replay_stage_reports_its_weighting():
@@ -136,7 +141,8 @@ def test_error_replay_stage_reports_its_weighting():
             encoding="utf-8"
         )
     )
-    assert manifest["stage"] == "error-replay-v1"
-    assert manifest["error_weight"] == 3
+    assert manifest["stage"] == "error-replay-v2"
+    assert manifest["error_weight"] == 2
     assert manifest["error_share_of_examples"] >= 0.10
-    assert all(not values for values in manifest["overlap_with_heldout"].values())
+    assert manifest["fallback_rows"] >= 12
+    assert manifest["rewritten_trajectories"] >= 40

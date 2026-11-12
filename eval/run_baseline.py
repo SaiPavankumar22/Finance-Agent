@@ -15,7 +15,6 @@ from typing import Any
 
 from dotenv import load_dotenv
 
-from app.tools.registry import tool_prompt
 from eval.metrics import Prediction, score_prediction, summarize
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -23,12 +22,10 @@ TESTSET = PROJECT_ROOT / "eval" / "testset.jsonl"
 RESULTS_DIR = PROJECT_ROOT / "eval" / "results"
 CACHE_DIR = RESULTS_DIR / "cache"
 
-SYSTEM_PROMPT = f"""You are a financial research tool planner.
-Never answer the user directly. Emit exactly one JSON object and nothing else.
-Choose the next tool call from this list:
-{tool_prompt()}
-Use the ticker and period from the question. Do not invent a ticker.
-"""
+#: The WS6 prompt is the single planner prompt: it carries the same tool block
+#: as before plus the refusal affordance, and every row now trains on it, so
+#: evaluation must send exactly this text or it measures a prompt shift.
+from eval.safety import SAFETY_SYSTEM_PROMPT as SYSTEM_PROMPT  # noqa: E402
 
 
 def load_rows(limit: int | None) -> list[dict[str, Any]]:

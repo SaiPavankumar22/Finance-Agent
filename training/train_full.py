@@ -69,6 +69,7 @@ image = (
     .add_local_file("eval/testset.jsonl", TESTSET_PATH)
     .add_local_file("eval/safety.py", f"{SRC}/eval/safety.py")
     .add_local_file("eval/safety_set.jsonl", f"{SRC}/eval/safety_set.jsonl")
+    .add_local_file("eval/india_set.jsonl", f"{SRC}/eval/india_set.jsonl")
     .add_local_file("training/__init__.py", f"{SRC}/training/__init__.py")
     .add_local_file("training/data.py", f"{SRC}/training/data.py")
     .add_local_file("data/splits/train.jsonl", TRAIN_PATH)
@@ -621,6 +622,87 @@ def evaluate_adapter(
     adapters.commit()
     print(f"results written to {result_path}", flush=True)
     return payload
+
+
+@app.function(gpu=GPU_TYPE, timeout=3600, volumes={"/out": adapters}, max_containers=1)
+def run_india(
+    adapter_dir: str = "", max_new_tokens: int = 96, tag: str = "india"
+) -> dict[str, Any]:
+    """India-only held-out evaluation, same prompt and decode rule as the rest."""
+    import torch
+    from peft import PeftModel
+    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+
+    sys.path.insert(0, SRC)
+    from training.data import load_jsonl
+
+    rows = load_jsonl(f"{SRC}/eval/india_set.jsonl")
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, trust_remote_code=True)
+    base = AutoModelForCausalLM.from_pretrained(
+        MODEL_ID,
+        trust_remote_code=True,
+        device_map={"": 0},
+        quantization_config=BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_compute_dtype=torch.bfloat16,
+            bnb_4bit_use_double_quant=True,
+            llm_int8_skip_modules=["lm_head"],
+        ),
+    )
+    model = PeftModel.from_pretrained(base, adapter_dir) if adapter_dir else base
+    model.eval()
+
+    def evaluate() -> list[dict[str, Any]]:
+        return [
+            score_row(row, generate_first_call(model, tokenizer, row["question"], max_new_tokens))
+            for row in rows
+        ]
+
+    tuned = evaluate()
+    if adapter_dir:
+        model.disable_adapter_layers()
+    base_scored = evaluate()
+    if adapter_dir:
+        model.enable_adapter_layers()
+
+    payload = {
+        "model": MODEL_ID,
+        "adapter": adapter_dir,
+        "set": "eval/india_set.jsonl",
+        "rows": len(rows),
+        "eval": {"base": summary_block(base_scored), "tuned": summary_block(tuned)},
+        "predictions": {"base": base_scored, "tuned": tuned},
+        "peak_gpu_gb": round(torch.cuda.max_memory_allocated() / 1024**3, 2),
+    }
+    Path(f"/out/{tag}.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    adapters.commit()
+    return payload
+
+
+@app.local_entrypoint()
+def india_main() -> None:
+    from dotenv import load_dotenv
+
+    load_dotenv(".env", override=False)
+    token = os.getenv("HF_SECONDARY_TOKEN") or os.getenv("HF_PRIMARY_TOKEN")
+    if not token:
+        raise SystemExit("Set HF_SECONDARY_TOKEN or HF_PRIMARY_TOKEN in .env")
+    tag = os.getenv("INDIA_TAG", "india")
+    result = run_india.with_options(secrets=[modal.Secret.from_dict({"HF_TOKEN": token})]).remote(
+        adapter_dir=os.getenv("INDIA_ADAPTER", "/out/adapter-r16-e2-lr0.0001-best"),
+        max_new_tokens=int(os.getenv("SFT_MAX_NEW", "96")),
+        tag=tag,
+    )
+    output = Path("artifacts/sft")
+    output.mkdir(parents=True, exist_ok=True)
+    (output / f"{tag}.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    for name in ("base", "tuned"):
+        block = result["eval"][name]
+        print(
+            f"{name:6} tool {block['tool_selection_accuracy']:.4f} "
+            f"args {block['argument_accuracy']:.4f} schema {block['schema_valid_rate']:.4f}"
+        )
 
 
 @app.function(gpu=GPU_TYPE, timeout=7200, volumes={"/out": adapters}, max_containers=1)

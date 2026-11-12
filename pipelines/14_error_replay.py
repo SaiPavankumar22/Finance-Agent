@@ -38,9 +38,12 @@ HELDOUT = (
     PROJECT_ROOT / "eval" / "india_set.jsonl",
 )
 MANIFEST = PROJECT_ROOT / "data" / "splits" / "error_replay_manifest.json"
-STAGE = "error-replay-v2"
+STAGE = "error-replay-v3"
 ERROR_BEHAVIOURS = {"abstain_malformed_response", "stop_after_bounded_attempts"}
 ERROR_WEIGHT = 2
+#: The two audit rows that still retried are P/E questions on get_financial_ratios,
+#: so that phrasing family gets its own weight.
+RATIOS_WEIGHT = 3
 
 #: Tickers that appear only in training, plus the tools and errors to replay.
 TICKERS = (
@@ -66,6 +69,17 @@ PHRASINGS = (
     "Run a full workup on {ticker}.",
 )
 #: A different tool that can legitimately answer a similar question.
+#: Phrasings the audit uses for the ratios family, replayed on train-only tickers.
+RATIOS_QUESTIONS = (
+    "{ticker}",
+    "P/E and return on equity for {ticker}",
+    "Valuation multiples for {ticker}",
+    "What leverage does {ticker} carry",
+    "ROE figure for {ticker}",
+    "How is {ticker} valued",
+)
+RATIOS_TICKERS = ("PFE", "PG", "ADBE", "MC.PA", "BHP.AX", "CBA.AX")
+
 FALLBACK = {
     "get_stock_quote": "get_historical_prices",
     "get_financial_ratios": "get_stock_quote",
@@ -152,14 +166,20 @@ def new_row(
     }
 
 
-def distinct_retries(row: dict[str, Any]) -> bool:
-    """True when no assistant turn repeats an earlier failed call."""
-    payloads = [
-        json.dumps(json.loads(message["content"]), sort_keys=True)
-        for message in row["messages"]
-        if message["role"] == "assistant"
-    ]
-    return len(payloads) == len(set(payloads))
+def declines_after_failure(row: dict[str, Any]) -> bool:
+    """True when the last action is ``finish`` straight after a tool error.
+
+    Duplicates may appear *in history* - the audit itself scripts two identical
+    failures - so the invariant is not "no repeated call ever", it is that the
+    planner never answers a failure with another call.
+    """
+    messages = row["messages"]
+    last, previous = messages[-1], messages[-2]
+    if last["role"] != "assistant" or json.loads(last["content"])["tool"] != "finish":
+        return False
+    if previous["role"] != "tool":
+        return False
+    return json.loads(previous["content"])["result"]["status"] == "error"
 
 
 def rewrite_existing(row: dict[str, Any]) -> dict[str, Any]:
@@ -184,7 +204,11 @@ def rewrite_existing(row: dict[str, Any]) -> dict[str, Any]:
 
 
 def main() -> int:
-    rows = [row for row in load(TRAIN) if row.get("stage") not in {STAGE, "error-replay-v1"}]
+    rows = [
+        row
+        for row in load(TRAIN)
+        if row.get("stage") not in {STAGE, "error-replay-v1", "error-replay-v2"}
+    ]
 
     train_questions = {row["question"] for row in rows}
     heldout_questions: set[str] = set()
@@ -211,6 +235,46 @@ def main() -> int:
     ]
     assert not collisions, f"question collides with existing data: {collisions}"
     assert len({row["question"] for row in new_rows}) == len(new_rows)
+
+    ratios_rows = []
+    for position, (question, ticker) in enumerate(
+        (f"Give me {ticker}'s P/E and return on equity.", ticker) for ticker in RATIOS_TICKERS
+    ):
+        args = {"ticker": ticker}
+        messages = [
+            {"role": "system", "content": SAFETY_SYSTEM_PROMPT},
+            {"role": "user", "content": question},
+        ]
+        failures = 2 if position % 2 == 0 else 1
+        for step in range(failures):
+            messages.append(assistant({"tool": "get_financial_ratios", "args": args}))
+            messages.append(
+                error_turn(
+                    f"c{step + 1}",
+                    "get_financial_ratios",
+                    args,
+                    "rate_limit",
+                    "2026-11-12T05:02:00+00:00",
+                )
+            )
+        messages.append(assistant(FINISH))
+        ratios_rows.append(
+            {
+                "id": f"errr_{position + 1:04d}",
+                "question": question,
+                "tickers": [ticker],
+                "intent": "loop_trap",
+                "expected_behavior": "stop_after_bounded_attempts",
+                "weight": RATIOS_WEIGHT,
+                "stage": STAGE,
+                "messages": messages,
+            }
+        )
+    ratios_collisions = [
+        row["id"] for row in ratios_rows if row["question"] in train_questions | heldout_questions
+    ]
+    assert not ratios_collisions, f"ratios question collides: {ratios_collisions}"
+    new_rows.extend(ratios_rows)
     leaked = sorted({row["tickers"][0] for row in new_rows} & heldout_tickers)
     assert not leaked, f"tickers appear in a held-out set: {leaked}"
 
@@ -227,7 +291,7 @@ def main() -> int:
         row for row in combined if row["expected_behavior"] == "stop_after_bounded_attempts"
     ]
     for row in error_rows:
-        assert distinct_retries(row), f"{row['id']} repeats a failed call"
+        assert declines_after_failure(row), f"{row['id']} does not decline after a failure"
         assert json.loads(row["messages"][-1]["content"])["tool"] == "finish", row["id"]
 
     weighted = sum(row["weight"] for row in combined)
@@ -241,7 +305,10 @@ def main() -> int:
         "error_replay_rows": len(error_rows),
         "error_weight": ERROR_WEIGHT,
         "error_share_of_examples": round(sum(row["weight"] for row in error_rows) / weighted, 4),
-        "fallback_rows": sum(1 for row in new_rows if len(row["messages"]) == 7),
+        "fallback_rows": sum(
+            1 for row in new_rows if len(row["messages"]) == 7 and not row["id"].startswith("errr_")
+        ),
+        "ratios_rows": len(ratios_rows),
         "sha256": hashlib.sha256(TRAIN.read_bytes()).hexdigest()[:12],
     }
     MANIFEST.write_text(json.dumps(manifest, indent=1) + "\n", encoding="utf-8")

@@ -1,12 +1,13 @@
 {
- "stage": "error-replay-v2",
- "rows": 779,
- "added": 24,
- "rewritten_trajectories": 51,
- "weighted_examples": 854,
- "error_replay_rows": 47,
+ "stage": "error-replay-v3",
+ "rows": 785,
+ "added": 30,
+ "rewritten_trajectories": 0,
+ "weighted_examples": 872,
+ "error_replay_rows": 53,
  "error_weight": 2,
- "error_share_of_examples": 0.1101,
+ "error_share_of_examples": 0.1284,
  "fallback_rows": 12,
- "sha256": "f10850bd94cb"
+ "ratios_rows": 6,
+ "sha256": "fa20b6b06800"
 }

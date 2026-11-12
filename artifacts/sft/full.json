@@ -19,12 +19,12 @@
     "seed": 13
   },
   "train": {
-    "rows": 755,
-    "micro_steps": 1510,
-    "optimizer_steps": 96,
-    "tokens_seen": 2560956,
+    "rows": 779,
+    "micro_steps": 1708,
+    "optimizer_steps": 108,
+    "tokens_seen": 2714648,
     "rows_over_max_len": 1,
-    "supervised_tokens": 34337,
+    "supervised_tokens": 37207,
     "trainable_parameters": 30228480,
     "total_parameters": 1973315584,
     "trainable_fraction": 0.015319,
@@ -32,498 +32,558 @@
       {
         "epoch": 1,
         "micro_step": 16,
-        "loss": 1.9127
+        "loss": 1.9147
       },
       {
         "epoch": 1,
         "micro_step": 32,
-        "loss": 2.0106
+        "loss": 1.843
       },
       {
         "epoch": 1,
         "micro_step": 48,
-        "loss": 1.4197
+        "loss": 1.4444
       },
       {
         "epoch": 1,
         "micro_step": 64,
-        "loss": 0.706
+        "loss": 0.9036
       },
       {
         "epoch": 1,
         "micro_step": 80,
-        "loss": 0.2925
+        "loss": 0.3413
       },
       {
         "epoch": 1,
         "micro_step": 96,
-        "loss": 0.1447
+        "loss": 0.1692
       },
       {
         "epoch": 1,
         "micro_step": 112,
-        "loss": 0.1151
+        "loss": 0.127
       },
       {
         "epoch": 1,
         "micro_step": 128,
-        "loss": 0.094
+        "loss": 0.1259
       },
       {
         "epoch": 1,
         "micro_step": 144,
-        "loss": 0.1196
+        "loss": 0.1056
       },
       {
         "epoch": 1,
         "micro_step": 160,
-        "loss": 0.0887
+        "loss": 0.1342
       },
       {
         "epoch": 1,
         "micro_step": 176,
-        "loss": 0.0897
+        "loss": 0.079
       },
       {
         "epoch": 1,
         "micro_step": 192,
-        "loss": 0.0696
+        "loss": 0.0966
       },
       {
         "epoch": 1,
         "micro_step": 208,
-        "loss": 0.055
+        "loss": 0.0691
       },
       {
         "epoch": 1,
         "micro_step": 224,
-        "loss": 0.0595
+        "loss": 0.0734
       },
       {
         "epoch": 1,
         "micro_step": 240,
-        "loss": 0.0716
+        "loss": 0.0615
       },
       {
         "epoch": 1,
         "micro_step": 256,
-        "loss": 0.044
+        "loss": 0.058
       },
       {
         "epoch": 1,
         "micro_step": 272,
-        "loss": 0.0463
+        "loss": 0.0568
       },
       {
         "epoch": 1,
         "micro_step": 288,
-        "loss": 0.0437
+        "loss": 0.0542
       },
       {
         "epoch": 1,
         "micro_step": 304,
-        "loss": 0.084
+        "loss": 0.0513
       },
       {
         "epoch": 1,
         "micro_step": 320,
-        "loss": 0.0468
+        "loss": 0.054
       },
       {
         "epoch": 1,
         "micro_step": 336,
+        "loss": 0.1206
+      },
+      {
+        "epoch": 1,
+        "micro_step": 352,
+        "loss": 0.0308
+      },
+      {
+        "epoch": 1,
+        "micro_step": 368,
+        "loss": 0.0598
+      },
+      {
+        "epoch": 1,
+        "micro_step": 384,
+        "loss": 0.0527
+      },
+      {
+        "epoch": 1,
+        "micro_step": 400,
+        "loss": 0.0335
+      },
+      {
+        "epoch": 1,
+        "micro_step": 416,
+        "loss": 0.0212
+      },
+      {
+        "epoch": 1,
+        "micro_step": 432,
+        "loss": 0.0316
+      },
+      {
+        "epoch": 1,
+        "micro_step": 448,
+        "loss": 0.0416
+      },
+      {
+        "epoch": 1,
+        "micro_step": 464,
+        "loss": 0.0652
+      },
+      {
+        "epoch": 1,
+        "micro_step": 480,
+        "loss": 0.0254
+      },
+      {
+        "epoch": 1,
+        "micro_step": 496,
+        "loss": 0.0425
+      },
+      {
+        "epoch": 1,
+        "micro_step": 512,
+        "loss": 0.0331
+      },
+      {
+        "epoch": 1,
+        "micro_step": 528,
+        "loss": 0.0241
+      },
+      {
+        "epoch": 1,
+        "micro_step": 544,
         "loss": 0.0395
       },
       {
         "epoch": 1,
-        "micro_step": 352,
-        "loss": 0.0495
+        "micro_step": 560,
+        "loss": 0.0333
       },
       {
         "epoch": 1,
-        "micro_step": 368,
-        "loss": 0.0493
+        "micro_step": 576,
+        "loss": 0.0516
       },
       {
         "epoch": 1,
-        "micro_step": 384,
+        "micro_step": 592,
+        "loss": 0.0488
+      },
+      {
+        "epoch": 1,
+        "micro_step": 608,
+        "loss": 0.0403
+      },
+      {
+        "epoch": 1,
+        "micro_step": 624,
+        "loss": 0.0431
+      },
+      {
+        "epoch": 1,
+        "micro_step": 640,
+        "loss": 0.0141
+      },
+      {
+        "epoch": 1,
+        "micro_step": 656,
+        "loss": 0.0195
+      },
+      {
+        "epoch": 1,
+        "micro_step": 672,
         "loss": 0.0334
       },
       {
         "epoch": 1,
-        "micro_step": 400,
-        "loss": 0.0386
-      },
-      {
-        "epoch": 1,
-        "micro_step": 416,
-        "loss": 0.0531
-      },
-      {
-        "epoch": 1,
-        "micro_step": 432,
-        "loss": 0.0465
-      },
-      {
-        "epoch": 1,
-        "micro_step": 448,
-        "loss": 0.0437
-      },
-      {
-        "epoch": 1,
-        "micro_step": 464,
-        "loss": 0.0417
-      },
-      {
-        "epoch": 1,
-        "micro_step": 480,
-        "loss": 0.0588
-      },
-      {
-        "epoch": 1,
-        "micro_step": 496,
-        "loss": 0.0768
-      },
-      {
-        "epoch": 1,
-        "micro_step": 512,
-        "loss": 0.0253
-      },
-      {
-        "epoch": 1,
-        "micro_step": 528,
-        "loss": 0.0293
-      },
-      {
-        "epoch": 1,
-        "micro_step": 544,
-        "loss": 0.0302
-      },
-      {
-        "epoch": 1,
-        "micro_step": 560,
-        "loss": 0.0281
-      },
-      {
-        "epoch": 1,
-        "micro_step": 576,
-        "loss": 0.0453
-      },
-      {
-        "epoch": 1,
-        "micro_step": 592,
-        "loss": 0.0472
-      },
-      {
-        "epoch": 1,
-        "micro_step": 608,
-        "loss": 0.0202
-      },
-      {
-        "epoch": 1,
-        "micro_step": 624,
-        "loss": 0.0125
-      },
-      {
-        "epoch": 1,
-        "micro_step": 640,
-        "loss": 0.0197
-      },
-      {
-        "epoch": 1,
-        "micro_step": 656,
-        "loss": 0.029
-      },
-      {
-        "epoch": 1,
-        "micro_step": 672,
-        "loss": 0.0257
-      },
-      {
-        "epoch": 1,
         "micro_step": 688,
-        "loss": 0.0148
+        "loss": 0.0144
       },
       {
         "epoch": 1,
         "micro_step": 704,
-        "loss": 0.031
+        "loss": 0.0234
       },
       {
         "epoch": 1,
         "micro_step": 720,
-        "loss": 0.0165
+        "loss": 0.0295
       },
       {
         "epoch": 1,
         "micro_step": 736,
-        "loss": 0.0131
+        "loss": 0.0311
       },
       {
         "epoch": 1,
         "micro_step": 752,
-        "loss": 0.0398
+        "loss": 0.0425
       },
       {
         "epoch": 1,
-        "micro_step": 755,
-        "loss": 0.014
+        "micro_step": 768,
+        "loss": 0.051
       },
       {
-        "epoch": 2,
-        "micro_step": 16,
-        "loss": 0.0069
+        "epoch": 1,
+        "micro_step": 784,
+        "loss": 0.0224
       },
       {
-        "epoch": 2,
-        "micro_step": 32,
-        "loss": 0.0159
+        "epoch": 1,
+        "micro_step": 800,
+        "loss": 0.0133
       },
       {
-        "epoch": 2,
-        "micro_step": 48,
-        "loss": 0.0284
+        "epoch": 1,
+        "micro_step": 816,
+        "loss": 0.0332
       },
       {
-        "epoch": 2,
-        "micro_step": 64,
-        "loss": 0.0119
+        "epoch": 1,
+        "micro_step": 832,
+        "loss": 0.0127
       },
       {
-        "epoch": 2,
-        "micro_step": 80,
-        "loss": 0.0131
+        "epoch": 1,
+        "micro_step": 848,
+        "loss": 0.0235
       },
       {
-        "epoch": 2,
-        "micro_step": 96,
-        "loss": 0.0198
-      },
-      {
-        "epoch": 2,
-        "micro_step": 112,
-        "loss": 0.0118
-      },
-      {
-        "epoch": 2,
-        "micro_step": 128,
-        "loss": 0.0439
-      },
-      {
-        "epoch": 2,
-        "micro_step": 144,
-        "loss": 0.0172
-      },
-      {
-        "epoch": 2,
-        "micro_step": 160,
-        "loss": 0.0134
-      },
-      {
-        "epoch": 2,
-        "micro_step": 176,
-        "loss": 0.0058
-      },
-      {
-        "epoch": 2,
-        "micro_step": 192,
-        "loss": 0.0136
-      },
-      {
-        "epoch": 2,
-        "micro_step": 208,
+        "epoch": 1,
+        "micro_step": 854,
         "loss": 0.0121
       },
       {
         "epoch": 2,
-        "micro_step": 224,
-        "loss": 0.0149
+        "micro_step": 16,
+        "loss": 0.0224
       },
       {
         "epoch": 2,
-        "micro_step": 240,
-        "loss": 0.008
+        "micro_step": 32,
+        "loss": 0.0206
       },
       {
         "epoch": 2,
-        "micro_step": 256,
-        "loss": 0.0199
+        "micro_step": 48,
+        "loss": 0.0398
       },
       {
         "epoch": 2,
-        "micro_step": 272,
-        "loss": 0.0181
+        "micro_step": 64,
+        "loss": 0.0112
       },
       {
         "epoch": 2,
-        "micro_step": 288,
-        "loss": 0.0157
+        "micro_step": 80,
+        "loss": 0.0257
       },
       {
         "epoch": 2,
-        "micro_step": 304,
-        "loss": 0.0113
+        "micro_step": 96,
+        "loss": 0.0167
       },
       {
         "epoch": 2,
-        "micro_step": 320,
-        "loss": 0.0155
+        "micro_step": 112,
+        "loss": 0.0166
       },
       {
         "epoch": 2,
-        "micro_step": 336,
-        "loss": 0.0062
+        "micro_step": 128,
+        "loss": 0.0102
       },
       {
         "epoch": 2,
-        "micro_step": 352,
-        "loss": 0.0076
-      },
-      {
-        "epoch": 2,
-        "micro_step": 368,
-        "loss": 0.0093
-      },
-      {
-        "epoch": 2,
-        "micro_step": 384,
-        "loss": 0.008
-      },
-      {
-        "epoch": 2,
-        "micro_step": 400,
-        "loss": 0.0155
-      },
-      {
-        "epoch": 2,
-        "micro_step": 416,
-        "loss": 0.0272
-      },
-      {
-        "epoch": 2,
-        "micro_step": 432,
-        "loss": 0.0054
-      },
-      {
-        "epoch": 2,
-        "micro_step": 448,
-        "loss": 0.0063
-      },
-      {
-        "epoch": 2,
-        "micro_step": 464,
-        "loss": 0.0107
-      },
-      {
-        "epoch": 2,
-        "micro_step": 480,
-        "loss": 0.008
-      },
-      {
-        "epoch": 2,
-        "micro_step": 496,
-        "loss": 0.0136
-      },
-      {
-        "epoch": 2,
-        "micro_step": 512,
-        "loss": 0.0068
-      },
-      {
-        "epoch": 2,
-        "micro_step": 528,
-        "loss": 0.009
-      },
-      {
-        "epoch": 2,
-        "micro_step": 544,
-        "loss": 0.0069
-      },
-      {
-        "epoch": 2,
-        "micro_step": 560,
-        "loss": 0.0109
-      },
-      {
-        "epoch": 2,
-        "micro_step": 576,
-        "loss": 0.0061
-      },
-      {
-        "epoch": 2,
-        "micro_step": 592,
-        "loss": 0.0126
-      },
-      {
-        "epoch": 2,
-        "micro_step": 608,
-        "loss": 0.0163
-      },
-      {
-        "epoch": 2,
-        "micro_step": 624,
+        "micro_step": 144,
         "loss": 0.0261
       },
       {
         "epoch": 2,
+        "micro_step": 160,
+        "loss": 0.0104
+      },
+      {
+        "epoch": 2,
+        "micro_step": 176,
+        "loss": 0.0123
+      },
+      {
+        "epoch": 2,
+        "micro_step": 192,
+        "loss": 0.0368
+      },
+      {
+        "epoch": 2,
+        "micro_step": 208,
+        "loss": 0.0407
+      },
+      {
+        "epoch": 2,
+        "micro_step": 224,
+        "loss": 0.0069
+      },
+      {
+        "epoch": 2,
+        "micro_step": 240,
+        "loss": 0.0242
+      },
+      {
+        "epoch": 2,
+        "micro_step": 256,
+        "loss": 0.0125
+      },
+      {
+        "epoch": 2,
+        "micro_step": 272,
+        "loss": 0.0174
+      },
+      {
+        "epoch": 2,
+        "micro_step": 288,
+        "loss": 0.0369
+      },
+      {
+        "epoch": 2,
+        "micro_step": 304,
+        "loss": 0.0186
+      },
+      {
+        "epoch": 2,
+        "micro_step": 320,
+        "loss": 0.0227
+      },
+      {
+        "epoch": 2,
+        "micro_step": 336,
+        "loss": 0.0122
+      },
+      {
+        "epoch": 2,
+        "micro_step": 352,
+        "loss": 0.0167
+      },
+      {
+        "epoch": 2,
+        "micro_step": 368,
+        "loss": 0.0091
+      },
+      {
+        "epoch": 2,
+        "micro_step": 384,
+        "loss": 0.0053
+      },
+      {
+        "epoch": 2,
+        "micro_step": 400,
+        "loss": 0.0176
+      },
+      {
+        "epoch": 2,
+        "micro_step": 416,
+        "loss": 0.0161
+      },
+      {
+        "epoch": 2,
+        "micro_step": 432,
+        "loss": 0.0227
+      },
+      {
+        "epoch": 2,
+        "micro_step": 448,
+        "loss": 0.023
+      },
+      {
+        "epoch": 2,
+        "micro_step": 464,
+        "loss": 0.015
+      },
+      {
+        "epoch": 2,
+        "micro_step": 480,
+        "loss": 0.0113
+      },
+      {
+        "epoch": 2,
+        "micro_step": 496,
+        "loss": 0.0248
+      },
+      {
+        "epoch": 2,
+        "micro_step": 512,
+        "loss": 0.0094
+      },
+      {
+        "epoch": 2,
+        "micro_step": 528,
+        "loss": 0.0283
+      },
+      {
+        "epoch": 2,
+        "micro_step": 544,
+        "loss": 0.0218
+      },
+      {
+        "epoch": 2,
+        "micro_step": 560,
+        "loss": 0.0245
+      },
+      {
+        "epoch": 2,
+        "micro_step": 576,
+        "loss": 0.0109
+      },
+      {
+        "epoch": 2,
+        "micro_step": 592,
+        "loss": 0.0116
+      },
+      {
+        "epoch": 2,
+        "micro_step": 608,
+        "loss": 0.0144
+      },
+      {
+        "epoch": 2,
+        "micro_step": 624,
+        "loss": 0.0142
+      },
+      {
+        "epoch": 2,
         "micro_step": 640,
-        "loss": 0.0065
+        "loss": 0.0054
       },
       {
         "epoch": 2,
         "micro_step": 656,
-        "loss": 0.0086
+        "loss": 0.0064
       },
       {
         "epoch": 2,
         "micro_step": 672,
-        "loss": 0.0151
+        "loss": 0.0187
       },
       {
         "epoch": 2,
         "micro_step": 688,
-        "loss": 0.0213
+        "loss": 0.0075
       },
       {
         "epoch": 2,
         "micro_step": 704,
-        "loss": 0.0154
+        "loss": 0.0159
       },
       {
         "epoch": 2,
         "micro_step": 720,
-        "loss": 0.0365
+        "loss": 0.0185
       },
       {
         "epoch": 2,
         "micro_step": 736,
-        "loss": 0.0086
+        "loss": 0.0098
       },
       {
         "epoch": 2,
         "micro_step": 752,
+        "loss": 0.0204
+      },
+      {
+        "epoch": 2,
+        "micro_step": 768,
+        "loss": 0.028
+      },
+      {
+        "epoch": 2,
+        "micro_step": 784,
         "loss": 0.0065
       },
       {
         "epoch": 2,
-        "micro_step": 755,
-        "loss": 0.0035
+        "micro_step": 800,
+        "loss": 0.0143
+      },
+      {
+        "epoch": 2,
+        "micro_step": 816,
+        "loss": 0.0259
+      },
+      {
+        "epoch": 2,
+        "micro_step": 832,
+        "loss": 0.0216
+      },
+      {
+        "epoch": 2,
+        "micro_step": 848,
+        "loss": 0.0116
+      },
+      {
+        "epoch": 2,
+        "micro_step": 854,
+        "loss": 0.0169
       }
     ],
     "epoch_val": [
       {
         "epoch": 1,
-        "val_tool_selection_accuracy": 0.8039,
-        "val_argument_accuracy": 0.8431
+        "val_tool_selection_accuracy": 0.8431,
+        "val_argument_accuracy": 0.8824
       },
       {
         "epoch": 2,
-        "val_tool_selection_accuracy": 0.8431,
-        "val_argument_accuracy": 0.8627
+        "val_tool_selection_accuracy": 0.8039,
+        "val_argument_accuracy": 0.8824
       }
     ],
-    "best_epoch": 2,
-    "seconds": 1215.7
+    "best_epoch": 1,
+    "seconds": 1137.0
   },
   "masking": {
     "input_tokens": 860,
@@ -536,10 +596,10 @@
     "all_supervision_is_assistant_text": true
   },
   "data_checks": {
-    "train_rows": 755,
+    "train_rows": 779,
     "val_rows": 51,
     "test_rows": 150,
-    "train_questions": 755,
+    "train_questions": 779,
     "val_questions_in_train": 0,
     "test_questions_in_train": 0,
     "val_tickers_in_train": [],
@@ -739,30 +799,30 @@
         "examples": 51,
         "schema_valid_rate": 1.0,
         "tool_selection_accuracy": 0.8431,
-        "argument_accuracy": 0.8627,
+        "argument_accuracy": 0.8824,
         "abstention": {
           "scored": true,
           "abstain_rows": 15,
           "non_abstain_rows": 36,
           "confusion": {
-            "true_positive": 6,
+            "true_positive": 5,
             "false_positive": 0,
-            "false_negative": 9,
+            "false_negative": 10,
             "true_negative": 36
           },
           "precision": 1.0,
-          "recall": 0.4,
-          "f1": 0.5714,
+          "recall": 0.3333,
+          "f1": 0.5,
           "specificity": 1.0,
-          "balanced_accuracy": 0.7,
+          "balanced_accuracy": 0.6667,
           "over_abstention_rate": 0.0,
-          "under_abstention_rate": 0.6,
+          "under_abstention_rate": 0.6667,
           "recall_95ci": [
-            0.1982,
-            0.6425
+            0.1518,
+            0.5829
           ],
           "precision_95ci": [
-            0.6097,
+            0.5655,
             1.0
           ],
           "no_positive_predictions": false,
@@ -774,9 +834,9 @@
               "rate": 1.0
             },
             "invalid_ticker": {
-              "declined": 2,
+              "declined": 1,
               "total": 4,
-              "rate": 0.5
+              "rate": 0.25
             },
             "loop_trap": {
               "declined": 0,
@@ -850,7 +910,7 @@
           },
           "invalid_ticker": {
             "examples": 4,
-            "tool_selection_accuracy": 0.5,
+            "tool_selection_accuracy": 0.75,
             "schema_valid_rate": 1.0
           },
           "loop_trap": {
@@ -870,7 +930,7 @@
           },
           "missing_ratios": {
             "examples": 4,
-            "tool_selection_accuracy": 0.75,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           },
           "news_unavailable": {
@@ -880,7 +940,7 @@
           },
           "non_us_currency": {
             "examples": 4,
-            "tool_selection_accuracy": 1.0,
+            "tool_selection_accuracy": 0.75,
             "schema_valid_rate": 1.0
           },
           "overview": {
@@ -890,7 +950,7 @@
           },
           "period_ambiguity": {
             "examples": 4,
-            "tool_selection_accuracy": 1.0,
+            "tool_selection_accuracy": 0.75,
             "schema_valid_rate": 1.0
           },
           "stale_data": {
@@ -905,18 +965,18 @@
           }
         },
         "predicted_tools": {
-          "finish": 6,
-          "get_financial_ratios": 17,
+          "finish": 5,
+          "get_financial_ratios": 19,
           "get_stock_quote": 21,
-          "get_historical_prices": 7
+          "get_historical_prices": 6
         },
         "tool_selection_95ci": [
           0.7199,
           0.9183
         ],
         "argument_accuracy_95ci": [
-          0.7428,
-          0.9319
+          0.7662,
+          0.9449
         ]
       }
     },
@@ -1111,8 +1171,8 @@
       "tuned": {
         "examples": 150,
         "schema_valid_rate": 1.0,
-        "tool_selection_accuracy": 0.86,
-        "argument_accuracy": 0.8867,
+        "tool_selection_accuracy": 0.84,
+        "argument_accuracy": 0.86,
         "abstention": {
           "scored": true,
           "abstain_rows": 37,
@@ -1218,7 +1278,7 @@
           },
           "comparison": {
             "examples": 15,
-            "tool_selection_accuracy": 0.9333,
+            "tool_selection_accuracy": 0.7333,
             "schema_valid_rate": 1.0
           },
           "invalid_ticker": {
@@ -1243,27 +1303,27 @@
           },
           "missing_ratios": {
             "examples": 14,
-            "tool_selection_accuracy": 0.7857,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           },
           "news_unavailable": {
             "examples": 8,
-            "tool_selection_accuracy": 0.875,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           },
           "non_us_currency": {
             "examples": 11,
-            "tool_selection_accuracy": 1.0,
+            "tool_selection_accuracy": 0.9091,
             "schema_valid_rate": 1.0
           },
           "overview": {
             "examples": 30,
-            "tool_selection_accuracy": 0.5667,
+            "tool_selection_accuracy": 0.5,
             "schema_valid_rate": 1.0
           },
           "period_ambiguity": {
             "examples": 6,
-            "tool_selection_accuracy": 1.0,
+            "tool_selection_accuracy": 0.8333,
             "schema_valid_rate": 1.0
           },
           "stale_data": {
@@ -1278,49 +1338,48 @@
           }
         },
         "predicted_tools": {
-          "get_stock_quote": 72,
-          "get_historical_prices": 19,
-          "get_financial_ratios": 41,
-          "finish": 17,
-          "get_company_news": 1
+          "get_stock_quote": 65,
+          "get_historical_prices": 20,
+          "get_financial_ratios": 48,
+          "finish": 17
         },
         "tool_selection_95ci": [
-          0.7954,
-          0.9066
+          0.773,
+          0.8901
         ],
         "argument_accuracy_95ci": [
-          0.826,
-          0.928
+          0.7954,
+          0.9066
         ]
       }
     },
     "paired": {
       "val": {
         "tool_selection": {
-          "gained": 20,
-          "lost": 4,
-          "both": 23,
-          "neither": 4
+          "gained": 19,
+          "lost": 3,
+          "both": 24,
+          "neither": 5
         },
         "argument_accuracy": {
-          "gained": 39,
+          "gained": 40,
           "lost": 0,
           "both": 5,
-          "neither": 7
+          "neither": 6
         }
       },
       "test": {
         "tool_selection": {
-          "gained": 54,
+          "gained": 51,
           "lost": 7,
           "both": 75,
-          "neither": 14
+          "neither": 17
         },
         "argument_accuracy": {
-          "gained": 120,
+          "gained": 116,
           "lost": 0,
           "both": 13,
-          "neither": 17
+          "neither": 21
         }
       }
     }
@@ -2107,12 +2166,12 @@
           "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
           "tool_correct": false,
-          "args_correct": false,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"AVG\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"AVGO\"}}"
         },
         {
           "id": "gold_000439",
@@ -2174,15 +2233,15 @@
           "id": "gold_000155",
           "intent": "invalid_ticker",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "finish",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": true,
-          "abstention_decision": "abstain",
-          "abstention_signal": true,
-          "abstention_correct": true,
-          "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
+          "abstention_decision": "call_tool",
+          "abstention_signal": false,
+          "abstention_correct": false,
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NONE\"}}"
         },
         {
           "id": "gold_000368",
@@ -2412,15 +2471,15 @@
           "id": "gold_000616",
           "intent": "missing_ratios",
           "expected_tool": "get_financial_ratios",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ARKK\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"ARKK\"}}"
         },
         {
           "id": "gold_000031",
@@ -2496,15 +2555,15 @@
           "id": "gold_000121",
           "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"TTE.PA\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"TTE.PA\"}}"
         },
         {
           "id": "gold_000154",
@@ -2622,15 +2681,15 @@
           "id": "gold_000093",
           "intent": "period_ambiguity",
           "expected_tool": "get_historical_prices",
-          "predicted_tool": "get_historical_prices",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"ROKU\",\"period\":\"1y\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ROKU\"}}"
         },
         {
           "id": "gold_000103",
@@ -4896,15 +4955,15 @@
           "id": "ts_0003",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"GE\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"GE\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0004",
@@ -5030,7 +5089,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"NFLX\",\"period\":\"1y\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"NFLX\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0013",
@@ -5120,15 +5179,15 @@
           "id": "ts_0019",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"KO\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"KO\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0020",
@@ -5142,7 +5201,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"CROX\",\"period\":\"1y\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"CROX\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0021",
@@ -5282,7 +5341,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"CROX\",\"period\":\"1mo\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"Crox\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0031",
@@ -5526,29 +5585,29 @@
           "id": "ts_0048",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"TXN\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"NKE\"}}"
         },
         {
           "id": "ts_0049",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ETSY\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"ETSY\"}}"
         },
         {
           "id": "ts_0050",
@@ -5680,15 +5739,15 @@
           "id": "ts_0059",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"QCOM\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"QCOM\"}}"
         },
         {
           "id": "ts_0060",
@@ -5764,15 +5823,15 @@
           "id": "ts_0065",
           "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"TCS.NS\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"TCS.NS\"}}"
         },
         {
           "id": "ts_0066",
@@ -6044,29 +6103,29 @@
           "id": "ts_0085",
           "intent": "missing_ratios",
           "expected_tool": "get_financial_ratios",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"XOM\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"XOM\"}}"
         },
         {
           "id": "ts_0086",
           "intent": "missing_ratios",
           "expected_tool": "get_financial_ratios",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"MA\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"MA\"}}"
         },
         {
           "id": "ts_0087",
@@ -6100,15 +6159,15 @@
           "id": "ts_0089",
           "intent": "missing_ratios",
           "expected_tool": "get_financial_ratios",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NFLX\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"NFLX\"}}"
         },
         {
           "id": "ts_0090",
@@ -6212,15 +6271,15 @@
           "id": "ts_0097",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_company_news",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"IBM\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"IBM\"}}"
         },
         {
           "id": "ts_0098",
@@ -6318,7 +6377,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"Crox Inc.\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"Crox\"}}"
         },
         {
           "id": "ts_0105",
@@ -6604,15 +6663,15 @@
           "id": "ts_0125",
           "intent": "period_ambiguity",
           "expected_tool": "get_historical_prices",
-          "predicted_tool": "get_historical_prices",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"CRM\",\"period\":\"1y\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"CRM\"}}"
         },
         {
           "id": "ts_0126",
@@ -6968,5 +7027,5 @@
     }
   },
   "peak_gpu_gb": 30.97,
-  "total_seconds": 1825.1
+  "total_seconds": 1631.9
 }

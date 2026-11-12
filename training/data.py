@@ -29,6 +29,21 @@ def load_jsonl(path: str | Path) -> list[dict[str, Any]]:
     ]
 
 
+def expand_examples(
+    rows: list[dict[str, Any]], examples: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Repeat each example ``row["weight"]`` times.
+
+    Repetition is used instead of a weighted sampler so the optimizer step count
+    and the reported ``supervised_tokens`` stay explicit in the run artifacts:
+    an error-replay row with weight 3 is simply seen three times per epoch.
+    """
+    out: list[dict[str, Any]] = []
+    for row, example in zip(rows, examples, strict=True):
+        out.extend([example] * int(row.get("weight", 1)))
+    return out
+
+
 def build_example(tokenizer: Any, messages: list[dict[str, Any]], max_len: int) -> dict[str, Any]:
     """Tokenize one trajectory and mask everything except assistant turns."""
     from app.chat_format import tokenize

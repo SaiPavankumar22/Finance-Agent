@@ -17,9 +17,9 @@ ARTIFACTS = PROJECT_ROOT / "artifacts" / "sft"
 REPORT = PROJECT_ROOT / "artifacts" / "safety" / "gates-prompt.md"
 
 CANDIDATE = {
-    "eval": "eval-prompt.json",
-    "safety": "safety-prompt.json",
-    "india": "india-prompt.json",
+    "eval": "eval-error-replay.json",
+    "safety": "safety-error-replay.json",
+    "india": "india-error-replay.json",
 }
 BASELINE = {
     "eval": "eval-ws5.json",

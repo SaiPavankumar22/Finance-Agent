@@ -1,20 +1,19 @@
-"""Weight the error-replay rows and add explicit retry-then-finish trajectories.
+"""Make the error-replay rows match the rule they are scored by.
 
-The rejected prompt-conditioned candidate failed exactly one gate: on 2 of 10
-audit rows the model re-issued a call that had already failed, instead of
-finishing. The training set already contains 51 such rows, so the gap is not
-absence of examples - it is that they are 6.8% of the data and all share a few
-phrasings. This stage does two things:
+The audit's post-error rule is ``declined or (fallback and not repeated)``: after
+a provider failure the planner may decline, or switch to a *different* tool, but
+re-issuing the failed call is counted as a repeated failing call. The existing
+training rows did exactly that - call, error, **the same call again**, error,
+finish - so weighting them more (the previous attempt) changed nothing, because
+the data taught the behaviour the gate penalises.
 
-* tags every row with an integer ``weight`` and gives the error-replay families
-  (``abstain_malformed_response``, ``stop_after_bounded_attempts``) weight 3, so
-  two failures followed by ``finish`` is seen far more often per epoch;
-* adds 24 fresh retry-then-finish trajectories over tools and tickers the audit
-  uses, including Indian symbols and all three recorded error kinds
-  (``insufficient_data``, ``rate_limit``, ``malformed_response``).
+This stage:
 
-Every new row carries the WS6 prompt verbatim and is checked against the
-validation, frozen test, safety and India sets.
+* rewrites those rows to a single failure followed by ``finish``;
+* adds 24 fresh trajectories, half of them one-failure-then-finish, half a
+  fallback to a different tool before finishing;
+* weights the error families 2 (down from 3, which cost planning accuracy);
+* asserts that no gold error trajectory contains an identical retry.
 """
 
 from __future__ import annotations
@@ -39,71 +38,46 @@ HELDOUT = (
     PROJECT_ROOT / "eval" / "india_set.jsonl",
 )
 MANIFEST = PROJECT_ROOT / "data" / "splits" / "error_replay_manifest.json"
-STAGE = "error-replay-v1"
+STAGE = "error-replay-v2"
+ERROR_BEHAVIOURS = {"abstain_malformed_response", "stop_after_bounded_attempts"}
+ERROR_WEIGHT = 2
 
-ERROR_WEIGHT = 3
-NEW_WEIGHT = 3
-
-#: ``(question, ticker, tool, error)`` - questions never reuse a held-out string.
-CASES: tuple[tuple[str, str, str, str], ...] = (
-    ("Give me the full picture on 7203.T.", "7203.T", "get_stock_quote", "insufficient_data"),
-    ("Pull the complete report for 6758.T.", "6758.T", "get_financial_ratios", "rate_limit"),
-    (
-        "I need everything you have on 005930.KS.",
-        "005930.KS",
-        "get_historical_prices",
-        "malformed_response",
-    ),
-    ("Run a full workup on ADBE.", "ADBE", "get_company_news", "insufficient_data"),
-    ("Give me the full picture on ASML.AS.", "ASML.AS", "get_stock_quote", "rate_limit"),
-    (
-        "Pull the complete report for BHP.AX.",
-        "BHP.AX",
-        "get_financial_ratios",
-        "malformed_response",
-    ),
-    (
-        "I need everything you have on CBA.AX.",
-        "CBA.AX",
-        "get_historical_prices",
-        "insufficient_data",
-    ),
-    ("Run a full workup on MC.PA.", "MC.PA", "get_company_news", "rate_limit"),
-    ("Give me the full picture on PFE.", "PFE", "get_stock_quote", "malformed_response"),
-    ("Pull the complete report for PG.", "PG", "get_financial_ratios", "insufficient_data"),
-    ("I need everything you have on SBIN.NS.", "SBIN.NS", "get_historical_prices", "rate_limit"),
-    ("Run a full workup on HDFCBANK.NS.", "HDFCBANK.NS", "get_company_news", "malformed_response"),
-    ("Pull the complete report for 7203.T.", "7203.T", "get_stock_quote", "insufficient_data"),
-    ("I need everything you have on 6758.T.", "6758.T", "get_financial_ratios", "rate_limit"),
-    ("Run a full workup on 005930.KS.", "005930.KS", "get_historical_prices", "malformed_response"),
-    ("Give me the full picture on ADBE.", "ADBE", "get_company_news", "insufficient_data"),
-    ("Pull the complete report for ASML.AS.", "ASML.AS", "get_stock_quote", "rate_limit"),
-    (
-        "I need everything you have on BHP.AX.",
-        "BHP.AX",
-        "get_financial_ratios",
-        "malformed_response",
-    ),
-    ("Run a full workup on CBA.AX.", "CBA.AX", "get_historical_prices", "insufficient_data"),
-    ("Give me the full picture on MC.PA.", "MC.PA", "get_company_news", "rate_limit"),
-    ("Pull the complete report for PFE.", "PFE", "get_stock_quote", "malformed_response"),
-    ("I need everything you have on PG.", "PG", "get_financial_ratios", "insufficient_data"),
-    ("Run a full workup on SBIN.NS.", "SBIN.NS", "get_historical_prices", "rate_limit"),
-    (
-        "Give me the full picture on HDFCBANK.NS.",
-        "HDFCBANK.NS",
-        "get_company_news",
-        "malformed_response",
-    ),
+#: Tickers that appear only in training, plus the tools and errors to replay.
+TICKERS = (
+    "7203.T",
+    "6758.T",
+    "005930.KS",
+    "ADBE",
+    "ASML.AS",
+    "BHP.AX",
+    "CBA.AX",
+    "MC.PA",
+    "PFE",
+    "PG",
+    "SBIN.NS",
+    "HDFCBANK.NS",
 )
-
+TOOLS = ("get_stock_quote", "get_financial_ratios", "get_historical_prices", "get_company_news")
+ERRORS = ("insufficient_data", "rate_limit", "malformed_response")
+PHRASINGS = (
+    "Give me the full picture on {ticker}.",
+    "Pull the complete report for {ticker}.",
+    "I need everything you have on {ticker}.",
+    "Run a full workup on {ticker}.",
+)
+#: A different tool that can legitimately answer a similar question.
+FALLBACK = {
+    "get_stock_quote": "get_historical_prices",
+    "get_financial_ratios": "get_stock_quote",
+    "get_historical_prices": "get_stock_quote",
+    "get_company_news": "get_stock_quote",
+}
 ARGS = {
     "get_stock_quote": lambda ticker: {"ticker": ticker},
     "get_financial_ratios": lambda ticker: {"ticker": ticker},
     "get_historical_prices": lambda ticker: {"ticker": ticker, "period": "1y"},
     "get_company_news": lambda ticker: {"ticker": ticker, "limit": 5},
 }
-
 FINISH = {"tool": "finish", "args": {}}
 
 
@@ -117,126 +91,162 @@ def dump(rows: list[dict[str, Any]]) -> str:
     return "".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows)
 
 
-def error_result(tool: str, args: dict[str, Any], error: str, retrieved_at: str) -> dict[str, Any]:
+def call(tool: str, ticker: str) -> dict[str, Any]:
+    return {"tool": tool, "args": ARGS[tool](ticker)}
+
+
+def error_turn(
+    call_id: str, tool: str, args: dict[str, Any], error: str, at: str
+) -> dict[str, Any]:
     return {
-        "tool": tool,
-        "args": args,
-        "status": "error",
-        "error": error,
-        "data": None,
-        "source": "yfinance" if tool != "get_company_news" else "news",
-        "retrieved_at": retrieved_at,
-        "as_of": None,
+        "role": "tool",
+        "content": json.dumps(
+            {
+                "call_id": call_id,
+                "result": {
+                    "tool": tool,
+                    "args": args,
+                    "status": "error",
+                    "error": error,
+                    "data": None,
+                    "source": "news" if tool == "get_company_news" else "yfinance",
+                    "retrieved_at": at,
+                    "as_of": None,
+                },
+            },
+            sort_keys=True,
+            separators=(",", ":"),
+        ),
     }
 
 
-def retry_then_finish(
-    index: int, question: str, ticker: str, tool: str, error: str
+def assistant(payload: dict[str, Any]) -> dict[str, Any]:
+    return {"role": "assistant", "content": json.dumps(payload, separators=(",", ":"))}
+
+
+def new_row(
+    index: int, question: str, ticker: str, tool: str, error: str, fallback: bool
 ) -> dict[str, Any]:
-    args = ARGS[tool](ticker)
     messages: list[dict[str, Any]] = [
         {"role": "system", "content": SAFETY_SYSTEM_PROMPT},
         {"role": "user", "content": question},
     ]
-    for call_id, retrieved_at in (
-        ("c1", "2026-11-11T09:31:00+00:00"),
-        ("c2", "2026-11-11T09:31:04+00:00"),
-    ):
-        messages.append(
-            {
-                "role": "assistant",
-                "content": json.dumps({"tool": tool, "args": args}, separators=(",", ":")),
-            }
-        )
-        messages.append(
-            {
-                "role": "tool",
-                "content": json.dumps(
-                    {"call_id": call_id, "result": error_result(tool, args, error, retrieved_at)},
-                    sort_keys=True,
-                    separators=(",", ":"),
-                ),
-            }
-        )
-    messages.append({"role": "assistant", "content": json.dumps(FINISH)})
+    args = ARGS[tool](ticker)
+    messages.append(assistant(call(tool, ticker)))
+    messages.append(error_turn("c1", tool, args, error, "2026-11-12T04:31:00+00:00"))
+    if fallback:
+        other = FALLBACK[tool]
+        other_args = ARGS[other](ticker)
+        messages.append(assistant(call(other, ticker)))
+        messages.append(error_turn("c2", other, other_args, error, "2026-11-12T04:31:05+00:00"))
+    messages.append(assistant(FINISH))
     return {
         "id": f"err_{index:04d}",
         "question": question,
         "tickers": [ticker],
         "intent": "loop_trap",
         "expected_behavior": "stop_after_bounded_attempts",
-        "weight": NEW_WEIGHT,
+        "weight": ERROR_WEIGHT,
         "stage": STAGE,
         "messages": messages,
     }
 
 
+def distinct_retries(row: dict[str, Any]) -> bool:
+    """True when no assistant turn repeats an earlier failed call."""
+    payloads = [
+        json.dumps(json.loads(message["content"]), sort_keys=True)
+        for message in row["messages"]
+        if message["role"] == "assistant"
+    ]
+    return len(payloads) == len(set(payloads))
+
+
+def rewrite_existing(row: dict[str, Any]) -> dict[str, Any]:
+    """Replace an identical retry with an immediate decline.
+
+    ``call, error, same call, error, finish`` teaches the planner that repeating
+    a failed call is the path to a decline. The scored rule says the opposite, so
+    the retry is dropped and the trajectory becomes ``call, error, finish``.
+    """
+    messages = row["messages"]
+    assistant_positions = [i for i, m in enumerate(messages) if m["role"] == "assistant"]
+    if len(assistant_positions) < 3:
+        return row
+    first, second, last = assistant_positions[0], assistant_positions[1], assistant_positions[-1]
+    if json.loads(messages[first]["content"]) != json.loads(messages[second]["content"]):
+        return row
+    kept = messages[:second]
+    kept.append(messages[last])
+    row["messages"] = kept
+    row["rewritten_by"] = STAGE
+    return row
+
+
 def main() -> int:
-    rows = load(TRAIN)
-    rows = [row for row in rows if row.get("stage") != STAGE]
+    rows = [row for row in load(TRAIN) if row.get("stage") not in {STAGE, "error-replay-v1"}]
 
     train_questions = {row["question"] for row in rows}
     heldout_questions: set[str] = set()
+    heldout_tickers: set[str] = set()
     for path in HELDOUT:
-        heldout_questions |= {row["question"] for row in load(path)}
+        heldout_rows = load(path)
+        heldout_questions |= {row["question"] for row in heldout_rows}
+        heldout_tickers |= {ticker for row in heldout_rows for ticker in row.get("tickers") or []}
 
-    new_rows = [
-        retry_then_finish(index, question, ticker, tool, error)
-        for index, (question, ticker, tool, error) in enumerate(CASES, start=1)
-    ]
+    new_rows = []
+    index = 0
+    for round_index in range(2):
+        for ticker in TICKERS:
+            tool = TOOLS[index % len(TOOLS)]
+            error = ERRORS[(index + round_index) % len(ERRORS)]
+            question = PHRASINGS[(index + round_index) % len(PHRASINGS)].format(ticker=ticker)
+            new_rows.append(
+                new_row(index + 1, question, ticker, tool, error, fallback=index % 2 == 1)
+            )
+            index += 1
+
     collisions = [
         row["id"] for row in new_rows if row["question"] in train_questions | heldout_questions
     ]
     assert not collisions, f"question collides with existing data: {collisions}"
     assert len({row["question"] for row in new_rows}) == len(new_rows)
+    leaked = sorted({row["tickers"][0] for row in new_rows} & heldout_tickers)
+    assert not leaked, f"tickers appear in a held-out set: {leaked}"
 
+    rewritten = 0
     for row in rows:
-        row["weight"] = (
-            ERROR_WEIGHT
-            if row["expected_behavior"]
-            in {
-                "abstain_malformed_response",
-                "stop_after_bounded_attempts",
-            }
-            else 1
-        )
+        if row["expected_behavior"] in ERROR_BEHAVIOURS:
+            before = row["messages"]
+            row = rewrite_existing(row)
+            rewritten += int(row["messages"] != before)
+        row["weight"] = ERROR_WEIGHT if row["expected_behavior"] in ERROR_BEHAVIOURS else 1
 
     combined = rows + new_rows
-    assert all(isinstance(row["weight"], int) and row["weight"] >= 1 for row in combined)
-    weighted = sum(row["weight"] for row in combined)
-    error_rows = sum(
-        1 for row in combined if row["expected_behavior"] == "stop_after_bounded_attempts"
-    )
+    error_rows = [
+        row for row in combined if row["expected_behavior"] == "stop_after_bounded_attempts"
+    ]
+    for row in error_rows:
+        assert distinct_retries(row), f"{row['id']} repeats a failed call"
+        assert json.loads(row["messages"][-1]["content"])["tool"] == "finish", row["id"]
 
+    weighted = sum(row["weight"] for row in combined)
     TRAIN.write_text(dump(combined), encoding="utf-8")
     manifest = {
         "stage": STAGE,
         "rows": len(combined),
         "added": len(new_rows),
+        "rewritten_trajectories": rewritten,
         "weighted_examples": weighted,
-        "error_replay_rows": error_rows,
+        "error_replay_rows": len(error_rows),
         "error_weight": ERROR_WEIGHT,
-        "error_share_of_examples": round(
-            sum(
-                row["weight"]
-                for row in combined
-                if row["expected_behavior"] == "stop_after_bounded_attempts"
-            )
-            / weighted,
-            4,
-        ),
-        "kinds": sorted({case[3] for case in CASES}),
+        "error_share_of_examples": round(sum(row["weight"] for row in error_rows) / weighted, 4),
+        "fallback_rows": sum(1 for row in new_rows if len(row["messages"]) == 7),
         "sha256": hashlib.sha256(TRAIN.read_bytes()).hexdigest()[:12],
-        "overlap_with_heldout": {
-            path.name: sorted(
-                {row["question"] for row in new_rows} & {r["question"] for r in load(path)}
-            )
-            for path in HELDOUT
-        },
     }
     MANIFEST.write_text(json.dumps(manifest, indent=1) + "\n", encoding="utf-8")
     print(json.dumps(manifest, indent=1))
-    print(f"train: {len(rows)} -> {len(combined)} rows ({weighted} weighted examples)")
+    print(f"train: {len(combined)} rows ({weighted} weighted examples)")
     return 0
 
 

@@ -1,0 +1,32 @@
+{
+  "generated_by": "pipelines/12_make_india_set.py",
+  "rows": 32,
+  "expect_abstain": 13,
+  "tickers": [
+    "INFY.NS",
+    "NIFTY50.NS",
+    "RELIANCE.NS",
+    "TCS.NS"
+  ],
+  "coverage": [
+    "india_advice",
+    "india_history",
+    "india_insider",
+    "india_invalid",
+    "india_missing",
+    "india_news",
+    "india_prediction",
+    "india_pressure",
+    "india_quote",
+    "india_ratios",
+    "india_stale",
+    "india_unsupported"
+  ],
+  "sha256": "c20ae7b4b9ff3e002c5805b7defec4eab9f65326eb71762ccfa15fb473fd160a",
+  "overlap_with_existing": {
+    "train": [],
+    "testset": [],
+    "safety": []
+  },
+  "note": "Separate from the frozen 150-example test set, which is untouched."
+}

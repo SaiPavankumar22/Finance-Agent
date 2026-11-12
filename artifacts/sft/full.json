@@ -19,12 +19,12 @@
     "seed": 13
   },
   "train": {
-    "rows": 716,
-    "micro_steps": 1432,
-    "optimizer_steps": 90,
-    "tokens_seen": 2332320,
-    "rows_over_max_len": 0,
-    "supervised_tokens": 33173,
+    "rows": 755,
+    "micro_steps": 1510,
+    "optimizer_steps": 96,
+    "tokens_seen": 2560956,
+    "rows_over_max_len": 1,
+    "supervised_tokens": 34337,
     "trainable_parameters": 30228480,
     "total_parameters": 1973315584,
     "trainable_fraction": 0.015319,
@@ -32,484 +32,514 @@
       {
         "epoch": 1,
         "micro_step": 16,
-        "loss": 2.1255
+        "loss": 1.9127
       },
       {
         "epoch": 1,
         "micro_step": 32,
-        "loss": 2.2371
+        "loss": 2.0106
       },
       {
         "epoch": 1,
         "micro_step": 48,
-        "loss": 1.6649
+        "loss": 1.4197
       },
       {
         "epoch": 1,
         "micro_step": 64,
-        "loss": 0.9164
+        "loss": 0.706
       },
       {
         "epoch": 1,
         "micro_step": 80,
-        "loss": 0.4765
+        "loss": 0.2925
       },
       {
         "epoch": 1,
         "micro_step": 96,
-        "loss": 0.2144
+        "loss": 0.1447
       },
       {
         "epoch": 1,
         "micro_step": 112,
-        "loss": 0.1449
+        "loss": 0.1151
       },
       {
         "epoch": 1,
         "micro_step": 128,
-        "loss": 0.1592
+        "loss": 0.094
       },
       {
         "epoch": 1,
         "micro_step": 144,
-        "loss": 0.0978
+        "loss": 0.1196
       },
       {
         "epoch": 1,
         "micro_step": 160,
-        "loss": 0.0946
+        "loss": 0.0887
       },
       {
         "epoch": 1,
         "micro_step": 176,
-        "loss": 0.0612
+        "loss": 0.0897
       },
       {
         "epoch": 1,
         "micro_step": 192,
-        "loss": 0.0741
+        "loss": 0.0696
       },
       {
         "epoch": 1,
         "micro_step": 208,
-        "loss": 0.0471
+        "loss": 0.055
       },
       {
         "epoch": 1,
         "micro_step": 224,
-        "loss": 0.0848
+        "loss": 0.0595
       },
       {
         "epoch": 1,
         "micro_step": 240,
-        "loss": 0.0812
+        "loss": 0.0716
       },
       {
         "epoch": 1,
         "micro_step": 256,
-        "loss": 0.0721
+        "loss": 0.044
       },
       {
         "epoch": 1,
         "micro_step": 272,
-        "loss": 0.0481
+        "loss": 0.0463
       },
       {
         "epoch": 1,
         "micro_step": 288,
-        "loss": 0.0601
+        "loss": 0.0437
       },
       {
         "epoch": 1,
         "micro_step": 304,
-        "loss": 0.0882
+        "loss": 0.084
       },
       {
         "epoch": 1,
         "micro_step": 320,
-        "loss": 0.1025
+        "loss": 0.0468
       },
       {
         "epoch": 1,
         "micro_step": 336,
-        "loss": 0.0613
+        "loss": 0.0395
       },
       {
         "epoch": 1,
         "micro_step": 352,
-        "loss": 0.0569
+        "loss": 0.0495
       },
       {
         "epoch": 1,
         "micro_step": 368,
-        "loss": 0.0573
+        "loss": 0.0493
       },
       {
         "epoch": 1,
         "micro_step": 384,
-        "loss": 0.0533
+        "loss": 0.0334
       },
       {
         "epoch": 1,
         "micro_step": 400,
-        "loss": 0.0398
+        "loss": 0.0386
       },
       {
         "epoch": 1,
         "micro_step": 416,
-        "loss": 0.0478
+        "loss": 0.0531
       },
       {
         "epoch": 1,
         "micro_step": 432,
-        "loss": 0.0304
+        "loss": 0.0465
       },
       {
         "epoch": 1,
         "micro_step": 448,
-        "loss": 0.043
+        "loss": 0.0437
       },
       {
         "epoch": 1,
         "micro_step": 464,
-        "loss": 0.0481
+        "loss": 0.0417
       },
       {
         "epoch": 1,
         "micro_step": 480,
-        "loss": 0.0292
+        "loss": 0.0588
       },
       {
         "epoch": 1,
         "micro_step": 496,
-        "loss": 0.0348
+        "loss": 0.0768
       },
       {
         "epoch": 1,
         "micro_step": 512,
-        "loss": 0.0354
+        "loss": 0.0253
       },
       {
         "epoch": 1,
         "micro_step": 528,
-        "loss": 0.0228
-      },
-      {
-        "epoch": 1,
-        "micro_step": 544,
-        "loss": 0.029
-      },
-      {
-        "epoch": 1,
-        "micro_step": 560,
-        "loss": 0.0256
-      },
-      {
-        "epoch": 1,
-        "micro_step": 576,
-        "loss": 0.0261
-      },
-      {
-        "epoch": 1,
-        "micro_step": 592,
-        "loss": 0.0251
-      },
-      {
-        "epoch": 1,
-        "micro_step": 608,
-        "loss": 0.0241
-      },
-      {
-        "epoch": 1,
-        "micro_step": 624,
-        "loss": 0.0291
-      },
-      {
-        "epoch": 1,
-        "micro_step": 640,
-        "loss": 0.0227
-      },
-      {
-        "epoch": 1,
-        "micro_step": 656,
-        "loss": 0.0345
-      },
-      {
-        "epoch": 1,
-        "micro_step": 672,
-        "loss": 0.0271
-      },
-      {
-        "epoch": 1,
-        "micro_step": 688,
         "loss": 0.0293
       },
       {
         "epoch": 1,
-        "micro_step": 704,
-        "loss": 0.0212
+        "micro_step": 544,
+        "loss": 0.0302
       },
       {
         "epoch": 1,
-        "micro_step": 716,
-        "loss": 0.0258
+        "micro_step": 560,
+        "loss": 0.0281
       },
       {
-        "epoch": 2,
-        "micro_step": 16,
-        "loss": 0.0196
+        "epoch": 1,
+        "micro_step": 576,
+        "loss": 0.0453
       },
       {
-        "epoch": 2,
-        "micro_step": 32,
-        "loss": 0.0305
+        "epoch": 1,
+        "micro_step": 592,
+        "loss": 0.0472
       },
       {
-        "epoch": 2,
-        "micro_step": 48,
-        "loss": 0.017
+        "epoch": 1,
+        "micro_step": 608,
+        "loss": 0.0202
       },
       {
-        "epoch": 2,
-        "micro_step": 64,
-        "loss": 0.015
+        "epoch": 1,
+        "micro_step": 624,
+        "loss": 0.0125
       },
       {
-        "epoch": 2,
-        "micro_step": 80,
-        "loss": 0.0225
+        "epoch": 1,
+        "micro_step": 640,
+        "loss": 0.0197
       },
       {
-        "epoch": 2,
-        "micro_step": 96,
-        "loss": 0.0143
+        "epoch": 1,
+        "micro_step": 656,
+        "loss": 0.029
       },
       {
-        "epoch": 2,
-        "micro_step": 112,
-        "loss": 0.0105
+        "epoch": 1,
+        "micro_step": 672,
+        "loss": 0.0257
       },
       {
-        "epoch": 2,
-        "micro_step": 128,
-        "loss": 0.0111
+        "epoch": 1,
+        "micro_step": 688,
+        "loss": 0.0148
       },
       {
-        "epoch": 2,
-        "micro_step": 144,
-        "loss": 0.0208
+        "epoch": 1,
+        "micro_step": 704,
+        "loss": 0.031
       },
       {
-        "epoch": 2,
-        "micro_step": 160,
-        "loss": 0.0161
-      },
-      {
-        "epoch": 2,
-        "micro_step": 176,
-        "loss": 0.0306
-      },
-      {
-        "epoch": 2,
-        "micro_step": 192,
-        "loss": 0.0178
-      },
-      {
-        "epoch": 2,
-        "micro_step": 208,
-        "loss": 0.0118
-      },
-      {
-        "epoch": 2,
-        "micro_step": 224,
+        "epoch": 1,
+        "micro_step": 720,
         "loss": 0.0165
       },
       {
-        "epoch": 2,
-        "micro_step": 240,
-        "loss": 0.015
+        "epoch": 1,
+        "micro_step": 736,
+        "loss": 0.0131
       },
       {
-        "epoch": 2,
-        "micro_step": 256,
-        "loss": 0.0161
+        "epoch": 1,
+        "micro_step": 752,
+        "loss": 0.0398
       },
       {
-        "epoch": 2,
-        "micro_step": 272,
-        "loss": 0.0067
-      },
-      {
-        "epoch": 2,
-        "micro_step": 288,
-        "loss": 0.0214
-      },
-      {
-        "epoch": 2,
-        "micro_step": 304,
-        "loss": 0.0096
-      },
-      {
-        "epoch": 2,
-        "micro_step": 320,
-        "loss": 0.0165
-      },
-      {
-        "epoch": 2,
-        "micro_step": 336,
+        "epoch": 1,
+        "micro_step": 755,
         "loss": 0.014
       },
       {
         "epoch": 2,
-        "micro_step": 352,
-        "loss": 0.0109
+        "micro_step": 16,
+        "loss": 0.0069
       },
       {
         "epoch": 2,
-        "micro_step": 368,
-        "loss": 0.0088
+        "micro_step": 32,
+        "loss": 0.0159
       },
       {
         "epoch": 2,
-        "micro_step": 384,
-        "loss": 0.0055
+        "micro_step": 48,
+        "loss": 0.0284
       },
       {
         "epoch": 2,
-        "micro_step": 400,
-        "loss": 0.0053
-      },
-      {
-        "epoch": 2,
-        "micro_step": 416,
-        "loss": 0.0105
-      },
-      {
-        "epoch": 2,
-        "micro_step": 432,
-        "loss": 0.0049
-      },
-      {
-        "epoch": 2,
-        "micro_step": 448,
+        "micro_step": 64,
         "loss": 0.0119
       },
       {
         "epoch": 2,
-        "micro_step": 464,
-        "loss": 0.0096
+        "micro_step": 80,
+        "loss": 0.0131
       },
       {
         "epoch": 2,
-        "micro_step": 480,
-        "loss": 0.0071
+        "micro_step": 96,
+        "loss": 0.0198
       },
       {
         "epoch": 2,
-        "micro_step": 496,
-        "loss": 0.0138
+        "micro_step": 112,
+        "loss": 0.0118
       },
       {
         "epoch": 2,
-        "micro_step": 512,
-        "loss": 0.0066
+        "micro_step": 128,
+        "loss": 0.0439
       },
       {
         "epoch": 2,
-        "micro_step": 528,
-        "loss": 0.0097
+        "micro_step": 144,
+        "loss": 0.0172
       },
       {
         "epoch": 2,
-        "micro_step": 544,
+        "micro_step": 160,
         "loss": 0.0134
       },
       {
         "epoch": 2,
-        "micro_step": 560,
-        "loss": 0.0074
-      },
-      {
-        "epoch": 2,
-        "micro_step": 576,
-        "loss": 0.0087
-      },
-      {
-        "epoch": 2,
-        "micro_step": 592,
-        "loss": 0.0081
-      },
-      {
-        "epoch": 2,
-        "micro_step": 608,
+        "micro_step": 176,
         "loss": 0.0058
       },
       {
         "epoch": 2,
-        "micro_step": 624,
-        "loss": 0.0171
+        "micro_step": 192,
+        "loss": 0.0136
       },
       {
         "epoch": 2,
-        "micro_step": 640,
-        "loss": 0.0134
+        "micro_step": 208,
+        "loss": 0.0121
       },
       {
         "epoch": 2,
-        "micro_step": 656,
-        "loss": 0.0055
+        "micro_step": 224,
+        "loss": 0.0149
       },
       {
         "epoch": 2,
-        "micro_step": 672,
-        "loss": 0.0084
+        "micro_step": 240,
+        "loss": 0.008
       },
       {
         "epoch": 2,
-        "micro_step": 688,
-        "loss": 0.0083
+        "micro_step": 256,
+        "loss": 0.0199
       },
       {
         "epoch": 2,
-        "micro_step": 704,
+        "micro_step": 272,
+        "loss": 0.0181
+      },
+      {
+        "epoch": 2,
+        "micro_step": 288,
+        "loss": 0.0157
+      },
+      {
+        "epoch": 2,
+        "micro_step": 304,
+        "loss": 0.0113
+      },
+      {
+        "epoch": 2,
+        "micro_step": 320,
+        "loss": 0.0155
+      },
+      {
+        "epoch": 2,
+        "micro_step": 336,
+        "loss": 0.0062
+      },
+      {
+        "epoch": 2,
+        "micro_step": 352,
+        "loss": 0.0076
+      },
+      {
+        "epoch": 2,
+        "micro_step": 368,
         "loss": 0.0093
       },
       {
         "epoch": 2,
-        "micro_step": 716,
-        "loss": 0.0308
+        "micro_step": 384,
+        "loss": 0.008
+      },
+      {
+        "epoch": 2,
+        "micro_step": 400,
+        "loss": 0.0155
+      },
+      {
+        "epoch": 2,
+        "micro_step": 416,
+        "loss": 0.0272
+      },
+      {
+        "epoch": 2,
+        "micro_step": 432,
+        "loss": 0.0054
+      },
+      {
+        "epoch": 2,
+        "micro_step": 448,
+        "loss": 0.0063
+      },
+      {
+        "epoch": 2,
+        "micro_step": 464,
+        "loss": 0.0107
+      },
+      {
+        "epoch": 2,
+        "micro_step": 480,
+        "loss": 0.008
+      },
+      {
+        "epoch": 2,
+        "micro_step": 496,
+        "loss": 0.0136
+      },
+      {
+        "epoch": 2,
+        "micro_step": 512,
+        "loss": 0.0068
+      },
+      {
+        "epoch": 2,
+        "micro_step": 528,
+        "loss": 0.009
+      },
+      {
+        "epoch": 2,
+        "micro_step": 544,
+        "loss": 0.0069
+      },
+      {
+        "epoch": 2,
+        "micro_step": 560,
+        "loss": 0.0109
+      },
+      {
+        "epoch": 2,
+        "micro_step": 576,
+        "loss": 0.0061
+      },
+      {
+        "epoch": 2,
+        "micro_step": 592,
+        "loss": 0.0126
+      },
+      {
+        "epoch": 2,
+        "micro_step": 608,
+        "loss": 0.0163
+      },
+      {
+        "epoch": 2,
+        "micro_step": 624,
+        "loss": 0.0261
+      },
+      {
+        "epoch": 2,
+        "micro_step": 640,
+        "loss": 0.0065
+      },
+      {
+        "epoch": 2,
+        "micro_step": 656,
+        "loss": 0.0086
+      },
+      {
+        "epoch": 2,
+        "micro_step": 672,
+        "loss": 0.0151
+      },
+      {
+        "epoch": 2,
+        "micro_step": 688,
+        "loss": 0.0213
+      },
+      {
+        "epoch": 2,
+        "micro_step": 704,
+        "loss": 0.0154
+      },
+      {
+        "epoch": 2,
+        "micro_step": 720,
+        "loss": 0.0365
+      },
+      {
+        "epoch": 2,
+        "micro_step": 736,
+        "loss": 0.0086
+      },
+      {
+        "epoch": 2,
+        "micro_step": 752,
+        "loss": 0.0065
+      },
+      {
+        "epoch": 2,
+        "micro_step": 755,
+        "loss": 0.0035
       }
     ],
     "epoch_val": [
       {
         "epoch": 1,
-        "val_tool_selection_accuracy": 0.7451,
-        "val_argument_accuracy": 0.8627
+        "val_tool_selection_accuracy": 0.8039,
+        "val_argument_accuracy": 0.8431
       },
       {
         "epoch": 2,
-        "val_tool_selection_accuracy": 0.7843,
-        "val_argument_accuracy": 0.902
+        "val_tool_selection_accuracy": 0.8431,
+        "val_argument_accuracy": 0.8627
       }
     ],
     "best_epoch": 2,
-    "seconds": 1381.5
+    "seconds": 1215.7
   },
   "masking": {
-    "input_tokens": 760,
-    "masked_tokens": 727,
+    "input_tokens": 860,
+    "masked_tokens": 827,
     "supervised_tokens": 33,
-    "first_supervised_index": 584,
+    "first_supervised_index": 684,
     "labels_are_neg100_before_first_assistant": true,
-    "decoded_prompt_tail": "name>\", \"args\": {...}}<|END_OF_TURN_TOKEN|><|START_OF_TURN_TOKEN|><|USER_TOKEN|>Tell me DIS's price-to-earnings multiple.<|END_OF_TURN_TOKEN|><|START_OF_TURN_TOKEN|><|CHATBOT_TOKEN|><|START_RESPONSE|>",
+    "decoded_prompt_tail": " Do not invent a ticker.\n<|END_OF_TURN_TOKEN|><|START_OF_TURN_TOKEN|><|USER_TOKEN|>Tell me DIS's price-to-earnings multiple.<|END_OF_TURN_TOKEN|><|START_OF_TURN_TOKEN|><|CHATBOT_TOKEN|><|START_RESPONSE|>",
     "decoded_first_supervised_span": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"DIS\"}}<|END_RESPONSE|><|END_OF_TURN_TOKEN|>",
     "all_supervision_is_assistant_text": true
   },
   "data_checks": {
-    "train_rows": 716,
+    "train_rows": 755,
     "val_rows": 51,
     "test_rows": 150,
-    "train_questions": 716,
+    "train_questions": 755,
     "val_questions_in_train": 0,
     "test_questions_in_train": 0,
     "val_tickers_in_train": [],
@@ -527,7 +557,7 @@
         "examples": 51,
         "schema_valid_rate": 1.0,
         "tool_selection_accuracy": 0.5294,
-        "argument_accuracy": 0.0588,
+        "argument_accuracy": 0.098,
         "abstention": {
           "scored": true,
           "abstain_rows": 15,
@@ -630,12 +660,12 @@
           },
           "comparison": {
             "examples": 4,
-            "tool_selection_accuracy": 0.5,
+            "tool_selection_accuracy": 0.25,
             "schema_valid_rate": 1.0
           },
           "invalid_ticker": {
             "examples": 4,
-            "tool_selection_accuracy": 0.5,
+            "tool_selection_accuracy": 0.75,
             "schema_valid_rate": 1.0
           },
           "loop_trap": {
@@ -650,7 +680,7 @@
           },
           "metric_pe": {
             "examples": 4,
-            "tool_selection_accuracy": 0.75,
+            "tool_selection_accuracy": 0.5,
             "schema_valid_rate": 1.0
           },
           "missing_ratios": {
@@ -665,7 +695,7 @@
           },
           "non_us_currency": {
             "examples": 4,
-            "tool_selection_accuracy": 0.75,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           },
           "overview": {
@@ -690,8 +720,9 @@
           }
         },
         "predicted_tools": {
-          "get_stock_quote": 22,
-          "get_financial_ratios": 17,
+          "get_stock_quote": 24,
+          "get_financial_ratios": 14,
+          "compare": 1,
           "get_company_news": 8,
           "get_historical_prices": 4
         },
@@ -700,38 +731,38 @@
           0.6595
         ],
         "argument_accuracy_95ci": [
-          0.0202,
-          0.1592
+          0.0426,
+          0.2098
         ]
       },
       "tuned": {
         "examples": 51,
         "schema_valid_rate": 1.0,
-        "tool_selection_accuracy": 0.7843,
-        "argument_accuracy": 0.902,
+        "tool_selection_accuracy": 0.8431,
+        "argument_accuracy": 0.8627,
         "abstention": {
           "scored": true,
           "abstain_rows": 15,
           "non_abstain_rows": 36,
           "confusion": {
-            "true_positive": 5,
+            "true_positive": 6,
             "false_positive": 0,
-            "false_negative": 10,
+            "false_negative": 9,
             "true_negative": 36
           },
           "precision": 1.0,
-          "recall": 0.3333,
-          "f1": 0.5,
+          "recall": 0.4,
+          "f1": 0.5714,
           "specificity": 1.0,
-          "balanced_accuracy": 0.6667,
+          "balanced_accuracy": 0.7,
           "over_abstention_rate": 0.0,
-          "under_abstention_rate": 0.6667,
+          "under_abstention_rate": 0.6,
           "recall_95ci": [
-            0.1518,
-            0.5829
+            0.1982,
+            0.6425
           ],
           "precision_95ci": [
-            0.5655,
+            0.6097,
             1.0
           ],
           "no_positive_predictions": false,
@@ -743,9 +774,9 @@
               "rate": 1.0
             },
             "invalid_ticker": {
-              "declined": 1,
+              "declined": 2,
               "total": 4,
-              "rate": 0.25
+              "rate": 0.5
             },
             "loop_trap": {
               "declined": 0,
@@ -819,7 +850,7 @@
           },
           "invalid_ticker": {
             "examples": 4,
-            "tool_selection_accuracy": 0.75,
+            "tool_selection_accuracy": 0.5,
             "schema_valid_rate": 1.0
           },
           "loop_trap": {
@@ -839,17 +870,17 @@
           },
           "missing_ratios": {
             "examples": 4,
-            "tool_selection_accuracy": 1.0,
+            "tool_selection_accuracy": 0.75,
             "schema_valid_rate": 1.0
           },
           "news_unavailable": {
             "examples": 4,
-            "tool_selection_accuracy": 0.25,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           },
           "non_us_currency": {
             "examples": 4,
-            "tool_selection_accuracy": 0.75,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           },
           "overview": {
@@ -859,7 +890,7 @@
           },
           "period_ambiguity": {
             "examples": 4,
-            "tool_selection_accuracy": 0.75,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           },
           "stale_data": {
@@ -874,19 +905,18 @@
           }
         },
         "predicted_tools": {
-          "finish": 5,
-          "get_financial_ratios": 19,
-          "get_stock_quote": 18,
-          "get_company_news": 3,
-          "get_historical_prices": 6
+          "finish": 6,
+          "get_financial_ratios": 17,
+          "get_stock_quote": 21,
+          "get_historical_prices": 7
         },
         "tool_selection_95ci": [
-          0.6537,
-          0.8751
+          0.7199,
+          0.9183
         ],
         "argument_accuracy_95ci": [
-          0.7902,
-          0.9574
+          0.7428,
+          0.9319
         ]
       }
     },
@@ -894,42 +924,45 @@
       "base": {
         "examples": 150,
         "schema_valid_rate": 1.0,
-        "tool_selection_accuracy": 0.54,
-        "argument_accuracy": 0.04,
+        "tool_selection_accuracy": 0.5467,
+        "argument_accuracy": 0.0867,
         "abstention": {
           "scored": true,
           "abstain_rows": 37,
           "non_abstain_rows": 113,
           "confusion": {
-            "true_positive": 0,
+            "true_positive": 3,
             "false_positive": 0,
-            "false_negative": 37,
+            "false_negative": 34,
             "true_negative": 113
           },
-          "precision": null,
-          "recall": 0.0,
-          "f1": null,
+          "precision": 1.0,
+          "recall": 0.0811,
+          "f1": 0.15,
           "specificity": 1.0,
-          "balanced_accuracy": 0.5,
+          "balanced_accuracy": 0.5405,
           "over_abstention_rate": 0.0,
-          "under_abstention_rate": 1.0,
+          "under_abstention_rate": 0.9189,
           "recall_95ci": [
-            0.0,
-            0.0941
+            0.028,
+            0.213
           ],
-          "precision_95ci": null,
-          "no_positive_predictions": true,
+          "precision_95ci": [
+            0.4385,
+            1.0
+          ],
+          "no_positive_predictions": false,
           "malformed_rows": 0,
           "recall_by_abstain_intent": {
             "advice_request": {
-              "declined": 0,
+              "declined": 2,
               "total": 14,
-              "rate": 0.0
+              "rate": 0.1429
             },
             "invalid_ticker": {
-              "declined": 0,
+              "declined": 1,
               "total": 11,
-              "rate": 0.0
+              "rate": 0.0909
             },
             "loop_trap": {
               "declined": 0,
@@ -993,17 +1026,17 @@
         "by_intent": {
           "advice_request": {
             "examples": 14,
-            "tool_selection_accuracy": 0.0,
+            "tool_selection_accuracy": 0.1429,
             "schema_valid_rate": 1.0
           },
           "comparison": {
             "examples": 15,
-            "tool_selection_accuracy": 0.5333,
+            "tool_selection_accuracy": 0.2,
             "schema_valid_rate": 1.0
           },
           "invalid_ticker": {
             "examples": 11,
-            "tool_selection_accuracy": 0.7273,
+            "tool_selection_accuracy": 0.6364,
             "schema_valid_rate": 1.0
           },
           "loop_trap": {
@@ -1018,12 +1051,12 @@
           },
           "metric_pe": {
             "examples": 15,
-            "tool_selection_accuracy": 0.8,
+            "tool_selection_accuracy": 0.7333,
             "schema_valid_rate": 1.0
           },
           "missing_ratios": {
             "examples": 14,
-            "tool_selection_accuracy": 1.0,
+            "tool_selection_accuracy": 0.9286,
             "schema_valid_rate": 1.0
           },
           "news_unavailable": {
@@ -1033,12 +1066,12 @@
           },
           "non_us_currency": {
             "examples": 11,
-            "tool_selection_accuracy": 0.6364,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           },
           "overview": {
             "examples": 30,
-            "tool_selection_accuracy": 0.3,
+            "tool_selection_accuracy": 0.4,
             "schema_valid_rate": 1.0
           },
           "period_ambiguity": {
@@ -1058,48 +1091,51 @@
           }
         },
         "predicted_tools": {
-          "get_historical_prices": 23,
-          "get_stock_quote": 66,
-          "get_company_news": 12,
-          "get_financial_ratios": 49
+          "get_historical_prices": 20,
+          "get_stock_quote": 67,
+          "get_company_news": 13,
+          "get_financial_ratios": 41,
+          "compare": 5,
+          "compare_valuation_price_action": 1,
+          "finish": 3
         },
         "tool_selection_95ci": [
-          0.4602,
-          0.6178
+          0.4668,
+          0.6242
         ],
         "argument_accuracy_95ci": [
-          0.0185,
-          0.0845
+          0.0513,
+          0.1426
         ]
       },
       "tuned": {
         "examples": 150,
         "schema_valid_rate": 1.0,
-        "tool_selection_accuracy": 0.8,
-        "argument_accuracy": 0.8533,
+        "tool_selection_accuracy": 0.86,
+        "argument_accuracy": 0.8867,
         "abstention": {
           "scored": true,
           "abstain_rows": 37,
           "non_abstain_rows": 113,
           "confusion": {
-            "true_positive": 16,
+            "true_positive": 17,
             "false_positive": 0,
-            "false_negative": 21,
+            "false_negative": 20,
             "true_negative": 113
           },
           "precision": 1.0,
-          "recall": 0.4324,
-          "f1": 0.6038,
+          "recall": 0.4595,
+          "f1": 0.6296,
           "specificity": 1.0,
-          "balanced_accuracy": 0.7162,
+          "balanced_accuracy": 0.7297,
           "over_abstention_rate": 0.0,
-          "under_abstention_rate": 0.5676,
+          "under_abstention_rate": 0.5405,
           "recall_95ci": [
-            0.2867,
-            0.5909
+            0.3104,
+            0.6162
           ],
           "precision_95ci": [
-            0.8064,
+            0.8157,
             1.0
           ],
           "no_positive_predictions": false,
@@ -1111,9 +1147,9 @@
               "rate": 1.0
             },
             "invalid_ticker": {
-              "declined": 2,
+              "declined": 3,
               "total": 11,
-              "rate": 0.1818
+              "rate": 0.2727
             },
             "loop_trap": {
               "declined": 0,
@@ -1182,12 +1218,12 @@
           },
           "comparison": {
             "examples": 15,
-            "tool_selection_accuracy": 0.5333,
+            "tool_selection_accuracy": 0.9333,
             "schema_valid_rate": 1.0
           },
           "invalid_ticker": {
             "examples": 11,
-            "tool_selection_accuracy": 0.8182,
+            "tool_selection_accuracy": 0.7273,
             "schema_valid_rate": 1.0
           },
           "loop_trap": {
@@ -1207,27 +1243,27 @@
           },
           "missing_ratios": {
             "examples": 14,
-            "tool_selection_accuracy": 1.0,
+            "tool_selection_accuracy": 0.7857,
             "schema_valid_rate": 1.0
           },
           "news_unavailable": {
             "examples": 8,
-            "tool_selection_accuracy": 0.5,
+            "tool_selection_accuracy": 0.875,
             "schema_valid_rate": 1.0
           },
           "non_us_currency": {
             "examples": 11,
-            "tool_selection_accuracy": 0.7273,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           },
           "overview": {
             "examples": 30,
-            "tool_selection_accuracy": 0.6333,
+            "tool_selection_accuracy": 0.5667,
             "schema_valid_rate": 1.0
           },
           "period_ambiguity": {
             "examples": 6,
-            "tool_selection_accuracy": 0.5,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           },
           "stale_data": {
@@ -1242,49 +1278,49 @@
           }
         },
         "predicted_tools": {
-          "get_stock_quote": 63,
-          "get_historical_prices": 14,
-          "get_financial_ratios": 53,
-          "finish": 16,
-          "get_company_news": 4
+          "get_stock_quote": 72,
+          "get_historical_prices": 19,
+          "get_financial_ratios": 41,
+          "finish": 17,
+          "get_company_news": 1
         },
         "tool_selection_95ci": [
-          0.7289,
-          0.8562
+          0.7954,
+          0.9066
         ],
         "argument_accuracy_95ci": [
-          0.7879,
-          0.9011
+          0.826,
+          0.928
         ]
       }
     },
     "paired": {
       "val": {
         "tool_selection": {
-          "gained": 14,
-          "lost": 1,
-          "both": 26,
-          "neither": 10
+          "gained": 20,
+          "lost": 4,
+          "both": 23,
+          "neither": 4
         },
         "argument_accuracy": {
-          "gained": 43,
+          "gained": 39,
           "lost": 0,
-          "both": 3,
-          "neither": 5
+          "both": 5,
+          "neither": 7
         }
       },
       "test": {
         "tool_selection": {
-          "gained": 41,
-          "lost": 2,
-          "both": 79,
-          "neither": 28
+          "gained": 54,
+          "lost": 7,
+          "both": 75,
+          "neither": 14
         },
         "argument_accuracy": {
-          "gained": 125,
-          "lost": 3,
-          "both": 3,
-          "neither": 19
+          "gained": 120,
+          "lost": 0,
+          "both": 13,
+          "neither": 17
         }
       }
     }
@@ -1304,7 +1340,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"NFLX\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"NFLX\"\n  }\n}"
         },
         {
           "id": "gold_000024",
@@ -1318,7 +1354,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"TXN\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"TXN\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "gold_000048",
@@ -1332,7 +1368,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"CROX\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"CROX\",\n    \"period\": \"5y\"\n  }\n}"
         },
         {
           "id": "gold_000138",
@@ -1346,7 +1382,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"ROKU\", \"period\": \"5y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ROKU\",\n    \"period\": \"5y\"\n  }\n}"
         },
         {
           "id": "gold_000109",
@@ -1360,7 +1396,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"AVGO\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"AVGO\",\n    \"ticker\": \"JPM\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "gold_000439",
@@ -1388,21 +1424,21 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"CROX\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"TXN\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "gold_000725",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "compare",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"JPM\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"compare\",\n  \"args\": {\n    \"ticker\": [\"JPM\", \"TXN\"],\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "gold_000077",
@@ -1436,15 +1472,15 @@
           "id": "gold_000368",
           "intent": "invalid_ticker",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": false,
           "abstention_expected": true,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"NONE\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"NONE\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "gold_000433",
@@ -1453,12 +1489,12 @@
           "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
           "tool_correct": false,
-          "args_correct": false,
+          "args_correct": true,
           "abstention_expected": true,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"NONE\", \"period\": \"none\"}}"
+          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"NONE\"}}"
         },
         {
           "id": "gold_000210",
@@ -1514,7 +1550,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"ARKK\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "gold_000068",
@@ -1528,7 +1564,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"ARKK\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "gold_000229",
@@ -1542,7 +1578,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"ARKK\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "gold_000617",
@@ -1556,7 +1592,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"ARKK\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "gold_000026",
@@ -1570,7 +1606,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"CAT\", \"period\": \"1y\"}}"
+          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"CAT\", \"period\": \"none\"}}"
         },
         {
           "id": "gold_000085",
@@ -1584,7 +1620,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"JPM\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"JPM\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "gold_000212",
@@ -1598,21 +1634,21 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"NFLX\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"NFLX\",\n    \"period\": \"earnings\"\n  }\n}"
         },
         {
           "id": "gold_000244",
           "intent": "metric_pe",
           "expected_tool": "get_financial_ratios",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"NFLX\", \"period\": \"none\"}}"
+          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"NFLX\", \"period\": \"earnings\"}}"
         },
         {
           "id": "gold_000078",
@@ -1626,7 +1662,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "gold_000528",
@@ -1640,7 +1676,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"ARKK\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "gold_000594",
@@ -1654,7 +1690,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "gold_000616",
@@ -1668,7 +1704,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"ARKK\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "gold_000031",
@@ -1682,7 +1718,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_company_news\", \"args\": {\"ticker\": \"ARKK\", \"limit\": 5}}"
+          "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"limit\": 5\n  }\n}"
         },
         {
           "id": "gold_000285",
@@ -1724,7 +1760,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_company_news\", \"args\": {\"ticker\": \"ARKK\", \"limit\": 5}}"
+          "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"limit\": 5\n  }\n}"
         },
         {
           "id": "gold_000087",
@@ -1744,15 +1780,15 @@
           "id": "gold_000121",
           "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"TTE.PA\", \"period\": \"none\"}}"
+          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"TTE.PA\", \"period\": \"local\"}}"
         },
         {
           "id": "gold_000154",
@@ -1766,7 +1802,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"ULVR.L\", \"currency\": \"USD\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ULVR.L\",\n    \"currency\": \"USD\"\n  }\n}"
         },
         {
           "id": "gold_000175",
@@ -1780,7 +1816,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"TTE.PA\", \"period\": \"1y\"}}"
+          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"TTE.PA\", \"currency\": \"USD\"}}"
         },
         {
           "id": "gold_000084",
@@ -1850,7 +1886,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"NKE\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"NKE\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "gold_000046",
@@ -1864,7 +1900,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"JPM\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"JPM\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "gold_000093",
@@ -1892,7 +1928,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"TXN\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"TXN\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "gold_000007",
@@ -1901,12 +1937,12 @@
           "predicted_tool": "get_stock_quote",
           "schema_valid": true,
           "tool_correct": true,
-          "args_correct": false,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"ARKK\", \"currency\": \"USD\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ARKK\"\n  }\n}"
         },
         {
           "id": "gold_000266",
@@ -1920,7 +1956,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"ARKK\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "gold_000466",
@@ -1934,7 +1970,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"live\"\n  }\n}"
         },
         {
           "id": "gold_000690",
@@ -1948,7 +1984,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"ARKK\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ARKK\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "gold_000010",
@@ -1962,7 +1998,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"CAT\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"CAT\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "gold_000047",
@@ -1976,7 +2012,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"NKE\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"NKE\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "gold_000059",
@@ -1990,7 +2026,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"AVGO\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"AVGO\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "gold_000104",
@@ -2004,7 +2040,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"CAT\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"CAT\",\n    \"period\": \"1y\"\n  }\n}"
         }
       ],
       "tuned": [
@@ -2071,12 +2107,12 @@
           "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
           "tool_correct": false,
-          "args_correct": true,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"AVGO\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"AVG\"}}"
         },
         {
           "id": "gold_000439",
@@ -2099,12 +2135,12 @@
           "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
           "tool_correct": false,
-          "args_correct": true,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"TXN\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"CROX\"}}"
         },
         {
           "id": "gold_000725",
@@ -2138,15 +2174,15 @@
           "id": "gold_000155",
           "intent": "invalid_ticker",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "finish",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": true,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": false,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NONE\"}}"
+          "abstention_decision": "abstain",
+          "abstention_signal": true,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
         },
         {
           "id": "gold_000368",
@@ -2376,7 +2412,21 @@
           "id": "gold_000616",
           "intent": "missing_ratios",
           "expected_tool": "get_financial_ratios",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
+          "schema_valid": true,
+          "tool_correct": false,
+          "args_correct": true,
+          "abstention_expected": false,
+          "abstention_decision": "call_tool",
+          "abstention_signal": false,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ARKK\"}}"
+        },
+        {
+          "id": "gold_000031",
+          "intent": "news_unavailable",
+          "expected_tool": "get_stock_quote",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
           "tool_correct": true,
           "args_correct": true,
@@ -2384,49 +2434,35 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"ARKK\"}}"
-        },
-        {
-          "id": "gold_000031",
-          "intent": "news_unavailable",
-          "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_company_news",
-          "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": true,
-          "abstention_expected": false,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"ARKK\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ARKK\"}}"
         },
         {
           "id": "gold_000285",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_company_news",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"ARKK\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ARKK\"}}"
         },
         {
           "id": "gold_000543",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_company_news",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"ARKK\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ARKK\"}}"
         },
         {
           "id": "gold_000579",
@@ -2460,15 +2496,15 @@
           "id": "gold_000121",
           "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"TTE.PA\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"TTE.PA\"}}"
         },
         {
           "id": "gold_000154",
@@ -2586,15 +2622,15 @@
           "id": "gold_000093",
           "intent": "period_ambiguity",
           "expected_tool": "get_historical_prices",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ROKU\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"ROKU\",\"period\":\"1y\"}}"
         },
         {
           "id": "gold_000103",
@@ -2738,21 +2774,21 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"PEP\", \"period\": \"1mo\"}}"
+          "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"PEP\",\n    \"period\": \"1mo\"\n  }\n}"
         },
         {
           "id": "ts_0002",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_historical_prices",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"DIS\", \"period\": \"1mo\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"DIS\",\n    \"period\": \"1mo\"\n  }\n}"
         },
         {
           "id": "ts_0003",
@@ -2794,7 +2830,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"NVDA\", \"period\": \"1mo\"}}"
+          "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"NVDA\",\n    \"period\": \"1mo\"\n  }\n}"
         },
         {
           "id": "ts_0006",
@@ -2822,7 +2858,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"META\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"META\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0008",
@@ -2842,15 +2878,15 @@
           "id": "ts_0009",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_historical_prices",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"MCD\", \"period\": \"1mo\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"MCD\",\n    \"period\": \"1mo\"\n  }\n}"
         },
         {
           "id": "ts_0010",
@@ -2878,21 +2914,21 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"CAT\",\n    \"limit\": 10\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"CAT\",\n    \"limit\": 1\n  }\n}"
         },
         {
           "id": "ts_0012",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_historical_prices",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"NFLX\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"NFLX\",\n    \"period\": \"1mo\"\n  }\n}"
         },
         {
           "id": "ts_0013",
@@ -2920,7 +2956,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"TSLA\", \"period\": \"1mo\"}}"
+          "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"TSLA\",\n    \"period\": \"1mo\"\n  }\n}"
         },
         {
           "id": "ts_0015",
@@ -2948,7 +2984,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"NKE\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"NKE\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0017",
@@ -3004,7 +3040,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"CROX\", \"period\": \"1y\"}}"
+          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"CROX\", \"period\": \"1mo\"}}"
         },
         {
           "id": "ts_0021",
@@ -3018,7 +3054,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"BA\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"BA\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0022",
@@ -3032,7 +3068,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_company_news\", \"args\": {\"ticker\": \"ABBV\", \"limit\": 5}}"
+          "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"ABBV\",\n    \"limit\": 5\n  }\n}"
         },
         {
           "id": "ts_0023",
@@ -3046,7 +3082,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"GM\", \"period\": \"1mo\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"GM\",\n    \"period\": \"1mo\"\n  }\n}"
         },
         {
           "id": "ts_0024",
@@ -3074,7 +3110,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"ABBV\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ABBV\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0026",
@@ -3102,7 +3138,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"CROX\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"CROX\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0028",
@@ -3130,7 +3166,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"META\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"META\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0030",
@@ -3158,7 +3194,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"PLUG\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"PLUG\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0032",
@@ -3172,7 +3208,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"COST\", \"period\": \"1y\"}}"
+          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"COST\", \"ratio\": \"PE\"}}"
         },
         {
           "id": "ts_0033",
@@ -3186,7 +3222,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"MSFT\", \"period\": \"1y\"}}"
+          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"MSFT\", \"ratio\": \"P/E\"}}"
         },
         {
           "id": "ts_0034",
@@ -3200,7 +3236,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"V\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"V\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0035",
@@ -3214,7 +3250,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"AMZN\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"AMZN\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0036",
@@ -3228,7 +3264,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"BRK-B\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"BRK-B\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0037",
@@ -3242,7 +3278,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"CRM\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"CRM\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0038",
@@ -3256,7 +3292,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"V\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"V\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0039",
@@ -3284,7 +3320,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"AMD\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"AMD\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0041",
@@ -3298,7 +3334,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"MRK\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"MRK\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0042",
@@ -3312,7 +3348,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"JPM\", \"period\": \"none\"}}"
+          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"JPM\", \"period\": \"earnings\"}}"
         },
         {
           "id": "ts_0043",
@@ -3326,21 +3362,21 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"JPM\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"JPM\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0044",
           "intent": "metric_pe",
           "expected_tool": "get_financial_ratios",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"AAPL\", \"period\": \"none\"}}"
+          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"AAPL\", \"period\": \"none\"}}"
         },
         {
           "id": "ts_0045",
@@ -3354,7 +3390,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"MA\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"MA\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0046",
@@ -3368,7 +3404,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"JPM\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"JPM\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0047",
@@ -3396,21 +3432,21 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"TXN\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"TXN\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0049",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"ETSY\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ETSY\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0050",
@@ -3430,43 +3466,43 @@
           "id": "ts_0051",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "compare",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"CRM\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"compare\",\n  \"args\": {\n    \"ticker\": \"CRM\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0052",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "compare",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"JNJ INTC\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"compare\",\n  \"args\": {\n    \"ticker\": [\"JNJ\", \"INTC\"],\n    \"period\": \"5y\"\n  }\n}"
         },
         {
           "id": "ts_0053",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "compare_valuation_price_action",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ABBV-GM\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"compare_valuation_price_action\",\n  \"args\": {\n    \"ticker1\": \"ABBV\",\n    \"ticker2\": \"GM\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0054",
@@ -3486,15 +3522,15 @@
           "id": "ts_0055",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "compare",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"TSLA\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"compare\",\n  \"args\": {\n    \"ticker\": \"TSLA, CVX\",\n    \"period\": \"5y\"\n  }\n}"
         },
         {
           "id": "ts_0056",
@@ -3508,7 +3544,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"JNJ\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"JNJ\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0057",
@@ -3528,15 +3564,15 @@
           "id": "ts_0058",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "compare",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"CVX ORCL\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"compare\",\n  \"args\": {\n    \"ticker\": [\"CVX\", \"ORCL\"],\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0059",
@@ -3550,11 +3586,25 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"QCOM\",\n    \"ticker\": \"CSCO\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"QCOM\",\n    \"ticker\": \"CSCO\"\n  }\n}"
         },
         {
           "id": "ts_0060",
           "intent": "comparison",
+          "expected_tool": "get_stock_quote",
+          "predicted_tool": "compare",
+          "schema_valid": true,
+          "tool_correct": false,
+          "args_correct": false,
+          "abstention_expected": false,
+          "abstention_decision": "call_tool",
+          "abstention_signal": false,
+          "abstention_correct": true,
+          "raw_text": "{\n  \"tool\": \"compare\",\n  \"args\": {\n    \"ticker\": [\"KO\", \"META\"],\n    \"period\": \"1y\"\n  }\n}"
+        },
+        {
+          "id": "ts_0061",
+          "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
           "predicted_tool": "get_stock_quote",
           "schema_valid": true,
@@ -3564,21 +3614,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"KO\",\n    \"period\": \"1y\"\n  }\n}"
-        },
-        {
-          "id": "ts_0061",
-          "intent": "non_us_currency",
-          "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
-          "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
-          "abstention_expected": false,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"HSBA.L\", \"currency\": \"EUR\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"HSBA.L\",\n    \"currency\": \"USD\"\n  }\n}"
         },
         {
           "id": "ts_0062",
@@ -3592,21 +3628,21 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"SAP.DE\", \"currency\": \"EUR\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"SAP.DE\",\n    \"currency\": \"EUR\"\n  }\n}"
         },
         {
           "id": "ts_0063",
           "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"SHOP.TO\", \"period\": \"none\"}}"
+          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"SHOP.TO\", \"period\": \"local\"}}"
         },
         {
           "id": "ts_0064",
@@ -3620,24 +3656,10 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"VOD.L\", \"currency\": \"USD\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"VOD.L\",\n    \"currency\": \"USD\"\n  }\n}"
         },
         {
           "id": "ts_0065",
-          "intent": "non_us_currency",
-          "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
-          "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
-          "abstention_expected": false,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"TCS.NS\", \"period\": \"1y\"}}"
-        },
-        {
-          "id": "ts_0066",
           "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
           "predicted_tool": "get_stock_quote",
@@ -3648,7 +3670,21 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"TCS.NS\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"TCS.NS\", \"currency\": \"INR\"}}"
+        },
+        {
+          "id": "ts_0066",
+          "intent": "non_us_currency",
+          "expected_tool": "get_stock_quote",
+          "predicted_tool": "get_stock_quote",
+          "schema_valid": true,
+          "tool_correct": true,
+          "args_correct": true,
+          "abstention_expected": false,
+          "abstention_decision": "call_tool",
+          "abstention_signal": false,
+          "abstention_correct": true,
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"TCS.NS\"\n  }\n}"
         },
         {
           "id": "ts_0067",
@@ -3676,7 +3712,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"ULVR.L\", \"currency\": \"USD\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ULVR.L\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0069",
@@ -3690,7 +3726,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"SAP.DE\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"SAP.DE\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0070",
@@ -3710,15 +3746,15 @@
           "id": "ts_0071",
           "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"SHOP.TO\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"SHOP.TO\",\n    \"currency\": \"CAD\"\n  }\n}"
         },
         {
           "id": "ts_0072",
@@ -3727,12 +3763,12 @@
           "predicted_tool": "get_stock_quote",
           "schema_valid": true,
           "tool_correct": true,
-          "args_correct": false,
+          "args_correct": true,
           "abstention_expected": true,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"QQZX\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"QQZX\"\n  }\n}"
         },
         {
           "id": "ts_0073",
@@ -3746,7 +3782,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"NOTREAL\", \"period\": \"1y\"}}"
+          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"N/A\", \"period\": \"N/A\"}}"
         },
         {
           "id": "ts_0074",
@@ -3760,7 +3796,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"QQZX\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"QQZX\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0075",
@@ -3774,7 +3810,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"ZZZZ\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ZZZZ\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0076",
@@ -3788,7 +3824,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"XQZW\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"XQZW\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0077",
@@ -3802,7 +3838,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"NOTREAL\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"NOTREAL\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0078",
@@ -3825,26 +3861,26 @@
           "predicted_tool": "get_stock_quote",
           "schema_valid": true,
           "tool_correct": true,
-          "args_correct": false,
+          "args_correct": true,
           "abstention_expected": true,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ZZZZ\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ZZZZ\"\n  }\n}"
         },
         {
           "id": "ts_0080",
           "intent": "invalid_ticker",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "finish",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": false,
           "abstention_expected": true,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": false,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"NOTREAL\",\n    \"period\": \"1y\"\n  }\n}"
+          "abstention_decision": "abstain",
+          "abstention_signal": true,
+          "abstention_correct": true,
+          "raw_text": "{\n  \"tool\": \"finish\",\n  \"args\": {}\n}"
         },
         {
           "id": "ts_0081",
@@ -3858,7 +3894,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"NOTREAL\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"NOTREAL\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0082",
@@ -3872,7 +3908,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"QQZX\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"QQZX\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0083",
@@ -3886,7 +3922,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"PLUG\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"PLUG\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0084",
@@ -3900,21 +3936,21 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"WOLF\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"WOLF\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0085",
           "intent": "missing_ratios",
           "expected_tool": "get_financial_ratios",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"XOM\", \"period\": \"1y\"}}"
+          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"XOM\", \"period\": \"1y\"}}"
         },
         {
           "id": "ts_0086",
@@ -3928,7 +3964,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"AYA\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"FOO-BAR\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0087",
@@ -3942,7 +3978,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"TXN\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"TXN\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0088",
@@ -3970,7 +4006,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"NFLX\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"NFLX\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0090",
@@ -4012,7 +4048,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"INTC\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"TXN\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0093",
@@ -4026,7 +4062,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"UNH\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"UNH\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0094",
@@ -4040,7 +4076,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"UNH\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"UNH\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0095",
@@ -4054,7 +4090,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"NKE\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"NKE\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0096",
@@ -4082,7 +4118,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_company_news\", \"args\": {\"ticker\": \"IBM\", \"limit\": 5}}"
+          "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"IBM\",\n    \"limit\": 5\n  }\n}"
         },
         {
           "id": "ts_0098",
@@ -4110,7 +4146,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_company_news\", \"args\": {\"ticker\": \"XOM\", \"limit\": 5}}"
+          "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"XOM\",\n    \"limit\": 5\n  }\n}"
         },
         {
           "id": "ts_0100",
@@ -4124,7 +4160,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_company_news\", \"args\": {\"ticker\": \"TSLA\", \"limit\": 5}}"
+          "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"TSLA\",\n    \"limit\": 5\n  }\n}"
         },
         {
           "id": "ts_0101",
@@ -4152,7 +4188,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_company_news\", \"args\": {\"ticker\": \"NKE\", \"limit\": 5}}"
+          "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"NKE\",\n    \"limit\": 5\n  }\n}"
         },
         {
           "id": "ts_0103",
@@ -4180,7 +4216,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"CROX\",\n    \"limit\": 5\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"Crox\",\n    \"limit\": 5\n  }\n}"
         },
         {
           "id": "ts_0105",
@@ -4194,7 +4230,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"INTC\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"INTC\",\n    \"period\": \"live\"\n  }\n}"
         },
         {
           "id": "ts_0106",
@@ -4208,7 +4244,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"AVGO\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"AVGO\",\n    \"period\": \"live\"\n  }\n}"
         },
         {
           "id": "ts_0107",
@@ -4217,12 +4253,12 @@
           "predicted_tool": "get_stock_quote",
           "schema_valid": true,
           "tool_correct": true,
-          "args_correct": false,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"PEP\", \"currency\": \"USD\", \"volume\": 1000000, \"market_cap\": 5000000000, \"52_week_range\": {\"low\": 2.50, \"high\": 5.50}}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"PEP\"\n  }\n}"
         },
         {
           "id": "ts_0108",
@@ -4231,12 +4267,12 @@
           "predicted_tool": "get_stock_quote",
           "schema_valid": true,
           "tool_correct": true,
-          "args_correct": false,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"AMD\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"AMD\"\n  }\n}"
         },
         {
           "id": "ts_0109",
@@ -4250,7 +4286,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"ROKU\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"ROKU\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0110",
@@ -4264,7 +4300,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"JPM\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"JPM\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0111",
@@ -4292,7 +4328,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"WMT\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"WMT\",\n    \"period\": \"live\"\n  }\n}"
         },
         {
           "id": "ts_0113",
@@ -4306,7 +4342,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"QCOM\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"QCOM\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0114",
@@ -4320,7 +4356,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"V\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"V\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0115",
@@ -4334,7 +4370,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"ABBV\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ABBV\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0116",
@@ -4348,7 +4384,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"MRK\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"MRK\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0117",
@@ -4362,7 +4398,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"PLUG\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"PLUG\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0118",
@@ -4376,7 +4412,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"ABBV\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ABBV\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0119",
@@ -4390,7 +4426,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"AAL\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"AAL\",\n    \"period\": \"none\"\n  }\n}"
         },
         {
           "id": "ts_0120",
@@ -4399,12 +4435,12 @@
           "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
           "tool_correct": true,
-          "args_correct": false,
+          "args_correct": true,
           "abstention_expected": true,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"ABBV\", \"period\": \"none\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"ABBV\"\n  }\n}"
         },
         {
           "id": "ts_0121",
@@ -4418,7 +4454,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"AVGO\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"AVGO\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0122",
@@ -4432,7 +4468,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"META\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"META\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0123",
@@ -4446,7 +4482,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"NVDA\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"NVDA\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0124",
@@ -4460,21 +4496,21 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_historical_prices\", \"args\": {\"ticker\": \"BRK-B\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"BRK-B\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0125",
           "intent": "period_ambiguity",
           "expected_tool": "get_historical_prices",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
           "tool_correct": false,
-          "args_correct": true,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"CRM\", \"period\": \"1y\"}}"
+          "raw_text": "{\"tool\": \"get_company_news\", \"args\": {\"ticker\": \"CRM\", \"limit\": 5}}"
         },
         {
           "id": "ts_0126",
@@ -4502,7 +4538,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_financial_ratios\", \"args\": {\"ticker\": \"HD\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"HD\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0128",
@@ -4516,7 +4552,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"AMD\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"AMD\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0129",
@@ -4530,7 +4566,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"MSFT\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"MSFT\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0130",
@@ -4544,7 +4580,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"META\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"META\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0131",
@@ -4558,7 +4594,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"MA\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"MA\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0132",
@@ -4572,7 +4608,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"AAPL\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"AAPL\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0133",
@@ -4586,13 +4622,13 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"HD\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"HD\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0134",
           "intent": "advice_request",
           "expected_tool": "finish",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
           "tool_correct": false,
           "args_correct": false,
@@ -4600,7 +4636,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"IBM\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"IBM\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0135",
@@ -4628,21 +4664,21 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"UNH\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"UNH\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0137",
           "intent": "advice_request",
           "expected_tool": "finish",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "finish",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": true,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": false,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"MCD\",\n    \"period\": \"1y\"\n  }\n}"
+          "abstention_decision": "abstain",
+          "abstention_signal": true,
+          "abstention_correct": true,
+          "raw_text": "{\n  \"tool\": \"finish\",\n  \"args\": {}\n}"
         },
         {
           "id": "ts_0138",
@@ -4656,7 +4692,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"JNJ\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"JNJ\",\n    \"period\": \"5y\"\n  }\n}"
         },
         {
           "id": "ts_0139",
@@ -4670,7 +4706,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"TXN\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"TXN\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0140",
@@ -4684,7 +4720,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"MRK\", \"period\": \"1y\"}}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"MRK\",\n    \"period\": \"1y\"\n  }\n}"
         },
         {
           "id": "ts_0141",
@@ -4740,7 +4776,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": false,
-          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"TSLA\",\n    \"period\": \"1y\"\n  }\n}"
+          "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"TSLA\",\n    \"period\": \"5y\"\n  }\n}"
         },
         {
           "id": "ts_0145",
@@ -4760,15 +4796,15 @@
           "id": "ts_0146",
           "intent": "advice_request",
           "expected_tool": "finish",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "finish",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": true,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": false,
-          "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"KO\", \"period\": \"1y\"}}"
+          "abstention_decision": "abstain",
+          "abstention_signal": true,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
         },
         {
           "id": "ts_0147",
@@ -4846,15 +4882,15 @@
           "id": "ts_0002",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"DIS\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"DIS\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0003",
@@ -4994,7 +5030,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"NFLX\",\"period\":\"1mo\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"NFLX\",\"period\":\"1y\"}}"
         },
         {
           "id": "ts_0013",
@@ -5014,15 +5050,15 @@
           "id": "ts_0014",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"TSLA\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"TSLA\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0015",
@@ -5084,15 +5120,15 @@
           "id": "ts_0019",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_historical_prices",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"KO\",\"period\":\"1mo\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"KO\"}}"
         },
         {
           "id": "ts_0020",
@@ -5106,7 +5142,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"CROX\",\"period\":\"1mo\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"CROX\",\"period\":\"1y\"}}"
         },
         {
           "id": "ts_0021",
@@ -5140,15 +5176,15 @@
           "id": "ts_0023",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"GM\"}},"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"GM\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0024",
@@ -5246,7 +5282,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"Crox\",\"period\":\"1mo\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"CROX\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0031",
@@ -5462,15 +5498,15 @@
           "id": "ts_0046",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"JPM\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"JPM\"}}"
         },
         {
           "id": "ts_0047",
@@ -5479,40 +5515,40 @@
           "predicted_tool": "get_stock_quote",
           "schema_valid": true,
           "tool_correct": true,
-          "args_correct": false,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"BA\",\"currency\":\"USD\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"BA\"}}"
         },
         {
           "id": "ts_0048",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"NKE\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"TXN\"}}"
         },
         {
           "id": "ts_0049",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"ETSY\",\"period\":\"1y\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ETSY\"}}"
         },
         {
           "id": "ts_0050",
@@ -5574,15 +5610,15 @@
           "id": "ts_0054",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"AAPL\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"AAPL\"}}"
         },
         {
           "id": "ts_0055",
@@ -5616,15 +5652,15 @@
           "id": "ts_0057",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"MCD\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"MCD\"}}"
         },
         {
           "id": "ts_0058",
@@ -5644,15 +5680,15 @@
           "id": "ts_0059",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"QCOM\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"QCOM\"}}"
         },
         {
           "id": "ts_0060",
@@ -5700,15 +5736,15 @@
           "id": "ts_0063",
           "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"SHOP.TO\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"SHOP.TO\"}}"
         },
         {
           "id": "ts_0064",
@@ -5728,15 +5764,15 @@
           "id": "ts_0065",
           "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"TCS.NS\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"TCS.NS\"}}"
         },
         {
           "id": "ts_0066",
@@ -5812,15 +5848,15 @@
           "id": "ts_0071",
           "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"SHOP.TO\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"SHOP.TO\"}}"
         },
         {
           "id": "ts_0072",
@@ -5840,15 +5876,15 @@
           "id": "ts_0073",
           "intent": "invalid_ticker",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "finish",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": true,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": false,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NOTREAL\"}}"
+          "abstention_decision": "abstain",
+          "abstention_signal": true,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
         },
         {
           "id": "ts_0074",
@@ -6008,29 +6044,29 @@
           "id": "ts_0085",
           "intent": "missing_ratios",
           "expected_tool": "get_financial_ratios",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"XOM\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"XOM\"}}"
         },
         {
           "id": "ts_0086",
           "intent": "missing_ratios",
           "expected_tool": "get_financial_ratios",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": false,
+          "tool_correct": false,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"EXX\"}},"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"MA\"}}"
         },
         {
           "id": "ts_0087",
@@ -6064,15 +6100,15 @@
           "id": "ts_0089",
           "intent": "missing_ratios",
           "expected_tool": "get_financial_ratios",
-          "predicted_tool": "get_financial_ratios",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"NFLX\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NFLX\"}}"
         },
         {
           "id": "ts_0090",
@@ -6190,15 +6226,15 @@
           "id": "ts_0098",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_company_news",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"CAT\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"CAT\"}}"
         },
         {
           "id": "ts_0099",
@@ -6232,29 +6268,29 @@
           "id": "ts_0101",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_company_news",
+          "predicted_tool": "get_stock_quote",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
-          "abstention_expected": false,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"GOOGL\",\"limit\":1}}"
-        },
-        {
-          "id": "ts_0102",
-          "intent": "news_unavailable",
-          "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_company_news",
-          "schema_valid": true,
-          "tool_correct": false,
+          "tool_correct": true,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"NKE\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"GOOGL\"}}"
+        },
+        {
+          "id": "ts_0102",
+          "intent": "news_unavailable",
+          "expected_tool": "get_stock_quote",
+          "predicted_tool": "get_stock_quote",
+          "schema_valid": true,
+          "tool_correct": true,
+          "args_correct": true,
+          "abstention_expected": false,
+          "abstention_decision": "call_tool",
+          "abstention_signal": false,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NKE\"}}"
         },
         {
           "id": "ts_0103",
@@ -6282,7 +6318,7 @@
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"Crox\"}}"
+          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"Crox Inc.\"}}"
         },
         {
           "id": "ts_0105",
@@ -6512,15 +6548,15 @@
           "id": "ts_0121",
           "intent": "period_ambiguity",
           "expected_tool": "get_historical_prices",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"AVGO\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"AVGO\",\"period\":\"1y\"}}"
         },
         {
           "id": "ts_0122",
@@ -6568,29 +6604,29 @@
           "id": "ts_0125",
           "intent": "period_ambiguity",
           "expected_tool": "get_historical_prices",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"CRM\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"CRM\",\"period\":\"1y\"}}"
         },
         {
           "id": "ts_0126",
           "intent": "period_ambiguity",
           "expected_tool": "get_historical_prices",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"CROX\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"CROX\",\"period\":\"1y\"}}"
         },
         {
           "id": "ts_0127",
@@ -6931,6 +6967,6 @@
       ]
     }
   },
-  "peak_gpu_gb": 30.71,
-  "total_seconds": 2206.5
+  "peak_gpu_gb": 30.97,
+  "total_seconds": 1825.1
 }

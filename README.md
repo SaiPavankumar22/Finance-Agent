@@ -84,22 +84,69 @@ signal:
   malformed hybrid object, so the decision is right but the planner format needs
   stricter decoding.
 
-### Two repair attempts, both rejected
+### Three attempts, all rejected
 
-Closing the insider gap was tried twice; neither passed the release gate, so the
-adapter measured above is still the published checkpoint (`7a4b00e`).
+Closing the insider gap was tried three times; none passed the release gate, so
+the adapter measured above is still the published checkpoint (`7a4b00e`).
 
-| Attempt | Rows | Refusal recall | Over-refusal | Verdict |
-|---|---|---|---|---|
-| +48 insider refusals | 668 | 1.000 | 0.577 | rejected |
-| +48 insider, +48 benign | 716 | 1.000 | 0.769 | rejected, worse |
+| Attempt | Rows | Refusal recall | Over-refusal | Frozen tool / args | Verdict |
+|---|---|---|---|---|---|
+| +48 insider refusals | 668 | 1.000 | 0.577 | 0.8431 / 0.9216 (val) | rejected |
+| +48 insider, +48 benign | 716 | 1.000 | 0.769 | 0.7733 / 0.8533 | rejected, worse |
+| WS6 prompt on every row | 755 | 0.9595 | 0.000 | 0.8467 / 0.8867 | rejected on error handling |
 
 The balanced mix was supposed to pull over-refusal back under 0.10 and instead
-pushed it up, which points at conditioning rather than row counts: refusals are
+pushed it up, which pointed at conditioning rather than row counts: refusals were
 trained under the plain planner prompt while the audit prompt says declining is
-legal, so `finish` is learned as a style for finance questions instead of a
-decision about the request. The next pass trains both families under the audit
-prompt and keeps the same gates.
+legal, so `finish` was learned as a style for finance questions instead of a
+decision about the request.
+
+The third attempt fixed exactly that. All 755 rows carry the WS6 prompt verbatim,
+alongside 48 new rows under it (24 Indian benign trajectories, 6 Indian refusals,
+6 Indian edge cases, 12 fresh benign phrasings), and evaluation sends the same
+prompt. It is the best candidate measured so far and passed 13 of 15 gates:
+
+| Metric | WS5 `7a4b00e` | Pipeline candidate |
+|---|---|---|
+| Frozen test tool selection | 0.7867 | **0.8467** |
+| Frozen test argument accuracy | 0.8600 | **0.8867** |
+| Refusal recall | 0.9189 | **0.9595** |
+| Over-refusal | 0.0385 | **0.0000** |
+| Benign tool selection | 0.7308 | **1.0000** |
+| Post-error bounded finish | **0.9000** | 0.8000 |
+| Repeated failing calls | **0** | 2 |
+| India tool / args | 0.6875 / 0.6875 | **0.7188 / 0.7188** |
+
+Both arms above were re-measured under the WS6 prompt on the same decode rule.
+The two failing gates are the same one: two of ten error-replay rows repeat a
+call that already failed, and bounded finish drops to 0.80. Everything else
+improved, but a planner that can re-issue a failing call is a loop in production,
+so the checkpoint stays where it is.
+
+### India evaluation
+
+`eval/india_set.jsonl` is a separate 32-row held-out set over NSE symbols
+(`RELIANCE.NS`, `TCS.NS`, `INFY.NS`), built from recorded fixtures with `INR`
+pricing, and disjoint from the frozen test set. It covers quotes, ratios,
+history, news, advice, predictions, insider requests, urgency, invalid symbols
+(`NIFTY50.NS`), unsupported actions, stale quotes and missing metrics.
+
+| Intent | Rows | Tool correct | Args correct |
+|---|---|---|---|
+| quote | 4 | 4 | 4 |
+| history | 4 | 4 | 4 |
+| ratios | 4 | 3 | 4 |
+| news | 4 | 1 | 0 |
+| advice / prediction / insider / pressure | 8 | 8 | 8 |
+| missing metrics / stale quote | 3 | 3 | 3 |
+| invalid symbol | 2 | 0 | 0 |
+| unsupported (dividend, market hours, buyback) | 3 | 0 | 0 |
+
+Refusals and staleness generalise to Indian symbols without additional prompting.
+Two gaps remain: `get_company_news` loses to quote-style calls on Indian news
+phrasing, and invalid symbols or unsupported actions are answered with a tool
+call instead of `finish`, which is the same under-refusal pattern the frozen test
+shows for `invalid_ticker` (0.27 recall).
 
 ## Project structure
 

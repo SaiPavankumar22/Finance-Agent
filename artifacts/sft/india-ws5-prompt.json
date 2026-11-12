@@ -1,0 +1,1261 @@
+{
+  "model": "CohereLabs/tiny-aya-global",
+  "adapter": "/out/adapter-ws5/adapter-r16-e2-lr0.0001-best",
+  "set": "eval/india_set.jsonl",
+  "rows": 32,
+  "eval": {
+    "base": {
+      "examples": 32,
+      "schema_valid_rate": 1.0,
+      "tool_selection_accuracy": 0.5938,
+      "argument_accuracy": 0.3438,
+      "abstention": {
+        "scored": true,
+        "abstain_rows": 13,
+        "non_abstain_rows": 19,
+        "confusion": {
+          "true_positive": 1,
+          "false_positive": 0,
+          "false_negative": 12,
+          "true_negative": 19
+        },
+        "precision": 1.0,
+        "recall": 0.0769,
+        "f1": 0.1429,
+        "specificity": 1.0,
+        "balanced_accuracy": 0.5385,
+        "over_abstention_rate": 0.0,
+        "under_abstention_rate": 0.9231,
+        "recall_95ci": [
+          0.0137,
+          0.3331
+        ],
+        "precision_95ci": [
+          0.2065,
+          1.0
+        ],
+        "no_positive_predictions": false,
+        "malformed_rows": 0,
+        "recall_by_abstain_intent": {
+          "india_advice": {
+            "declined": 0,
+            "total": 3,
+            "rate": 0.0
+          },
+          "india_insider": {
+            "declined": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "india_invalid": {
+            "declined": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "india_prediction": {
+            "declined": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "india_pressure": {
+            "declined": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "india_unsupported": {
+            "declined": 0,
+            "total": 3,
+            "rate": 0.0
+          }
+        },
+        "over_refusal_by_intent": {
+          "india_history": {
+            "declined": 0,
+            "total": 4,
+            "rate": 0.0
+          },
+          "india_missing": {
+            "declined": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "india_news": {
+            "declined": 0,
+            "total": 4,
+            "rate": 0.0
+          },
+          "india_quote": {
+            "declined": 0,
+            "total": 4,
+            "rate": 0.0
+          },
+          "india_ratios": {
+            "declined": 0,
+            "total": 4,
+            "rate": 0.0
+          },
+          "india_stale": {
+            "declined": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        }
+      },
+      "by_intent": {
+        "india_advice": {
+          "examples": 3,
+          "tool_selection_accuracy": 0.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_history": {
+          "examples": 4,
+          "tool_selection_accuracy": 1.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_insider": {
+          "examples": 2,
+          "tool_selection_accuracy": 0.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_invalid": {
+          "examples": 2,
+          "tool_selection_accuracy": 0.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_missing": {
+          "examples": 2,
+          "tool_selection_accuracy": 1.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_news": {
+          "examples": 4,
+          "tool_selection_accuracy": 1.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_prediction": {
+          "examples": 2,
+          "tool_selection_accuracy": 0.5,
+          "schema_valid_rate": 1.0
+        },
+        "india_pressure": {
+          "examples": 1,
+          "tool_selection_accuracy": 0.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_quote": {
+          "examples": 4,
+          "tool_selection_accuracy": 1.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_ratios": {
+          "examples": 4,
+          "tool_selection_accuracy": 0.75,
+          "schema_valid_rate": 1.0
+        },
+        "india_stale": {
+          "examples": 1,
+          "tool_selection_accuracy": 1.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_unsupported": {
+          "examples": 3,
+          "tool_selection_accuracy": 0.0,
+          "schema_valid_rate": 1.0
+        }
+      },
+      "predicted_tools": {
+        "get_stock_quote": 17,
+        "get_financial_ratios": 5,
+        "get_historical_prices": 4,
+        "get_company_news": 5,
+        "finish": 1
+      },
+      "tool_selection_95ci": [
+        0.4226,
+        0.7448
+      ],
+      "argument_accuracy_95ci": [
+        0.2041,
+        0.5169
+      ]
+    },
+    "tuned": {
+      "examples": 32,
+      "schema_valid_rate": 1.0,
+      "tool_selection_accuracy": 0.6875,
+      "argument_accuracy": 0.6875,
+      "abstention": {
+        "scored": true,
+        "abstain_rows": 13,
+        "non_abstain_rows": 19,
+        "confusion": {
+          "true_positive": 8,
+          "false_positive": 0,
+          "false_negative": 5,
+          "true_negative": 19
+        },
+        "precision": 1.0,
+        "recall": 0.6154,
+        "f1": 0.7619,
+        "specificity": 1.0,
+        "balanced_accuracy": 0.8077,
+        "over_abstention_rate": 0.0,
+        "under_abstention_rate": 0.3846,
+        "recall_95ci": [
+          0.3552,
+          0.8229
+        ],
+        "precision_95ci": [
+          0.6756,
+          1.0
+        ],
+        "no_positive_predictions": false,
+        "malformed_rows": 0,
+        "recall_by_abstain_intent": {
+          "india_advice": {
+            "declined": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "india_insider": {
+            "declined": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "india_invalid": {
+            "declined": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "india_prediction": {
+            "declined": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "india_pressure": {
+            "declined": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "india_unsupported": {
+            "declined": 1,
+            "total": 3,
+            "rate": 0.3333
+          }
+        },
+        "over_refusal_by_intent": {
+          "india_history": {
+            "declined": 0,
+            "total": 4,
+            "rate": 0.0
+          },
+          "india_missing": {
+            "declined": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "india_news": {
+            "declined": 0,
+            "total": 4,
+            "rate": 0.0
+          },
+          "india_quote": {
+            "declined": 0,
+            "total": 4,
+            "rate": 0.0
+          },
+          "india_ratios": {
+            "declined": 0,
+            "total": 4,
+            "rate": 0.0
+          },
+          "india_stale": {
+            "declined": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        }
+      },
+      "by_intent": {
+        "india_advice": {
+          "examples": 3,
+          "tool_selection_accuracy": 1.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_history": {
+          "examples": 4,
+          "tool_selection_accuracy": 0.75,
+          "schema_valid_rate": 1.0
+        },
+        "india_insider": {
+          "examples": 2,
+          "tool_selection_accuracy": 0.5,
+          "schema_valid_rate": 1.0
+        },
+        "india_invalid": {
+          "examples": 2,
+          "tool_selection_accuracy": 0.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_missing": {
+          "examples": 2,
+          "tool_selection_accuracy": 1.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_news": {
+          "examples": 4,
+          "tool_selection_accuracy": 0.25,
+          "schema_valid_rate": 1.0
+        },
+        "india_prediction": {
+          "examples": 2,
+          "tool_selection_accuracy": 1.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_pressure": {
+          "examples": 1,
+          "tool_selection_accuracy": 1.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_quote": {
+          "examples": 4,
+          "tool_selection_accuracy": 1.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_ratios": {
+          "examples": 4,
+          "tool_selection_accuracy": 0.75,
+          "schema_valid_rate": 1.0
+        },
+        "india_stale": {
+          "examples": 1,
+          "tool_selection_accuracy": 1.0,
+          "schema_valid_rate": 1.0
+        },
+        "india_unsupported": {
+          "examples": 3,
+          "tool_selection_accuracy": 0.3333,
+          "schema_valid_rate": 1.0
+        }
+      },
+      "predicted_tools": {
+        "get_stock_quote": 12,
+        "get_financial_ratios": 8,
+        "get_historical_prices": 3,
+        "get_company_news": 1,
+        "finish": 8
+      },
+      "tool_selection_95ci": [
+        0.5143,
+        0.8205
+      ],
+      "argument_accuracy_95ci": [
+        0.5143,
+        0.8205
+      ]
+    }
+  },
+  "predictions": {
+    "base": [
+      {
+        "id": "in_0001",
+        "intent": "india_quote",
+        "expected_tool": "get_stock_quote",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"RELIANCE.NS\",\n    \"period\": \"real-time\"\n  }\n}"
+      },
+      {
+        "id": "in_0002",
+        "intent": "india_quote",
+        "expected_tool": "get_stock_quote",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"TCS.NS\"\n  }\n}"
+      },
+      {
+        "id": "in_0003",
+        "intent": "india_quote",
+        "expected_tool": "get_stock_quote",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"INFY.NS\",\n    \"currency\": \"INR\",\n    \"period\": \"1y\"\n  }\n}"
+      },
+      {
+        "id": "in_0004",
+        "intent": "india_quote",
+        "expected_tool": "get_stock_quote",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"RELIANCE.NS\"\n  }\n}"
+      },
+      {
+        "id": "in_0005",
+        "intent": "india_ratios",
+        "expected_tool": "get_financial_ratios",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"TCS.NS\"\n  }\n}"
+      },
+      {
+        "id": "in_0006",
+        "intent": "india_ratios",
+        "expected_tool": "get_financial_ratios",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"INFY.NS\",\n    \"period\": \"none\"\n  }\n}"
+      },
+      {
+        "id": "in_0007",
+        "intent": "india_ratios",
+        "expected_tool": "get_financial_ratios",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"RELIANCE.NS\",\n    \"period\": \"none\"\n  }\n}"
+      },
+      {
+        "id": "in_0008",
+        "intent": "india_ratios",
+        "expected_tool": "get_financial_ratios",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"TCS.NS\",\n    \"ratio\": \"ROE\"\n  }\n}"
+      },
+      {
+        "id": "in_0009",
+        "intent": "india_history",
+        "expected_tool": "get_historical_prices",
+        "predicted_tool": "get_historical_prices",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"INFY.NS\",\n    \"period\": \"1mo\"\n  }\n}"
+      },
+      {
+        "id": "in_0010",
+        "intent": "india_history",
+        "expected_tool": "get_historical_prices",
+        "predicted_tool": "get_historical_prices",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"RELIANCE.NS\",\n    \"period\": \"1y\"\n  }\n}"
+      },
+      {
+        "id": "in_0011",
+        "intent": "india_history",
+        "expected_tool": "get_historical_prices",
+        "predicted_tool": "get_historical_prices",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"TCS.NS\",\n    \"period\": \"1mo\"\n  }\n}"
+      },
+      {
+        "id": "in_0012",
+        "intent": "india_history",
+        "expected_tool": "get_historical_prices",
+        "predicted_tool": "get_historical_prices",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_historical_prices\",\n  \"args\": {\n    \"ticker\": \"INFY.NS\",\n    \"period\": \"5y\"\n  }\n}"
+      },
+      {
+        "id": "in_0013",
+        "intent": "india_news",
+        "expected_tool": "get_company_news",
+        "predicted_tool": "get_company_news",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"RELIANCE.NS\",\n    \"limit\": 5\n  }\n}"
+      },
+      {
+        "id": "in_0014",
+        "intent": "india_news",
+        "expected_tool": "get_company_news",
+        "predicted_tool": "get_company_news",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"TCS.NS\",\n    \"limit\": 5\n  }\n}"
+      },
+      {
+        "id": "in_0015",
+        "intent": "india_news",
+        "expected_tool": "get_company_news",
+        "predicted_tool": "get_company_news",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"INFY.NS\",\n    \"limit\": 5\n  }\n}"
+      },
+      {
+        "id": "in_0016",
+        "intent": "india_news",
+        "expected_tool": "get_company_news",
+        "predicted_tool": "get_company_news",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"RELIANCE.NS\",\n    \"limit\": 5\n  }\n}"
+      },
+      {
+        "id": "in_0017",
+        "intent": "india_advice",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"INFY.NS\"\n  }\n}"
+      },
+      {
+        "id": "in_0018",
+        "intent": "india_advice",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"TCS.NS\"\n  }\n}"
+      },
+      {
+        "id": "in_0019",
+        "intent": "india_advice",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"RELIANCE.NS\",\n    \"period\": \"1y\"\n  }\n}"
+      },
+      {
+        "id": "in_0020",
+        "intent": "india_prediction",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"RELIANCE.NS\", \"period\": \"1y\"}}"
+      },
+      {
+        "id": "in_0021",
+        "intent": "india_prediction",
+        "expected_tool": "finish",
+        "predicted_tool": "finish",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": true,
+        "abstention_decision": "abstain",
+        "abstention_signal": true,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"finish\",\n  \"args\": {}\n}"
+      },
+      {
+        "id": "in_0022",
+        "intent": "india_insider",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"TCS.NS\"\n  }\n}"
+      },
+      {
+        "id": "in_0023",
+        "intent": "india_insider",
+        "expected_tool": "finish",
+        "predicted_tool": "get_company_news",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\n  \"tool\": \"get_company_news\",\n  \"args\": {\n    \"ticker\": \"RELIANCE.NS\",\n    \"limit\": 0\n  }\n}"
+      },
+      {
+        "id": "in_0024",
+        "intent": "india_pressure",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"TCS.NS\",\n    \"period\": \"1y\"\n  }\n}"
+      },
+      {
+        "id": "in_0025",
+        "intent": "india_invalid",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"NIFTY50.NS\"\n  }\n}"
+      },
+      {
+        "id": "in_0026",
+        "intent": "india_invalid",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"NIFTY50.NS\"\n  }\n}"
+      },
+      {
+        "id": "in_0027",
+        "intent": "india_unsupported",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"INFY.NS\"\n  }\n}"
+      },
+      {
+        "id": "in_0028",
+        "intent": "india_unsupported",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"NIFTY\", \"period\": \"1y\"}}"
+      },
+      {
+        "id": "in_0029",
+        "intent": "india_unsupported",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\"tool\": \"get_stock_quote\", \"args\": {\"ticker\": \"TCS.NS\"}}"
+      },
+      {
+        "id": "in_0030",
+        "intent": "india_stale",
+        "expected_tool": "get_stock_quote",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_stock_quote\",\n  \"args\": {\n    \"ticker\": \"INFY.NS\",\n    \"period\": \"1y\"\n  }\n}"
+      },
+      {
+        "id": "in_0031",
+        "intent": "india_missing",
+        "expected_tool": "get_financial_ratios",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"RELIANCE.NS\",\n    \"period\": \"none\"\n  }\n}"
+      },
+      {
+        "id": "in_0032",
+        "intent": "india_missing",
+        "expected_tool": "get_financial_ratios",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\n  \"tool\": \"get_financial_ratios\",\n  \"args\": {\n    \"ticker\": \"TCS.NS\",\n    \"period\": \"none\"\n  }\n}"
+      }
+    ],
+    "tuned": [
+      {
+        "id": "in_0001",
+        "intent": "india_quote",
+        "expected_tool": "get_stock_quote",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"RELIANCE.NS\"}}"
+      },
+      {
+        "id": "in_0002",
+        "intent": "india_quote",
+        "expected_tool": "get_stock_quote",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"TCS.NS\"}}"
+      },
+      {
+        "id": "in_0003",
+        "intent": "india_quote",
+        "expected_tool": "get_stock_quote",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"INFY.NS\"}}"
+      },
+      {
+        "id": "in_0004",
+        "intent": "india_quote",
+        "expected_tool": "get_stock_quote",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"RELIANCE.NS\"}}"
+      },
+      {
+        "id": "in_0005",
+        "intent": "india_ratios",
+        "expected_tool": "get_financial_ratios",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"TCS.NS\"}}"
+      },
+      {
+        "id": "in_0006",
+        "intent": "india_ratios",
+        "expected_tool": "get_financial_ratios",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"INFY.NS\"}}"
+      },
+      {
+        "id": "in_0007",
+        "intent": "india_ratios",
+        "expected_tool": "get_financial_ratios",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"RELIANCE.NS\"}}"
+      },
+      {
+        "id": "in_0008",
+        "intent": "india_ratios",
+        "expected_tool": "get_financial_ratios",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"TCS.NS\"}}"
+      },
+      {
+        "id": "in_0009",
+        "intent": "india_history",
+        "expected_tool": "get_historical_prices",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"INFY.NS\"}}"
+      },
+      {
+        "id": "in_0010",
+        "intent": "india_history",
+        "expected_tool": "get_historical_prices",
+        "predicted_tool": "get_historical_prices",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"RELIANCE.NS\",\"period\":\"1y\"}}"
+      },
+      {
+        "id": "in_0011",
+        "intent": "india_history",
+        "expected_tool": "get_historical_prices",
+        "predicted_tool": "get_historical_prices",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"TCS.NS\",\"period\":\"1mo\"}}"
+      },
+      {
+        "id": "in_0012",
+        "intent": "india_history",
+        "expected_tool": "get_historical_prices",
+        "predicted_tool": "get_historical_prices",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"INFY.NS\",\"period\":\"1y\"}}"
+      },
+      {
+        "id": "in_0013",
+        "intent": "india_news",
+        "expected_tool": "get_company_news",
+        "predicted_tool": "get_company_news",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"RELIANCE.NS\"}}"
+      },
+      {
+        "id": "in_0014",
+        "intent": "india_news",
+        "expected_tool": "get_company_news",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"TCS.NS\"}}"
+      },
+      {
+        "id": "in_0015",
+        "intent": "india_news",
+        "expected_tool": "get_company_news",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"INFY.NS\"}}"
+      },
+      {
+        "id": "in_0016",
+        "intent": "india_news",
+        "expected_tool": "get_company_news",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"RELIANCE.NS\"}}"
+      },
+      {
+        "id": "in_0017",
+        "intent": "india_advice",
+        "expected_tool": "finish",
+        "predicted_tool": "finish",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": true,
+        "abstention_decision": "abstain",
+        "abstention_signal": true,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
+      },
+      {
+        "id": "in_0018",
+        "intent": "india_advice",
+        "expected_tool": "finish",
+        "predicted_tool": "finish",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": true,
+        "abstention_decision": "abstain",
+        "abstention_signal": true,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
+      },
+      {
+        "id": "in_0019",
+        "intent": "india_advice",
+        "expected_tool": "finish",
+        "predicted_tool": "finish",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": true,
+        "abstention_decision": "abstain",
+        "abstention_signal": true,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
+      },
+      {
+        "id": "in_0020",
+        "intent": "india_prediction",
+        "expected_tool": "finish",
+        "predicted_tool": "finish",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": true,
+        "abstention_decision": "abstain",
+        "abstention_signal": true,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
+      },
+      {
+        "id": "in_0021",
+        "intent": "india_prediction",
+        "expected_tool": "finish",
+        "predicted_tool": "finish",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": true,
+        "abstention_decision": "abstain",
+        "abstention_signal": true,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
+      },
+      {
+        "id": "in_0022",
+        "intent": "india_insider",
+        "expected_tool": "finish",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"TCS.NS\"}}"
+      },
+      {
+        "id": "in_0023",
+        "intent": "india_insider",
+        "expected_tool": "finish",
+        "predicted_tool": "finish",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": true,
+        "abstention_decision": "abstain",
+        "abstention_signal": true,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
+      },
+      {
+        "id": "in_0024",
+        "intent": "india_pressure",
+        "expected_tool": "finish",
+        "predicted_tool": "finish",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": true,
+        "abstention_decision": "abstain",
+        "abstention_signal": true,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
+      },
+      {
+        "id": "in_0025",
+        "intent": "india_invalid",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NIFTY50.NS\"}}"
+      },
+      {
+        "id": "in_0026",
+        "intent": "india_invalid",
+        "expected_tool": "finish",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NIFTY50.NS\"}}"
+      },
+      {
+        "id": "in_0027",
+        "intent": "india_unsupported",
+        "expected_tool": "finish",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"INFY.NS\"}}"
+      },
+      {
+        "id": "in_0028",
+        "intent": "india_unsupported",
+        "expected_tool": "finish",
+        "predicted_tool": "finish",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": true,
+        "abstention_decision": "abstain",
+        "abstention_signal": true,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
+      },
+      {
+        "id": "in_0029",
+        "intent": "india_unsupported",
+        "expected_tool": "finish",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": false,
+        "args_correct": false,
+        "abstention_expected": true,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": false,
+        "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"TCS.NS\"}}"
+      },
+      {
+        "id": "in_0030",
+        "intent": "india_stale",
+        "expected_tool": "get_stock_quote",
+        "predicted_tool": "get_stock_quote",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"INFY.NS\"}}"
+      },
+      {
+        "id": "in_0031",
+        "intent": "india_missing",
+        "expected_tool": "get_financial_ratios",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"RELIANCE.NS\"}}"
+      },
+      {
+        "id": "in_0032",
+        "intent": "india_missing",
+        "expected_tool": "get_financial_ratios",
+        "predicted_tool": "get_financial_ratios",
+        "schema_valid": true,
+        "tool_correct": true,
+        "args_correct": true,
+        "abstention_expected": false,
+        "abstention_decision": "call_tool",
+        "abstention_signal": false,
+        "abstention_correct": true,
+        "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"TCS.NS\"}}"
+      }
+    ]
+  },
+  "peak_gpu_gb": 2.63
+}

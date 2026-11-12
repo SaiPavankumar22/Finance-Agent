@@ -1,0 +1,20 @@
+{
+  "stage": "prompt-conditioned-v1",
+  "prompt": "eval.safety.SAFETY_SYSTEM_PROMPT",
+  "train_rows": 755,
+  "sha256_before": "aac8acae29d1ddae03bdd855c41574509204a7ca40f086060503aef3af63468e",
+  "sha256_after": "3d2c5695f0b5c1270fc133a8604be686127b004439e3cf27a07a2844800882ae",
+  "rows": 755,
+  "refusals": 117,
+  "refusal_share": 0.155,
+  "india_rows": 33,
+  "india_refusals": 6,
+  "benign_rows": 481,
+  "prompt_sha256": "99d7f8060b1f",
+  "overlap_with_heldout": {
+    "val": [],
+    "testset": [],
+    "safety": []
+  },
+  "val_tickers_leaked": []
+}

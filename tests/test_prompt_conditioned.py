@@ -112,3 +112,31 @@ def test_india_rows_score_with_the_shared_metrics():
     assert scored["tool_correct"] is True
     assert scored["args_correct"] is True
     assert scored["abstention_correct"] is True
+
+
+def test_error_replay_rows_are_weighted_and_finish_after_two_failures():
+    rows = load(TRAIN)
+    assert all(isinstance(row.get("weight"), int) and row["weight"] >= 1 for row in rows)
+    error_rows = [row for row in rows if row["expected_behavior"] == "stop_after_bounded_attempts"]
+    assert len(error_rows) >= 40, len(error_rows)
+    for row in error_rows:
+        tool_turns = [message for message in row["messages"] if message["role"] == "tool"]
+        assert len(tool_turns) >= 2, row["id"]
+        assert all(
+            json.loads(message["content"])["result"]["status"] == "error"
+            for message in tool_turns[-2:]
+        )
+        assert json.loads(row["messages"][-1]["content"])["tool"] == "finish", row["id"]
+        assert row["weight"] >= 3, row["id"]
+
+
+def test_error_replay_stage_reports_its_weighting():
+    manifest = json.loads(
+        (PROJECT_ROOT / "data" / "splits" / "error_replay_manifest.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert manifest["stage"] == "error-replay-v1"
+    assert manifest["error_weight"] == 3
+    assert manifest["error_share_of_examples"] >= 0.10
+    assert all(not values for values in manifest["overlap_with_heldout"].values())

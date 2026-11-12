@@ -146,7 +146,8 @@ def smoke(
         if line.strip()
     ][:limit]
 
-    examples = [build_example(tokenizer, row["messages"], max_len) for row in rows]
+    weighted = [(row, build_example(tokenizer, row["messages"], max_len)) for row in rows]
+    examples = [example for row, example in weighted for _ in range(int(row.get("weight", 1)))]
     over_budget = sum(1 for example in examples if example["full_tokens"] > max_len)
     supervised_total = sum(example["supervised"] for example in examples)
     print(f"built {len(examples)} examples, {over_budget} over {max_len} tokens", flush=True)
@@ -201,9 +202,7 @@ def smoke(
         out = model(input_ids=input_ids, labels=labels)
         (out.loss / grad_accum).backward()
         if step % grad_accum == 0 or step == steps:
-            torch.nn.utils.clip_grad_norm_(
-                [p for p in model.parameters() if p.requires_grad], 1.0
-            )
+            torch.nn.utils.clip_grad_norm_([p for p in model.parameters() if p.requires_grad], 1.0)
             optimizer.step()
             schedule.step()
             optimizer.zero_grad(set_to_none=True)

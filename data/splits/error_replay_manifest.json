@@ -1,0 +1,21 @@
+{
+ "stage": "error-replay-v1",
+ "rows": 779,
+ "added": 24,
+ "weighted_examples": 929,
+ "error_replay_rows": 47,
+ "error_weight": 3,
+ "error_share_of_examples": 0.1518,
+ "kinds": [
+  "insufficient_data",
+  "malformed_response",
+  "rate_limit"
+ ],
+ "sha256": "b1c0138530a9",
+ "overlap_with_heldout": {
+  "val.jsonl": [],
+  "testset.jsonl": [],
+  "safety_set.jsonl": [],
+  "india_set.jsonl": []
+ }
+}

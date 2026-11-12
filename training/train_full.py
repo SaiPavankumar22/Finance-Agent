@@ -272,6 +272,7 @@ def run(
         assert_disjoint,
         build_example,
         describe_masking,
+        expand_examples,
         gold_first_call,
         load_jsonl,
     )
@@ -300,7 +301,9 @@ def run(
         raise AssertionError("baseline gold derivation disagrees with the trajectories")
 
     tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, trust_remote_code=True)
-    examples = [build_example(tokenizer, row["messages"], max_len) for row in train_rows]
+    examples = expand_examples(
+        train_rows, [build_example(tokenizer, row["messages"], max_len) for row in train_rows]
+    )
     over_budget = sum(1 for example in examples if example["full_tokens"] > max_len)
     supervised_total = sum(example["supervised"] for example in examples)
     masking = describe_masking(tokenizer, examples[0])

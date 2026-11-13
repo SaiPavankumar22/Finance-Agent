@@ -1,10 +1,10 @@
 {
- "stage": "india-coverage-v1",
+ "stage": "india-coverage-v2",
  "added": 38,
  "rows": 823,
- "weighted_examples": 948,
+ "weighted_examples": 910,
  "news_rows": 12,
  "invalid_rows": 16,
  "unsupported_rows": 10,
- "sha256": "9aaf6cff46e1"
+ "sha256": "0ca9553ef96a"
 }

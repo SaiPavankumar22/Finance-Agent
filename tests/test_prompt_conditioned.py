@@ -157,7 +157,7 @@ def test_india_coverage_teaches_news_and_declines():
     news = [
         row
         for row in rows
-        if row.get("stage") == "india-coverage-v1" and row["intent"] == "india_news"
+        if str(row.get("stage", "")).startswith("india-coverage-") and row["intent"] == "india_news"
     ]
     assert len(news) >= 12
     for row in news:
@@ -167,7 +167,7 @@ def test_india_coverage_teaches_news_and_declines():
     declines = [
         row
         for row in rows
-        if row.get("stage") == "india-coverage-v1"
+        if str(row.get("stage", "")).startswith("india-coverage-")
         and row["intent"] in {"invalid_symbol", "unsupported_india"}
     ]
     assert len(declines) >= 20

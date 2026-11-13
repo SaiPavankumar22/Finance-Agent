@@ -7,6 +7,7 @@ and the verdict cannot drift apart.
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -14,14 +15,12 @@ from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 ARTIFACTS = PROJECT_ROOT / "artifacts" / "sft"
-REPORT = PROJECT_ROOT / "artifacts" / "safety" / "gates-prompt.md"
+DEFAULT_REPORT = PROJECT_ROOT / "artifacts" / "safety" / "gates-prompt.md"
 
-CANDIDATE = {
-    "eval": "eval-india.json",
-    "safety": "safety-india.json",
-    "india": "india-india.json",
-}
-BASELINE = {
+#: Candidate artifacts follow ``<set>-<tag>.json``; the baseline names are
+#: irregular because they were recorded before the convention existed.
+DEFAULT_CANDIDATE_TAG = "india"
+DEFAULT_BASELINE = {
     "eval": "eval-ws5.json",
     "safety": "safety-ws5-prompt.json",
     "india": "india-ws5-prompt.json",
@@ -187,17 +186,54 @@ def gates(
     return rows
 
 
-def main() -> int:
-    bundle = {name: load(path) for name, path in CANDIDATE.items()}
-    baseline_bundle = {name: load(path) for name, path in BASELINE.items()}
-    missing = [name for name, value in bundle.items() if value is None]
+def build_parser() -> argparse.ArgumentParser:
+    """Candidate and baseline tags are arguments, so no constant editing."""
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--candidate-tag",
+        default=DEFAULT_CANDIDATE_TAG,
+        help="reads eval-<tag>.json, safety-<tag>.json and india-<tag>.json",
+    )
+    parser.add_argument("--baseline-eval", default=DEFAULT_BASELINE["eval"])
+    parser.add_argument("--baseline-safety", default=DEFAULT_BASELINE["safety"])
+    parser.add_argument("--baseline-india", default=DEFAULT_BASELINE["india"])
+    parser.add_argument(
+        "--report",
+        default=str(DEFAULT_REPORT),
+        help="where to write the markdown gate report",
+    )
+    return parser
+
+
+def resolve(args: argparse.Namespace) -> tuple[dict[str, str], dict[str, str], Path]:
+    candidate = {name: f"{name}-{args.candidate_tag}.json" for name in ("eval", "safety", "india")}
+    baseline = {
+        "eval": args.baseline_eval,
+        "safety": args.baseline_safety,
+        "india": args.baseline_india,
+    }
+    return candidate, baseline, Path(args.report)
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    candidate_files, baseline_files, report_path = resolve(args)
+    bundle = {name: load(path) for name, path in candidate_files.items()}
+    baseline_bundle = {name: load(path) for name, path in baseline_files.items()}
+    missing = [
+        f"{name}-{args.candidate_tag}.json" for name, value in bundle.items() if value is None
+    ]
     if missing:
         print(f"missing candidate artifacts: {missing}")
+        return 1
+    missing_baseline = [name for name, value in baseline_bundle.items() if value is None]
+    if missing_baseline:
+        print(f"missing baseline artifacts: {missing_baseline}")
         return 1
     cand = facts(bundle)  # type: ignore[arg-type]
     base = facts(baseline_bundle)
 
-    lines = ["# WS6 prompt-conditioned candidate: gates vs WS5", ""]
+    lines = [f"# Candidate `{args.candidate_tag}`: gates vs baseline", ""]
     keys = [
         ("frozen tool selection", "test_tool"),
         ("frozen argument accuracy", "test_args"),
@@ -248,11 +284,11 @@ def main() -> int:
             f"{bucket['args']} | {bucket['abstain']} |"
         )
 
-    REPORT.parent.mkdir(parents=True, exist_ok=True)
-    REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
     return 0 if not failed else 1
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main(sys.argv[1:]))

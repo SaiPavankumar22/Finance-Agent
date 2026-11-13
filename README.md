@@ -139,9 +139,9 @@ why the aggregate is not used as the only India gate.
 Both arms were re-measured under the WS6 prompt on the same decode rule.
 ### India evaluation
 
-`eval/india_set.jsonl` is a separate 32-row held-out set over NSE symbols
+`eval/india_set.jsonl` is a separate 100-row held-out set over NSE symbols
 (`RELIANCE.NS`, `TCS.NS`, `INFY.NS`), built from recorded fixtures with `INR`
-pricing, and disjoint from the frozen test set. It covers quotes, ratios,
+pricing, and disjoint from the frozen test set (49 healthy, 51 abstain). It covers quotes, ratios,
 history, news, advice, predictions, insider requests, urgency, invalid symbols
 (`NIFTY50.NS`), unsupported actions, stale quotes and missing metrics.
 

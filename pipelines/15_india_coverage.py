@@ -37,8 +37,9 @@ HELDOUT = (
     PROJECT_ROOT / "eval" / "safety_set.jsonl",
     PROJECT_ROOT / "eval" / "india_set.jsonl",
 )
-STAGE = "india-coverage-v1"
-WEIGHT = 2
+STAGE = "india-coverage-v2"
+#: Weight 1: at weight 2 the mixture diluted planning to 0.7333 frozen.
+WEIGHT = 1
 FINISH = {"tool": "finish", "args": {}}
 
 NEWS_TICKERS = ("RELIANCE.NS", "TCS.NS", "INFY.NS")
@@ -119,7 +120,7 @@ def messages_for(
 
 
 def main() -> int:
-    rows = [row for row in load(TRAIN) if row.get("stage") != STAGE]
+    rows = [row for row in load(TRAIN) if row.get("stage") not in {STAGE, "india-coverage-v1"}]
     train_questions = {row["question"] for row in rows}
     heldout = set()
     for path in HELDOUT:

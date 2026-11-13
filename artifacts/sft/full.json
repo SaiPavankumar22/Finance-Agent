@@ -19,12 +19,12 @@
     "seed": 13
   },
   "train": {
-    "rows": 779,
-    "micro_steps": 1708,
-    "optimizer_steps": 108,
-    "tokens_seen": 2714648,
+    "rows": 823,
+    "micro_steps": 1896,
+    "optimizer_steps": 120,
+    "tokens_seen": 2856778,
     "rows_over_max_len": 1,
-    "supervised_tokens": 37207,
+    "supervised_tokens": 39453,
     "trainable_parameters": 30228480,
     "total_parameters": 1973315584,
     "trainable_fraction": 0.015319,
@@ -32,558 +32,618 @@
       {
         "epoch": 1,
         "micro_step": 16,
-        "loss": 1.9147
+        "loss": 1.8775
       },
       {
         "epoch": 1,
         "micro_step": 32,
-        "loss": 1.843
+        "loss": 1.8601
       },
       {
         "epoch": 1,
         "micro_step": 48,
-        "loss": 1.4444
+        "loss": 1.5259
       },
       {
         "epoch": 1,
         "micro_step": 64,
-        "loss": 0.9036
+        "loss": 1.0783
       },
       {
         "epoch": 1,
         "micro_step": 80,
-        "loss": 0.3413
+        "loss": 0.4043
       },
       {
         "epoch": 1,
         "micro_step": 96,
-        "loss": 0.1692
+        "loss": 0.187
       },
       {
         "epoch": 1,
         "micro_step": 112,
-        "loss": 0.127
+        "loss": 0.1664
       },
       {
         "epoch": 1,
         "micro_step": 128,
-        "loss": 0.1259
+        "loss": 0.1335
       },
       {
         "epoch": 1,
         "micro_step": 144,
-        "loss": 0.1056
+        "loss": 0.1227
       },
       {
         "epoch": 1,
         "micro_step": 160,
-        "loss": 0.1342
+        "loss": 0.1227
       },
       {
         "epoch": 1,
         "micro_step": 176,
-        "loss": 0.079
+        "loss": 0.1121
       },
       {
         "epoch": 1,
         "micro_step": 192,
-        "loss": 0.0966
+        "loss": 0.1156
       },
       {
         "epoch": 1,
         "micro_step": 208,
-        "loss": 0.0691
+        "loss": 0.0702
       },
       {
         "epoch": 1,
         "micro_step": 224,
-        "loss": 0.0734
+        "loss": 0.1181
       },
       {
         "epoch": 1,
         "micro_step": 240,
-        "loss": 0.0615
+        "loss": 0.0917
       },
       {
         "epoch": 1,
         "micro_step": 256,
-        "loss": 0.058
+        "loss": 0.0857
       },
       {
         "epoch": 1,
         "micro_step": 272,
+        "loss": 0.0835
+      },
+      {
+        "epoch": 1,
+        "micro_step": 288,
+        "loss": 0.0799
+      },
+      {
+        "epoch": 1,
+        "micro_step": 304,
+        "loss": 0.0845
+      },
+      {
+        "epoch": 1,
+        "micro_step": 320,
+        "loss": 0.065
+      },
+      {
+        "epoch": 1,
+        "micro_step": 336,
+        "loss": 0.0505
+      },
+      {
+        "epoch": 1,
+        "micro_step": 352,
+        "loss": 0.0817
+      },
+      {
+        "epoch": 1,
+        "micro_step": 368,
+        "loss": 0.0573
+      },
+      {
+        "epoch": 1,
+        "micro_step": 384,
+        "loss": 0.0474
+      },
+      {
+        "epoch": 1,
+        "micro_step": 400,
+        "loss": 0.0704
+      },
+      {
+        "epoch": 1,
+        "micro_step": 416,
+        "loss": 0.0702
+      },
+      {
+        "epoch": 1,
+        "micro_step": 432,
+        "loss": 0.0378
+      },
+      {
+        "epoch": 1,
+        "micro_step": 448,
+        "loss": 0.0478
+      },
+      {
+        "epoch": 1,
+        "micro_step": 464,
         "loss": 0.0568
       },
       {
         "epoch": 1,
-        "micro_step": 288,
-        "loss": 0.0542
+        "micro_step": 480,
+        "loss": 0.0439
       },
       {
         "epoch": 1,
-        "micro_step": 304,
-        "loss": 0.0513
+        "micro_step": 496,
+        "loss": 0.0724
       },
       {
         "epoch": 1,
-        "micro_step": 320,
-        "loss": 0.054
+        "micro_step": 512,
+        "loss": 0.0596
       },
       {
         "epoch": 1,
-        "micro_step": 336,
-        "loss": 0.1206
+        "micro_step": 528,
+        "loss": 0.0842
       },
       {
         "epoch": 1,
-        "micro_step": 352,
+        "micro_step": 544,
+        "loss": 0.0346
+      },
+      {
+        "epoch": 1,
+        "micro_step": 560,
+        "loss": 0.0454
+      },
+      {
+        "epoch": 1,
+        "micro_step": 576,
+        "loss": 0.039
+      },
+      {
+        "epoch": 1,
+        "micro_step": 592,
+        "loss": 0.0492
+      },
+      {
+        "epoch": 1,
+        "micro_step": 608,
+        "loss": 0.0343
+      },
+      {
+        "epoch": 1,
+        "micro_step": 624,
+        "loss": 0.038
+      },
+      {
+        "epoch": 1,
+        "micro_step": 640,
+        "loss": 0.039
+      },
+      {
+        "epoch": 1,
+        "micro_step": 656,
+        "loss": 0.0392
+      },
+      {
+        "epoch": 1,
+        "micro_step": 672,
         "loss": 0.0308
       },
       {
         "epoch": 1,
-        "micro_step": 368,
-        "loss": 0.0598
+        "micro_step": 688,
+        "loss": 0.0289
       },
       {
         "epoch": 1,
-        "micro_step": 384,
-        "loss": 0.0527
+        "micro_step": 704,
+        "loss": 0.0248
       },
       {
         "epoch": 1,
-        "micro_step": 400,
-        "loss": 0.0335
+        "micro_step": 720,
+        "loss": 0.0501
       },
       {
         "epoch": 1,
-        "micro_step": 416,
-        "loss": 0.0212
+        "micro_step": 736,
+        "loss": 0.0152
       },
       {
         "epoch": 1,
-        "micro_step": 432,
-        "loss": 0.0316
+        "micro_step": 752,
+        "loss": 0.0355
       },
       {
         "epoch": 1,
-        "micro_step": 448,
-        "loss": 0.0416
+        "micro_step": 768,
+        "loss": 0.0414
       },
       {
         "epoch": 1,
-        "micro_step": 464,
-        "loss": 0.0652
+        "micro_step": 784,
+        "loss": 0.0364
       },
       {
         "epoch": 1,
-        "micro_step": 480,
-        "loss": 0.0254
+        "micro_step": 800,
+        "loss": 0.0455
       },
       {
         "epoch": 1,
-        "micro_step": 496,
-        "loss": 0.0425
+        "micro_step": 816,
+        "loss": 0.0255
       },
       {
         "epoch": 1,
-        "micro_step": 512,
-        "loss": 0.0331
-      },
-      {
-        "epoch": 1,
-        "micro_step": 528,
+        "micro_step": 832,
         "loss": 0.0241
       },
       {
         "epoch": 1,
-        "micro_step": 544,
-        "loss": 0.0395
-      },
-      {
-        "epoch": 1,
-        "micro_step": 560,
-        "loss": 0.0333
-      },
-      {
-        "epoch": 1,
-        "micro_step": 576,
-        "loss": 0.0516
-      },
-      {
-        "epoch": 1,
-        "micro_step": 592,
-        "loss": 0.0488
-      },
-      {
-        "epoch": 1,
-        "micro_step": 608,
-        "loss": 0.0403
-      },
-      {
-        "epoch": 1,
-        "micro_step": 624,
-        "loss": 0.0431
-      },
-      {
-        "epoch": 1,
-        "micro_step": 640,
-        "loss": 0.0141
-      },
-      {
-        "epoch": 1,
-        "micro_step": 656,
-        "loss": 0.0195
-      },
-      {
-        "epoch": 1,
-        "micro_step": 672,
-        "loss": 0.0334
-      },
-      {
-        "epoch": 1,
-        "micro_step": 688,
-        "loss": 0.0144
-      },
-      {
-        "epoch": 1,
-        "micro_step": 704,
-        "loss": 0.0234
-      },
-      {
-        "epoch": 1,
-        "micro_step": 720,
-        "loss": 0.0295
-      },
-      {
-        "epoch": 1,
-        "micro_step": 736,
-        "loss": 0.0311
-      },
-      {
-        "epoch": 1,
-        "micro_step": 752,
-        "loss": 0.0425
-      },
-      {
-        "epoch": 1,
-        "micro_step": 768,
-        "loss": 0.051
-      },
-      {
-        "epoch": 1,
-        "micro_step": 784,
-        "loss": 0.0224
-      },
-      {
-        "epoch": 1,
-        "micro_step": 800,
-        "loss": 0.0133
-      },
-      {
-        "epoch": 1,
-        "micro_step": 816,
-        "loss": 0.0332
-      },
-      {
-        "epoch": 1,
-        "micro_step": 832,
-        "loss": 0.0127
-      },
-      {
-        "epoch": 1,
         "micro_step": 848,
-        "loss": 0.0235
+        "loss": 0.0241
       },
       {
         "epoch": 1,
-        "micro_step": 854,
-        "loss": 0.0121
+        "micro_step": 864,
+        "loss": 0.0328
+      },
+      {
+        "epoch": 1,
+        "micro_step": 880,
+        "loss": 0.0393
+      },
+      {
+        "epoch": 1,
+        "micro_step": 896,
+        "loss": 0.0188
+      },
+      {
+        "epoch": 1,
+        "micro_step": 912,
+        "loss": 0.0246
+      },
+      {
+        "epoch": 1,
+        "micro_step": 928,
+        "loss": 0.0455
+      },
+      {
+        "epoch": 1,
+        "micro_step": 944,
+        "loss": 0.0342
+      },
+      {
+        "epoch": 1,
+        "micro_step": 948,
+        "loss": 0.0139
       },
       {
         "epoch": 2,
         "micro_step": 16,
-        "loss": 0.0224
-      },
-      {
-        "epoch": 2,
-        "micro_step": 32,
         "loss": 0.0206
       },
       {
         "epoch": 2,
+        "micro_step": 32,
+        "loss": 0.0325
+      },
+      {
+        "epoch": 2,
         "micro_step": 48,
-        "loss": 0.0398
+        "loss": 0.0158
       },
       {
         "epoch": 2,
         "micro_step": 64,
-        "loss": 0.0112
+        "loss": 0.0351
       },
       {
         "epoch": 2,
         "micro_step": 80,
-        "loss": 0.0257
+        "loss": 0.0263
       },
       {
         "epoch": 2,
         "micro_step": 96,
-        "loss": 0.0167
+        "loss": 0.0201
       },
       {
         "epoch": 2,
         "micro_step": 112,
-        "loss": 0.0166
+        "loss": 0.0445
       },
       {
         "epoch": 2,
         "micro_step": 128,
-        "loss": 0.0102
+        "loss": 0.0196
       },
       {
         "epoch": 2,
         "micro_step": 144,
-        "loss": 0.0261
+        "loss": 0.0342
       },
       {
         "epoch": 2,
         "micro_step": 160,
-        "loss": 0.0104
+        "loss": 0.0409
       },
       {
         "epoch": 2,
         "micro_step": 176,
-        "loss": 0.0123
-      },
-      {
-        "epoch": 2,
-        "micro_step": 192,
-        "loss": 0.0368
-      },
-      {
-        "epoch": 2,
-        "micro_step": 208,
-        "loss": 0.0407
-      },
-      {
-        "epoch": 2,
-        "micro_step": 224,
-        "loss": 0.0069
-      },
-      {
-        "epoch": 2,
-        "micro_step": 240,
-        "loss": 0.0242
-      },
-      {
-        "epoch": 2,
-        "micro_step": 256,
-        "loss": 0.0125
-      },
-      {
-        "epoch": 2,
-        "micro_step": 272,
-        "loss": 0.0174
-      },
-      {
-        "epoch": 2,
-        "micro_step": 288,
-        "loss": 0.0369
-      },
-      {
-        "epoch": 2,
-        "micro_step": 304,
-        "loss": 0.0186
-      },
-      {
-        "epoch": 2,
-        "micro_step": 320,
-        "loss": 0.0227
-      },
-      {
-        "epoch": 2,
-        "micro_step": 336,
-        "loss": 0.0122
-      },
-      {
-        "epoch": 2,
-        "micro_step": 352,
-        "loss": 0.0167
-      },
-      {
-        "epoch": 2,
-        "micro_step": 368,
-        "loss": 0.0091
-      },
-      {
-        "epoch": 2,
-        "micro_step": 384,
-        "loss": 0.0053
-      },
-      {
-        "epoch": 2,
-        "micro_step": 400,
-        "loss": 0.0176
-      },
-      {
-        "epoch": 2,
-        "micro_step": 416,
-        "loss": 0.0161
-      },
-      {
-        "epoch": 2,
-        "micro_step": 432,
-        "loss": 0.0227
-      },
-      {
-        "epoch": 2,
-        "micro_step": 448,
-        "loss": 0.023
-      },
-      {
-        "epoch": 2,
-        "micro_step": 464,
-        "loss": 0.015
-      },
-      {
-        "epoch": 2,
-        "micro_step": 480,
-        "loss": 0.0113
-      },
-      {
-        "epoch": 2,
-        "micro_step": 496,
-        "loss": 0.0248
-      },
-      {
-        "epoch": 2,
-        "micro_step": 512,
-        "loss": 0.0094
-      },
-      {
-        "epoch": 2,
-        "micro_step": 528,
-        "loss": 0.0283
-      },
-      {
-        "epoch": 2,
-        "micro_step": 544,
-        "loss": 0.0218
-      },
-      {
-        "epoch": 2,
-        "micro_step": 560,
-        "loss": 0.0245
-      },
-      {
-        "epoch": 2,
-        "micro_step": 576,
-        "loss": 0.0109
-      },
-      {
-        "epoch": 2,
-        "micro_step": 592,
-        "loss": 0.0116
-      },
-      {
-        "epoch": 2,
-        "micro_step": 608,
-        "loss": 0.0144
-      },
-      {
-        "epoch": 2,
-        "micro_step": 624,
         "loss": 0.0142
       },
       {
         "epoch": 2,
-        "micro_step": 640,
-        "loss": 0.0054
+        "micro_step": 192,
+        "loss": 0.0559
       },
       {
         "epoch": 2,
-        "micro_step": 656,
-        "loss": 0.0064
+        "micro_step": 208,
+        "loss": 0.0156
       },
       {
         "epoch": 2,
-        "micro_step": 672,
-        "loss": 0.0187
+        "micro_step": 224,
+        "loss": 0.0144
       },
       {
         "epoch": 2,
-        "micro_step": 688,
+        "micro_step": 240,
+        "loss": 0.0331
+      },
+      {
+        "epoch": 2,
+        "micro_step": 256,
+        "loss": 0.0122
+      },
+      {
+        "epoch": 2,
+        "micro_step": 272,
+        "loss": 0.0144
+      },
+      {
+        "epoch": 2,
+        "micro_step": 288,
+        "loss": 0.0375
+      },
+      {
+        "epoch": 2,
+        "micro_step": 304,
+        "loss": 0.02
+      },
+      {
+        "epoch": 2,
+        "micro_step": 320,
         "loss": 0.0075
       },
       {
         "epoch": 2,
-        "micro_step": 704,
+        "micro_step": 336,
+        "loss": 0.0132
+      },
+      {
+        "epoch": 2,
+        "micro_step": 352,
+        "loss": 0.0135
+      },
+      {
+        "epoch": 2,
+        "micro_step": 368,
+        "loss": 0.015
+      },
+      {
+        "epoch": 2,
+        "micro_step": 384,
+        "loss": 0.0144
+      },
+      {
+        "epoch": 2,
+        "micro_step": 400,
+        "loss": 0.0345
+      },
+      {
+        "epoch": 2,
+        "micro_step": 416,
+        "loss": 0.0219
+      },
+      {
+        "epoch": 2,
+        "micro_step": 432,
+        "loss": 0.0079
+      },
+      {
+        "epoch": 2,
+        "micro_step": 448,
+        "loss": 0.0177
+      },
+      {
+        "epoch": 2,
+        "micro_step": 464,
+        "loss": 0.0161
+      },
+      {
+        "epoch": 2,
+        "micro_step": 480,
+        "loss": 0.0115
+      },
+      {
+        "epoch": 2,
+        "micro_step": 496,
+        "loss": 0.0305
+      },
+      {
+        "epoch": 2,
+        "micro_step": 512,
+        "loss": 0.0208
+      },
+      {
+        "epoch": 2,
+        "micro_step": 528,
+        "loss": 0.0119
+      },
+      {
+        "epoch": 2,
+        "micro_step": 544,
+        "loss": 0.0202
+      },
+      {
+        "epoch": 2,
+        "micro_step": 560,
+        "loss": 0.0184
+      },
+      {
+        "epoch": 2,
+        "micro_step": 576,
         "loss": 0.0159
       },
       {
         "epoch": 2,
+        "micro_step": 592,
+        "loss": 0.0225
+      },
+      {
+        "epoch": 2,
+        "micro_step": 608,
+        "loss": 0.0173
+      },
+      {
+        "epoch": 2,
+        "micro_step": 624,
+        "loss": 0.0105
+      },
+      {
+        "epoch": 2,
+        "micro_step": 640,
+        "loss": 0.0227
+      },
+      {
+        "epoch": 2,
+        "micro_step": 656,
+        "loss": 0.0108
+      },
+      {
+        "epoch": 2,
+        "micro_step": 672,
+        "loss": 0.0086
+      },
+      {
+        "epoch": 2,
+        "micro_step": 688,
+        "loss": 0.0285
+      },
+      {
+        "epoch": 2,
+        "micro_step": 704,
+        "loss": 0.0168
+      },
+      {
+        "epoch": 2,
         "micro_step": 720,
-        "loss": 0.0185
+        "loss": 0.0343
       },
       {
         "epoch": 2,
         "micro_step": 736,
-        "loss": 0.0098
+        "loss": 0.0372
       },
       {
         "epoch": 2,
         "micro_step": 752,
-        "loss": 0.0204
+        "loss": 0.0068
       },
       {
         "epoch": 2,
         "micro_step": 768,
-        "loss": 0.028
+        "loss": 0.0243
       },
       {
         "epoch": 2,
         "micro_step": 784,
-        "loss": 0.0065
+        "loss": 0.0242
       },
       {
         "epoch": 2,
         "micro_step": 800,
-        "loss": 0.0143
+        "loss": 0.0222
       },
       {
         "epoch": 2,
         "micro_step": 816,
-        "loss": 0.0259
+        "loss": 0.0123
       },
       {
         "epoch": 2,
         "micro_step": 832,
-        "loss": 0.0216
+        "loss": 0.0187
       },
       {
         "epoch": 2,
         "micro_step": 848,
-        "loss": 0.0116
+        "loss": 0.0294
       },
       {
         "epoch": 2,
-        "micro_step": 854,
-        "loss": 0.0169
+        "micro_step": 864,
+        "loss": 0.0168
+      },
+      {
+        "epoch": 2,
+        "micro_step": 880,
+        "loss": 0.0193
+      },
+      {
+        "epoch": 2,
+        "micro_step": 896,
+        "loss": 0.0292
+      },
+      {
+        "epoch": 2,
+        "micro_step": 912,
+        "loss": 0.0288
+      },
+      {
+        "epoch": 2,
+        "micro_step": 928,
+        "loss": 0.0187
+      },
+      {
+        "epoch": 2,
+        "micro_step": 944,
+        "loss": 0.0123
+      },
+      {
+        "epoch": 2,
+        "micro_step": 948,
+        "loss": 0.0082
       }
     ],
     "epoch_val": [
       {
         "epoch": 1,
-        "val_tool_selection_accuracy": 0.8431,
-        "val_argument_accuracy": 0.8824
+        "val_tool_selection_accuracy": 0.7647,
+        "val_argument_accuracy": 0.8039
       },
       {
         "epoch": 2,
-        "val_tool_selection_accuracy": 0.8039,
+        "val_tool_selection_accuracy": 0.7647,
         "val_argument_accuracy": 0.8824
       }
     ],
     "best_epoch": 1,
-    "seconds": 1137.0
+    "seconds": 1275.3
   },
   "masking": {
     "input_tokens": 860,
@@ -596,10 +656,10 @@
     "all_supervision_is_assistant_text": true
   },
   "data_checks": {
-    "train_rows": 779,
+    "train_rows": 823,
     "val_rows": 51,
     "test_rows": 150,
-    "train_questions": 779,
+    "train_questions": 823,
     "val_questions_in_train": 0,
     "test_questions_in_train": 0,
     "val_tickers_in_train": [],
@@ -798,31 +858,31 @@
       "tuned": {
         "examples": 51,
         "schema_valid_rate": 1.0,
-        "tool_selection_accuracy": 0.8431,
-        "argument_accuracy": 0.8824,
+        "tool_selection_accuracy": 0.7647,
+        "argument_accuracy": 0.8039,
         "abstention": {
           "scored": true,
           "abstain_rows": 15,
           "non_abstain_rows": 36,
           "confusion": {
-            "true_positive": 5,
+            "true_positive": 6,
             "false_positive": 0,
-            "false_negative": 10,
+            "false_negative": 9,
             "true_negative": 36
           },
           "precision": 1.0,
-          "recall": 0.3333,
-          "f1": 0.5,
+          "recall": 0.4,
+          "f1": 0.5714,
           "specificity": 1.0,
-          "balanced_accuracy": 0.6667,
+          "balanced_accuracy": 0.7,
           "over_abstention_rate": 0.0,
-          "under_abstention_rate": 0.6667,
+          "under_abstention_rate": 0.6,
           "recall_95ci": [
-            0.1518,
-            0.5829
+            0.1982,
+            0.6425
           ],
           "precision_95ci": [
-            0.5655,
+            0.6097,
             1.0
           ],
           "no_positive_predictions": false,
@@ -834,9 +894,9 @@
               "rate": 1.0
             },
             "invalid_ticker": {
-              "declined": 1,
+              "declined": 2,
               "total": 4,
-              "rate": 0.25
+              "rate": 0.5
             },
             "loop_trap": {
               "declined": 0,
@@ -910,7 +970,7 @@
           },
           "invalid_ticker": {
             "examples": 4,
-            "tool_selection_accuracy": 0.75,
+            "tool_selection_accuracy": 0.5,
             "schema_valid_rate": 1.0
           },
           "loop_trap": {
@@ -935,7 +995,7 @@
           },
           "news_unavailable": {
             "examples": 4,
-            "tool_selection_accuracy": 1.0,
+            "tool_selection_accuracy": 0.0,
             "schema_valid_rate": 1.0
           },
           "non_us_currency": {
@@ -950,7 +1010,7 @@
           },
           "period_ambiguity": {
             "examples": 4,
-            "tool_selection_accuracy": 0.75,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           },
           "stale_data": {
@@ -965,18 +1025,19 @@
           }
         },
         "predicted_tools": {
-          "finish": 5,
+          "finish": 6,
           "get_financial_ratios": 19,
-          "get_stock_quote": 21,
-          "get_historical_prices": 6
+          "get_stock_quote": 15,
+          "get_company_news": 4,
+          "get_historical_prices": 7
         },
         "tool_selection_95ci": [
-          0.7199,
-          0.9183
+          0.6324,
+          0.86
         ],
         "argument_accuracy_95ci": [
-          0.7662,
-          0.9449
+          0.6754,
+          0.8898
         ]
       }
     },
@@ -1171,31 +1232,31 @@
       "tuned": {
         "examples": 150,
         "schema_valid_rate": 1.0,
-        "tool_selection_accuracy": 0.84,
-        "argument_accuracy": 0.86,
+        "tool_selection_accuracy": 0.7333,
+        "argument_accuracy": 0.78,
         "abstention": {
           "scored": true,
           "abstain_rows": 37,
           "non_abstain_rows": 113,
           "confusion": {
-            "true_positive": 17,
+            "true_positive": 18,
             "false_positive": 0,
-            "false_negative": 20,
+            "false_negative": 19,
             "true_negative": 113
           },
           "precision": 1.0,
-          "recall": 0.4595,
-          "f1": 0.6296,
+          "recall": 0.4865,
+          "f1": 0.6545,
           "specificity": 1.0,
-          "balanced_accuracy": 0.7297,
+          "balanced_accuracy": 0.7432,
           "over_abstention_rate": 0.0,
-          "under_abstention_rate": 0.5405,
+          "under_abstention_rate": 0.5135,
           "recall_95ci": [
-            0.3104,
-            0.6162
+            0.3345,
+            0.6411
           ],
           "precision_95ci": [
-            0.8157,
+            0.8241,
             1.0
           ],
           "no_positive_predictions": false,
@@ -1207,9 +1268,9 @@
               "rate": 1.0
             },
             "invalid_ticker": {
-              "declined": 3,
+              "declined": 4,
               "total": 11,
-              "rate": 0.2727
+              "rate": 0.3636
             },
             "loop_trap": {
               "declined": 0,
@@ -1278,12 +1339,12 @@
           },
           "comparison": {
             "examples": 15,
-            "tool_selection_accuracy": 0.7333,
+            "tool_selection_accuracy": 0.6667,
             "schema_valid_rate": 1.0
           },
           "invalid_ticker": {
             "examples": 11,
-            "tool_selection_accuracy": 0.7273,
+            "tool_selection_accuracy": 0.6364,
             "schema_valid_rate": 1.0
           },
           "loop_trap": {
@@ -1308,22 +1369,22 @@
           },
           "news_unavailable": {
             "examples": 8,
-            "tool_selection_accuracy": 1.0,
+            "tool_selection_accuracy": 0.0,
             "schema_valid_rate": 1.0
           },
           "non_us_currency": {
             "examples": 11,
-            "tool_selection_accuracy": 0.9091,
+            "tool_selection_accuracy": 0.8182,
             "schema_valid_rate": 1.0
           },
           "overview": {
             "examples": 30,
-            "tool_selection_accuracy": 0.5,
+            "tool_selection_accuracy": 0.3,
             "schema_valid_rate": 1.0
           },
           "period_ambiguity": {
             "examples": 6,
-            "tool_selection_accuracy": 0.8333,
+            "tool_selection_accuracy": 1.0,
             "schema_valid_rate": 1.0
           },
           "stale_data": {
@@ -1338,48 +1399,49 @@
           }
         },
         "predicted_tools": {
-          "get_stock_quote": 65,
-          "get_historical_prices": 20,
-          "get_financial_ratios": 48,
-          "finish": 17
+          "get_historical_prices": 27,
+          "get_stock_quote": 47,
+          "get_financial_ratios": 50,
+          "finish": 18,
+          "get_company_news": 8
         },
         "tool_selection_95ci": [
-          0.773,
-          0.8901
+          0.6574,
+          0.7976
         ],
         "argument_accuracy_95ci": [
-          0.7954,
-          0.9066
+          0.7072,
+          0.8388
         ]
       }
     },
     "paired": {
       "val": {
         "tool_selection": {
-          "gained": 19,
-          "lost": 3,
-          "both": 24,
-          "neither": 5
+          "gained": 16,
+          "lost": 4,
+          "both": 23,
+          "neither": 8
         },
         "argument_accuracy": {
-          "gained": 40,
+          "gained": 36,
           "lost": 0,
           "both": 5,
-          "neither": 6
+          "neither": 10
         }
       },
       "test": {
         "tool_selection": {
-          "gained": 51,
-          "lost": 7,
-          "both": 75,
-          "neither": 17
+          "gained": 38,
+          "lost": 10,
+          "both": 72,
+          "neither": 30
         },
         "argument_accuracy": {
-          "gained": 116,
+          "gained": 104,
           "lost": 0,
           "both": 13,
-          "neither": 21
+          "neither": 33
         }
       }
     }
@@ -2166,12 +2228,12 @@
           "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
           "tool_correct": false,
-          "args_correct": true,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"AVGO\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"AVG\"}}"
         },
         {
           "id": "gold_000439",
@@ -2233,15 +2295,15 @@
           "id": "gold_000155",
           "intent": "invalid_ticker",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "finish",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": true,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": false,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NONE\"}}"
+          "abstention_decision": "abstain",
+          "abstention_signal": true,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
         },
         {
           "id": "gold_000368",
@@ -2485,57 +2547,57 @@
           "id": "gold_000031",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ARKK\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"ARKK\",\"limit\":5}}"
         },
         {
           "id": "gold_000285",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ARKK\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"ARKK\"}}"
         },
         {
           "id": "gold_000543",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ARKK\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"ARKK\",\"limit\":5}}"
         },
         {
           "id": "gold_000579",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ARKK\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"ARKK\",\"limit\":5}}"
         },
         {
           "id": "gold_000087",
@@ -2681,15 +2743,15 @@
           "id": "gold_000093",
           "intent": "period_ambiguity",
           "expected_tool": "get_historical_prices",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"ROKU\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"ROKU\",\"period\":\"1y\"}}"
         },
         {
           "id": "gold_000103",
@@ -4927,15 +4989,15 @@
           "id": "ts_0001",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"PEP\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"PEP\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0002",
@@ -4983,15 +5045,15 @@
           "id": "ts_0005",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NVDA\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"NVDA\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0006",
@@ -5039,43 +5101,43 @@
           "id": "ts_0009",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"MCD\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"MCD\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0010",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"AMZN\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"AMZN\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0011",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"CAT\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"CAT\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0012",
@@ -5123,15 +5185,15 @@
           "id": "ts_0015",
           "intent": "overview",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"TSLA\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"TSLA\",\"period\":\"1mo\"}}"
         },
         {
           "id": "ts_0016",
@@ -5669,15 +5731,15 @@
           "id": "ts_0054",
           "intent": "comparison",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"AAPL\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"AAPL\"}}"
         },
         {
           "id": "ts_0055",
@@ -5795,15 +5857,15 @@
           "id": "ts_0063",
           "intent": "non_us_currency",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_financial_ratios",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"SHOP.TO\"}}"
+          "raw_text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"SHOP.TO\"}}"
         },
         {
           "id": "ts_0064",
@@ -5991,15 +6053,15 @@
           "id": "ts_0077",
           "intent": "invalid_ticker",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "finish",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
+          "tool_correct": false,
+          "args_correct": false,
           "abstention_expected": true,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": false,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NOTREAL\"}}"
+          "abstention_decision": "abstain",
+          "abstention_signal": true,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\": \"finish\", \"args\": {}}"
         },
         {
           "id": "ts_0078",
@@ -6271,113 +6333,113 @@
           "id": "ts_0097",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"IBM\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"IBM\"}}"
         },
         {
           "id": "ts_0098",
           "intent": "news_unavailable",
           "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
           "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
-          "abstention_expected": false,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"CAT\"}}"
-        },
-        {
-          "id": "ts_0099",
-          "intent": "news_unavailable",
-          "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
-          "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
-          "abstention_expected": false,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"XOM\"}}"
-        },
-        {
-          "id": "ts_0100",
-          "intent": "news_unavailable",
-          "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
-          "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
-          "abstention_expected": false,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"TSLA\"}}"
-        },
-        {
-          "id": "ts_0101",
-          "intent": "news_unavailable",
-          "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
-          "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
-          "abstention_expected": false,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"GOOGL\"}}"
-        },
-        {
-          "id": "ts_0102",
-          "intent": "news_unavailable",
-          "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
-          "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
-          "abstention_expected": false,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"NKE\"}}"
-        },
-        {
-          "id": "ts_0103",
-          "intent": "news_unavailable",
-          "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
-          "schema_valid": true,
-          "tool_correct": true,
-          "args_correct": true,
-          "abstention_expected": false,
-          "abstention_decision": "call_tool",
-          "abstention_signal": false,
-          "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"INTC\"}}"
-        },
-        {
-          "id": "ts_0104",
-          "intent": "news_unavailable",
-          "expected_tool": "get_stock_quote",
-          "predicted_tool": "get_stock_quote",
-          "schema_valid": true,
-          "tool_correct": true,
+          "tool_correct": false,
           "args_correct": false,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"Crox\"}}"
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"CAT\",\"limit\":5}}"
+        },
+        {
+          "id": "ts_0099",
+          "intent": "news_unavailable",
+          "expected_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
+          "schema_valid": true,
+          "tool_correct": false,
+          "args_correct": false,
+          "abstention_expected": false,
+          "abstention_decision": "call_tool",
+          "abstention_signal": false,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"XOM\",\"limit\":5}}"
+        },
+        {
+          "id": "ts_0100",
+          "intent": "news_unavailable",
+          "expected_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
+          "schema_valid": true,
+          "tool_correct": false,
+          "args_correct": false,
+          "abstention_expected": false,
+          "abstention_decision": "call_tool",
+          "abstention_signal": false,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"TSLA\",\"limit\":5}}"
+        },
+        {
+          "id": "ts_0101",
+          "intent": "news_unavailable",
+          "expected_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
+          "schema_valid": true,
+          "tool_correct": false,
+          "args_correct": false,
+          "abstention_expected": false,
+          "abstention_decision": "call_tool",
+          "abstention_signal": false,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"GOOGL\",\"limit\":5}}"
+        },
+        {
+          "id": "ts_0102",
+          "intent": "news_unavailable",
+          "expected_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
+          "schema_valid": true,
+          "tool_correct": false,
+          "args_correct": false,
+          "abstention_expected": false,
+          "abstention_decision": "call_tool",
+          "abstention_signal": false,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"NKE\",\"limit\":5}}"
+        },
+        {
+          "id": "ts_0103",
+          "intent": "news_unavailable",
+          "expected_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
+          "schema_valid": true,
+          "tool_correct": false,
+          "args_correct": false,
+          "abstention_expected": false,
+          "abstention_decision": "call_tool",
+          "abstention_signal": false,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"INTC\",\"limit\":5}}"
+        },
+        {
+          "id": "ts_0104",
+          "intent": "news_unavailable",
+          "expected_tool": "get_stock_quote",
+          "predicted_tool": "get_company_news",
+          "schema_valid": true,
+          "tool_correct": false,
+          "args_correct": false,
+          "abstention_expected": false,
+          "abstention_decision": "call_tool",
+          "abstention_signal": false,
+          "abstention_correct": true,
+          "raw_text": "{\"tool\":\"get_company_news\",\"args\":{\"ticker\":\"Crox\",\"limit\":5}}"
         },
         {
           "id": "ts_0105",
@@ -6663,15 +6725,15 @@
           "id": "ts_0125",
           "intent": "period_ambiguity",
           "expected_tool": "get_historical_prices",
-          "predicted_tool": "get_stock_quote",
+          "predicted_tool": "get_historical_prices",
           "schema_valid": true,
-          "tool_correct": false,
-          "args_correct": false,
+          "tool_correct": true,
+          "args_correct": true,
           "abstention_expected": false,
           "abstention_decision": "call_tool",
           "abstention_signal": false,
           "abstention_correct": true,
-          "raw_text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"CRM\"}}"
+          "raw_text": "{\"tool\":\"get_historical_prices\",\"args\":{\"ticker\":\"CRM\",\"period\":\"1y\"}}"
         },
         {
           "id": "ts_0126",
@@ -7027,5 +7089,5 @@
     }
   },
   "peak_gpu_gb": 30.97,
-  "total_seconds": 1631.9
+  "total_seconds": 1826.7
 }

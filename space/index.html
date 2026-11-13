@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Finance Agent</title>
+    <style>
+      :root { color-scheme: dark; font: 16px system-ui, sans-serif; }
+      body { max-width: 760px; margin: 4rem auto; padding: 0 1rem; background: #0b1220; color: #e5edf8; }
+      textarea, button { width: 100%; box-sizing: border-box; border-radius: 8px; padding: .8rem; }
+      textarea { min-height: 8rem; background: #111c31; color: inherit; border: 1px solid #334766; }
+      button { margin-top: .8rem; background: #35b779; color: #07140e; border: 0; font-weight: 700; cursor: pointer; }
+      pre { white-space: pre-wrap; background: #111c31; padding: 1rem; border-radius: 8px; }
+      .muted { color: #9fb0c9; }
+    </style>
+  </head>
+  <body>
+    <h1>Finance Agent</h1>
+    <p class="muted">Indian and global market research with cited provider data. Informational only—not investment advice.</p>
+    <textarea id="question">What is RELIANCE.NS trading at right now?</textarea>
+    <button id="ask">Ask</button>
+    <pre id="output">Ready.</pre>
+    <script>
+      const endpoint = "https://devisettisaipavankumar--finance-agent-ws5-demo-financeag-dc3c3e.us-east.modal.run";
+      const output = document.querySelector("#output");
+      document.querySelector("#ask").onclick = async () => {
+        output.textContent = "Loading…";
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify({question: document.querySelector("#question").value})
+          });
+          output.textContent = JSON.stringify(await response.json(), null, 2);
+        } catch (error) {
+          output.textContent = `Request failed: ${error}`;
+        }
+      };
+    </script>
+  </body>
+</html>

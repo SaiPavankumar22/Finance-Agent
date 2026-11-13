@@ -74,8 +74,8 @@ def test_indian_market_coverage_in_training():
 
 def test_india_heldout_set_is_separate_and_complete():
     rows = load(INDIA)
-    assert len(rows) == 32
-    assert len({row["question"] for row in rows}) == 32
+    assert 90 <= len(rows) <= 110, len(rows)
+    assert len({row["question"] for row in rows}) == len(rows)
     intents = {row["intent"] for row in rows}
     for required in (
         "india_quote",
@@ -150,3 +150,25 @@ def test_error_replay_stage_reports_its_weighting():
     assert manifest["ratios_rows"] >= 6
     rewritten = [row for row in load(TRAIN) if row.get("rewritten_by")]
     assert len(rewritten) >= 40, len(rewritten)
+
+
+def test_india_coverage_teaches_news_and_declines():
+    rows = load(TRAIN)
+    news = [
+        row
+        for row in rows
+        if row.get("stage") == "india-coverage-v1" and row["intent"] == "india_news"
+    ]
+    assert len(news) >= 12
+    for row in news:
+        assert json.loads(row["messages"][2]["content"])["tool"] == "get_company_news", row["id"]
+        assert json.loads(row["messages"][-1]["content"])["tool"] == "finish", row["id"]
+
+    declines = [
+        row
+        for row in rows
+        if row.get("stage") == "india-coverage-v1"
+        and row["intent"] in {"invalid_symbol", "unsupported_india"}
+    ]
+    assert len(declines) >= 20
+    assert all(json.loads(row["messages"][2]["content"])["tool"] == "finish" for row in declines)

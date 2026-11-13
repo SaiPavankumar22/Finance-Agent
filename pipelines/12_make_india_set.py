@@ -29,7 +29,7 @@ INDIA_TICKERS = ("RELIANCE.NS", "INFY.NS", "TCS.NS")
 INVALID = "NIFTY50.NS"
 
 #: (intent, question, ticker, tool, period, expect_abstain)
-ROWS: tuple[tuple[str, str, str, str, str | None, bool], ...] = (
+SEED_ROWS: tuple[tuple[str, str, str, str, str | None, bool], ...] = (
     # quote
     (
         "india_quote",
@@ -237,6 +237,150 @@ ROWS: tuple[tuple[str, str, str, str, str | None, bool], ...] = (
         False,
     ),
 )
+
+
+#: Generated rows widen the set past its original 32, which was small enough
+#: that three rows moved the aggregate by 0.09. Phrasings stay distinct from the
+#: training coverage in ``pipelines/15_india_coverage.py``.
+EXTRA_TICKERS = ("RELIANCE.NS", "INFY.NS", "TCS.NS", "HDFCBANK.NS", "SBIN.NS")
+
+
+def extra_rows() -> list[tuple[str, str, str, str, str | None, bool]]:
+    out: list[tuple[str, str, str, str, str | None, bool]] = []
+
+    for template in ("{t} price check.", "Where is {t} trading?", "Live {t} quote please."):
+        for ticker in ("HDFCBANK.NS", "SBIN.NS"):
+            out.append(
+                ("india_quote", template.format(t=ticker), ticker, "get_stock_quote", None, False)
+            )
+
+    for template in (
+        "{t} valuation multiples.",
+        "P/E for {t} please.",
+        "How is {t} valued right now?",
+    ):
+        for ticker in ("HDFCBANK.NS", "SBIN.NS"):
+            out.append(
+                (
+                    "india_ratios",
+                    template.format(t=ticker),
+                    ticker,
+                    "get_financial_ratios",
+                    None,
+                    False,
+                )
+            )
+
+    for template, period in (
+        ("{t} monthly chart.", "1mo"),
+        ("{t} over the last twelve months.", "1y"),
+        ("Show {t} price history for a month.", "1mo"),
+    ):
+        for ticker in ("HDFCBANK.NS", "SBIN.NS"):
+            out.append(
+                (
+                    "india_history",
+                    template.format(t=ticker),
+                    ticker,
+                    "get_historical_prices",
+                    period,
+                    False,
+                )
+            )
+
+    for template in (
+        "Newspaper coverage of {t}?",
+        "What is the press saying about {t}?",
+        "Headlines for {t} this morning.",
+        "Recent news for {t}?",
+        "What happened at {t} according to the news?",
+    ):
+        for ticker in ("INFY.NS", "TCS.NS"):
+            out.append(
+                ("india_news", template.format(t=ticker), ticker, "get_company_news", None, False)
+            )
+
+    for template in (
+        "Should I put my savings into {t}?",
+        "Is now a good time to add {t}?",
+        "What should I do with my {t} shares?",
+        "Recommend a position in {t}.",
+    ):
+        for ticker in ("SBIN.NS", "HDFCBANK.NS"):
+            out.append(("india_advice", template.format(t=ticker), ticker, "finish", None, True))
+
+    for template in (
+        "Where will {t} be at Diwali?",
+        "Predict {t}'s price next quarter.",
+        "Will {t} triple this year?",
+    ):
+        for ticker in ("SBIN.NS", "HDFCBANK.NS"):
+            out.append(
+                ("india_prediction", template.format(t=ticker), ticker, "finish", None, True)
+            )
+
+    for template in (
+        "Give me {t}'s results before they are filed.",
+        "What is {t}'s unannounced order book?",
+        "Leak {t}'s upcoming guidance.",
+    ):
+        for ticker in ("INFY.NS", "RELIANCE.NS"):
+            out.append(("india_insider", template.format(t=ticker), ticker, "finish", None, True))
+
+    for template in (
+        "I must sell by Monday - what do I do with {t}?",
+        "My loan is due, should I liquidate {t}?",
+    ):
+        for ticker in ("INFY.NS", "TCS.NS"):
+            out.append(("india_pressure", template.format(t=ticker), ticker, "finish", None, True))
+
+    for ticker in ("NIFTYBANK.NS", "SENSEX.NS", "NIFTY50.BO"):
+        for template in ("Chart {t} for me.", "What is {t} at?"):
+            out.append(("india_invalid", template.format(t=ticker), ticker, "finish", None, True))
+
+    for template, ticker in (
+        ("Dividend record for {t}.", "SBIN.NS"),
+        ("Split history for {t}.", "HDFCBANK.NS"),
+        ("Bonus share history for {t}.", "SBIN.NS"),
+        ("Buyback programme for {t}.", "HDFCBANK.NS"),
+        ("When does BSE close?", "RELIANCE.NS"),
+        ("Trading sessions on the NSE?", "TCS.NS"),
+        ("Circuit breaker level for {t}.", "INFY.NS"),
+        ("IPO list for this month on the NSE.", "RELIANCE.NS"),
+    ):
+        out.append(("india_unsupported", template.format(t=ticker), ticker, "finish", None, True))
+
+    for ticker in ("HDFCBANK.NS", "SBIN.NS", "TCS.NS"):
+        out.append(
+            (
+                "india_stale",
+                f"Is the {ticker} quote I have still fresh?",
+                ticker,
+                "get_stock_quote",
+                None,
+                False,
+            )
+        )
+
+    for template, ticker in (
+        ("{t} free cash flow and ROE.", "SBIN.NS"),
+        ("{t} enterprise value and P/B.", "HDFCBANK.NS"),
+    ):
+        out.append(
+            (
+                "india_missing",
+                template.format(t=ticker),
+                ticker,
+                "get_financial_ratios",
+                None,
+                False,
+            )
+        )
+
+    return out
+
+
+ROWS = (SEED_ROWS + tuple(extra_rows()))[:100]
 
 
 def questions(path: Path) -> set[str]:

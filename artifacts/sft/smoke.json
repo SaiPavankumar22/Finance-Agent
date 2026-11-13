@@ -7,39 +7,39 @@
     "peft": "0.21.2"
   },
   "steps": 20,
-  "examples": 48,
+  "examples": 86,
   "max_len": 4096,
-  "rows_over_max_len": 6,
+  "rows_over_max_len": 9,
   "losses": [
-    1.7059,
-    1.5714,
-    1.4865,
-    1.8049,
-    1.5992,
-    1.4532,
-    1.8817,
-    1.808,
-    0.5778,
-    0.4096,
-    0.4106,
-    0.4074,
-    0.1297,
-    0.1122,
-    0.2196,
-    0.1116,
-    0.0388,
-    0.3483,
-    0.0295,
-    0.1047
+    1.5247,
+    1.5071,
+    2.0372,
+    2.4297,
+    1.2313,
+    1.8375,
+    1.3509,
+    1.611,
+    0.3246,
+    0.3214,
+    0.4449,
+    0.4019,
+    0.1185,
+    0.0846,
+    0.287,
+    0.1386,
+    0.062,
+    0.1119,
+    0.0791,
+    0.055
   ],
-  "loss_first_5": 1.6336,
-  "loss_last_5": 0.1266,
+  "loss_first_5": 1.746,
+  "loss_last_5": 0.0893,
   "trainable_parameters": 30228480,
   "total_parameters": 1973315584,
   "trainable_fraction": 0.015319,
-  "tokens_seen": 24293,
-  "supervised_tokens_in_slice": 2226,
-  "mean_supervised_tokens_per_row": 46.4,
+  "tokens_seen": 22857,
+  "supervised_tokens_in_slice": 4024,
+  "mean_supervised_tokens_per_row": 46.8,
   "masking": {
     "input_tokens": 860,
     "masked_tokens": 827,
@@ -61,7 +61,7 @@
         "ended_turn": false
       },
       "tuned": {
-        "text": "{\"tool\":\"get_financial_ratios\",\"args\":{\"ticker\":\"DIS\"}}",
+        "text": "{\"tool\":\"get_stock_quote\",\"args\":{\"ticker\":\"DIS\"}}",
         "new_tokens": 48,
         "ended_turn": true
       },
@@ -69,7 +69,7 @@
         "gold_first_token": "{\"",
         "top1": "{\"",
         "gold_in_top5": true,
-        "gold_probability": 0.9941
+        "gold_probability": 0.9953
       }
     },
     "final_turn": {
@@ -84,13 +84,13 @@
       "tuned": {
         "text": "{\"tool\": \"finish\", \"args\": {}}",
         "new_tokens": 48,
-        "ended_turn": false
+        "ended_turn": true
       },
       "greedy_next_token": {
         "gold_first_token": "{\"",
         "top1": "{\"",
         "gold_in_top5": true,
-        "gold_probability": 0.928
+        "gold_probability": 0.9627
       }
     },
     "ood_advice": {
@@ -111,11 +111,11 @@
         "gold_first_token": "{\"",
         "top1": "{\"",
         "gold_in_top5": true,
-        "gold_probability": 0.9935
+        "gold_probability": 0.9949
       }
     }
   },
-  "train_seconds": 12.9,
-  "total_seconds": 76.5,
+  "train_seconds": 8.6,
+  "total_seconds": 43.7,
   "peak_gpu_gb": 20.91
 }

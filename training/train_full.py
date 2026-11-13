@@ -254,7 +254,15 @@ def require_adapter(adapter_dir: str, env_var: str) -> str:
             f"got {adapter_dir!r}"
         )
     try:
-        entries = adapters.listdir(adapter_dir)
+        # Training commits from a remote container, so the local view has to be
+        # refreshed before listing or a fresh adapter reads as "missing".
+        adapters.reload()
+    except Exception:  # noqa: BLE001 - a reload failure is not fatal on its own
+        pass
+    # The volume client addresses paths from the volume root, not the /out mount.
+    relative = adapter_dir.removeprefix("/out").lstrip("/")
+    try:
+        entries = adapters.listdir(relative or "/")
     except Exception as exc:  # noqa: BLE001 - any lookup failure means "not there"
         raise SystemExit(f"{env_var}={adapter_dir} is not on the volume: {exc}") from exc
     names = {Path(entry.path).name for entry in entries}

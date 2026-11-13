@@ -1,11 +1,16 @@
 {
   "generated_by": "pipelines/12_make_india_set.py",
-  "rows": 32,
-  "expect_abstain": 13,
+  "rows": 100,
+  "expect_abstain": 51,
   "tickers": [
+    "HDFCBANK.NS",
     "INFY.NS",
+    "NIFTY50.BO",
     "NIFTY50.NS",
+    "NIFTYBANK.NS",
     "RELIANCE.NS",
+    "SBIN.NS",
+    "SENSEX.NS",
     "TCS.NS"
   ],
   "coverage": [
@@ -22,7 +27,7 @@
     "india_stale",
     "india_unsupported"
   ],
-  "sha256": "c20ae7b4b9ff3e002c5805b7defec4eab9f65326eb71762ccfa15fb473fd160a",
+  "sha256": "ea50558fa9cc8439b710d4922c83e1574e93408421c9f554445a4885e85d90c4",
   "overlap_with_existing": {
     "train": [],
     "testset": [],

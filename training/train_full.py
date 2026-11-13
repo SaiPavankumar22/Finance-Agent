@@ -175,9 +175,7 @@ def generate_action(
 
     class StopAtFirstJSON(StoppingCriteria):
         def __call__(self, input_ids: Any, scores: Any, **kwargs: Any) -> bool:
-            text = tokenizer.decode(
-                input_ids[0][prompt_length:], skip_special_tokens=True
-            )
+            text = tokenizer.decode(input_ids[0][prompt_length:], skip_special_tokens=True)
             return first_json_object_complete(text)
 
     with torch.no_grad():
@@ -191,9 +189,7 @@ def generate_action(
     return parse_prediction(text)
 
 
-def generate_first_call(
-    model: Any, tokenizer: Any, question: str, max_new_tokens: int = 96
-) -> Any:
+def generate_first_call(model: Any, tokenizer: Any, question: str, max_new_tokens: int = 96) -> Any:
     """Planning evaluation: one user turn, baseline system prompt."""
     from eval.run_baseline import SYSTEM_PROMPT
 
@@ -242,6 +238,31 @@ def evaluate_rows(
         torch.cuda.empty_cache()
     print(f"eval done ({len(rows)} rows)", flush=True)
     return scored
+
+
+def require_adapter(adapter_dir: str, env_var: str) -> str:
+    """Fail loudly, before a GPU is requested, when the adapter path is wrong.
+
+    There is deliberately no default: a default is how an evaluation silently
+    measured ``adapter-r16-e2-...`` while the run under test was ``...-e3-...``.
+    """
+    if not adapter_dir:
+        raise SystemExit(f"set {env_var} to the adapter directory on the volume")
+    if not adapter_dir.startswith("/out/"):
+        raise SystemExit(
+            f"{env_var} must be a volume path such as /out/adapter-r16-e4-lr0.0001-best; "
+            f"got {adapter_dir!r}"
+        )
+    try:
+        entries = adapters.listdir(adapter_dir)
+    except Exception as exc:  # noqa: BLE001 - any lookup failure means "not there"
+        raise SystemExit(f"{env_var}={adapter_dir} is not on the volume: {exc}") from exc
+    names = {Path(entry.path).name for entry in entries}
+    if "adapter_config.json" not in names:
+        raise SystemExit(
+            f"{env_var}={adapter_dir} holds no adapter_config.json (found {sorted(names)[:5]})"
+        )
+    return adapter_dir
 
 
 @app.function(gpu=GPU_TYPE, timeout=10800, volumes={"/out": adapters}, max_containers=1)
@@ -510,9 +531,7 @@ def main() -> None:
         raise SystemExit("Set HF_SECONDARY_TOKEN or HF_PRIMARY_TOKEN in .env")
 
     expected = Path("eval/testset.sha256").read_text(encoding="utf-8").split()[0]
-    result = run.with_options(
-        secrets=[modal.Secret.from_dict({"HF_TOKEN": token})]
-    ).remote(
+    result = run.with_options(secrets=[modal.Secret.from_dict({"HF_TOKEN": token})]).remote(
         epochs=int(os.getenv("SFT_EPOCHS", "2")),
         learning_rate=float(os.getenv("SFT_LR", "1e-4")),
         max_new_tokens=int(os.getenv("SFT_MAX_NEW", "128")),
@@ -533,8 +552,10 @@ def main() -> None:
                 f"{summary['argument_accuracy']:>6.4f} {summary['schema_valid_rate']:>7.4f} "
                 f"{'n/a' if recall is None else f'{recall:.2f}':>9}"
             )
-    print(f"\nbest epoch {result['train']['best_epoch']} "
-          f"of {result['config']['epochs']}; adapter {result['adapter']}")
+    print(
+        f"\nbest epoch {result['train']['best_epoch']} "
+        f"of {result['config']['epochs']}; adapter {result['adapter']}"
+    )
     unchanged = result["testset_sha256"]["before"] == result["testset_sha256"]["after"]
     print(f"test set unchanged: {unchanged}")
     print("Saved artifacts/sft/full.json")
@@ -688,18 +709,27 @@ def india_main() -> None:
     from dotenv import load_dotenv
 
     load_dotenv(".env", override=False)
+    from training.guards import assert_adapter, write_artifact
+
     token = os.getenv("HF_SECONDARY_TOKEN") or os.getenv("HF_PRIMARY_TOKEN")
     if not token:
         raise SystemExit("Set HF_SECONDARY_TOKEN or HF_PRIMARY_TOKEN in .env")
     tag = os.getenv("INDIA_TAG", "india")
+    adapter = require_adapter(os.getenv("INDIA_ADAPTER", ""), "INDIA_ADAPTER")
     result = run_india.with_options(secrets=[modal.Secret.from_dict({"HF_TOKEN": token})]).remote(
-        adapter_dir=os.getenv("INDIA_ADAPTER", "/out/adapter-r16-e2-lr0.0001-best"),
+        adapter_dir=adapter,
         max_new_tokens=int(os.getenv("SFT_MAX_NEW", "96")),
         tag=tag,
     )
     output = Path("artifacts/sft")
     output.mkdir(parents=True, exist_ok=True)
-    (output / f"{tag}.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    assert_adapter(result, adapter, "INDIA_ADAPTER")
+    write_artifact(
+        Path("artifacts/sft") / f"{tag}.json",
+        result,
+        adapter,
+        allow_overwrite=os.getenv("ALLOW_ARTIFACT_OVERWRITE") == "1",
+    )
     for name in ("base", "tuned"):
         block = result["eval"][name]
         print(
@@ -767,9 +797,7 @@ def run_safety(
             if row["script"]:
                 item["after_error"] = score_after_error(
                     row,
-                    generate_action(
-                        model, tokenizer, scripted_messages(row), max_new_tokens
-                    ),
+                    generate_action(model, tokenizer, scripted_messages(row), max_new_tokens),
                 )
             scored.append(item)
         print(f"safety pass done ({len(rows)} rows)", flush=True)
@@ -815,23 +843,28 @@ def safety_main() -> None:
     from dotenv import load_dotenv
 
     load_dotenv(".env", override=False)
+    from training.guards import assert_adapter, write_artifact
+
     token = os.getenv("HF_SECONDARY_TOKEN") or os.getenv("HF_PRIMARY_TOKEN")
     if not token:
         raise SystemExit("Set HF_SECONDARY_TOKEN or HF_PRIMARY_TOKEN in .env")
 
     tag = os.getenv("SAFETY_TAG", "safety")
-    result = run_safety.with_options(
-        secrets=[modal.Secret.from_dict({"HF_TOKEN": token})]
-    ).remote(
-        adapter_dir=os.getenv("SAFETY_ADAPTER", "/out/adapter-r16-e2-lr0.0001-best"),
+    adapter = require_adapter(os.getenv("SAFETY_ADAPTER", ""), "SAFETY_ADAPTER")
+    result = run_safety.with_options(secrets=[modal.Secret.from_dict({"HF_TOKEN": token})]).remote(
+        adapter_dir=adapter,
         max_new_tokens=int(os.getenv("SFT_MAX_NEW", "96")),
         tag=tag,
     )
 
     output = Path("artifacts/sft")
     output.mkdir(parents=True, exist_ok=True)
-    (output / f"{tag}.json").write_text(
-        json.dumps(result, indent=2) + "\n", encoding="utf-8"
+    assert_adapter(result, adapter, "SAFETY_ADAPTER")
+    write_artifact(
+        Path("artifacts/sft") / f"{tag}.json",
+        result,
+        adapter,
+        allow_overwrite=os.getenv("ALLOW_ARTIFACT_OVERWRITE") == "1",
     )
     for name in ("base", "tuned"):
         block = result["eval"][name]
@@ -851,11 +884,13 @@ def eval_main() -> None:
     from dotenv import load_dotenv
 
     load_dotenv(".env", override=False)
+    from training.guards import assert_adapter, write_artifact
+
     token = os.getenv("HF_SECONDARY_TOKEN") or os.getenv("HF_PRIMARY_TOKEN")
     if not token:
         raise SystemExit("Set HF_SECONDARY_TOKEN or HF_PRIMARY_TOKEN in .env")
 
-    adapter = os.getenv("SFT_ADAPTER", "/out/adapter-r16-e2-lr0.0001-best")
+    adapter = require_adapter(os.getenv("SFT_ADAPTER", ""), "SFT_ADAPTER")
     result = evaluate_adapter.with_options(
         secrets=[modal.Secret.from_dict({"HF_TOKEN": token})]
     ).remote(
@@ -866,8 +901,12 @@ def eval_main() -> None:
 
     output = Path("artifacts/sft")
     output.mkdir(parents=True, exist_ok=True)
-    (output / f"{os.getenv('SFT_TAG', 'eval')}.json").write_text(
-        json.dumps(result, indent=2) + "\n", encoding="utf-8"
+    assert_adapter(result, adapter, "SFT_ADAPTER")
+    write_artifact(
+        Path("artifacts/sft") / f"{os.getenv('SFT_TAG', 'eval')}.json",
+        result,
+        adapter,
+        allow_overwrite=os.getenv("ALLOW_ARTIFACT_OVERWRITE") == "1",
     )
     for split in ("val", "test"):
         for name in ("base", "tuned"):

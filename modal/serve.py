@@ -1,10 +1,11 @@
-"""Public WS5 inference service for the hackathon demo.
+"""Public inference service for the hackathon demo.
 
 Deploy with:
     modal deploy modal/serve.py
 
-The service deliberately uses the approved ``adapter-ws5`` volume entry, not
-the rejected e4 checkpoints.  It exposes a small, auditable API: the model
+The service loads the accepted adapter from the Hub at a pinned revision, so the
+demo runs the same weights the gate report was measured on rather than whatever
+happens to sit on the volume. It exposes a small, auditable API: the model
 selects one registered tool, the tool is executed, and both are returned.
 """
 
@@ -12,6 +13,7 @@ from __future__ import annotations
 
 import os
 import sys
+from dataclasses import asdict, is_dataclass
 from pathlib import Path
 from typing import Any
 
@@ -20,8 +22,10 @@ import modal
 ROOT = Path(__file__).resolve().parents[1]
 SRC = "/src"
 MODEL_ID = "CohereLabs/tiny-aya-global"
-# WS5 is stored under a wrapper directory in the shared volume.
-ADAPTER_DIR = "/out/adapter-ws5/adapter-r16-e2-lr0.0001-best"
+# The accepted candidate (all gates pass), pinned by revision.
+ADAPTER_REPO = "avengeryt22/finance-agent-staging"
+ADAPTER_REVISION = "5ae2ee8"
+ADAPTER = f"{ADAPTER_REPO}@{ADAPTER_REVISION}"
 
 image = (
     modal.Image.debian_slim(python_version="3.12")
@@ -50,15 +54,13 @@ image = (
 )
 
 app = modal.App("finance-agent-ws5-demo", image=image)
-adapters = modal.Volume.from_name("finance-agent-sft-adapters", create_if_missing=False)
 
 
 @app.cls(
     gpu="A10G",
     timeout=300,
     scaledown_window=300,
-    volumes={"/out": adapters},
-    secrets=[modal.Secret.from_name("hf-token")],
+    secrets=[modal.Secret.from_name("hf-read-token")],
     min_containers=0,
 )
 class FinanceAgent:
@@ -82,7 +84,9 @@ class FinanceAgent:
                 llm_int8_skip_modules=["lm_head"],
             ),
         )
-        self.model = PeftModel.from_pretrained(base, ADAPTER_DIR)
+        self.model = PeftModel.from_pretrained(
+            base, ADAPTER_REPO, revision=ADAPTER_REVISION, token=os.getenv("HF_TOKEN")
+        )
         self.model.eval()
 
     @modal.method()
@@ -90,13 +94,24 @@ class FinanceAgent:
         from training.train_full import generate_first_call
 
         prediction = generate_first_call(self.model, self.tokenizer, question)
-        if not isinstance(prediction, dict):
-            return {"action": prediction, "result": None}
+        # ``generate_first_call`` returns a ``Prediction`` dataclass, not a dict,
+        # so the served demo used to skip tool execution entirely and answer with
+        # a null result. Normalise before looking at the chosen tool.
+        if isinstance(prediction, dict):
+            action = prediction
+        elif is_dataclass(prediction):
+            action = asdict(prediction)
+        elif hasattr(prediction, "model_dump"):
+            action = prediction.model_dump(mode="json")
+        else:
+            action = prediction
+        if not isinstance(action, dict):
+            return {"action": action, "result": None}
 
-        tool = prediction.get("tool")
-        args = prediction.get("args", {})
+        tool = action.get("tool")
+        args = action.get("args", {})
         if tool == "finish":
-            return {"action": prediction, "result": None}
+            return {"action": action, "result": None}
 
         from app.tools import yfinance_tools
 
@@ -108,7 +123,7 @@ class FinanceAgent:
         }
         function = functions.get(tool)
         if function is None:
-            return {"action": prediction, "result": {"error": "unknown_tool"}}
+            return {"action": action, "result": {"error": "unknown_tool"}}
         try:
             result = function(**args)
         except Exception as exc:  # tool contract must not crash the endpoint
@@ -117,7 +132,7 @@ class FinanceAgent:
             result = {"status": "unavailable", "error": "provider_no_result"}
         if hasattr(result, "model_dump"):
             result = result.model_dump(mode="json")
-        return {"action": prediction, "result": result}
+        return {"action": action, "result": result}
 
     @modal.fastapi_endpoint(method="POST", docs=True)
     def query(self, payload: dict[str, Any]) -> dict[str, Any]:
@@ -130,7 +145,7 @@ class FinanceAgent:
             raise HTTPException(status_code=413, detail="question is too long")
         return {
             "model": MODEL_ID,
-            "adapter": "SaiPavankumar22/finance-agent@7a4b00e",
+            "adapter": ADAPTER,
             "question": question,
             **self.query_model.local(question.strip()),
         }
@@ -143,6 +158,6 @@ class FinanceAgent:
     def version(self) -> dict[str, str]:
         return {
             "model": MODEL_ID,
-            "adapter": "SaiPavankumar22/finance-agent@7a4b00e",
+            "adapter": ADAPTER,
             "code": os.getenv("FINANCE_AGENT_SHA", "local"),
         }

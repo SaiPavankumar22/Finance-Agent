@@ -19,12 +19,11 @@ from typing import Any
 
 import modal
 
+sys.path.insert(0, "/src")
+from finance_agent.release import ADAPTER_REPO, ADAPTER_REVISION, MODEL_ID
+
 ROOT = Path(__file__).resolve().parents[1]
 SRC = "/src"
-MODEL_ID = "CohereLabs/tiny-aya-global"
-# The accepted candidate (all gates pass), pinned by revision.
-ADAPTER_REPO = "avengeryt22/finance-agent-staging"
-ADAPTER_REVISION = "5ae2ee8"
 ADAPTER = f"{ADAPTER_REPO}@{ADAPTER_REVISION}"
 
 image = (
@@ -43,6 +42,7 @@ image = (
         "fastapi",
     )
     .env({"TOKENIZERS_PARALLELISM": "false"})
+    .add_local_dir("src/finance_agent", f"{SRC}/finance_agent")
     .add_local_dir("app", f"{SRC}/app", ignore=["__pycache__", "*.pyc"])
     .add_local_file("eval/__init__.py", f"{SRC}/eval/__init__.py")
     .add_local_file("eval/metrics.py", f"{SRC}/eval/metrics.py")

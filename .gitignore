@@ -32,3 +32,6 @@ artifacts/sft/adapter-*/
 
 # Working notes: private repo names, revisions and measured numbers stay local.
 status.md
+
+# Downloaded adapter weights (published to the Hub instead)
+artifacts/adapter-*/

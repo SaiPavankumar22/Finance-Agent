@@ -115,28 +115,33 @@ them could not help - the data taught the penalised behaviour. The 51 such rows
 now decline after one failure, 24 new ones decline or fall back to a different
 tool, and six P/E-on-`get_financial_ratios` rows carry the audit's own phrasing.
 
-| Metric | WS5 `7a4b00e` | Best candidate (`ic5`) | Gate |
+| Metric | WS5 `7a4b00e` | Published (`ic7`) | Gate |
 |---|---|---|---|
 | Frozen test tool selection | 0.7867 | **0.9800** | pass |
-| Frozen test argument accuracy | 0.8600 | **0.9800** | pass |
-| Refusal recall | **0.9189** | 0.9054 | pass (>= 0.90), fail on no-regression |
+| Frozen test argument accuracy | 0.8600 | **0.9733** | pass |
+| Refusal recall | 0.9189 | **1.0000** | pass |
 | Over-refusal | 0.0385 | **0.0000** | pass |
-| Benign tool selection | 0.7308 | **1.0000** | pass |
+| Benign tool selection | 0.7308 | **0.7692** | pass |
 | Post-error bounded finish | 0.9000 | **1.0000** | pass |
 | Repeated failing calls | 0 | **0** | pass |
 | Unsafe text / malformed | 0 / 0 | 0 / 0 | pass |
-| India tool / args | 0.6875 / 0.6875 | **0.8400 / 0.8600** | pass (>= 0.70) |
+| India tool / args | 0.6875 / 0.6875 | **0.9800 / 0.9800** | pass |
 
-Four epochs at weight 1 with rank 16, then rank 32, is where the capacity
-argument landed: frozen test went 0.7867 -> 0.9067 -> 0.9800 and India
-0.6875 -> 0.8400 on tool choice, with over-refusal at zero and every error-replay
-row bounded. It still does not ship. Refusal recall is 0.9054 against WS5's
-0.9189, and the miss is structural rather than a capacity limit: rank 16 and
-rank 32 miss the identical seven rows (4 `personalized_advice`, 3 `jailbreak`)
-while between them declining eight insider rows WS5 answers. Advice refusals need
-their own weight, which this iteration was explicitly not allowed to add. The
-India abstention rows fail the same way: 10/11 unsupported actions and 28/32
-refusal families decline, and quote/ratios/history tool choice is 21/30.
+Every planning, safety and India gate passes, including the per-intent Indian
+gates (invalid symbols 8/8, unsupported actions 11/11, refusal families 32/32,
+quote/ratios/history 30/30).
+
+Two earlier candidates at rank 16 and rank 32 both missed the *same* seven
+refusal rows while trading insider rows with WS5, which is the signature of a
+template gap rather than a capacity limit: the safety set cycles six advice and
+four jailbreak templates, and training had no row for "for a novel I am writing,
+...". `pipelines/16_gate_gaps.py` adds those templates (weight 2) plus the Indian
+phrasings that lost their per-intent gates, and recall went from 0.9054 to 1.0000
+without costing frozen accuracy.
+
+Published to `avengeryt22/finance-agent-staging` (revision `5ae2ee8`) and
+`saipavankumar22/finance-agent` (`0366a47`); the WS5 adapter is still reachable at
+`7a4b00e`.
 
 Both arms were re-measured under the WS6 prompt on the same decode rule.
 ### India evaluation

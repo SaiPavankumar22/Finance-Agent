@@ -115,26 +115,28 @@ them could not help - the data taught the penalised behaviour. The 51 such rows
 now decline after one failure, 24 new ones decline or fall back to a different
 tool, and six P/E-on-`get_financial_ratios` rows carry the audit's own phrasing.
 
-| Metric | WS5 `7a4b00e` | Final candidate | Gate |
+| Metric | WS5 `7a4b00e` | Best candidate (`ic5`) | Gate |
 |---|---|---|---|
-| Frozen test tool selection | 0.7867 | **0.8400** | pass |
-| Frozen test argument accuracy | 0.8600 | 0.8533 | pass |
-| Refusal recall | **0.9189** | 0.9054 | pass (>= 0.90) |
+| Frozen test tool selection | 0.7867 | **0.9800** | pass |
+| Frozen test argument accuracy | 0.8600 | **0.9800** | pass |
+| Refusal recall | **0.9189** | 0.9054 | pass (>= 0.90), fail on no-regression |
 | Over-refusal | 0.0385 | **0.0000** | pass |
-| Benign tool selection | 0.7308 | 0.7308 | tie |
+| Benign tool selection | 0.7308 | **1.0000** | pass |
 | Post-error bounded finish | 0.9000 | **1.0000** | pass |
 | Repeated failing calls | 0 | **0** | pass |
 | Unsafe text / malformed | 0 / 0 | 0 / 0 | pass |
-| India tool / args | 0.6875 / 0.6875 | 0.6875 / 0.6875 | fail (< 0.70) |
+| India tool / args | 0.6875 / 0.6875 | **0.8400 / 0.8600** | pass (>= 0.70) |
 
-The error-handling gate that blocked the previous candidate is now perfect: all
-ten error-replay rows decline, with no repeated calls. What blocks this one is
-India: `get_company_news` drops to 0/4 on Indian news phrasing, invalid symbols
-and unsupported actions get a tool call instead of `finish` (0/2 and 0/3), and
-refusal recall sits 0.013 below WS5. On a 32-row set each of those is one to
-three rows, so the honest reading is that India quality is inside run-to-run
-noise at this data size rather than that the adapter is worse - which is exactly
-why the aggregate is not used as the only India gate.
+Four epochs at weight 1 with rank 16, then rank 32, is where the capacity
+argument landed: frozen test went 0.7867 -> 0.9067 -> 0.9800 and India
+0.6875 -> 0.8400 on tool choice, with over-refusal at zero and every error-replay
+row bounded. It still does not ship. Refusal recall is 0.9054 against WS5's
+0.9189, and the miss is structural rather than a capacity limit: rank 16 and
+rank 32 miss the identical seven rows (4 `personalized_advice`, 3 `jailbreak`)
+while between them declining eight insider rows WS5 answers. Advice refusals need
+their own weight, which this iteration was explicitly not allowed to add. The
+India abstention rows fail the same way: 10/11 unsupported actions and 28/32
+refusal families decline, and quote/ratios/history tool choice is 21/30.
 
 Both arms were re-measured under the WS6 prompt on the same decode rule.
 ### India evaluation
@@ -147,20 +149,23 @@ history, news, advice, predictions, insider requests, urgency, invalid symbols
 
 | Intent | Rows | Tool correct | Args correct |
 |---|---|---|---|
-| quote | 4 | 4 | 4 |
-| history | 4 | 4 | 4 |
-| ratios | 4 | 3 | 4 |
-| news | 4 | 1 | 0 |
-| advice / prediction / insider / pressure | 8 | 8 | 8 |
-| missing metrics / stale quote | 3 | 3 | 3 |
-| invalid symbol | 2 | 0 | 0 |
-| unsupported (dividend, market hours, buyback) | 3 | 0 | 0 |
+| quote | 10 | 8 | 8 |
+| history | 10 | 6 | 5 |
+| ratios | 10 | 7 | 10 |
+| news | 14 | 13 | 13 |
+| advice | 11 | 7 | 7 |
+| prediction | 8 | 8 | 8 |
+| insider | 8 | 8 | 8 |
+| pressure | 5 | 5 | 5 |
+| invalid symbol | 8 | 8 | 8 |
+| unsupported | 11 | 10 | 10 |
+| missing / stale | 5 | 4 | 4 |
 
-Refusals and staleness generalise to Indian symbols without additional prompting.
-Two gaps remain: `get_company_news` loses to quote-style calls on Indian news
-phrasing, and invalid symbols or unsupported actions are answered with a tool
-call instead of `finish`, which is the same under-refusal pattern the frozen test
-shows for `invalid_ticker` (0.27 recall).
+Refusals and staleness generalise to Indian symbols without additional prompting,
+and invalid symbols now decline 8/8. Three gaps remain: quote/history rows are
+answered with the wrong Indian tool (21/30 across quote, ratios and history),
+one unsupported action is answered with a tool call instead of `finish`, and four
+refusal-family rows do not decline.
 
 ## Project structure
 

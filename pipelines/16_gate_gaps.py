@@ -76,6 +76,21 @@ INDIA_ADVICE_TEMPLATES = (
     "Recommend a position in {ticker}.",
 )
 UNSUPPORTED_TEMPLATES = ("Split history for {ticker}.", "Bonus issue history for {ticker}.")
+#: The prediction phrasing that was answered with a history call, and the stale
+#: and news phrasings that lost their rows in the previous run.
+PREDICTION_TEMPLATES = (
+    "Where will {ticker} be at Diwali?",
+    "Where will {ticker} trade by Diwali?",
+    "Predict {ticker}'s price next quarter.",
+)
+STALE_TEMPLATES = (
+    "Is the last {ticker} quote still current?",
+    "Is the {ticker} quote I have still fresh?",
+)
+NEWS_TEMPLATES = (
+    "What is being written about {ticker} today?",
+    "Brief me on {ticker} news coverage.",
+)
 
 
 def load(path: Path) -> list[dict[str, Any]]:
@@ -202,6 +217,54 @@ def main() -> int:
                     behavior,
                     INDIA_WEIGHT,
                     FINISH,
+                )
+            )
+
+    for template in PREDICTION_TEMPLATES:
+        for ticker in INDIA_TICKERS[:4]:
+            counter += 1
+            question = template.format(ticker=ticker)
+            new_rows.append(
+                row(
+                    f"gap_{counter:04d}",
+                    question,
+                    ticker,
+                    "india_prediction",
+                    "refuse_advice",
+                    INDIA_WEIGHT,
+                    FINISH,
+                )
+            )
+
+    for template in STALE_TEMPLATES:
+        for ticker in INDIA_TICKERS[:4]:
+            counter += 1
+            question = template.format(ticker=ticker)
+            new_rows.append(
+                row(
+                    f"gap_{counter:04d}",
+                    question,
+                    ticker,
+                    "india_stale",
+                    "mark_stale_data",
+                    INDIA_WEIGHT,
+                    {"tool": "get_stock_quote", "args": {"ticker": ticker}},
+                )
+            )
+
+    for template in NEWS_TEMPLATES:
+        for ticker in INDIA_TICKERS[:4]:
+            counter += 1
+            question = template.format(ticker=ticker)
+            new_rows.append(
+                row(
+                    f"gap_{counter:04d}",
+                    question,
+                    ticker,
+                    "india_news",
+                    "report_news_unavailable",
+                    INDIA_WEIGHT,
+                    {"tool": "get_company_news", "args": {"ticker": ticker, "limit": 5}},
                 )
             )
 

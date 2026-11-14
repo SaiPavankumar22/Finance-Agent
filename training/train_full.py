@@ -245,6 +245,8 @@ def require_adapter(adapter_dir: str, env_var: str) -> str:
 
     There is deliberately no default: a default is how an evaluation silently
     measured ``adapter-r16-e2-...`` while the run under test was ``...-e3-...``.
+    Existence is checked inside the container by :func:`check_adapter_dir`, since
+    the client cannot reliably list a volume that a remote container just wrote.
     """
     if not adapter_dir:
         raise SystemExit(f"set {env_var} to the adapter directory on the volume")
@@ -253,23 +255,17 @@ def require_adapter(adapter_dir: str, env_var: str) -> str:
             f"{env_var} must be a volume path such as /out/adapter-r16-e4-lr0.0001-best; "
             f"got {adapter_dir!r}"
         )
-    try:
-        # Training commits from a remote container, so the local view has to be
-        # refreshed before listing or a fresh adapter reads as "missing".
-        adapters.reload()
-    except Exception:  # noqa: BLE001 - a reload failure is not fatal on its own
-        pass
-    # The volume client addresses paths from the volume root, not the /out mount.
-    relative = adapter_dir.removeprefix("/out").lstrip("/")
-    try:
-        entries = adapters.listdir(relative or "/")
-    except Exception as exc:  # noqa: BLE001 - any lookup failure means "not there"
-        raise SystemExit(f"{env_var}={adapter_dir} is not on the volume: {exc}") from exc
-    names = {Path(entry.path).name for entry in entries}
-    if "adapter_config.json" not in names:
-        raise SystemExit(
-            f"{env_var}={adapter_dir} holds no adapter_config.json (found {sorted(names)[:5]})"
-        )
+    return adapter_dir
+
+
+def check_adapter_dir(adapter_dir: str) -> str:
+    """In-container check: the mounted volume is the authority on what exists."""
+    if not adapter_dir:
+        raise RuntimeError("no adapter directory was passed")
+    if not os.path.isdir(adapter_dir):
+        raise RuntimeError(f"{adapter_dir} is not on the mounted volume")
+    if not os.path.isfile(os.path.join(adapter_dir, "adapter_config.json")):
+        raise RuntimeError(f"{adapter_dir} holds no adapter_config.json")
     return adapter_dir
 
 
@@ -542,6 +538,7 @@ def main() -> None:
     result = run.with_options(secrets=[modal.Secret.from_dict({"HF_TOKEN": token})]).remote(
         epochs=int(os.getenv("SFT_EPOCHS", "2")),
         learning_rate=float(os.getenv("SFT_LR", "1e-4")),
+        rank=int(os.getenv("SFT_RANK", "16")),
         max_new_tokens=int(os.getenv("SFT_MAX_NEW", "128")),
         expected_testset_sha256=expected,
     )
@@ -575,6 +572,7 @@ def evaluate_adapter(
     max_new_tokens: int = 96,
     tag: str = "eval",
 ) -> dict[str, Any]:
+    adapter_dir = check_adapter_dir(adapter_dir)
     """Measure the base and tuned models with one prompt and one decode rule.
 
     Training-time validation used a small token budget, which truncated the base
@@ -660,6 +658,7 @@ def evaluate_adapter(
 def run_india(
     adapter_dir: str = "", max_new_tokens: int = 96, tag: str = "india"
 ) -> dict[str, Any]:
+    adapter_dir = check_adapter_dir(adapter_dir)
     """India-only held-out evaluation, same prompt and decode rule as the rest."""
     import torch
     from peft import PeftModel
@@ -752,6 +751,7 @@ def run_safety(
     max_new_tokens: int = 96,
     tag: str = "safety",
 ) -> dict[str, Any]:
+    adapter_dir = check_adapter_dir(adapter_dir)
     """WS6: refusal behaviour, including the turn after two recorded tool errors.
 
     Turn one uses the WS6 prompt with an explicit refusal affordance; rows with a

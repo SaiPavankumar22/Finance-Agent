@@ -22,11 +22,11 @@ from typing import Any
 
 import modal
 
+sys.path.insert(0, "/src")
+from finance_agent.release import ADAPTER_REPO, ADAPTER_REVISION, MODEL_ID
+
 ROOT = Path(__file__).resolve().parents[1]
 SRC = "/src"
-MODEL_ID = "CohereLabs/tiny-aya-global"
-ADAPTER_REPO = "avengeryt22/finance-agent-staging"
-ADAPTER_REVISION = "5ae2ee8"
 FROZEN_SLICE = 12
 SAFETY_SLICE = 10
 
@@ -45,6 +45,7 @@ image = (
         "yfinance",
     )
     .env({"TOKENIZERS_PARALLELISM": "false"})
+    .add_local_dir("src/finance_agent", f"{SRC}/finance_agent")
     .add_local_dir("app", f"{SRC}/app", ignore=["__pycache__", "*.pyc"])
     .add_local_dir("eval", f"{SRC}/eval", ignore=["__pycache__", "*.pyc", "results"])
     .add_local_dir("training", f"{SRC}/training", ignore=["__pycache__", "*.pyc"])

@@ -26,7 +26,32 @@ A turn looks like this:
 Because the numbers never pass through the model, a fluent-sounding wrong figure
 is structurally impossible: the worst case is a refusal or a missing value.
 
-## Results
+## Current release: ic7
+
+The accepted ic7 adapter is published and deployed. It passed every planning,
+safety, and Indian-market gate.
+
+| Metric | WS5 baseline | ic7 | Outcome |
+|---|---:|---:|---|
+| Frozen tool selection | 0.7867 | **0.9800** | pass |
+| Frozen argument accuracy | 0.8600 | **0.9733** | pass |
+| Refusal recall | 0.9189 | **1.0000** | pass |
+| Over-refusal | 0.0385 | **0.0000** | pass |
+| Post-error bounded finish | 0.9000 | **1.0000** | pass |
+| India tool selection | 0.6875 | **0.9800** | pass |
+| India argument accuracy | 0.6875 | **0.9800** | pass |
+
+Published artifacts:
+
+- Model/adapter: https://huggingface.co/SaiPavankumar22/finance-agent
+- Dataset: https://huggingface.co/datasets/SaiPavankumar22/finance-agent-dataset
+- Evaluation/logs: https://huggingface.co/datasets/SaiPavankumar22/finance-agent-eval
+- Public API: see `artifacts/release/ic7.json`
+
+The staging revision is `5ae2ee8`; the primary model revision is `0366a47`.
+The previous WS5 adapter `7a4b00e` remains available for rollback.
+
+## Historical baseline results
 
 QLoRA adapter (r 16, 2 epochs, best epoch 1) trained on 620 gold trajectories.
 Base and tuned share one system prompt, one parser and one decode rule (greedy,
@@ -174,6 +199,8 @@ refusal-family rows do not decline.
 
 ## Project structure
 
+- `src/finance_agent/` — canonical release metadata and compatibility-facing
+  runtime, contract, training and evaluation imports
 - `app/schemas/` — strict tool, evidence and report schemas (pydantic v2)
 - `app/tools/` — hardened yfinance tools: timeout, retries, TTL cache, per-tool
   circuit breaker, staleness handling, plus offline fixture replay
@@ -191,6 +218,9 @@ refusal-family rows do not decline.
   `train_qlora.py` (smoke run), `train_full.py` (full run and eval entrypoint)
 - `tests/` — unit and determinism tests
 - `artifacts/sft/` — recorded run payloads and the comparison table
+- `artifacts/release/` — accepted release manifest and deployment metadata
+- `deploy/` — deployment conventions and secret handling
+- `docs/` — HF Article draft and ROI comparison
 - `project-plan.md` — the hackathon execution plan
 
 ## Setup
@@ -212,8 +242,8 @@ python -m ruff check .
 python pipelines/01_record_fixtures.py --verify
 ```
 
-Current state: `pytest -q` → 164 passed, `ruff check .` clean, fixture replay
-deterministic and complete.
+Current state: the accepted release has 178 passing tests and clean Ruff
+checks. Published-adapter reproduction reports zero per-row mismatches.
 
 ## Running the agent and the evaluation
 
@@ -239,8 +269,16 @@ modal run training/train_full.py::eval_main  # base vs tuned under one decode ru
 python -m eval.compare_adapter              # regenerate the table above
 ```
 
-Results are written to the Modal volume and to `artifacts/sft/`; adapter weights
-are published to a private Hugging Face model repo and are gitignored here.
+Results are written to the Modal volume and to `artifacts/sft/`; accepted
+adapter weights are published to the public Hugging Face model repositories
+listed above and are gitignored here.
+
+Verify the published adapter against the accepted artifacts:
+
+```powershell
+modal run modal/reproduce.py::main
+python scripts/check_reproduce.py
+```
 
 ## Evaluation design
 
@@ -266,13 +304,11 @@ disclaimer.
 This project provides informational research only. It is not personalised
 investment advice.
 
-## Roadmap
+## Release checklist
 
-- **WS7 — deployment.** A served endpoint, a demo Space with cached examples,
-  and the published model card.
-- **Safety data pass.** Add insider and merger-price phrasings to the refusal
-  mix, and disambiguate period questions from "trading at now" in the gold
-  labels; re-audit with `python -m eval.run_safety`.
-- Optional dataset work: merge the enrichment paraphrases and record the four
-  missing price periods; `comparison` and `period_ambiguity` are the intents the
-  adapter did not improve.
+- [x] WS7 Modal deployment using the accepted ic7 adapter
+- [x] Public model, dataset, evaluation, and logs repositories
+- [x] Before/after metrics and gate report
+- [x] HF Article and ROI drafts in `docs/`
+- [ ] Publish the HF Article through the Hugging Face UI
+- [ ] Publish the optional static HF Space if the account entitlement allows it

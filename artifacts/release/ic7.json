@@ -1,0 +1,24 @@
+{
+  "release": "ic7",
+  "model": "CohereLabs/tiny-aya-global",
+  "adapter": {
+    "primary": "SaiPavankumar22/finance-agent@0366a47",
+    "staging": "avengeryt22/finance-agent-staging@5ae2ee8"
+  },
+  "gate_report": "artifacts/safety/gates-ic7.md",
+  "dataset": "SaiPavankumar22/finance-agent-dataset",
+  "evaluation": "SaiPavankumar22/finance-agent-eval",
+  "public_endpoints": {
+    "query": "https://devisettisaipavankumar--finance-agent-ws5-demo-financeag-dc3c3e.us-east.modal.run",
+    "version": "https://devisettisaipavankumar--finance-agent-ws5-demo-financeag-66c484.us-east.modal.run"
+  },
+  "metrics": {
+    "frozen_tool_selection": 0.98,
+    "frozen_argument_accuracy": 0.9733,
+    "refusal_recall": 1.0,
+    "over_refusal": 0.0,
+    "india_tool_selection": 0.98,
+    "india_argument_accuracy": 0.98
+  },
+  "status": "accepted"
+}

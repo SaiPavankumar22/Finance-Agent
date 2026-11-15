@@ -51,6 +51,47 @@ Published artifacts:
 The staging revision is `5ae2ee8`; the primary model revision is `0366a47`.
 The previous WS5 adapter `7a4b00e` remains available for rollback.
 
+## Live demo
+
+- Space: <https://huggingface.co/spaces/SaiPavankumar22/finance-agent-demo>
+- Ask (POST JSON to the Modal endpoint):
+
+  ```console
+  curl -X POST https://devisettisaipavankumar--finance-agent-ws5-demo-financeag-dc3c3e.us-east.modal.run \
+       -H 'content-type: application/json' \
+       -d '{"question": "What is RELIANCE.NS trading at right now?"}'
+  ```
+
+  The response carries `request_id`, the planner action and the executed tool
+  result, so a judge can see the decision rather than a prose claim.
+- One request's log line: `GET /request_log?request_id=<id>` on
+  <https://devisettisaipavankumar--finance-agent-ws5-demo-request-log.us-east.modal.run?request_id=<id>>
+  returns the question, tool, arguments, status, error and latency for that id.
+  The Space prints the id under every answer as a clickable link to it.
+- `GET /health` and `GET /version` (the latter reports
+  `avengeryt22/finance-agent-staging@5ae2ee8`) live on their own Modal URLs.
+
+**Cold starts.** The service scales to zero (`min_containers=0`) and loads the
+3.35B base in 4-bit plus the adapter from the Hub on first use, so the first
+question after an idle period takes tens of seconds; the page shows `Loading…`
+meanwhile. Warm calls measured 3.9-4.4 s end to end, tool call included.
+
+## Built on (LexiLabs chain)
+
+The chain is stated as it was actually run. CuratorKIT was installed and
+imported; `aligntune`, `agenttune`, `safetune` and `auditkit` were not
+installable in the time available, so their stage is implemented in this repo
+against the same contract and labelled that way rather than described as the
+library. The substitution is also recorded in `status.md` under "Tooling
+caveat".
+
+| Repo | What it did in this project | Proof |
+|---|---|---|
+| CuratorKIT | **Ran as a library** (v0.1.23) over the 800 gold trajectories: schema gate, exact dedup, MinHash near-dedup (3-gram, 0.85), then this project's trajectory gates as post-checks, exported in `messages` format for SFT. | `pipelines/06_curate.py` writes `data/curated/lexsi_provenance.json` (`"library": "curatorkit"`, `"method": "curate"`), `data/curated/manifest.json` (800 in / 800 accepted) and `data/curated/sft_messages.jsonl`, the file training consumes. |
+| AgentTune / AlignTune | **Not installed.** QLoRA SFT (rank 32, alpha 64, lr 1e-4, 4 epochs) is written directly in `training/train_full.py` on Modal, on the CuratorKIT export, using the settings those repos wrap. | `training/train_full.py` (QLoRA, assistant-only loss mask, best-epoch checkpoint); `artifacts/sft/eval-ic7.json`; the resulting adapter `avengeryt22/finance-agent-staging@5ae2ee8`. |
+| AuditKIT | **Not installed.** The audit contract - frozen-set metrics, Wilson intervals, per-intent gates, refusal recall, over-refusal - is applied by `pipelines/13_gates.py`, which recomputes every number from the JSON so the report and the verdict cannot drift apart. | `pipelines/13_gates.py` produces `artifacts/safety/gates-ic7.md` (ACCEPT, every gate) and `artifacts/release/ic7.json`. |
+| SafeTune | **Not installed.** Its over-refusal repair stage is `pipelines/10_safetune_mix.py`: 48 benign tool-call rows, each reusing a real trajectory and changing only the question, which took over-refusal from the 0.769 probe reading to 0.038. | `pipelines/10_safetune_mix.py` writes `data/splits/safetune_manifest.json` (668 -> 716 rows, 48 added); `artifacts/safety/comparison.md` records the 0.038 over-refusal and the "no drift, SafeTune mix not re-triggered" verdict. |
+
 ## Historical baseline results
 
 QLoRA adapter (r 16, 2 epochs, best epoch 1) trained on 620 gold trajectories.
@@ -242,7 +283,7 @@ python -m ruff check .
 python pipelines/01_record_fixtures.py --verify
 ```
 
-Current state: the accepted release has 178 passing tests and clean Ruff
+Current state: the accepted release has 189 passing tests and clean Ruff
 checks. Published-adapter reproduction reports zero per-row mismatches.
 
 ## Running the agent and the evaluation
@@ -311,4 +352,6 @@ investment advice.
 - [x] Before/after metrics and gate report
 - [x] HF Article and ROI drafts in `docs/`
 - [ ] Publish the HF Article through the Hugging Face UI
-- [ ] Publish the optional static HF Space if the account entitlement allows it
+- [x] Static HF Space published and verified: `SaiPavankumar22/finance-agent-demo`
+      serves `avengeryt22/finance-agent-staging@5ae2ee8` and links each answer to
+      its `/request_log?request_id=<id>` line

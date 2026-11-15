@@ -11,8 +11,12 @@ selects one registered tool, the tool is executed, and both are returned.
 
 from __future__ import annotations
 
+import json
+import logging
 import os
 import sys
+import time
+import uuid
 from dataclasses import asdict, is_dataclass
 from pathlib import Path
 from typing import Any
@@ -25,6 +29,26 @@ from finance_agent.release import ADAPTER_REPO, ADAPTER_REVISION, MODEL_ID
 ROOT = Path(__file__).resolve().parents[1]
 SRC = "/src"
 ADAPTER = f"{ADAPTER_REPO}@{ADAPTER_REVISION}"
+
+#: One JSON object per request on stdout, so Modal's log stream is queryable by
+#: request id and a bad answer can be traced to its question, planner action and
+#: tool result.
+logger = logging.getLogger("finance_agent.requests")
+if not logger.handlers:
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter("%(message)s"))
+    logger.addHandler(handler)
+logger.setLevel(logging.INFO)
+logger.propagate = False
+
+
+def log_request(**fields: Any) -> None:
+    logger.info(
+        json.dumps(
+            {"ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), **fields}, default=str
+        )
+    )
+
 
 image = (
     modal.Image.debian_slim(python_version="3.12")
@@ -90,9 +114,10 @@ class FinanceAgent:
         self.model.eval()
 
     @modal.method()
-    def query_model(self, question: str) -> dict[str, Any]:
+    def query_model(self, question: str, request_id: str = "-") -> dict[str, Any]:
         from training.train_full import generate_first_call
 
+        started = time.perf_counter()
         prediction = generate_first_call(self.model, self.tokenizer, question)
         # ``generate_first_call`` returns a ``Prediction`` dataclass, not a dict,
         # so the served demo used to skip tool execution entirely and answer with
@@ -106,11 +131,33 @@ class FinanceAgent:
         else:
             action = prediction
         if not isinstance(action, dict):
+            log_request(
+                request_id=request_id,
+                event="planner",
+                question=question,
+                tool=None,
+                args={},
+                schema_valid=None,
+                tool_status="unparsed",
+                latency_ms=round((time.perf_counter() - started) * 1000),
+                adapter=ADAPTER,
+            )
             return {"action": action, "result": None}
 
         tool = action.get("tool")
         args = action.get("args", {})
         if tool == "finish":
+            log_request(
+                request_id=request_id,
+                event="planner",
+                question=question,
+                tool=tool,
+                args=args,
+                schema_valid=action.get("schema_valid"),
+                tool_status="declined",
+                latency_ms=round((time.perf_counter() - started) * 1000),
+                adapter=ADAPTER,
+            )
             return {"action": action, "result": None}
 
         from app.tools import yfinance_tools
@@ -123,6 +170,17 @@ class FinanceAgent:
         }
         function = functions.get(tool)
         if function is None:
+            log_request(
+                request_id=request_id,
+                event="planner",
+                question=question,
+                tool=tool,
+                args=args,
+                schema_valid=action.get("schema_valid"),
+                tool_status="unknown_tool",
+                latency_ms=round((time.perf_counter() - started) * 1000),
+                adapter=ADAPTER,
+            )
             return {"action": action, "result": {"error": "unknown_tool"}}
         try:
             result = function(**args)
@@ -132,6 +190,19 @@ class FinanceAgent:
             result = {"status": "unavailable", "error": "provider_no_result"}
         if hasattr(result, "model_dump"):
             result = result.model_dump(mode="json")
+        log_request(
+            request_id=request_id,
+            event="planner",
+            question=question,
+            tool=tool,
+            args=args,
+            schema_valid=action.get("schema_valid"),
+            tool_status=(result or {}).get("status") if isinstance(result, dict) else None,
+            tool_error=(result or {}).get("error") if isinstance(result, dict) else None,
+            tool_error_code=(result or {}).get("error_code") if isinstance(result, dict) else None,
+            latency_ms=round((time.perf_counter() - started) * 1000),
+            adapter=ADAPTER,
+        )
         return {"action": action, "result": result}
 
     @modal.fastapi_endpoint(method="POST", docs=True)
@@ -143,11 +214,16 @@ class FinanceAgent:
             raise HTTPException(status_code=400, detail="question must be a non-empty string")
         if len(question) > 1000:
             raise HTTPException(status_code=413, detail="question is too long")
+        # The id is generated here, before the model runs, so a failed request
+        # still gets an id the caller can quote back.
+        request_id = uuid.uuid4().hex[:12]
+        payload_out = self.query_model.local(question.strip(), request_id)
         return {
+            "request_id": request_id,
             "model": MODEL_ID,
             "adapter": ADAPTER,
             "question": question,
-            **self.query_model.local(question.strip()),
+            **payload_out,
         }
 
     @modal.fastapi_endpoint(method="GET")

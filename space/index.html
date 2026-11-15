@@ -12,6 +12,7 @@
       button { margin-top: .8rem; background: #35b779; color: #07140e; border: 0; font-weight: 700; cursor: pointer; }
       pre { white-space: pre-wrap; background: #111c31; padding: 1rem; border-radius: 8px; }
       .muted { color: #9fb0c9; }
+      a { color: #35b779; }
     </style>
   </head>
   <body>
@@ -21,18 +22,38 @@
     <textarea id="question">What is RELIANCE.NS trading at right now?</textarea>
     <button id="ask">Ask</button>
     <pre id="output">Ready.</pre>
+    <p id="logline" class="muted"></p>
     <script>
       const endpoint = "https://devisettisaipavankumar--finance-agent-ws5-demo-financeag-dc3c3e.us-east.modal.run";
+      const logEndpoint = "https://devisettisaipavankumar--finance-agent-ws5-demo-request-log.us-east.modal.run";
       const output = document.querySelector("#output");
+      const logline = document.querySelector("#logline");
+
+      // One click from an answer to the JSON line the service logged for it:
+      // question, planner action, tool status and latency.
+      function showLogLink(requestId) {
+        logline.textContent = "";
+        if (!requestId) return;
+        const link = document.createElement("a");
+        link.href = `${logEndpoint}?request_id=${encodeURIComponent(requestId)}`;
+        link.target = "_blank";
+        link.rel = "noopener";
+        link.textContent = `Open the log line for request ${requestId}`;
+        logline.append(link);
+      }
+
       document.querySelector("#ask").onclick = async () => {
         output.textContent = "Loading…";
+        showLogLink(null);
         try {
           const response = await fetch(endpoint, {
             method: "POST",
             headers: {"content-type": "application/json"},
             body: JSON.stringify({question: document.querySelector("#question").value})
           });
-          output.textContent = JSON.stringify(await response.json(), null, 2);
+          const answer = await response.json();
+          output.textContent = JSON.stringify(answer, null, 2);
+          showLogLink(answer.request_id);
         } catch (error) {
           output.textContent = `Request failed: ${error}`;
         }

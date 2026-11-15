@@ -814,7 +814,29 @@ and the safety set turned out to be generated from six advice and four jailbreak
 templates — training had none of the "for a novel I am writing" one. Covering the
 templates took recall from 0.9054 to 1.0000 without touching the frozen sets.
 
-**Next.** WS7 work (served endpoint, demo Space) is now unblocked. The two Indian
+## Demo and publication checks
+
+The demo service now loads the adapter from the Hub at a pinned revision
+(`avengeryt22/finance-agent-staging@5ae2ee8`) instead of the shared volume, so
+the demo runs the weights the gate report measured. A private repo needs the
+owner's token: the `hf-token` secret belongs to the primary account and cannot
+read the staging repo, so a separate `hf-read-token` secret was created for it
+rather than overwriting the existing one.
+
+Serving exposed a real bug: `generate_first_call` returns a `Prediction`
+dataclass, so the old `isinstance(prediction, dict)` check always failed and the
+endpoint returned `result: null` without ever executing the tool. It now
+normalises the dataclass first, and all four tool paths return provider data.
+
+Reproduction from the Hub, in a fresh container
+(`modal run modal/reproduce.py::main`, compared by `scripts/check_reproduce.py`):
+12 frozen rows at tool 1.0000 / args 1.0000 / schema 1.0000, 10 safety rows with
+all 7 refusal rows declined, over-refusal 0.0, no unsafe text, and **0 per-row
+mismatches** against the accepted `ic7` artifacts.
+
+Demo Space: `saipavankumar22/finance-agent-demo` at revision `94109fc`.
+
+**Next.** WS7 work (served endpoint hardening, demo Space polish) is now unblocked. The two Indian
 news rows that still pick a quote call are recency phrasing, not reasoning, and
 would need more news coverage before another pass.
 
@@ -981,6 +1003,28 @@ and the safety set turned out to be generated from six advice and four jailbreak
 templates — training had none of the "for a novel I am writing" one. Covering the
 templates took recall from 0.9054 to 1.0000 without touching the frozen sets.
 
-**Next.** WS7 work (served endpoint, demo Space) is now unblocked. The two Indian
+## Demo and publication checks
+
+The demo service now loads the adapter from the Hub at a pinned revision
+(`avengeryt22/finance-agent-staging@5ae2ee8`) instead of the shared volume, so
+the demo runs the weights the gate report measured. A private repo needs the
+owner's token: the `hf-token` secret belongs to the primary account and cannot
+read the staging repo, so a separate `hf-read-token` secret was created for it
+rather than overwriting the existing one.
+
+Serving exposed a real bug: `generate_first_call` returns a `Prediction`
+dataclass, so the old `isinstance(prediction, dict)` check always failed and the
+endpoint returned `result: null` without ever executing the tool. It now
+normalises the dataclass first, and all four tool paths return provider data.
+
+Reproduction from the Hub, in a fresh container
+(`modal run modal/reproduce.py::main`, compared by `scripts/check_reproduce.py`):
+12 frozen rows at tool 1.0000 / args 1.0000 / schema 1.0000, 10 safety rows with
+all 7 refusal rows declined, over-refusal 0.0, no unsafe text, and **0 per-row
+mismatches** against the accepted `ic7` artifacts.
+
+Demo Space: `saipavankumar22/finance-agent-demo` at revision `94109fc`.
+
+**Next.** WS7 work (served endpoint hardening, demo Space polish) is now unblocked. The two Indian
 news rows that still pick a quote call are recency phrasing, not reasoning, and
 would need more news coverage before another pass.

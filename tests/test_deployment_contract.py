@@ -10,6 +10,8 @@ def test_service_pins_the_accepted_release() -> None:
     assert "modal.fastapi_endpoint" in SERVICE
     assert "def health" in SERVICE
     assert "def version" in SERVICE
+    assert "def request_log" in SERVICE
+    assert "LOG_STORE_NAME" in SERVICE
 
 
 def test_service_does_not_embed_credentials() -> None:

@@ -34,7 +34,11 @@ from app.tools.registry import ALLOWED_PERIODS, DEFAULT_PERIOD, MAX_NEWS_LIMIT
 logger = logging.getLogger(__name__)
 
 SOURCE = "yfinance"
-TICKER_PATTERN = re.compile(r"^[A-Z][A-Z0-9.\-]{0,9}$")
+#: The exchange suffix is part of the symbol (``RELIANCE.NS``, ``BAJAJ-AUTO.BO``,
+#: ``BRK.B``), and Indian bases are long, so the pattern has to allow a dotted
+#: suffix and a 15-character base. A tighter cap silently rejected every NSE
+#: listing as ``invalid_ticker`` before any provider call was made.
+TICKER_PATTERN = re.compile(r"^(?=.{1,16}$)[A-Z][A-Z0-9&\-]*(?:\.[A-Z]{1,5})*$")
 
 CALL_TIMEOUT_SECONDS = 8.0
 MAX_RETRIES = 2

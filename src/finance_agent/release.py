@@ -18,3 +18,9 @@ PUBLIC_VERSION_ENDPOINT = (
     "https://devisettisaipavankumar--finance-agent-ws5-demo-financeag-66c484."
     "us-east.modal.run"
 )
+#: One request's log line, for debugging an answer from the browser:
+#: ``/request_log?request_id=<id>``.
+PUBLIC_LOG_ENDPOINT = (
+    "https://devisettisaipavankumar--finance-agent-ws5-demo-request-log."
+    "us-east.modal.run"
+)

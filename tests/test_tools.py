@@ -121,6 +121,38 @@ def test_invalid_symbol_pattern_never_reaches_the_provider(monkeypatch):
     assert result.error == "invalid_ticker"
 
 
+@pytest.mark.parametrize(
+    "symbol", ["RELIANCE.NS", "BAJAJ-AUTO.NS", "M&M.NS", "BRK.B", "SAP.DE"]
+)
+def test_exchange_suffixed_symbols_reach_the_provider(monkeypatch, symbol):
+    fetched = []
+
+    def fetch(value):
+        fetched.append(value)
+        return info(symbol=value)
+
+    monkeypatch.setattr(yt, "_fetch_info", fetch)
+    result = yt.get_stock_quote(symbol)
+    assert fetched == [symbol]
+    assert result.status == "ok"
+    assert result.data["ticker"] == symbol
+
+
+def test_history_and_news_accept_exchange_suffixed_symbols(monkeypatch):
+    monkeypatch.setattr(yt, "_fetch_history", lambda symbol, period: frame(30))
+    monkeypatch.setattr(yt, "_fetch_news", lambda symbol: news(1))
+    assert yt.get_historical_prices("RELIANCE.NS", "1mo").args["ticker"] == "RELIANCE.NS"
+    assert yt.get_company_news("RELIANCE.NS").args["ticker"] == "RELIANCE.NS"
+
+
+def test_overlong_and_malformed_symbols_stay_rejected(monkeypatch):
+    monkeypatch.setattr(yt, "_fetch_info", lambda symbol: pytest.fail("provider was called"))
+    for symbol in ("A" * 20, "RELIANCE.", ".NS", "RE LIANCE.NS", "9RELIANCE.NS"):
+        result = yt.get_stock_quote(symbol)
+        assert result.status == "error", symbol
+        assert result.error == "invalid_ticker", symbol
+
+
 def test_empty_payload_is_an_invalid_ticker(monkeypatch):
     monkeypatch.setattr(yt, "_fetch_info", lambda symbol: {})
     result = yt.get_stock_quote("ZZZZ")

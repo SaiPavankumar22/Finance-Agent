@@ -18,6 +18,7 @@ import sys
 import time
 import uuid
 from dataclasses import asdict, is_dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -41,13 +42,70 @@ if not logger.handlers:
 logger.setLevel(logging.INFO)
 logger.propagate = False
 
+#: Log lines are also mirrored into a Modal Dict, so the ``request_log`` endpoint
+#: can return one line in the browser instead of making the reader find it in the
+#: dashboard log stream. Entries older than the retention window are dropped.
+LOG_STORE_NAME = "finance-agent-request-log"
+LOG_RETENTION_SECONDS = 7 * 24 * 60 * 60
+LOG_PRUNE_EVERY = 100
+
+_LOG_STORE: modal.Dict | None = None
+_LOG_WRITES = 0
+
+
+def _log_store() -> modal.Dict | None:
+    """Lazy Dict handle, or ``None`` when the store cannot be resolved."""
+
+    global _LOG_STORE
+    if _LOG_STORE is None:
+        try:
+            _LOG_STORE = modal.Dict.from_name(LOG_STORE_NAME, create_if_missing=True)
+        except Exception as error:  # logging must never break a request
+            logger.warning("request log store unavailable: %s", error)
+            return None
+    return _LOG_STORE
+
+
+def _prune(store: modal.Dict) -> None:
+    """Drop entries past the retention window (called rarely, never per request)."""
+
+    cutoff = time.time() - LOG_RETENTION_SECONDS
+    try:
+        stale = [key for key, value in store.items() if _logged_at(value) < cutoff]
+        for key in stale:
+            store.pop(key, None)
+    except Exception as error:
+        logger.warning("request log prune skipped: %s", error)
+
+
+def _logged_at(record: Any) -> float:
+    try:
+        stamp = datetime.strptime(str(record.get("ts")), "%Y-%m-%dT%H:%M:%SZ")
+    except (AttributeError, TypeError, ValueError):
+        return 0.0
+    return stamp.replace(tzinfo=timezone.utc).timestamp()
+
+
+def _mirror(record: dict[str, Any], request_id: str) -> None:
+    store = _log_store()
+    if store is None:
+        return
+    global _LOG_WRITES
+    try:
+        store[request_id] = record
+        _LOG_WRITES += 1
+        if _LOG_WRITES % LOG_PRUNE_EVERY == 0:
+            _prune(store)
+    except Exception as error:
+        logger.warning("request log mirror failed: %s", error)
+
 
 def log_request(**fields: Any) -> None:
-    logger.info(
-        json.dumps(
-            {"ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), **fields}, default=str
-        )
-    )
+    record = {"ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), **fields}
+    logger.info(json.dumps(record, default=str))
+    request_id = record.get("request_id")
+    if isinstance(request_id, str) and request_id and request_id != "-":
+        _mirror(record, request_id)
 
 
 image = (
@@ -237,3 +295,39 @@ class FinanceAgent:
             "adapter": ADAPTER,
             "code": os.getenv("FINANCE_AGENT_SHA", "local"),
         }
+
+
+#: The log lookup needs nothing but FastAPI, so it runs in a tiny CPU image
+#: instead of waking (and paying for) the GPU container that serves answers. It
+#: still needs ``finance_agent`` because this module imports the pinned release
+#: metadata at import time.
+log_image = (
+    modal.Image.debian_slim(python_version="3.12")
+    .uv_pip_install("fastapi")
+    .add_local_dir("src/finance_agent", f"{SRC}/finance_agent")
+)
+
+
+@app.function(image=log_image, timeout=30)
+@modal.fastapi_endpoint(method="GET", docs=True)
+def request_log(request_id: str) -> dict[str, Any]:
+    """Return the logged line for one request: ``?request_id=<id>``.
+
+    Open it in a browser with the id the demo prints to trace an answer back to
+    the question, the planner action and the tool result.
+    """
+
+    from fastapi import HTTPException
+
+    store = _log_store()
+    if store is None:
+        raise HTTPException(status_code=503, detail="request log store unavailable")
+    try:
+        record = store.get(request_id)
+    except Exception as error:  # noqa: BLE001 - surfaced as a 503, not a crash
+        raise HTTPException(
+            status_code=503, detail=f"request log store failed: {error}"
+        ) from error
+    if isinstance(record, dict):
+        return record
+    raise HTTPException(status_code=404, detail=f"no log line for request_id {request_id}")

@@ -836,6 +836,16 @@ mismatches** against the accepted `ic7` artifacts.
 
 Demo Space: `saipavankumar22/finance-agent-demo` at revision `94109fc`.
 
+The browser demo had two gaps, both now closed. `RELIANCE.NS` returned
+`invalid_ticker` because `TICKER_PATTERN` capped symbols at ten characters, so
+every NSE listing was refused before any provider call; the pattern now allows a
+dotted exchange suffix (`RELIANCE.NS`, `BAJAJ-AUTO.NS`, `M&M.NS`, `BRK.B`) and
+still rejects overlong or malformed symbols. Verified live: quote `ok` at INR
+1339.7 with the 52-week range, and 248 daily closes for `BAJAJ-AUTO.NS`. Each
+request is also mirrored into the `finance-agent-request-log` Dict, and
+`GET /request_log?request_id=<id>` returns that single log line in the browser
+(~1.4s, 404 for an unknown id) instead of a dashboard log search.
+
 **Next.** WS7 work (served endpoint hardening, demo Space polish) is now unblocked. The two Indian
 news rows that still pick a quote call are recency phrasing, not reasoning, and
 would need more news coverage before another pass.
@@ -1024,6 +1034,16 @@ all 7 refusal rows declined, over-refusal 0.0, no unsafe text, and **0 per-row
 mismatches** against the accepted `ic7` artifacts.
 
 Demo Space: `saipavankumar22/finance-agent-demo` at revision `94109fc`.
+
+The browser demo had two gaps, both now closed. `RELIANCE.NS` returned
+`invalid_ticker` because `TICKER_PATTERN` capped symbols at ten characters, so
+every NSE listing was refused before any provider call; the pattern now allows a
+dotted exchange suffix (`RELIANCE.NS`, `BAJAJ-AUTO.NS`, `M&M.NS`, `BRK.B`) and
+still rejects overlong or malformed symbols. Verified live: quote `ok` at INR
+1339.7 with the 52-week range, and 248 daily closes for `BAJAJ-AUTO.NS`. Each
+request is also mirrored into the `finance-agent-request-log` Dict, and
+`GET /request_log?request_id=<id>` returns that single log line in the browser
+(~1.4s, 404 for an unknown id) instead of a dashboard log search.
 
 **Next.** WS7 work (served endpoint hardening, demo Space polish) is now unblocked. The two Indian
 news rows that still pick a quote call are recency phrasing, not reasoning, and

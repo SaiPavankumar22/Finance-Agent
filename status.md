@@ -235,7 +235,29 @@ financial data.
 
 ## WS5 — fine-tuning (full run complete)
 
-`training/train_qlora.py` is a Modal job; `artifacts/sft/smoke.json` holds the
+`training/train_qlora.py` is a Modal job;
+
+## WS6 — AlignTune v6 (2026-11-16), best run, ic7 retained
+
+AlignTune v6 added 140 capacity rows (quote +36, ratios +30, history +30, invalid_symbol +32, unsupported_india +12) at weight 1 to `data/splits/train.jsonl`, expanding the dataset from 927 to 1,067 rows / 2,108→2,248 turns. Training used an H100 (6.0 s/step, ~80 min) with per-row turn-level budgeting instead of repeating every turn `weight` times.
+
+| metric | v5 | **v6** | WS5 |
+|---|---:|---:|---:|
+| frozen tool selection | 0.8867 | **0.8333** | 0.7867 |
+| frozen argument accuracy | 0.9200 | **0.9000** | 0.8600 |
+| India tool selection | 0.8500 | **0.9400** | 0.6875 |
+| India argument accuracy | 0.8600 | **0.9000** | 0.6875 |
+| India invalid-symbol declines | 6/8 | 6/8 | 8/8 |
+| India unsupported-action declines | 10/11 | 10/11 | 11/11 |
+| India quote/ratios/history tools | 21/30 | **28/30** | 30/30 |
+
+**Verdict: REJECT**, on exactly two India abstention gates — India invalid-symbol declines 6/8 and India unsupported-action declines 10/11. Every other gate passes, including all three "no regression vs WS5" checks. Report: `artifacts/safety/gates-aligntune-v6.md`.
+
+**Why the two gates did not budge.** Invalid-symbol and unsupported-action rows require the model to emit `finish` (abstain) rather than a tool call. SFT on tool-call trajectories improves planning and argument accuracy but does not teach the refusal affordance; the model learns to call tools on Indian-market phrasing but still answers instead of declining on malformed or unsupported requests. The gap is structural, not data-volume.
+
+**Result.** The released adapter remains ic7 (`5ae2ee8` / `0366a47`), which passes every gate. v6 artifacts are retained for auditability but the model is not published.
+
+ `artifacts/sft/smoke.json` holds the
 run. 40 optimizer steps on a 64-row slice, 4-bit QLoRA, r=16, alpha=32, LR
 2e-4, effective batch 4, `max_len` 6144:
 

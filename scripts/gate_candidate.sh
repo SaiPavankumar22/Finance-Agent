@@ -6,6 +6,10 @@
 #
 #   nohup bash scripts/gate_candidate.sh aligntune-v5 aligntune-r32-e4-v5 \
 #     > artifacts/sft/aligntune-v5-gates.log 2>&1 &
+#
+# Each stage needs its own tag because train_full.py writes `<TAG>.json` and
+# pipelines/13_gates.py reads `eval-<tag>.json`, `safety-<tag>.json` and
+# `india-<tag>.json`.
 set -u
 
 TAG=${1:?tag, e.g. aligntune-v5}
@@ -28,22 +32,26 @@ if ! modal volume ls finance-agent-sft-adapters "$OUT" 2>/dev/null | grep -q ada
   exit 1
 fi
 
-stage() { # label, artifact, adapter-var, tag-var, entrypoint
-  local label=$1 artifact=$2 avar=$3 tvar=$4 entry=$5
+stage() { # label, artifact, adapter-var, tag-var, stage-tag, entrypoint
+  local label=$1 artifact=$2 avar=$3 tvar=$4 stag=$5 entry=$6
   if [ -f "$artifact" ]; then
     echo "skip ${label}: have ${artifact}"
     return 0
   fi
-  echo "== ${label}"
-  if ! env "${avar}=${ADAPTER}" "${tvar}=${TAG}" modal run "training/train_full.py::${entry}"; then
+  echo "== ${label} (tag ${stag})"
+  if ! env "${avar}=${ADAPTER}" "${tvar}=${stag}" modal run "training/train_full.py::${entry}"; then
     echo "FAILED ${label}"
+    exit 1
+  fi
+  if [ ! -f "$artifact" ]; then
+    echo "FAILED ${label}: expected ${artifact}"
     exit 1
   fi
 }
 
-stage "frozen eval" "artifacts/sft/eval-${TAG}.json" SFT_ADAPTER SFT_TAG eval_main
-stage "safety eval" "artifacts/sft/safety-${TAG}.json" SAFETY_ADAPTER SAFETY_TAG safety_main
-stage "india eval" "artifacts/sft/india-${TAG}.json" INDIA_ADAPTER INDIA_TAG india_main
+stage "frozen eval" "artifacts/sft/eval-${TAG}.json" SFT_ADAPTER SFT_TAG "eval-${TAG}" eval_main
+stage "safety eval" "artifacts/sft/safety-${TAG}.json" SAFETY_ADAPTER SAFETY_TAG "safety-${TAG}" safety_main
+stage "india eval" "artifacts/sft/india-${TAG}.json" INDIA_ADAPTER INDIA_TAG "india-${TAG}" india_main
 
 echo "== gates"
 python -m pipelines.13_gates --candidate-tag "$TAG" --report "artifacts/safety/gates-${TAG}.md" || exit 1

@@ -48,6 +48,22 @@ separate from inference. The repository records the exact training artifacts,
 adapter revision, evaluation reports, and reproduction result so the estimate
 can be recomputed from actual runtime logs.
 
+Measured for the library-trained SFT stage, at Modal list prices checked
+2026-11-16 (H100 SXM $3.95/GPU-hour, A100 40 GB $2.10/GPU-hour):
+
+| Run | Hardware | Time | Approx. cost |
+| --- | --- | ---: | ---: |
+| AlignTune SFT, 4 epochs (584 steps) | H100 | 59 min | $3.90 |
+| Frozen + safety + India evaluation of one adapter | A100 40 GB | ~45 min total | $1.60 |
+| Aborted earlier attempts (A100, restarted) | A100 40 GB | ~90 min | $3.20 |
+
+One full train-and-gate cycle is therefore about $6, including the eval passes
+that decide whether the adapter ships. CPU and memory are billed on top of the
+GPU rate and are a small fraction at these runtimes; storage on the adapter
+volume is $0.09 per GiB-month. Training on an H100 at 6.0 s/step was roughly
+twice as fast as the same job on an A100 40 GB at 11.5 s/step, which is why the
+larger card is cheaper per completed run.
+
 ## Throughput caveat
 
 The 10 requests/minute figure is a planning estimate, not a benchmark. The

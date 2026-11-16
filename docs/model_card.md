@@ -122,6 +122,28 @@ load, the container must report the adapter it was asked for, and an artifact
 belonging to a different adapter cannot be overwritten without an explicit
 override.
 
+## Library chain and a rejected alternative
+
+CuratorKIT curates the training set (schema gate, exact and MinHash dedup, then
+this project's trajectory checks, `data/curated/lexsi_provenance.json`).
+AlignTune was then used to reproduce the SFT stage through
+`create_sft_trainer(backend="trl")`, with the same 927 rows, rank 32, alpha 64,
+lr 1e-4 and four epochs, weighted the same way and supervising every assistant
+turn.
+
+That library-trained adapter is **not** the published one. Its first attempt
+(frozen tool selection 0.7000, refusal recall 0.8243) was rejected outright; the
+second, after adding row weighting and turn-level supervision, reached frozen
+tool selection 0.8800, arguments 0.9200 and refusal recall 1.0000, but still
+failed two India gates: invalid-symbol declines 5/8 and unsupported-action
+declines 10/11. Both reports are in `artifacts/safety/gates-aligntune*.md`. The
+released adapter is the one that passes every gate, and its numbers are below.
+
+AuditKIT v1.1.12 then re-scored this release from the recorded per-row
+predictions: tool selection 0.5467 base vs 0.9800 tuned, schema validity 1.0 for
+both, delta +0.4333 with a 95% interval of [0.3533, 0.5135] and p = 0.000999,
+66 rows improved and 1 regressed, each run carrying its own fingerprint.
+
 ## Before and after
 
 | Metric | Baseline | This adapter |
@@ -168,10 +190,16 @@ mismatches** against the accepted artifacts.
 ## Limitations
 
 Provider availability varies by exchange symbol, so some tool calls return
-`status: error` (for example `invalid_ticker`) even when the planning decision is
-correct. Every served response carries a `request_id`, and the service logs one
-JSON line per request with the question, planner action, tool status and
-latency, so a bad answer can be traced back to its cause.
+`status: error` even when the planning decision is correct. Exchange-suffixed
+NSE symbols such as `RELIANCE.NS` and `BAJAJ-AUTO.NS` are supported and return
+live provider data. Every served response carries a `request_id`, and
+`GET /request_log?request_id=<id>` returns that request's log line - question,
+planner action, tool status and latency - so a bad answer can be traced in the
+browser rather than by searching a dashboard.
+
+A library-trained alternative was measured and is deliberately not published:
+see "Library chain and a rejected alternative" above. Choosing the gated adapter
+over a fresher one is the same rule the project applies to every claim.
 
 The model is not a financial adviser, does not guarantee data freshness, and
 should not be the sole basis for an investment decision. It was evaluated on

@@ -51,6 +51,11 @@ Published artifacts:
 The staging revision is `5ae2ee8`; the primary model revision is `0366a47`.
 The previous WS5 adapter `7a4b00e` remains available for rollback.
 
+A second, library-trained candidate (AlignTune, 584 steps, $4 on an H100) reached
+frozen tool selection 0.8800 and refusal recall 1.0000 but failed two India
+abstention gates, so it was not published; the comparison is in `status.md` and
+`artifacts/safety/gates-aligntune-v4.md`.
+
 ## Live demo
 
 - Space: <https://huggingface.co/spaces/SaiPavankumar22/finance-agent-demo>

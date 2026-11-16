@@ -56,9 +56,15 @@ REPRODUCING THE PUBLISHED WEIGHTS
 
 The gate report was measured against an adapter directory, so the published copy was reloaded from the Hub in a fresh process and re-scored. The result: 12 frozen rows at tool selection 1.0000, argument accuracy 1.0000 and schema validity 1.0000; 10 safety rows with all 7 refusal rows declined, over-refusal 0.0, no unsafe text, and zero per-row mismatches against the accepted artifacts.
 
+A SECOND OPINION, AND A MODEL I DID NOT SHIP
+
+Two things happened after the gates passed. First, AuditKIT rescored the released adapter from its recorded per-row predictions and reproduced the report exactly: tool selection 0.5467 for the base model against 0.9800 for the tuned one, schema validity 1.0, a +0.4333 delta with a 95% interval of [0.3533, 0.5135] and p = 0.000999, 66 rows improved and 1 regressed. An independent library agreeing with my own metric code is the closest thing to a replication this project has.
+
+Second, I rewrote the training stage on top of AlignTune and ran it properly. The first attempt scored 0.70 on the frozen set, because I had dropped two things: the row weighting that makes refusal examples count twice, and supervision of every assistant turn rather than only the final one. Fixing both lifted the frozen set to 0.88, argument accuracy to 0.92 and refusal recall to 1.00. It still failed two India gates - declines on invalid symbols (5 of 8) and unsupported actions (10 of 11) - so it is not published. The released adapter is the one that passes every gate, and the rejected run is documented rather than quietly dropped.
+
 DEPLOYMENT
 
-The demo runs on Modal, scales to zero between requests, and loads the pinned adapter revision at cold start. A cold start takes roughly a minute because the base model and adapter are fetched on demand.
+The demo runs on Modal, scales to zero between requests, and loads the pinned adapter revision at cold start. A cold start takes roughly a minute because the base model and adapter are fetched on demand. Every answer carries a request id, and a link under it opens the log line for that request: the question, the planner action, the tool status and the latency. Two recorded answers also ship with the page, labelled with their capture time, so a cold container never looks like a broken demo.
 
 Demo Space: huggingface.co/spaces/SaiPavankumar22/finance-agent-demo
 Model: huggingface.co/SaiPavankumar22/finance-agent

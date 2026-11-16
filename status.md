@@ -650,6 +650,9 @@ of `finish` — the same under-refusal the frozen set shows for `invalid_ticker`
 `safetune` and `auditkit` are not, so training ran through the repo's Modal
 entrypoints and evaluation through `eval/` plus `pipelines/13_gates.py`. That
 substitution is recorded here rather than described as the requested stack.
+(Resolved on 2026-11-16: `auditkit` 1.1.12 and `aligntune` 0.1.35 are on PyPI and
+`agenttune` installs from GitHub, so all three now run as libraries - see the
+"LexiLabs chain" section below. `safetune` still has no published package.)
 
 **Next.** Target the error-replay rows directly: weight them, add explicit
 retry-then-finish trajectories, and re-run the same gates. Also add Indian news
@@ -1048,3 +1051,43 @@ request is also mirrored into the `finance-agent-request-log` Dict, and
 **Next.** WS7 work (served endpoint hardening, demo Space polish) is now unblocked. The two Indian
 news rows that still pick a quote call are recency phrasing, not reasoning, and
 would need more news coverage before another pass.
+
+## LexiLabs chain, run for real (2026-11-16)
+
+The earlier caveat was too pessimistic: `auditkit` and `aligntune` are both on
+PyPI, and `agenttune` installs from GitHub (its image needs `apt_install("git")`,
+because `debian_slim` has no git and `uv pip install git+...` fails without it).
+Only `safetune` has no published package. All four stages now have runnable code
+and artifacts; the summary lives in `artifacts/lexilabs/chain-2026-11-16.json`.
+
+**AuditKIT (1.1.12) rescored ic7.** `scripts/audit_with_auditkit.py` feeds the
+recorded per-row predictions to `ak.evaluate(..., model="precomputed")` with
+`exact_match` on the tool name and `is_json(require_keys=["tool","args"])` on the
+raw text, then `ak.compare()` for its paired test. Tool selection 0.5467 base vs
+0.9800 tuned and schema 1.0/1.0 match the gate report to four decimals; delta
++0.4333, 95% CI [0.3533, 0.5135], p = 0.000999, 66 rows improved and 1 regressed.
+Per-run fingerprints are in `artifacts/audit/auditkit-ic7.json`.
+
+**AlignTune (0.1.35) trained the SFT stage.** `training/train_aligntune.py` calls
+`create_sft_trainer(backend="trl")` on the CuratorKIT export: 927 rows, rank 32,
+alpha 64, lr 1e-4, 4 epochs, 232 steps, 2662 s, final loss 0.4478, mean token
+accuracy 0.9537. Two things had to be solved rather than assumed. Tiny Aya's chat
+template raises `Conversation roles must alternate` on the tool-result turns, and
+TRL's `assistant_only_loss` needs `{% generation %}` markers the template lacks,
+so the data is fed as prompt/completion pairs rendered by `app/chat_format.py`
+with `completion_only_loss=True` - the same masking the hand-written trainer did.
+The adapter is at `/out/aligntune-r32-e4` with AlignTune's own
+`lexsi_provenance.json`, and it is **not evaluated**, so nothing in the README
+claims gate numbers for it and the published adapter stays ic7.
+
+**AgentTune (GitHub main) ran GRPO on the planning task.**
+`training/rl_agenttune.py` builds a 40-row dataset from the training split, gives
+the model this project's four tools as deterministic stubs that never touch the
+provider, and runs 8 steps with `structure_reward` + `reward_tool_used` on an
+A100-80GB (40GB OOMs during the backward pass). Mean reward 0.4984, KL 0.000143,
+runtime 607 s. This proves the rollout and reward loop runs on our task; it is
+not a trained policy, and 81% of generation groups had zero reward variance, so
+the useful next step is reward design, not a longer run.
+
+**Next.** Evaluate `/out/aligntune-r32-e4` with `eval/` plus `pipelines/13_gates.py`
+before any claim that the library-trained adapter matches ic7.

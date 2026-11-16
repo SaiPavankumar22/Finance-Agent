@@ -1,0 +1,99 @@
+{
+  "chain": "CuratorKIT -> AlignTune (SFT) -> AgentTune (GRPO) -> AuditKIT (audit)",
+  "recorded_at": "2026-11-16T07:05:00Z",
+  "stages": {
+    "curatorkit": {
+      "status": "used as a library",
+      "version": "0.1.23",
+      "pipeline": "pipelines/06_curate.py",
+      "rows_in": 800,
+      "rows_accepted": 800,
+      "artifacts": [
+        "data/curated/lexsi_provenance.json",
+        "data/curated/manifest.json",
+        "data/curated/sft_messages.jsonl"
+      ]
+    },
+    "aligntune": {
+      "status": "used as a library",
+      "version": "0.1.35",
+      "pipeline": "training/train_aligntune.py",
+      "trainer": "TRLSFTTrainer (backend=trl)",
+      "rows": 927,
+      "epochs": 4,
+      "steps": 232,
+      "learning_rate": 0.0001,
+      "lora_r": 32,
+      "lora_alpha": 64,
+      "loss_masking": "completion_only_loss over prompt/completion pairs rendered by app/chat_format.py",
+      "final_loss": 0.4478,
+      "mean_token_accuracy": 0.9537,
+      "training_seconds": 2662.2,
+      "adapter_dir": "/out/aligntune-r32-e4 (Modal volume finance-agent-sft-adapters)",
+      "provenance": {
+        "library": "aligntune",
+        "version": "0.1.35",
+        "method": "sft",
+        "base_model": "CohereLabs/tiny-aya-global",
+        "created_at": "2026-11-16T07:03:28Z"
+      },
+      "gated": false,
+      "note": "Not evaluated yet, so the published adapter stays ic7 (finance-agent-staging@5ae2ee8). No gate numbers are claimed for this run."
+    },
+    "agenttune": {
+      "status": "used as a library (GRPO smoke run)",
+      "version": "GitHub main, installed with pip install git+https://github.com/Lexsi-Labs/AgentTune.git",
+      "pipeline": "training/rl_agenttune.py",
+      "algorithm": "grpo",
+      "rows": 40,
+      "steps": 8,
+      "num_generations": 2,
+      "tools": [
+        "get_stock_quote",
+        "get_financial_ratios",
+        "get_historical_prices",
+        "get_company_news"
+      ],
+      "rewards": [
+        "structure_reward",
+        "reward_tool_used"
+      ],
+      "mean_reward": 0.4984,
+      "reward_std": 0.0741,
+      "kl": 0.000143,
+      "loss": -0.0342,
+      "train_runtime_seconds": 607.5,
+      "frac_reward_zero_std": 0.8125,
+      "output_dir": "/out/agenttune-grpo-smoke (Modal volume finance-agent-sft-adapters)",
+      "gated": false,
+      "note": "8 steps on 40 rows proves the rollout/reward loop runs on this task; it is not a trained policy and 81% of groups had zero reward variance, so there is little learning signal to claim."
+    },
+    "auditkit": {
+      "status": "used as a library (re-scored the ic7 run)",
+      "version": "1.1.12",
+      "pipeline": "scripts/audit_with_auditkit.py",
+      "split": "frozen test, 150 rows",
+      "metrics": ["exact_match (tool selection)", "is_json(require_keys=[tool,args]) (schema validity)"],
+      "base": {
+        "tool_selection": 0.5467,
+        "schema_valid": 1.0,
+        "fingerprint": "18b378166ba95f6e"
+      },
+      "tuned": {
+        "tool_selection": 0.98,
+        "schema_valid": 1.0,
+        "fingerprint": "bc0b79b6508448ba"
+      },
+      "cross_check": "both numbers equal the repo gate report to 4 decimals",
+      "paired_test": {
+        "delta": 0.4333,
+        "p_value": 0.000999,
+        "significant": true,
+        "ci_95": [0.3533, 0.5135],
+        "rows_improved": 66,
+        "rows_regressed": 1
+      },
+      "artifact": "artifacts/audit/auditkit-ic7.json"
+    }
+  }
+}

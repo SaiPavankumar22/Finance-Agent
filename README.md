@@ -81,19 +81,17 @@ capture time, so the demo shows real output before any container wakes.
 
 ## Built on (LexiLabs chain)
 
-The chain is stated as it was actually run. CuratorKIT was installed and
-imported; `aligntune`, `agenttune`, `safetune` and `auditkit` were not
-installable in the time available, so their stage is implemented in this repo
-against the same contract and labelled that way rather than described as the
-library. The substitution is also recorded in `status.md` under "Tooling
-caveat".
+Four libraries are involved and each is labelled with what it actually did. The
+full record, including versions and run metrics, is
+`artifacts/lexilabs/chain-2026-11-16.json`.
 
 | Repo | What it did in this project | Proof |
 |---|---|---|
 | CuratorKIT | **Ran as a library** (v0.1.23) over the 800 gold trajectories: schema gate, exact dedup, MinHash near-dedup (3-gram, 0.85), then this project's trajectory gates as post-checks, exported in `messages` format for SFT. | `pipelines/06_curate.py` writes `data/curated/lexsi_provenance.json` (`"library": "curatorkit"`, `"method": "curate"`), `data/curated/manifest.json` (800 in / 800 accepted) and `data/curated/sft_messages.jsonl`, the file training consumes. |
-| AgentTune / AlignTune | **Not installed.** QLoRA SFT (rank 32, alpha 64, lr 1e-4, 4 epochs) is written directly in `training/train_full.py` on Modal, on the CuratorKIT export, using the settings those repos wrap. | `training/train_full.py` (QLoRA, assistant-only loss mask, best-epoch checkpoint); `artifacts/sft/eval-ic7.json`; the resulting adapter `avengeryt22/finance-agent-staging@5ae2ee8`. |
-| AuditKIT | **Not installed.** The audit contract - frozen-set metrics, Wilson intervals, per-intent gates, refusal recall, over-refusal - is applied by `pipelines/13_gates.py`, which recomputes every number from the JSON so the report and the verdict cannot drift apart. | `pipelines/13_gates.py` produces `artifacts/safety/gates-ic7.md` (ACCEPT, every gate) and `artifacts/release/ic7.json`. |
-| SafeTune | **Not installed.** Its over-refusal repair stage is `pipelines/10_safetune_mix.py`: 48 benign tool-call rows, each reusing a real trajectory and changing only the question, which took over-refusal from the 0.769 probe reading to 0.038. | `pipelines/10_safetune_mix.py` writes `data/splits/safetune_manifest.json` (668 -> 716 rows, 48 added); `artifacts/safety/comparison.md` records the 0.038 over-refusal and the "no drift, SafeTune mix not re-triggered" verdict. |
+| AlignTune | **Ran as a library** (v0.1.35): `create_sft_trainer(backend="trl")` on the CuratorKIT export - 927 rows, rank 32, alpha 64, lr 1e-4, 4 epochs, 232 steps, 44 minutes on an A100. It masks with `completion_only_loss` over prompt/completion pairs rendered by `app/chat_format.py`, and writes its own `lexsi_provenance.json` next to the adapter. | `training/train_aligntune.py`; adapter `/out/aligntune-r32-e4` on the `finance-agent-sft-adapters` volume with `library: aligntune, version: 0.1.35`; final loss 0.4478, mean token accuracy 0.9537. **Not gated yet**, so the published and deployed adapter is still ic7 (`5ae2ee8`). |
+| AgentTune | **Ran as a library** (GitHub main) for an 8-step GRPO smoke run on 40 rows, with this project's four tools as deterministic stubs and AgentTune's `structure_reward` + `reward_tool_used`. Mean reward 0.4984, KL 0.000143. | `training/rl_agenttune.py`; adapter `/out/agenttune-grpo-smoke` on the same volume. Explicitly **not a trained policy**: 81% of generation groups had zero reward variance, so the next step is reward design, not a longer run. |
+| AuditKIT | **Ran as a library** (v1.1.12): `ak.evaluate(..., model="precomputed")` re-scored the recorded ic7 predictions on the 150 frozen rows with `exact_match` and `is_json(require_keys=[tool,args])`, then `ak.compare()` ran its own paired test. | `scripts/audit_with_auditkit.py` -> `artifacts/audit/auditkit-ic7.json`. Reproduces the gate report exactly: tool selection 0.5467 base vs 0.9800 tuned, schema 1.0 both, delta +0.4333, 95% CI [0.3533, 0.5135], p = 0.000999, 66 rows improved and 1 regressed, with per-run fingerprints. |
+| SafeTune | **Not a separate package here** (nothing named `safetune` is published). Its over-refusal repair stage is implemented in `pipelines/10_safetune_mix.py`: 48 benign tool-call rows, each reusing a real trajectory and changing only the question, which took over-refusal from the 0.769 probe reading to 0.038. | `pipelines/10_safetune_mix.py` writes `data/splits/safetune_manifest.json` (668 -> 716 rows, 48 added); `artifacts/safety/comparison.md` records the 0.038 over-refusal and the "no drift, SafeTune mix not re-triggered" verdict. |
 
 ## Historical baseline results
 

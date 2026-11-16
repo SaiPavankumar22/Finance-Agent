@@ -1,0 +1,96 @@
+{
+  "auditkit_version": "1.1.12",
+  "source_predictions": "artifacts\\sft\\eval-ic7.json",
+  "split": "test",
+  "rows": 150,
+  "runs": {
+    "base:tool_selection": {
+      "headline": {
+        "exact_match": 0.5467
+      },
+      "fingerprint": "18b378166ba95f6e",
+      "failed": 0
+    },
+    "base:schema": {
+      "headline": {
+        "is_json(keys=tool,args)": 1.0
+      },
+      "fingerprint": "de6d40fe93efb198",
+      "failed": 0
+    },
+    "tuned:tool_selection": {
+      "headline": {
+        "exact_match": 0.98
+      },
+      "fingerprint": "bc0b79b6508448ba",
+      "failed": 0
+    },
+    "tuned:schema": {
+      "headline": {
+        "is_json(keys=tool,args)": 1.0
+      },
+      "fingerprint": "6972556013a1b462",
+      "failed": 0
+    }
+  },
+  "paired_comparison": {
+    "metric": "exact_match (tool selection)",
+    "summary": "Comparison: 18b378166ba95f6e (baseline) -> bc0b79b6508448ba (candidate)\n  per-metric (baseline -> candidate | absolute delta | relative %):\n    exact_match: 0.5467 -> 0.9800  delta=+0.4333 (+79.3% rel)  (n=150->150, std=0.4978->0.1400)\n  samples: 1 went correct->wrong, 66 went wrong->correct\n  model: precomputed -> precomputed (no measurable size)",
+    "significance": {
+      "n": 150,
+      "mean_baseline": 0.546667,
+      "mean_candidate": 0.98,
+      "delta": 0.433333,
+      "p_value": 0.000999,
+      "significant": true,
+      "ci": [
+        0.353333,
+        0.5135
+      ],
+      "ci_level": 0.95
+    },
+    "metric_deltas": [
+      {
+        "metric": "exact_match",
+        "baseline": 0.5466666666666666,
+        "candidate": 0.98,
+        "delta": 0.43333333333333335,
+        "direction": "maximize",
+        "grade": "pass",
+        "baseline_count": 150,
+        "candidate_count": 150,
+        "baseline_std": 0.4978174587358523,
+        "candidate_std": 0.13999999999999987,
+        "pct_change": 79.26829268292683
+      }
+    ],
+    "improved": 66,
+    "regressed": 1
+  },
+  "cross_check": {
+    "base": {
+      "tool_selection": {
+        "auditkit": 0.5467,
+        "repo_gate_report": 0.5467,
+        "agree": true
+      },
+      "schema_valid": {
+        "auditkit": 1.0,
+        "repo_gate_report": 1.0,
+        "agree": true
+      }
+    },
+    "tuned": {
+      "tool_selection": {
+        "auditkit": 0.98,
+        "repo_gate_report": 0.98,
+        "agree": true
+      },
+      "schema_valid": {
+        "auditkit": 1.0,
+        "repo_gate_report": 1.0,
+        "agree": true
+      }
+    }
+  }
+}

@@ -1163,3 +1163,52 @@ pushed to the Hub, or pointed at the demo. Closing the two gaps above (weighted
 rows, multi-turn supervision via TRL's `messages` path with a generation-marked
 template) is the precondition for a second attempt, and the gate report is the
 test that decides it.
+
+## AlignTune retry with both gaps closed: REJECT on two India gates (2026-11-16)
+
+The v1 AlignTune run was not feature-equivalent to `training/train_full.py`, so
+the two gaps were closed in `training/train_aligntune.py`:
+
+- **Weighted rows.** Each row is repeated `row["weight"]` times, the same policy
+  as `training.data.expand_examples`, so refusal rows count twice and the
+  error-replay rows three times.
+- **Every assistant turn.** The dataset now holds one prompt/completion pair per
+  assistant turn instead of only the final turn, so the turn-after-tool-result
+  behaviour is supervised again.
+
+That changed the dataset from 927 rows / 232 steps to 927 rows / 2108 turns /
+2332 weighted samples / 584 steps. Final loss 0.4478 (v1) - the deeper
+supervision starts higher (2.11) and ends lower per token, mean accuracy 0.95.
+Trained on an **H100** (6.0 s/step, 59 min, about $4); the A100-40GB attempt was
+abandoned at 11 s/step.
+
+| metric | aligntune-v1 | aligntune-v4 | ic7 |
+|---|---:|---:|---:|
+| frozen tool selection | 0.7000 | **0.8800** | 0.9800 |
+| frozen argument accuracy | 0.7933 | **0.9200** | 0.9733 |
+| refusal recall | 0.8243 | **1.0000** | 1.0000 |
+| over-refusal | 0.0000 | 0.0769 | 0.0000 |
+| post-error bounded finish | 1.0000 | 1.0000 | 1.0000 |
+| India tool selection | 0.8000 | **0.8600** | 0.9800 |
+| India argument accuracy | 0.7600 | **0.8300** | 0.9800 |
+| India invalid-symbol declines | 1/8 | 5/8 | 8/8 |
+| India unsupported-action declines | 3/11 | 10/11 | 11/11 |
+| India refusal families | 29/32 | **32/32** | 32/32 |
+
+Closing the gaps moved every headline number: the frozen set went from below the
+WS5 baseline to 0.88, refusal recall reached 1.0000, and the India refusal
+families went from 29/32 to 32/32. **Verdict: REJECT**, on exactly two gates -
+India invalid-symbol declines 5/8 and India unsupported-action declines 10/11
+(`artifacts/safety/gates-aligntune-v4.md`). Everything else passes, including
+every regression check against WS5.
+
+The remaining gap is narrow and specific: abstaining on a *malformed or
+unsupported* Indian request. ic7 closed the same family by adding template
+coverage in `pipelines/16_gate_gaps.py`; here the turn-level split dilutes those
+refusal rows relative to tool-call turns, because a refusal trajectory holds one
+turn while a full report holds five. That is the next thing to try - turn-level
+weighting rather than row-level weighting - not another epoch.
+
+**Nothing was published.** The adapter stays on the volume at
+`/out/aligntune-r32-e4-v4`, and `5ae2ee8` remains the published and deployed
+release.

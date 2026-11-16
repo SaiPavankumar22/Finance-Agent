@@ -58,7 +58,7 @@ def run(
     epochs: int = 4,
     learning_rate: float = 1e-4,
     rank: int = 32,
-    max_len: int = 5120,
+    max_len: int = 6464,
     max_steps: int = 20,
     output: str = "aligntune-e4-r32",
     push_to: str = "",
@@ -76,27 +76,44 @@ def run(
     # Prompt/completion pairs, not raw conversations: TRL masks the completion
     # with ``completion_only_loss``, which reproduces this project's
     # assistant-only loss without depending on generation markers the Tiny Aya
-    # chat template does not carry.
+    # chat template does not carry. One pair per assistant turn, so every turn of
+    # a trajectory is supervised - the first library run only supervised the last
+    # turn and lost the turn-after-tool-result behaviour.
     tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, trust_remote_code=True)
     sys.path.insert(0, SRC)
     from app.chat_format import render
 
-    def prompt_completion(messages: list[dict[str, Any]]) -> dict[str, str]:
-        """Same rendering the published training and the endpoint use.
+    def turn_pairs(messages: list[dict[str, Any]]) -> list[dict[str, str]]:
+        """One prompt/completion pair per assistant turn, rendered identically."""
+        pairs: list[dict[str, str]] = []
+        for index, message in enumerate(messages):
+            if message["role"] != "assistant":
+                continue
+            prompt = render(tokenizer, messages[:index], add_generation_prompt=True)
+            through = render(tokenizer, messages[: index + 1])
+            if not through.startswith(prompt):
+                raise SystemExit(f"rendered prompt is not a prefix at turn {index}")
+            pairs.append({"prompt": prompt, "completion": through[len(prompt) :]})
+        return pairs
 
-        Tiny Aya's own template rejects the tool-result turns this format
-        carries, so the project's renderer is the only correct source of the
-        prompt text.
-        """
-        final = max(i for i, message in enumerate(messages) if message["role"] == "assistant")
-        prompt = render(tokenizer, messages[:final], add_generation_prompt=True)
-        through = render(tokenizer, messages[: final + 1])
-        if not through.startswith(prompt):
-            raise SystemExit("rendered prompt is not a prefix of the full turn")
-        return {"prompt": prompt, "completion": through[len(prompt) :]}
+    records: list[dict[str, str]] = []
+    dropped = 0
+    for row in rows:
+        for pair in turn_pairs(row["messages"]):
+            tokens = len(tokenizer(pair["prompt"] + pair["completion"])["input_ids"])
+            if tokens > max_len:
+                dropped += 1
+                continue
+            # Same policy as training.data.expand_examples: repetition instead of
+            # a weighted sampler, so steps and tokens stay explicit in the record.
+            records.extend([pair] * int(row.get("weight", 1)))
 
-    dataset = Dataset.from_list([prompt_completion(row["messages"]) for row in rows])
-    print(f"train rows: {len(dataset)} | columns: {dataset.column_names}", flush=True)
+    dataset = Dataset.from_list(records)
+    print(
+        f"rows: {len(rows)} -> samples: {len(dataset)} "
+        f"(one per assistant turn, weighted; dropped over {max_len} tokens: {dropped})",
+        flush=True,
+    )
     print(f"first prompt tail: {dataset[0]['prompt'][-160:]!r}", flush=True)
 
     import aligntune
@@ -161,10 +178,27 @@ def run(
 
 
 @app.local_entrypoint()
-def main(full: bool = False, output: str = "aligntune-e4-r32", push_to: str = "") -> None:
-    result = run.remote(
+def main(
+    full: bool = False,
+    output: str = "aligntune-e4-r32",
+    push_to: str = "",
+    spawn: bool = False,
+) -> None:
+    """Train, or schedule the run and exit.
+
+    ``--spawn`` fires the job and returns immediately: the call belongs to Modal
+    rather than to this shell, so a dropped connection cannot cancel a two-hour
+    training run (which is exactly what happened once).
+    """
+
+    kwargs = dict(
         max_steps=-1 if full else 20,
         output=output,
         push_to=push_to,
     )
+    if spawn:
+        call = run.spawn(**kwargs)
+        print(f"spawned {call.object_id}")
+        return
+    result = run.remote(**kwargs)
     print(json.dumps(result, indent=2, default=str)[:4000])

@@ -1091,3 +1091,75 @@ the useful next step is reward design, not a longer run.
 
 **Next.** Evaluate `/out/aligntune-r32-e4` with `eval/` plus `pipelines/13_gates.py`
 before any claim that the library-trained adapter matches ic7.
+
+## Demo, history and dependency work (2026-11-16)
+
+**Demo page.** `SaiPavankumar22/finance-agent-demo` is live at revision
+`0f01962` on the static SDK, serving the answer box, a `request_id`-to-log link
+under every answer, and two recorded examples in `space/examples.json`
+(captured `2026-11-16T05:43:44Z`: the RELIANCE.NS quote and the BAJAJ-AUTO.NS
+year of closes). The examples sit under a "Cached examples - recorded, not live"
+heading with the capture time, so a cold container no longer reads as a broken
+demo. The query endpoint, `/request_log?request_id=<id>`, `/health` and
+`/version` are all verified responding, and `/version` reports
+`avengeryt22/finance-agent-staging@5ae2ee8`.
+
+**Model card.** `SaiPavankumar22/finance-agent` carries the rewritten card at
+revision `ea3e408`, matching the article's framing; adapter weights there are
+still `0366a47`, and `5ae2ee8` remains the staging revision the demo and the
+gate report share.
+
+**Commit history.** 36 pushed commits carried Codebuff trailers. They were
+removed with a `filter-branch` message filter, the tree was verified identical
+before and after (`691b4be...` both sides), and `main` was force-pushed
+(`965ceb8 -> c514531`). `backup/pre-trailer-cleanup` still points at the
+pre-rewrite tip `716489c` if the old messages are ever needed. Pushes since then:
+`75b2c41` (Space log link), `ad42536` (README demo and chain sections),
+`11dceeb` (cached examples), `8b00549` (the LexiLabs library runs).
+
+**Dependencies.** `auditkit==1.1.12` is now in `requirements.txt`, because
+`scripts/audit_with_auditkit.py` runs locally against recorded predictions.
+`aligntune` and `agenttune` stay out of it on purpose: they are installed inside
+their Modal images (`training/train_aligntune.py`, `training/rl_agenttune.py`),
+where the Linux ML stack is pinned by the image rather than by this machine.
+
+## AlignTune adapter evaluated: REJECT (2026-11-16)
+
+`/out/aligntune-r32-e4` was run through the same gates as `ic7`, with new
+artifacts `eval-aligntune.json`, `safety-aligntune.json` and
+`india-aligntune.json`, and the report is `artifacts/safety/gates-aligntune.md`.
+Verdict: **REJECT** on eight gates.
+
+| metric | aligntune | ic7 |
+|---|---:|---:|
+| frozen tool selection | 0.7000 | 0.9800 |
+| frozen argument accuracy | 0.7933 | 0.9733 |
+| refusal recall | 0.8243 | 1.0000 |
+| over-refusal | 0.0000 | 0.0000 |
+| post-error bounded finish | 1.0000 | 1.0000 |
+| India tool selection | 0.8000 | 0.9800 |
+| India argument accuracy | 0.7600 | 0.9800 |
+| India invalid-symbol declines | 1/8 | 8/8 |
+| India unsupported-action declines | 3/11 | 11/11 |
+| India refusal families | 29/32 | 32/32 |
+
+A few things improved (benign tool selection 0.9615 vs 0.7308 for WS5, India
+tool selection above the 0.70 floor), but the frozen set dropped below even the
+WS5 baseline on tool selection, and refusal recall fell under the 0.90 gate, so
+the adapter does not ship.
+
+**Why it is worse, not just different.** The AlignTune path is not yet
+feature-equivalent to `training/train_full.py`. Two gaps are known and
+deliberate: the weighted expansion (`training.data.expand_examples`, which makes
+refusal rows count twice and India rows once) is not applied - each of the 927
+rows was fed once - and the prompt/completion layout supervises only the final
+assistant turn, where the original trainer supervised every assistant turn of a
+trajectory. Losing the turn-two supervision is the likely cause of the refusal
+and India-invalid collapse, since those behaviours are learned from trajectories
+that continue after a tool result.
+
+**Decision.** `5ae2ee8` stays published and deployed; nothing was uploaded,
+pushed to the Hub, or pointed at the demo. Closing the two gaps above (weighted
+rows, multi-turn supervision via TRL's `messages` path with a generation-marked
+template) is the precondition for a second attempt, and the gate report is the
+test that decides it.

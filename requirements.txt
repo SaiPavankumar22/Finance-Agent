@@ -1,3 +1,8 @@
+# auditkit re-scores recorded predictions in scripts/audit_with_auditkit.py.
+# aligntune and agenttune are installed inside their Modal images instead
+# (training/train_aligntune.py, training/rl_agenttune.py), because both pin a
+# Linux ML stack that must not be resolved on a developer machine.
+auditkit==1.1.12
 anthropic==2.6.0
 curatorkit==0.1.23
 huggingface_hub==1.24.0

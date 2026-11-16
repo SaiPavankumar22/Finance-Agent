@@ -13,6 +13,10 @@
       pre { white-space: pre-wrap; background: #111c31; padding: 1rem; border-radius: 8px; }
       .muted { color: #9fb0c9; }
       a { color: #35b779; }
+      h2 { font-size: 1.05rem; margin-top: 2.2rem; }
+      details { margin: .6rem 0; }
+      summary { cursor: pointer; padding: .4rem 0; }
+      .cached { border-left: 3px solid #d9a441; padding-left: .9rem; }
     </style>
   </head>
   <body>
@@ -23,6 +27,16 @@
     <button id="ask">Ask</button>
     <pre id="output">Ready.</pre>
     <p id="logline" class="muted"></p>
+
+    <section class="cached">
+      <h2>Cached examples <span class="muted">— recorded, not live</span></h2>
+      <p class="muted" id="cachednote">
+        Loading recorded answers so a cold container never looks like a broken
+        demo. Prices below are frozen at their recorded timestamps; ask above for
+        a live result.
+      </p>
+      <div id="cached"></div>
+    </section>
     <script>
       const endpoint = "https://devisettisaipavankumar--finance-agent-ws5-demo-financeag-dc3c3e.us-east.modal.run";
       const logEndpoint = "https://devisettisaipavankumar--finance-agent-ws5-demo-request-log.us-east.modal.run";
@@ -41,6 +55,31 @@
         link.textContent = `Open the log line for request ${requestId}`;
         logline.append(link);
       }
+
+      // Real recorded answers ship with the page so a judge sees output even if
+      // the Modal container is scaling from zero. Labelled with the capture time.
+      async function loadExamples() {
+        const target = document.querySelector("#cached");
+        const note = document.querySelector("#cachednote");
+        try {
+          const data = await (await fetch("examples.json", {cache: "no-store"})).json();
+          note.textContent = `Recorded ${data.captured_at} on ${data.adapter}. ${data.note} Ask above for a live answer.`;
+          for (const item of data.examples) {
+            const status = (item.response.result || {}).status || "n/a";
+            const details = document.createElement("details");
+            const summary = document.createElement("summary");
+            summary.textContent = `${item.question} → ${status} (request ${item.response.request_id})`;
+            const body = document.createElement("pre");
+            body.textContent = JSON.stringify(item.response, null, 2);
+            details.append(summary, body);
+            target.append(details);
+          }
+        } catch (error) {
+          note.textContent = `Cached examples unavailable: ${error}`;
+        }
+      }
+
+      loadExamples();
 
       document.querySelector("#ask").onclick = async () => {
         output.textContent = "Loading…";

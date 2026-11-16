@@ -74,7 +74,10 @@ The previous WS5 adapter `7a4b00e` remains available for rollback.
 **Cold starts.** The service scales to zero (`min_containers=0`) and loads the
 3.35B base in 4-bit plus the adapter from the Hub on first use, so the first
 question after an idle period takes tens of seconds; the page shows `Loading…`
-meanwhile. Warm calls measured 3.9-4.4 s end to end, tool call included.
+meanwhile. Warm calls measured 3.9-4.4 s end to end, tool call included. The
+page also ships `space/examples.json`, two recorded answers the browser renders
+immediately under a "Cached examples - recorded, not live" heading with their
+capture time, so the demo shows real output before any container wakes.
 
 ## Built on (LexiLabs chain)
 

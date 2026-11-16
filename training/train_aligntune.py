@@ -96,24 +96,45 @@ def run(
             pairs.append({"prompt": prompt, "completion": through[len(prompt) :]})
         return pairs
 
+    # Turn-level weighting. Repeating every turn ``weight`` times (the row-level
+    # policy) makes a row's share of the loss depend on its length: a refusal
+    # trajectory holds one turn and a report holds five, so refusals arrive
+    # roughly 2.3x rarer per step than they did under the hand-written trainer,
+    # which is what cost the v2 and v4 runs two India abstention gates. Each row
+    # instead gets a fixed budget of ``weight * mean_turns`` samples, spread over
+    # its turns and never below one copy, so every turn stays supervised and the
+    # total number of samples is unchanged.
+    turn_counts = [sum(1 for m in r["messages"] if m["role"] == "assistant") for r in rows]
+    mean_turns = sum(turn_counts) / max(1, len(turn_counts))
+
     records: list[dict[str, str]] = []
     dropped = 0
+    by_intent: dict[str, int] = {}
     for row in rows:
+        pairs: list[dict[str, str]] = []
         for pair in turn_pairs(row["messages"]):
             tokens = len(tokenizer(pair["prompt"] + pair["completion"])["input_ids"])
             if tokens > max_len:
                 dropped += 1
                 continue
-            # Same policy as training.data.expand_examples: repetition instead of
-            # a weighted sampler, so steps and tokens stay explicit in the record.
-            records.extend([pair] * int(row.get("weight", 1)))
+            pairs.append(pair)
+        if not pairs:
+            continue
+        budget = max(1, int(row.get("weight", 1))) * mean_turns
+        repeats = max(1, round(budget / len(pairs)))
+        records.extend(pairs * repeats)
+        intent = str(row.get("intent", "?"))
+        by_intent[intent] = by_intent.get(intent, 0) + len(pairs) * repeats
 
     dataset = Dataset.from_list(records)
     print(
         f"rows: {len(rows)} -> samples: {len(dataset)} "
-        f"(one per assistant turn, weighted; dropped over {max_len} tokens: {dropped})",
+        f"(mean turns {mean_turns:.2f}, turn-level budget; dropped over {max_len} tokens: {dropped})",
         flush=True,
     )
+    for intent in sorted(by_intent):
+        share = 100.0 * by_intent[intent] / max(1, len(dataset))
+        print(f"  {intent:22s} {by_intent[intent]:5d} samples {share:5.2f}%", flush=True)
     print(f"first prompt tail: {dataset[0]['prompt'][-160:]!r}", flush=True)
 
     import aligntune
